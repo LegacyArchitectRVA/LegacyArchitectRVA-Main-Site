@@ -1035,7 +1035,7 @@
         <a class="btn btn-gold" href="/readiness">Check Your Readiness</a>
         <a class="btn btn-ghost" href="/services#samples">Start with a Blueprint Session</a>
       </div>
-      <div class="sub-cta">The check is free and takes two minutes. The Blueprint credits toward any edition.</div>
+      <div class="sub-cta">The check is free and takes two minutes. The Blueprint fee credits toward any edition.</div>
     </div>
   </div>
   <div class="hero-visual">
@@ -1312,7 +1312,7 @@
       el.setAttribute('aria-expanded','false');
       el.setAttribute('aria-controls',panelId);
       el.innerHTML = `
-        <img class="pillar-img" src="${p.img}" alt="" loading="lazy">
+        <picture><source srcset="${p.img.replace(/\.jpg$/,'.webp')}" type="image/webp"><img class="pillar-img" src="${p.img}" alt="" decoding="async"></picture>
         <div class="pillar-plus" aria-hidden="true">+</div>
         <div class="pillar-label">
           <div class="pillar-num">PILLAR ${p.n}${p.legacy?' &middot; LEGACY':''}</div>
@@ -1431,7 +1431,7 @@
     var items=(n[4]||[]).map(function(x){return '<li>'+x+'</li>';}).join('');
     d.innerHTML='<div class="side">'+
         '<button class="pcard" aria-expanded="false">'+
-          '<img class="pimg" src="'+n[2]+'" alt="" loading="lazy">'+
+          '<picture><source srcset="'+n[2].replace(/\.jpg$/,'.webp')+'" type="image/webp"><img class="pimg" src="'+n[2]+'" alt="" decoding="async"></picture>'+
           '<span class="ptext"><span class="pnum">'+n[3]+'</span>'+
           '<span class="pname">'+n[0]+'</span>'+
           '<span class="pgap">'+n[1]+'</span></span>'+

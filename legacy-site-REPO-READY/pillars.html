@@ -889,7 +889,7 @@
       el.setAttribute('aria-expanded','false');
       el.setAttribute('aria-controls',panelId);
       el.innerHTML = `
-        <img class="pillar-img" src="${p.img}" alt="" loading="lazy">
+        <picture><source srcset="${p.img.replace(/\.jpg$/,'.webp')}" type="image/webp"><img class="pillar-img" src="${p.img}" alt="" decoding="async"></picture>
         <div class="pillar-plus" aria-hidden="true">+</div>
         <div class="pillar-label">
           <div class="pillar-num">PILLAR ${p.n}${p.legacy?' &middot; LEGACY':''}</div>
