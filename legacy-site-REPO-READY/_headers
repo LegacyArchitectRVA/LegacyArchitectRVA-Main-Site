@@ -1,11 +1,54 @@
+# Security headers. CSP is per-page with hashed inline blocks.
+# Regenerate with: python3 gen_csp.py   (after editing any inline script/style)
+
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-/*.html
-  X-Frame-Options: SAMEORIGIN
-  Cache-Control: public, max-age=0, must-revalidate
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
 /assets/*
-  Cache-Control: public, max-age=604800
-/*.pdf
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=604800, immutable
+
+/about.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-+86E1aZZh3f1FKi6Brj4ufmR5I5OhQ7195o9CrK6rhs=' 'sha256-/cFbyeT2RqdCxkvxPxxPbPuHIaP+DXe7BFoPEkjQ8pk='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-NAO8WRXS7g+wRCdBpJcwiFqEvMTLzWhXvjX5Z2UGIj4='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/faq.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-eoCjZCExBrWid30W5alEz4M/36ALfp9m64MqYhKdW6Y='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-i4JkPJVHfSO2b5Wgm8lqlN8/LE/+HMOd6hlCuqQa4qc='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-NrGQyk0JYriJp9UmubtH07XYXlerelq3jg0OBmIPlG0=' 'sha256-ZbKYduqkzhSbvC+D5as4C1Hm3ViYcAZVFz/P/JAr370=' 'sha256-AbpHGcgLb+kRsJGnwFEktk7uzpZOCcBY74+YBdrKVGs=' 'sha256-2l8IOp680wCQi6Lq75lKoetekrkZsU9T0SjyWKR27QQ='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-ddyPjC+fX1UATILiMb9LnK9heabvFcbPFcAsuoaMX2E='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-NrGQyk0JYriJp9UmubtH07XYXlerelq3jg0OBmIPlG0=' 'sha256-ZbKYduqkzhSbvC+D5as4C1Hm3ViYcAZVFz/P/JAr370=' 'sha256-AbpHGcgLb+kRsJGnwFEktk7uzpZOCcBY74+YBdrKVGs=' 'sha256-2l8IOp680wCQi6Lq75lKoetekrkZsU9T0SjyWKR27QQ='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-ddyPjC+fX1UATILiMb9LnK9heabvFcbPFcAsuoaMX2E='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/pillars.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-j79TO4L/gfCvmuWry6QMB+Vs1MPU6Fby6NCFy1DEM2k=' 'sha256-O812PuR+E0T99zrozhSzuo6qumhJDBiocNZKA2ZlH/0='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-8qo3QOemp+fCoKUQ9ykoLQOe6tXSkHaVESVWlXj6NDM='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/privacy.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/cFbyeT2RqdCxkvxPxxPbPuHIaP+DXe7BFoPEkjQ8pk='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-jAeIY7TVGoltZy/YD34zzye7rlE+nxSBDiswa70ZcFc='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/readiness.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/cFbyeT2RqdCxkvxPxxPbPuHIaP+DXe7BFoPEkjQ8pk='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-WUvyP7Une4c5S0uPTk+E8X1VaayFemquh2RpfbUDUhE='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-9o0Q4P1gqp/5XHtLiPJae/LQpCD8Q63JMoniJPX3sWI=' 'sha256-/cFbyeT2RqdCxkvxPxxPbPuHIaP+DXe7BFoPEkjQ8pk='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-kU914xd4bhDxmqsaM+v8VyBXScy0iP61MlAQvn8WkcU='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/terms.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/cFbyeT2RqdCxkvxPxxPbPuHIaP+DXe7BFoPEkjQ8pk='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-jAeIY7TVGoltZy/YD34zzye7rlE+nxSBDiswa70ZcFc='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
+
+/thanks.html
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-5rDZFHQDbgkfOFZgg1BiSUEXgTcecupO98LdqgGg+5Y=' 'sha256-q1C2KRUeU138yGQPc69nklYNqkXNSsuy/st8KpyUTj8='; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' 'sha256-JO54Z4xjPXAm3ANA1k6PHjwOCaKx9Wr2vLW99vM12RA='; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://legacy-assistant.craig-a51.workers.dev; frame-src https://cal.com https://app.cal.com https://js.stripe.com https://buy.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; object-src 'none'; upgrade-insecure-requests
+  Cache-Control: public, max-age=0, must-revalidate
