@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.github.io'] }
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy | Legacy Architect RVA</title>
@@ -31,9 +41,12 @@
   @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#0f0c08;--ink:#f2ede2;--mut:#a8a08f;--gold:#d4b661;--gold-b:#e8c869;--line:rgba(212,182,97,.16)}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;animation:pageIn .5s ease both}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){body{animation:none}}
+
   .wrap{max-width:760px;margin:0 auto;padding:0 26px}
-  nav{position:sticky;top:0;z-index:50;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:115;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav .inner{max-width:1120px;margin:0 auto;padding:14px 26px;display:flex;align-items:center;justify-content:space-between}
   nav .brand{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--ink)}
   nav .brand img{height:54px;width:auto;display:block}
@@ -53,6 +66,15 @@
   .legal-hero h1{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,5vw,3rem)}
   .legal-hero .eff{font-family:'Inter',sans-serif;font-size:12px;color:var(--mut);letter-spacing:.05em;margin-top:12px}
   .legal-body{padding:40px 0 80px}
+  .legal-body h2{scroll-margin-top:90px}
+  .legal-jump{display:flex;flex-wrap:wrap;gap:8px 10px;margin:32px 0 8px;padding:22px;
+    border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.015)}
+  .legal-jump a{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.03em;color:var(--mut);
+    text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:20px;
+    transition:color .2s,border-color .2s;min-height:32px;display:inline-flex;align-items:center}
+  .legal-jump a:hover{color:var(--gold);border-color:var(--gold)}
+  html.lightmode .legal-jump{background:rgba(20,18,14,.02)}
+  html.lightmode .legal-jump a:hover{color:#7D6224;border-color:#7D6224}
   .legal-body h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.4rem;color:var(--gold-b);margin:36px 0 12px}
   .legal-body h3{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:26px 0 8px}
   .legal-body p{color:var(--mut);margin-bottom:14px}
@@ -79,7 +101,11 @@
     transition:opacity .3s,transform .3s,border-color .2s;backdrop-filter:blur(6px)}
   .to-top.show{opacity:1;pointer-events:auto}
   .to-top:hover{border-color:var(--gold);transform:translateY(-2px)}
-  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}}
+  .compass-needle{width:22px;height:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+  .to-top:hover .compass-needle{transform:rotate(0deg)!important}
+  .to-top.pulse .compass-needle{animation:compassPulse .5s ease}
+  @keyframes compassPulse{0%{transform:scale(1) rotate(0deg)}40%{transform:scale(1.35) rotate(0deg)}100%{transform:scale(1) rotate(0deg)}}
+  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}.compass-needle{transition:none}.to-top.pulse .compass-needle{animation:none}}
 
   /* ===== TAP TARGET ACCESSIBILITY (mobile) ===== */
   @media(max-width:900px){
@@ -347,7 +373,7 @@
   }
 
   /* keep real content above all three */
-  nav{z-index:50}
+  nav{z-index:115}
   section,footer,main,.wrap,.hero{position:relative;z-index:1}
   .m-menu{z-index:110}
   .asst,.orb-wrap{z-index:200}
@@ -684,11 +710,13 @@
 <div class="wrap"><div class="legal-body">
 <p class="intro">Legacy Architect RVA respects your privacy and is committed to protecting the personal information entrusted to us. This policy explains how we collect, use, protect, and disclose information when you use our website or services.</p>
 
-<h2>The Zero-Knowledge Standard</h2>
+<nav class="legal-jump reveal" aria-label="Jump to section"><a href="#the-zero-knowledge-standard">The Zero-Knowledge Standard</a><a href="#information-we-collect">Information We Collect</a><a href="#how-we-use-your-information">How We Use Your Information</a><a href="#cookies-and-tracking-technologies">Cookies and Tracking Technologies</a><a href="#sharing-of-information">Sharing of Information</a><a href="#not-legal-financial-medical-or-tax-advice">Not Legal, Financial, Medical, or Tax Advice</a><a href="#data-security">Data Security</a><a href="#data-retention">Data Retention</a><a href="#your-rights">Your Rights</a><a href="#children-s-privacy">Children's Privacy</a><a href="#changes-to-this-privacy-policy">Changes to This Privacy Policy</a><a href="#contact">Contact</a></nav>
+
+<h2 id="the-zero-knowledge-standard">The Zero-Knowledge Standard</h2>
 <p>Zero-knowledge means we don't see, store, or hold your private information. Your documents live in your own Secure Drive. We help organize the structure. You control what goes in, where it lives, and who can access it.</p>
 <p>All data you submit exists on our systems only during the active engagement while your Life Manual is being built. Once it's delivered, all submitted data is permanently purged. An automatic purge occurs within 72 hours of delivery as an additional safeguard. After that, your delivered Life Manual is the only copy in existence, and it belongs entirely to you.</p>
 
-<h2>Information We Collect</h2>
+<h2 id="information-we-collect">Information We Collect</h2>
 <h3>Contact information</h3>
 <ul><li>Name, email, phone, mailing address</li><li>Communication preferences</li></ul>
 <h3>Personal planning information</h3>
@@ -696,34 +724,34 @@
 <h3>Automatically collected</h3>
 <p>When you visit, we may collect technical data like IP address, browser type, pages visited, and referring sites through analytics and cookies. You can disable cookies in your browser settings.</p>
 
-<h2>How We Use Your Information</h2>
+<h2 id="how-we-use-your-information">How We Use Your Information</h2>
 <p>To provide requested services, create your Life Manual, schedule conversations, communicate with you, process payments, and protect against fraud. We do not sell your personal information. We never use your Life Manual data for marketing, advertising, analytics, or profiling.</p>
 
-<h2>Cookies and Tracking Technologies</h2>
+<h2 id="cookies-and-tracking-technologies">Cookies and Tracking Technologies</h2>
 <p>Our website may use cookies or similar technologies to remember preferences, analyze traffic, and understand how visitors use our site. You may disable cookies through your browser settings, though some features may not function properly if you do.</p>
 
-<h2>Sharing of Information</h2>
+<h2 id="sharing-of-information">Sharing of Information</h2>
 <p>We may share information only when necessary to operate our business, including with trusted service providers such as website hosting, payment processors, scheduling platforms, email providers, analytics providers, and cloud storage providers. These providers are authorized to use information only as necessary to provide services to us. We may also disclose information when required by law, legal process, or court order, or to protect our rights, property, or safety, or to prevent fraud or abuse.</p>
 
-<h2>Not Legal, Financial, Medical, or Tax Advice</h2>
+<h2 id="not-legal-financial-medical-or-tax-advice">Not Legal, Financial, Medical, or Tax Advice</h2>
 <p>We provide organization, documentation, and continuity planning. We are not attorneys, financial advisors, tax professionals, insurance agents, or medical professionals. Our services don't replace advice from licensed professionals. You should consult appropriate licensed professionals regarding legal documents, financial decisions, medical decisions, taxes, and estate planning matters.</p>
 
-<h2>Data Security</h2>
+<h2 id="data-security">Data Security</h2>
 <p>We protect your information with encryption in transit (HTTPS/TLS) and at rest (AES-256), cryptographically hashed passwords, and limited access. No system can be guaranteed completely secure, and providing information electronically carries inherent risk.</p>
 
-<h2>Data Retention</h2>
+<h2 id="data-retention">Data Retention</h2>
 <p>We retain information only as long as reasonably necessary to provide services, maintain business records, meet legal obligations, resolve disputes, and enforce agreements. Life Manual data submitted through our tools is permanently purged within 72 hours of delivery under our Zero-Knowledge Protocol.</p>
 
-<h2>Your Rights</h2>
+<h2 id="your-rights">Your Rights</h2>
 <p>Depending on applicable law, you may request access to, correction of, or deletion of your information, and ask how your data is used. Requests can be submitted using the contact information below.</p>
 
-<h2>Children's Privacy</h2>
+<h2 id="children-s-privacy">Children's Privacy</h2>
 <p>Our services are intended for adults. We do not knowingly collect personal information from children under 13.</p>
 
-<h2>Changes to This Privacy Policy</h2>
+<h2 id="changes-to-this-privacy-policy">Changes to This Privacy Policy</h2>
 <p>We may update this Privacy Policy periodically. The updated version will be posted on this website with a revised effective date.</p>
 
-<h2>Contact</h2>
+<h2 id="contact">Contact</h2>
 <p>Legacy Architect RVA &middot; Richmond, Virginia. For privacy questions or data requests, reach us at Craig@LegacyArchitectRVA.com or (804) 866-1320.</p>
 </div></div>
 <footer>
@@ -739,7 +767,7 @@
       <a href="/services#editions">Editions</a>
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
-      <a href="/assets/The-Handoff.pdf" download="The-Handoff.pdf">The Handoff (free)</a>
+      <a href="/#handoff">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
     </div>
@@ -750,14 +778,25 @@
   // reading progress + back to top
   (function(){
     const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
-    const top=document.createElement('button'); top.className='to-top'; top.innerHTML='&#8593;';
+    const top=document.createElement('button'); top.className='to-top';
+    top.innerHTML='<svg viewBox="0 0 40 40" class="compass-needle" aria-hidden="true">'+
+      '<circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>'+
+      '<path d="M20 6 L24 20 L20 34 L16 20 Z" fill="currentColor"/>'+
+      '<circle cx="20" cy="20" r="2.2" fill="currentColor"/>'+
+      '</svg>';
     top.setAttribute('aria-label','Back to top'); document.body.appendChild(top);
-    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    top.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:'smooth'});
+      top.classList.add('pulse');
+      setTimeout(()=>top.classList.remove('pulse'), 500);
+    });
+    const needle=top.querySelector('.compass-needle');
     function onScroll(){
       const h=document.documentElement.scrollHeight-window.innerHeight;
       const pct=h>0?(window.scrollY/h)*100:0;
       bar.style.width=pct+'%';
       top.classList.toggle('show', window.scrollY>600);
+      if(needle) needle.style.transform='rotate('+(pct*3.6)+'deg)';
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     onScroll();
@@ -1225,5 +1264,25 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   </div>
 </div>
 
+<script>
+  // conversion event tracking - catches every instance of these links, including JS-rendered ones
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a || !window.gtag) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0,60);
+    if(href.indexOf('buy.stripe.com') > -1){
+      gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('/readiness') > -1){
+      gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('mailto:') === 0){
+      gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('tel:') === 0){
+      gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
+    }
+  }, true);
+</script>
 </body>
 </html>

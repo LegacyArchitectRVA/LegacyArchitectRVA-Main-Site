@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.github.io'] }
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms of Service | Legacy Architect RVA</title>
@@ -31,9 +41,12 @@
   @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#0f0c08;--ink:#f2ede2;--mut:#a8a08f;--gold:#d4b661;--gold-b:#e8c869;--line:rgba(212,182,97,.16)}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;animation:pageIn .5s ease both}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){body{animation:none}}
+
   .wrap{max-width:760px;margin:0 auto;padding:0 26px}
-  nav{position:sticky;top:0;z-index:50;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:115;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav .inner{max-width:1120px;margin:0 auto;padding:14px 26px;display:flex;align-items:center;justify-content:space-between}
   nav .brand{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--ink)}
   nav .brand img{height:54px;width:auto;display:block}
@@ -53,6 +66,15 @@
   .legal-hero h1{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,5vw,3rem)}
   .legal-hero .eff{font-family:'Inter',sans-serif;font-size:12px;color:var(--mut);letter-spacing:.05em;margin-top:12px}
   .legal-body{padding:40px 0 80px}
+  .legal-body h2{scroll-margin-top:90px}
+  .legal-jump{display:flex;flex-wrap:wrap;gap:8px 10px;margin:32px 0 8px;padding:22px;
+    border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.015)}
+  .legal-jump a{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.03em;color:var(--mut);
+    text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:20px;
+    transition:color .2s,border-color .2s;min-height:32px;display:inline-flex;align-items:center}
+  .legal-jump a:hover{color:var(--gold);border-color:var(--gold)}
+  html.lightmode .legal-jump{background:rgba(20,18,14,.02)}
+  html.lightmode .legal-jump a:hover{color:#7D6224;border-color:#7D6224}
   .legal-body h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.4rem;color:var(--gold-b);margin:36px 0 12px}
   .legal-body h3{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:26px 0 8px}
   .legal-body p{color:var(--mut);margin-bottom:14px}
@@ -79,7 +101,11 @@
     transition:opacity .3s,transform .3s,border-color .2s;backdrop-filter:blur(6px)}
   .to-top.show{opacity:1;pointer-events:auto}
   .to-top:hover{border-color:var(--gold);transform:translateY(-2px)}
-  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}}
+  .compass-needle{width:22px;height:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+  .to-top:hover .compass-needle{transform:rotate(0deg)!important}
+  .to-top.pulse .compass-needle{animation:compassPulse .5s ease}
+  @keyframes compassPulse{0%{transform:scale(1) rotate(0deg)}40%{transform:scale(1.35) rotate(0deg)}100%{transform:scale(1) rotate(0deg)}}
+  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}.compass-needle{transition:none}.to-top.pulse .compass-needle{animation:none}}
 
   /* ===== TAP TARGET ACCESSIBILITY (mobile) ===== */
   @media(max-width:900px){
@@ -347,7 +373,7 @@
   }
 
   /* keep real content above all three */
-  nav{z-index:50}
+  nav{z-index:115}
   section,footer,main,.wrap,.hero{position:relative;z-index:1}
   .m-menu{z-index:110}
   .asst,.orb-wrap{z-index:200}
@@ -684,13 +710,15 @@
 <div class="wrap"><div class="legal-body">
 <p class="intro">These Terms govern your use of Legacy Architect RVA's website and services. By accessing our site or purchasing services, you agree to these Terms. If you don't agree, please don't use our site or services.</p>
 
-<h2>Description of Services</h2>
+<nav class="legal-jump reveal" aria-label="Jump to section"><a href="#description-of-services">Description of Services</a><a href="#not-legal-financial-medical-or-tax-advice">Not Legal, Financial, Medical, or Tax Advice</a><a href="#client-responsibilities">Client Responsibilities</a><a href="#ownership-of-your-information">Ownership of Your Information</a><a href="#payments-and-refunds">Payments and Refunds</a><a href="#testimonials-media">Testimonials & Media</a><a href="#intellectual-property">Intellectual Property</a><a href="#no-guarantee-of-outcome">No Guarantee of Outcome</a><a href="#limitation-of-liability">Limitation of Liability</a><a href="#third-party-services">Third-Party Services</a><a href="#governing-law">Governing Law</a><a href="#changes-to-terms">Changes to Terms</a><a href="#contact">Contact</a></nav>
+
+<h2 id="description-of-services">Description of Services</h2>
 <p>We provide continuity planning and documentation designed to help you organize important information, instructions, and personal knowledge. Services include Life Manuals, Blueprint Sessions, Just-In-Case Plans, readiness assessments, and educational resources.</p>
 
-<h2>Not Legal, Financial, Medical, or Tax Advice</h2>
+<h2 id="not-legal-financial-medical-or-tax-advice">Not Legal, Financial, Medical, or Tax Advice</h2>
 <p>We don't provide legal, estate planning, financial, investment, tax, or medical advice. Our services help organize information and improve continuity preparedness. You're responsible for seeking qualified professional advice when needed.</p>
 
-<h2>Client Responsibilities</h2>
+<h2 id="client-responsibilities">Client Responsibilities</h2>
 <ul>
 <li>Provide accurate information</li>
 <li>Review your completed materials</li>
@@ -700,35 +728,35 @@
 </ul>
 <p>We're not responsible for inaccuracies caused by incomplete, outdated, or incorrect information provided by clients.</p>
 
-<h2>Ownership of Your Information</h2>
+<h2 id="ownership-of-your-information">Ownership of Your Information</h2>
 <p>You retain ownership of information you provide. You grant us permission to use it only as necessary to provide services, create deliverables, and communicate about your project.</p>
 
-<h2>Payments and Refunds</h2>
+<h2 id="payments-and-refunds">Payments and Refunds</h2>
 <p>Prices, payment terms, and refund policies are disclosed before purchase. A flexible option is available: 50% to begin, 50% before delivery. Upgrades are credited at the price difference. Because customized services require significant preparation, refunds may be limited once work has begun.</p>
 
-<h2>Testimonials & Media</h2>
+<h2 id="testimonials-media">Testimonials & Media</h2>
 <p>By engaging our services, you grant us a non-exclusive, royalty-free license to use feedback and testimonials you provide for marketing and educational purposes. We may use your first name, general geographic area, and service tier for attribution. No personally identifiable financial, legal, or Life Manual content is ever disclosed. Testimonials may be edited for length or clarity while preserving meaning. You may request removal of a specific testimonial at any time.</p>
 
-<h2>Intellectual Property</h2>
+<h2 id="intellectual-property">Intellectual Property</h2>
 <p>All Legacy Architect RVA materials, including website content, branding, frameworks, templates, methodologies, and written materials, remain our property unless otherwise stated. You may use completed personal deliverables for your own personal purposes but may not reproduce, resell, or distribute company materials without permission. Your Life Manual content belongs to you; the format, design, and template remain ours.</p>
 
-<h2>No Guarantee of Outcome</h2>
+<h2 id="no-guarantee-of-outcome">No Guarantee of Outcome</h2>
 <p>We provide organizational tools designed to improve preparedness. We do not guarantee a specific family outcome, avoidance of disputes, avoidance of legal proceedings, successful transfer of assets, or acceptance of instructions by third parties.</p>
 
-<h2>Limitation of Liability</h2>
+<h2 id="limitation-of-liability">Limitation of Liability</h2>
 <p>To the maximum extent permitted by law, our total liability shall not exceed the amount paid for the specific service giving rise to the claim. We are not responsible for loss caused by reliance on completed materials, failure to update information, third-party system failures, unauthorized access beyond reasonable security measures, or decisions made by clients, families, successors, or third parties.</p>
 
-<h2>Third-Party Services</h2>
+<h2 id="third-party-services">Third-Party Services</h2>
 <p>Our website may contain links or integrations with third-party services. We do not control and are not responsible for third-party websites, services, privacy practices, or content.</p>
 
-<h2>Governing Law</h2>
+<h2 id="governing-law">Governing Law</h2>
 <p>These Terms are governed by the laws of the Commonwealth of Virginia. Any dispute shall be handled in courts located within Virginia unless otherwise required by law.</p>
 
-<h2>Changes to Terms</h2>
+<h2 id="changes-to-terms">Changes to Terms</h2>
 <p>We reserve the right to modify these Terms at any time. Continued use of our website or services after changes are posted constitutes acceptance of the updated Terms.</p>
 
-<h2>Contact</h2>
-<p>Legacy Architect RVA &middot; Richmond, Virginia. For questions about these Terms, reach us at Craig@LegacyArchitectRVA.com or (804) 866-1320.</p>
+<h2 id="contact">Contact</h2>
+<p>Legacy Architect RVA &middot; Richmond, Virginia. For questions about these Terms, reach us at info@legacyarchitectrva.com or (804) 866-1320.</p>
 </div></div>
 <footer>
   <div class="wrap">
@@ -743,7 +771,7 @@
       <a href="/services#editions">Editions</a>
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
-      <a href="/assets/The-Handoff.pdf" download="The-Handoff.pdf">The Handoff (free)</a>
+      <a href="/#handoff">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
     </div>
@@ -754,14 +782,25 @@
   // reading progress + back to top
   (function(){
     const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
-    const top=document.createElement('button'); top.className='to-top'; top.innerHTML='&#8593;';
+    const top=document.createElement('button'); top.className='to-top';
+    top.innerHTML='<svg viewBox="0 0 40 40" class="compass-needle" aria-hidden="true">'+
+      '<circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>'+
+      '<path d="M20 6 L24 20 L20 34 L16 20 Z" fill="currentColor"/>'+
+      '<circle cx="20" cy="20" r="2.2" fill="currentColor"/>'+
+      '</svg>';
     top.setAttribute('aria-label','Back to top'); document.body.appendChild(top);
-    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    top.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:'smooth'});
+      top.classList.add('pulse');
+      setTimeout(()=>top.classList.remove('pulse'), 500);
+    });
+    const needle=top.querySelector('.compass-needle');
     function onScroll(){
       const h=document.documentElement.scrollHeight-window.innerHeight;
       const pct=h>0?(window.scrollY/h)*100:0;
       bar.style.width=pct+'%';
       top.classList.toggle('show', window.scrollY>600);
+      if(needle) needle.style.transform='rotate('+(pct*3.6)+'deg)';
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     onScroll();
@@ -1229,5 +1268,25 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   </div>
 </div>
 
+<script>
+  // conversion event tracking - catches every instance of these links, including JS-rendered ones
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a || !window.gtag) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0,60);
+    if(href.indexOf('buy.stripe.com') > -1){
+      gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('/readiness') > -1){
+      gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('mailto:') === 0){
+      gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('tel:') === 0){
+      gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
+    }
+  }, true);
+</script>
 </body>
 </html>

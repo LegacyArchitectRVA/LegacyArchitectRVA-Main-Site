@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.github.io'] }
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You're In | Legacy Architect RVA</title>
@@ -37,7 +47,10 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;
-    font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;animation:pageIn .5s ease both}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){body{animation:none}}
+
   .wrap{max-width:920px;margin:0 auto;padding:0 24px}
   .eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
 
@@ -119,7 +132,7 @@
   .modal .m-skip{display:block;margin-top:14px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.05em;color:var(--mut);background:none;border:none;cursor:pointer;text-decoration:underline;width:100%}
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
-  nav.site{position:sticky;top:0;z-index:80;background:rgba(15,12,8,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav.site{position:sticky;top:0;z-index:115;background:rgba(15,12,8,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav.site .inner{max-width:1120px;margin:0 auto;padding:14px 26px;display:flex;align-items:center;justify-content:space-between}
   nav.site .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
   nav.site .brand img{width:30px;height:30px}
@@ -151,7 +164,11 @@
     transition:opacity .3s,transform .3s,border-color .2s;backdrop-filter:blur(6px)}
   .to-top.show{opacity:1;pointer-events:auto}
   .to-top:hover{border-color:var(--gold);transform:translateY(-2px)}
-  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}}
+  .compass-needle{width:22px;height:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+  .to-top:hover .compass-needle{transform:rotate(0deg)!important}
+  .to-top.pulse .compass-needle{animation:compassPulse .5s ease}
+  @keyframes compassPulse{0%{transform:scale(1) rotate(0deg)}40%{transform:scale(1.35) rotate(0deg)}100%{transform:scale(1) rotate(0deg)}}
+  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}.compass-needle{transition:none}.to-top.pulse .compass-needle{animation:none}}
 
   /* ===== TAP TARGET ACCESSIBILITY (mobile) ===== */
   @media(max-width:900px){
@@ -419,7 +436,7 @@
   }
 
   /* keep real content above all three */
-  nav{z-index:50}
+  nav{z-index:115}
   section,footer,main,.wrap,.hero{position:relative;z-index:1}
   .m-menu{z-index:110}
   .asst,.orb-wrap{z-index:200}
@@ -794,11 +811,11 @@
   <div class="wrap" style="display:flex;justify-content:center">
     <article class="letter">
       <div class="salute">Dear friend,</div>
-      <p>I wanted to take a moment to express my deepest gratitude for the time and care you've poured into building your legacy. It's not just about the documents or the systems you've put in place. It's about the peace of mind you've created for others.</p>
-      <p>When chaos strikes, as it inevitably does, those who come after you will not be left scrambling in the dark. Instead, they will have clarity, direction, and the comfort of knowing someone cared enough to make it so.</p>
-      <p>Your work is a quiet act of love, one that speaks volumes in its absence. You have chosen to leave a trail of light for others to follow, and that is a rare and meaningful thing. It is easy to focus on the immediate, the urgent, the present moment. Instead, you have stepped back, seen the bigger picture, and chosen to prepare, not just for yourself, but for the people who will inherit what you have shaped.</p>
-      <p>Thank you for being someone who thinks beyond the moment. Thank you for recognizing that legacy is not just about what you leave behind, but how you make life easier for those who follow. Your effort does not just live on in files or folders. It lives on in the lives you have made smoother, the burdens you have lifted, and the chaos you have prevented.</p>
-      <div class="sign-off">With sincere appreciation,</div>
+      <p>You booked a session, and that puts you ahead of where most people ever get. A lot of folks think about this for years and never make the call.</p>
+      <p>Nothing about today has to be perfect. We'll go through the agreement, talk about where you actually stand, and find a pace that works for you. No script, no pressure, no wrong answers.</p>
+      <p>I didn't come to this from a business plan. I came to it from hospice rooms, insurance offices, hospital floors, watching the same thing happen over and over: one person quietly holding everything together, and none of it written down anywhere. That's what we're about to fix, one chapter at a time.</p>
+      <p>Talk soon.</p>
+      <div class="sign-off">With appreciation,</div>
       <div class="sig">Craig Rothchild</div>
       <div class="sig-role">Founder, Legacy Architect RVA</div>
       <div class="seal">
@@ -895,14 +912,25 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
   // reading progress + back to top
   (function(){
     const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
-    const top=document.createElement('button'); top.className='to-top'; top.innerHTML='&#8593;';
+    const top=document.createElement('button'); top.className='to-top';
+    top.innerHTML='<svg viewBox="0 0 40 40" class="compass-needle" aria-hidden="true">'+
+      '<circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>'+
+      '<path d="M20 6 L24 20 L20 34 L16 20 Z" fill="currentColor"/>'+
+      '<circle cx="20" cy="20" r="2.2" fill="currentColor"/>'+
+      '</svg>';
     top.setAttribute('aria-label','Back to top'); document.body.appendChild(top);
-    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    top.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:'smooth'});
+      top.classList.add('pulse');
+      setTimeout(()=>top.classList.remove('pulse'), 500);
+    });
+    const needle=top.querySelector('.compass-needle');
     function onScroll(){
       const h=document.documentElement.scrollHeight-window.innerHeight;
       const pct=h>0?(window.scrollY/h)*100:0;
       bar.style.width=pct+'%';
       top.classList.toggle('show', window.scrollY>600);
+      if(needle) needle.style.transform='rotate('+(pct*3.6)+'deg)';
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     onScroll();
@@ -1389,7 +1417,27 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 
 
 <div style="text-align:center;padding:26px 22px 40px">
-  <a href="/assets/The-Handoff.pdf" download="The-Handoff.pdf" style="color:#d4b661;font-size:13.5px;letter-spacing:.04em;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px">While you're here: The Handoff, a free one-page starter. Download it.</a>
+  <a href="/#handoff" style="color:#d4b661;font-size:13.5px;letter-spacing:.04em;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px">While you're here: The Handoff, a free one-page starter. Download it.</a>
 </div>
+<script>
+  // conversion event tracking - catches every instance of these links, including JS-rendered ones
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a || !window.gtag) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0,60);
+    if(href.indexOf('buy.stripe.com') > -1){
+      gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('/readiness') > -1){
+      gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('mailto:') === 0){
+      gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('tel:') === 0){
+      gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
+    }
+  }, true);
+</script>
 </body>
 </html>

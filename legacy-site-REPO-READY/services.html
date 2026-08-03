@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.github.io'] }
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Services & Editions | Legacy Architect RVA</title>
@@ -36,7 +46,10 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;animation:pageIn .5s ease both}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){body{animation:none}}
+
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
   .eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
 
@@ -81,6 +94,7 @@
     box-shadow:0 0 0 1px rgba(212,182,97,.22),0 30px 70px rgba(0,0,0,.45);padding-top:40px}
   .ed-name{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.9rem;margin-bottom:4px}
   .ed-sub{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:20px}
+  .ed-benefit{font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.55;color:var(--ink);margin:-10px 0 18px;max-width:34ch}
   /* premium badge: centered tab riding the top border, hairline gold rules flanking the words */
   .ed-badge{position:absolute;top:14px;left:50%;transform:translateX(-50%);
     display:flex;align-items:center;gap:9px;white-space:nowrap;z-index:6;
@@ -134,7 +148,7 @@
   @media(max-width:640px){.lb-nav{width:42px;height:42px;font-size:18px}.lb-prev{left:10px}.lb-next{right:10px}body{font-size:17px}}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
 
-  nav{position:sticky;top:0;z-index:50;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:115;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav .inner{max-width:1120px;margin:0 auto;padding:14px 26px;display:flex;align-items:center;justify-content:space-between}
   nav .brand{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--ink)}
   nav .brand img{height:54px;width:auto;display:block}
@@ -167,7 +181,11 @@
     transition:opacity .3s,transform .3s,border-color .2s;backdrop-filter:blur(6px)}
   .to-top.show{opacity:1;pointer-events:auto}
   .to-top:hover{border-color:var(--gold);transform:translateY(-2px)}
-  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}}
+  .compass-needle{width:22px;height:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+  .to-top:hover .compass-needle{transform:rotate(0deg)!important}
+  .to-top.pulse .compass-needle{animation:compassPulse .5s ease}
+  @keyframes compassPulse{0%{transform:scale(1) rotate(0deg)}40%{transform:scale(1.35) rotate(0deg)}100%{transform:scale(1) rotate(0deg)}}
+  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}.compass-needle{transition:none}.to-top.pulse .compass-needle{animation:none}}
 
   /* ===== TAP TARGET ACCESSIBILITY (mobile) ===== */
   @media(max-width:900px){
@@ -500,7 +518,7 @@
   }
 
   /* keep real content above all three */
-  nav{z-index:50}
+  nav{z-index:115}
   section,footer,main,.wrap,.hero{position:relative;z-index:1}
   .m-menu{z-index:110}
   .asst,.orb-wrap{z-index:200}
@@ -859,21 +877,21 @@
           <p style="font-family:'Inter',sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">The essentials</p>
           <p style="font-family:'Bodoni Moda',serif;font-size:31px;color:#d6a86b;margin:0 0 4px">$450 <span style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;text-decoration:line-through">$950</span></p>
           <p style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#a49c8b;margin:0 0 16px">Founding Families rate</p>
-          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers 5 of 8 chapters: Introduction, Digital Life, Emergency &amp; Successor Access, Household Operations, Vital Records. Built over 4 to 5 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Enough for someone to find what they need without guessing. Covers 5 of 8 chapters: Introduction, Digital Life, Emergency &amp; Successor Access, Household Operations, Vital Records. Built over 4 to 5 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
         </div>
         <div style="background:#18130c;border:1px solid rgba(200,204,208,.35);border-radius:5px;padding:28px 24px">
           <h3 style="font-family:'Bodoni Moda',serif;font-size:26px;font-weight:400;color:#c3cad1;margin:0">Archive</h3>
           <p style="font-family:'Inter',sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">The fuller picture &middot; Most chosen</p>
           <p style="font-family:'Bodoni Moda',serif;font-size:31px;color:#c3cad1;margin:0 0 4px">$1,450 <span style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;text-decoration:line-through">$1,950</span></p>
           <p style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#a49c8b;margin:0 0 16px">Founding Families rate</p>
-          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers 7 of 8 chapters, adding Financial &amp; Assets and Legacy &amp; Wishes. Built over 6 to 8 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">The fuller financial and personal picture, not just the emergency basics. Covers 7 of 8 chapters, adding Financial &amp; Assets and Legacy &amp; Wishes. Built over 6 to 8 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
         </div>
         <div style="background:#18130c;border:1px solid rgba(212,182,97,.5);border-radius:5px;padding:28px 24px">
           <h3 style="font-family:'Bodoni Moda',serif;font-size:26px;font-weight:400;color:#e8c869;margin:0">Legacy</h3>
           <p style="font-family:'Inter',sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">The complete system</p>
           <p style="font-family:'Bodoni Moda',serif;font-size:31px;color:#e8c869;margin:0 0 4px">$2,500+ <span style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;text-decoration:line-through">$3,000</span></p>
           <p style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#a49c8b;margin:0 0 16px">Founding Families rate</p>
-          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers all 8 chapters including Business Continuity. Built over 8 to 10 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Everything the others cover, plus what keeps the business running without you. Covers all 8 chapters including Business Continuity. Built over 8 to 10 working sessions of 60 to 90 minutes, 2 to 3 per week, with live draft review in the portal.</p>
         </div>
       </div>
       <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;margin-top:20px">Pay in full or start with a 50% deposit. Contact Craig@LegacyArchitectRVA.com or (804) 866-1320 to begin.</p>
@@ -899,7 +917,7 @@
 </div>
 
 <script>
-const SAMPLES = {"jic": {"title": "The Just-In-Case Plan", "price": "$29", "tag": "Self-guided starter", "desc": "A structured self-assessment across all seven areas of your life. You work through it at your own pace, and it shows you what's organized, what's missing, and where someone would get stuck.", "link": "https://buy.stripe.com/9B6fZjeyGgWO3zj0ct5Rm0o", "cta": "Get the Plan", "pages": [["/assets/samples/jic-cover.jpg", "Cover"], ["/assets/samples/jic-whats-inside.jpg", "What's inside"], ["/assets/samples/jic-how-to-use-it.jpg", "How to use it"], ["/assets/samples/jic-readiness-snapshot.jpg", "Readiness snapshot"], ["/assets/samples/jic-reflection-prompts.jpg", "Reflection prompts"], ["/assets/samples/jic-self-assessment-checklist.jpg", "Self-assessment checklist"]]}, "bp": {"title": "The Blueprint Session", "price": "$249", "tag": "Guided, delivered same day", "desc": "One working session that maps where you stand across all seven areas, then hands you a 72-hour action plan. The full cost credits toward a Life Manual.", "link": "https://buy.stripe.com/bJe28t3U221Uc5Pe3j5Rm0h", "cta": "Book the Session", "pages": [["/assets/samples/bp-the-gap-map.jpg", "The Gap Map"], ["/assets/samples/bp-exposure-by-area.jpg", "Exposure by area"], ["/assets/samples/bp-what-this-means.jpg", "What this means"], ["/assets/samples/bp-72-hour-action-plan.jpg", "72-hour action plan"]]}, "lm": {"title": "The Life Manual", "price": "From $950", "tag": "The complete system", "desc": "One organized document your successor can act on immediately. Built with you, chapter by chapter. This is a partial preview of a completed Legacy Edition sample.", "link": "https://buy.stripe.com/cNifZjcqyfSK1rb6AR5Rm0c", "cta": "Explore Editions", "pages": [["/assets/samples/lm-cover.jpg", "Cover"], ["/assets/samples/lm-quick-reference.jpg", "Quick Reference"], ["/assets/samples/lm-table-of-contents.jpg", "Table of contents"], ["/assets/samples/lm-successor-roadmap.jpg", "Successor Roadmap"], ["/assets/samples/lm-inside-a-chapter.jpg", "Inside a chapter"], ["/assets/samples/lm-business-continuity.jpg", "Business Continuity"], ["/assets/samples/lm-order-in-your-absence.jpg", "Order in your absence"]]}};
+const SAMPLES = {"jic": {"title": "The Just-In-Case Plan", "price": "$29", "tag": "Self-guided starter", "desc": "A 26-page workbook covering all seven pillars. Each one gets six questions, a checklist, and a table to document what's actually in place, so you see what's covered and what's still living only in your head. Twenty minutes with it and you know where you stand.", "link": "https://buy.stripe.com/9B6fZjeyGgWO3zj0ct5Rm0o", "cta": "Get the Plan", "pages": [["/assets/samples/jic-cover.jpg", "Cover"], ["/assets/samples/jic-whats-inside.jpg", "What's inside"], ["/assets/samples/jic-how-to-use-it.jpg", "How to use it"], ["/assets/samples/jic-readiness-snapshot.jpg", "Readiness snapshot"], ["/assets/samples/jic-reflection-prompts.jpg", "Reflection prompts"], ["/assets/samples/jic-self-assessment-checklist.jpg", "Self-assessment checklist"]]}, "bp": {"title": "The Blueprint Session", "price": "$249", "tag": "Guided, delivered same day", "desc": "A live working session with Craig, not a form you fill out alone. You go through all seven pillars together, and he builds your Gap Map with you: a pillar-by-pillar breakdown of what's covered, what's partial, and where a real gap sits, plus what that gap would actually mean for whoever had to step in. You leave with a 72-hour action plan, a short, doable list of what to close first, sized so you can finish it before the week's out. The full $249 credits toward any Life Manual edition, so it's a deposit on the real thing, not money spent twice.", "link": "https://buy.stripe.com/bJe28t3U221Uc5Pe3j5Rm0h", "cta": "Book the Session", "pages": [["/assets/samples/bp-the-gap-map.jpg", "The Gap Map"], ["/assets/samples/bp-exposure-by-area.jpg", "Exposure by area"], ["/assets/samples/bp-what-this-means.jpg", "What this means"], ["/assets/samples/bp-72-hour-action-plan.jpg", "72-hour action plan"]]}, "lm": {"title": "The Life Manual", "price": "From $950", "tag": "The complete system", "desc": "The full document, built with Craig chapter by chapter over structured sessions, not filled out alone. When it's finished, one person can open it and know exactly what to do, without hunting through your accounts, your head, or a drawer full of paper. This preview shows real pages from a completed Legacy edition.", "link": "#editions", "cta": "Explore Editions", "pages": [["/assets/samples/lm-cover.jpg", "Cover"], ["/assets/samples/lm-quick-reference.jpg", "Quick Reference"], ["/assets/samples/lm-table-of-contents.jpg", "Table of contents"], ["/assets/samples/lm-successor-roadmap.jpg", "Successor Roadmap"], ["/assets/samples/lm-inside-a-chapter.jpg", "Inside a chapter"], ["/assets/samples/lm-business-continuity.jpg", "Business Continuity"], ["/assets/samples/lm-order-in-your-absence.jpg", "Order in your absence"]]}};
 const LINKS = {"vault": {"founding": {"full": "https://buy.stripe.com/eVq4gB2PY6ia9XH1gx5Rm06", "deposit": "https://buy.stripe.com/7sYbJ3cqygWOedX4sJ5Rm0i"}, "regular": {"full": "https://buy.stripe.com/7sY6oJbmucGy5Hrf7n5Rm04", "deposit": "https://buy.stripe.com/fZu8wRfCKbCu8TD6AR5Rm0j"}}, "archive": {"founding": {"full": "https://buy.stripe.com/aFa4gB3U221U0n79N35Rm0a", "deposit": "https://buy.stripe.com/14A3cxeyGdKC8TD5wN5Rm0k"}, "regular": {"full": "https://buy.stripe.com/dRm4gB1LU7me2vfbVb5Rm08", "deposit": "https://buy.stripe.com/00w7sN3U2dKC3zje3j5Rm0l"}}, "legacy": {"founding": {"full": "https://buy.stripe.com/28E00l1LU6ia5HraR75Rm0e", "deposit": "https://buy.stripe.com/dRm28teyG21U7Pz6AR5Rm0m"}, "regular": {"full": "https://buy.stripe.com/cNifZjcqyfSK1rb6AR5Rm0c", "deposit": "https://buy.stripe.com/7sYdRb0HQ9umgm5cZf5Rm0n"}}};
 
 /* ---------- SAMPLES ---------- */
@@ -972,11 +990,11 @@ const CHAPTERS = [
   'Business Continuity'
 ];
 const EDITIONS=[
-  {key:'vault',name:'Vault',sub:'The essentials',full:950,foundingPrice:450,feature:false,
+  {key:'vault',name:'Vault',sub:'The essentials',benefit:'Enough for someone to find what they need without guessing.',full:950,foundingPrice:450,feature:false,
    chapters:['Introduction','Digital Life','Emergency & Successor Access','Household Operations','Vital Records']},
-  {key:'archive',name:'Archive',sub:'The fuller picture',full:1950,foundingPrice:1450,feature:true,
+  {key:'archive',name:'Archive',sub:'The fuller picture',benefit:'The fuller financial and personal picture, not just the emergency basics.',full:1950,foundingPrice:1450,feature:true,
    chapters:['Introduction','Digital Life','Emergency & Successor Access','Financial & Assets','Household Operations','Vital Records','Legacy & Wishes']},
-  {key:'legacy',name:'Legacy',sub:'The complete system',full:3000,foundingPrice:2500,feature:false,
+  {key:'legacy',name:'Legacy',sub:'The complete system',benefit:'Everything the others cover, plus what keeps the business running without you.',full:3000,foundingPrice:2500,feature:false,
    chapters:CHAPTERS.slice()}
 ];
 const money=n=>'$'+n.toLocaleString('en-US');
@@ -1014,6 +1032,7 @@ EDITIONS.forEach(ed=>{
     <div class="ed-inner">
       <div class="ed-name ${m}">${ed.name}</div>
       <div class="ed-sub">${ed.sub}</div>
+      <div class="ed-benefit">${ed.benefit}</div>
       <div class="price-block"><div><span class="price-now ${m}">${money(price)}${ed.key==='legacy'?'+':''}</span>${wasHtml}</div>${laneLabel?`<div class="price-lane">${laneLabel}</div>`:''}</div>
       <div class="grp open"><button class="grp-h" aria-expanded="true">What is covered<span class="cnt">${ed.chapters.length} of 8 <span class="chev">&#9662;</span></span></button>
         <div class="grp-body">${coversHtml}</div></div>
@@ -1059,7 +1078,7 @@ if(!FOUNDING_ACTIVE)document.getElementById('foundingBanner').classList.add('hid
       
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/about">About</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/readiness">Readiness Check</a>
-      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/assets/The-Handoff.pdf" download="The-Handoff.pdf">The Handoff (free)</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/#handoff">The Handoff (free)</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/privacy">Privacy</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/terms">Terms</a>
     </div>
@@ -1070,14 +1089,25 @@ if(!FOUNDING_ACTIVE)document.getElementById('foundingBanner').classList.add('hid
   // reading progress + back to top
   (function(){
     const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
-    const top=document.createElement('button'); top.className='to-top'; top.innerHTML='&#8593;';
+    const top=document.createElement('button'); top.className='to-top';
+    top.innerHTML='<svg viewBox="0 0 40 40" class="compass-needle" aria-hidden="true">'+
+      '<circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>'+
+      '<path d="M20 6 L24 20 L20 34 L16 20 Z" fill="currentColor"/>'+
+      '<circle cx="20" cy="20" r="2.2" fill="currentColor"/>'+
+      '</svg>';
     top.setAttribute('aria-label','Back to top'); document.body.appendChild(top);
-    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    top.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:'smooth'});
+      top.classList.add('pulse');
+      setTimeout(()=>top.classList.remove('pulse'), 500);
+    });
+    const needle=top.querySelector('.compass-needle');
     function onScroll(){
       const h=document.documentElement.scrollHeight-window.innerHeight;
       const pct=h>0?(window.scrollY/h)*100:0;
       bar.style.width=pct+'%';
       top.classList.toggle('show', window.scrollY>600);
+      if(needle) needle.style.transform='rotate('+(pct*3.6)+'deg)';
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     onScroll();
@@ -1545,5 +1575,25 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   </div>
 </div>
 
+<script>
+  // conversion event tracking - catches every instance of these links, including JS-rendered ones
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a || !window.gtag) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0,60);
+    if(href.indexOf('buy.stripe.com') > -1){
+      gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('/readiness') > -1){
+      gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('mailto:') === 0){
+      gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('tel:') === 0){
+      gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
+    }
+  }, true);
+</script>
 </body>
 </html>
