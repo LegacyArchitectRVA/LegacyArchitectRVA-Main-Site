@@ -913,12 +913,18 @@ function close_(){
   try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
 }
 var asstX=document.getElementById('asstX');
-if(asstX){asstX.addEventListener('click',function(e){e.stopPropagation();close_();});}
-orb.addEventListener('click',function(){
-  userActed = true;
-  try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
-  panel.classList.contains('on')?close_():open_();
-});
+if(asstX && !asstX.dataset.laBound){
+  asstX.dataset.laBound='1';
+  asstX.addEventListener('click',function(e){e.stopPropagation();close_();});
+}
+if(orb && !orb.dataset.laBound){
+  orb.dataset.laBound='1';
+  orb.addEventListener('click',function(){
+    userActed = true;
+    try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
+    panel.classList.contains('on')?close_():open_();
+  });
+}
 
 /* Open on its own a few seconds in, but only once per visit and only if
    the person has not already opened or dismissed it themselves. */
@@ -931,11 +937,22 @@ setTimeout(function(){
   open_();
   try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
 }, 4000);
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('on'))close_();});
-document.getElementById('send').addEventListener('click',function(){
-  var i=document.getElementById('ask'); var v=i.value.trim(); if(!v)return; i.value=''; ask(v);});
-document.getElementById('ask').addEventListener('keydown',function(e){
+if(!window.__laEscBound){
+  window.__laEscBound=true;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('on'))close_();});
+}
+var __laSendBtn=document.getElementById('send');
+if(__laSendBtn && !__laSendBtn.dataset.laBound){
+  __laSendBtn.dataset.laBound='1';
+  __laSendBtn.addEventListener('click',function(){
+    var i=document.getElementById('ask'); var v=i.value.trim(); if(!v)return; i.value=''; ask(v);});
+}
+var __laAskInput=document.getElementById('ask');
+if(__laAskInput && !__laAskInput.dataset.laBound){
+  __laAskInput.dataset.laBound='1';
+  __laAskInput.addEventListener('keydown',function(e){
   if(e.key==='Enter'){e.preventDefault();document.getElementById('send').click();}});
+}
 
 /* ---------- VOICE ----------
    Both use what the browser already provides, so there is no cost and
