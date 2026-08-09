@@ -155,12 +155,34 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
     </div>
   </div>
   <div class="hero-visual">
-    <video autoplay muted loop playsinline poster="/assets/hero/hero-compass-poster.jpg">
+    <video autoplay muted loop playsinline poster="/assets/hero/hero-compass-poster.jpg" id="heroVideo">
       <source src="/assets/hero/hero-compass-video.mp4" type="video/mp4">
     </video>
   </div>
   <div class="scroll-hint">&#8595;</div>
 </header>
+<script data-cfasync="false">
+(function(){
+  // A <video> element paints solid black by default until it has an actual
+  // decoded frame ready, it does NOT fall through to reveal the CSS
+  // background sitting behind it just because it's stuck loading. On a slow
+  // connection, blocked autoplay, or anything else that stalls playback,
+  // that means a permanent black rectangle over the hero, even with a
+  // background-image fallback in place on the parent. So: give it a few
+  // seconds, and if it never becomes playable, hide it outright so the
+  // fallback image actually gets a chance to show.
+  var v = document.getElementById('heroVideo');
+  if(!v) return;
+  var settled = false;
+  function markReady(){ settled = true; }
+  v.addEventListener('loadeddata', markReady);
+  v.addEventListener('playing', markReady);
+  v.addEventListener('error', function(){ v.style.display = 'none'; });
+  setTimeout(function(){
+    if(!settled) v.style.display = 'none';
+  }, 3500);
+})();
+</script>
 
 <section class="band">
   <div class="wrap" style="text-align:center">
@@ -929,17 +951,13 @@ if(orb && !orb.dataset.laBound){
   });
 }
 
-/* Open on its own a few seconds in, but only once per visit and only if
-   the person has not already opened or dismissed it themselves. */
+/* Auto-open removed per Craig: click-to-open only now, no timer-driven
+   popup covering the hero. userActed/la_asst_seen are kept in case
+   something downstream still reads them, but nothing sets a timeout
+   anymore. */
 var userActed = false;
 try{ if(localStorage.getItem('la_asst_seen')==='1') userActed = true; }catch(e){}
 
-setTimeout(function(){
-  if(userActed) return;
-  if(panel.classList.contains('on')) return;
-  open_();
-  try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
-}, 4000);
 if(!window.__laEscBound){
   window.__laEscBound=true;
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('on'))close_();});
