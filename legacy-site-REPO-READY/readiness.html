@@ -4003,10 +4003,13 @@ window.submit = function() {
 // ============================================
 step = 0;                       // always begin at the intro
 render();                       // draw the intro first
-scrollToTop();                  // then pin the view to the very top
-// Belt-and-suspenders: pin to top again once layout settles and on full load.
-window.addEventListener('load', function(){ scrollToTop(); });
-setTimeout(scrollToTop, 60);
+// NOTE: no auto-scroll here. This used to pin the view to the top of its own
+// standalone page on load, but now that the quiz is embedded inside the
+// readiness.html landing page, that same call was hijacking the whole page's
+// scroll position, yanking visitors down to the quiz a couple seconds after
+// they landed. The page should only scroll here in response to an actual
+// user action (clicking "Check Your Readiness", Next, Back, etc.), which is
+// already handled by the scrollToTop() calls inside those specific handlers.
 
 
 </script>
