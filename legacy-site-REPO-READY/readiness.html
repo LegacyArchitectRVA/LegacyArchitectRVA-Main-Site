@@ -696,6 +696,1490 @@
   html.lightmode .nextstep p{color:#3A3529}
   html.lightmode .nextstep .ns-price{color:#7D6224}
   </style>
+<style>
+#rq-embed {
+  /* Reskinned to Legacy Architect obsidian + gold to match legacyarchitectrva.com */
+  --bg-dark: #0f0c08;
+  --card-bg: #1c1712;
+  --text-primary: #efe9df;
+  --text-secondary: #c9c0b1;
+  --text-muted: #9a8f7c;
+  --text-gold: #c1b085;
+  --gold: #c1b085;
+  --accent-gold: #c1b085;
+  --accent-gold-light: #d4c49a;
+  --accent-gold-dark: #877044;
+  --forest: #c1b085;
+  --forest-mid: #d4c49a;
+  --forest-light: #d4c49a;
+  --forest-pale: rgba(193,176,133,0.08);
+  --ch1: #c1b085;
+  --ch2: #c1b085;
+  --ch3: #c1b085;
+  --ch4: #c1b085;
+  --ch5: #c1b085;
+  --ch6: #c1b085;
+  --ch7: #c1b085;
+  --recorded: #7fae7a;
+  --missing: #c77b6b;
+  --na: #b9a06a;
+  --border-default: rgba(193,176,133,0.22);
+  --ring-glow: rgba(193,176,133,0.25);
+  --subtle-glow: rgba(193,176,133,0.06);
+  --gold-glow: rgba(193,176,133,0.18);
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.4),0 1px 4px rgba(0,0,0,0.3);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.5),0 2px 8px rgba(0,0,0,0.35);
+  --linkedin: #0A66C2;
+  --facebook: #1877F2;
+  --x-black: #0E1410;
+  --instagram: #E4405F;
+  --threads: #101010;
+  --nextdoor: #00A36A;
+  --transition-normal: 0.2s ease;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+}
+#rq-embed * {
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+#rq-embed :focus-visible {
+  outline:2px solid var(--accent-gold);
+  outline-offset:2px;
+}
+#rq-embed .skip-link {
+  position:absolute;
+  top:-40px;
+  left:0;
+  background:var(--accent-gold);
+  color:var(--bg-dark);
+  padding:8px 16px;
+  z-index:10000;
+  text-decoration:none;
+  font-family:"Cinzel",serif;
+  font-size:14px;
+  font-weight:600;
+}
+#rq-embed .skip-link:focus {
+  top:0;
+}
+#rq-embed {font-size:22.3146px;background:#0f0c08;}
+#rq-embed ::selection {
+  background:rgba(31, 77, 58, 0.3);
+  color:var(--text-primary);
+}
+#rq-embed body:not(.has-logo)::before, #rq-embed body:not(.has-logo)::after, #rq-embed .logo-container, #rq-embed .site-logo, #rq-embed img[src*="Logos/Correct.png"]:not(.company-logo), #rq-embed img[alt*="Legacy Architect"]:not(.company-logo) {
+  display: none !important;
+}
+#rq-embed {font-size:22.3146px;}
+#rq-embed {margin:0;background:#0f0c08;color:#efe9df;font-family:"Lora",serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:visible;line-height:1.6;}
+#rq-embed #wrap {
+  max-width:1000px;
+  margin:0 auto;
+  padding:0;
+}
+#rq-embed .card {background:#1c1712;border:1px solid rgba(31,77,58,0.2);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 4px 32px rgba(26,58,42,0.12),0 1px 6px rgba(26,58,42,0.06);border-top:3px solid #B8922A;border-bottom:none;scroll-margin-top:0;}
+#rq-embed .card::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
+  opacity:0.3;
+}
+#rq-embed .card::after {
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
+  opacity:0.3;
+}
+#rq-embed .toggle {
+  min-height:auto;
+  padding:9px 12px;
+  margin-bottom:7px;
+  border-radius:6px;
+  background:#1c1712;
+  border:1px solid rgba(31,77,58,0.12);
+  box-shadow:0 1px 4px rgba(26,58,42,0.05);
+  transition:border-color 0.2s ease;
+}
+#rq-embed .toggle:last-child {margin-bottom:0;}
+#rq-embed .trow {
+  padding:4px 0;
+}
+#rq-embed .opt {
+  min-width:88px;
+  min-height:38px;
+  padding:8px 14px;
+  font-size:13px;
+  transition:all var(--transition-normal);
+  border:2px solid #1A1A1A !important;
+  border-radius:3px;
+  background:#1c1712;
+  font-weight:500;
+}
+#rq-embed .opt:hover, #rq-embed .opt:focus {
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
+}
+#rq-embed .opt:active {
+  transform:translateY(0);
+}
+#rq-embed .inputfield input {
+  min-height:48px;
+  font-size:15px;
+  padding:14px 16px;
+  background:#1c1712 !important;
+  color:var(--text-primary) !important;
+}
+#rq-embed .inputfield input:focus {
+  outline:none;
+  border-color:var(--accent-gold);
+  box-shadow:0 0 0 3px rgba(31, 77, 58, 0.15);
+}
+#rq-embed button {
+  min-height:48px;
+  min-width:140px;
+  transition:all var(--transition-normal);
+}
+#rq-embed button:active {
+  transform:scale(0.98);
+}
+#rq-embed .progress-container {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:rgba(31, 77, 58, 0.1);
+  z-index:1000;
+  display:none;
+}
+#rq-embed .progress-container.visible {
+  display:block;
+}
+#rq-embed .progress-bar {
+  height:100%;
+  background:linear-gradient(90deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  width:0%;
+  transition:width var(--transition-slow);
+}
+#rq-embed .stepbar {
+  display:flex;
+  gap:6px;
+  margin-bottom:30px;
+  height:2px;
+}
+#rq-embed .seg {
+  flex:1;
+  height:100%;
+  background:var(--text-muted);
+  border-radius:1px;
+  transition:all 0.4s ease;
+}
+#rq-embed .seg.done {background:var(--forest);}
+#rq-embed .seg.active {
+  background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light),var(--accent-gold));
+  background-size:200% 100%;
+  animation:shimmer 3s linear infinite;
+  box-shadow:0 0 12px var(--subtle-glow);
+}
+@keyframes  shimmer {0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes  barRise {from{transform:scaleX(0);opacity:0;}to{transform:scaleX(1);opacity:1;}}
+@keyframes  ringGlow {0%,100%{box-shadow:0 0 10px var(--ring-glow);}50%{box-shadow:0 0 20px var(--ring-glow),0 0 30px var(--ring-glow);}}
+@keyframes  btnHover {0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+@keyframes  float {0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes  fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes  modalFadeIn {from{opacity:0;}to{opacity:1;}}
+@keyframes  modalSlideIn {from{transform:translateY(-20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+#rq-embed .share-modal-overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,42,34,0.6);backdrop-filter:blur(3px);z-index:1000;align-items:center;justify-content:center;}
+#rq-embed .share-modal {
+  background:#1c1712;
+  border:1px solid rgba(31,77,58,0.25);
+  border-top:3px solid #B8922A;
+  border-radius:4px;
+  width:90%;
+  max-width:480px;
+  max-height:90vh;
+  overflow-y:auto;
+  animation:modalSlideIn 0.3s ease;
+  box-shadow:0 8px 40px rgba(26,58,42,0.18);
+  opacity:0;
+  transform:translateY(-20px);
+}
+#rq-embed .share-modal-visible {
+  opacity:1;
+  transform:translateY(0);
+}
+#rq-embed .share-modal-header {display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(31,77,58,0.15);}
+#rq-embed .share-modal-title {font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--forest);font-weight:600;margin:0;}
+#rq-embed .share-modal-close {
+  font-family:"Cinzel",serif;
+  font-size:22px;
+  color:var(--text-gold);
+  cursor:pointer;
+  line-height:1;
+  transition:color 0.2s ease;
+}
+#rq-embed .share-modal-close:hover {
+  color:var(--accent-gold);
+}
+#rq-embed .back-to-site-btn {
+  width:100%;
+  padding:16px 20px;
+  background:var(--forest);
+  border:2px solid var(--forest);
+  border-radius:3px;
+  font-family:"Cinzel",serif;
+  font-weight:600;
+  letter-spacing:3px;
+  margin-top:20px;
+  cursor:pointer;
+  font-size:12px;
+  text-transform:uppercase;
+  color:#D4AF37 !important;
+  transition:all 0.2s ease;
+  box-shadow:0 2px 12px rgba(31,77,58,0.3);
+}
+#rq-embed .back-to-site-btn:hover {background:var(--forest-mid);border-color:var(--forest-mid);box-shadow:0 4px 16px rgba(31,77,58,0.4);transform:translateY(-1px);}
+#rq-embed .company-logo {
+  width:auto;
+  height:auto;
+  max-width:30%;
+  max-height:30%;
+  margin:0 auto 20px;
+  display:block;
+  opacity:0.9;
+  transform:scale(0.3);
+  transform-origin:center;
+}
+#rq-embed .company-logo-mobile {
+  display:none;
+}
+@media (max-width:768px) {
+#rq-embed .company-logo {
+    display:none;
+  }
+#rq-embed .company-logo-mobile {
+    display:block;
+    width:auto;
+    height:auto;
+    max-width:30%;
+    max-height:30%;
+    margin:0 auto 20px;
+    opacity:0.9;
+    transform:scale(0.3);
+    transform-origin:center;
+  }
+}
+#rq-embed .share-qr-container {
+  margin:16px 0;
+  text-align:center;
+}
+#rq-embed .share-qr-code {
+  width:120px;
+  height:120px;
+  background:#fff;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(193,176,133,0.4);
+  margin:0 auto;
+  box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+#rq-embed .share-qr-code img, #rq-embed .share-qr-code canvas {
+  display:block;
+  width:100% !important;
+  height:100% !important;
+}
+#rq-embed .share-qr-label {
+  font-family:"Cinzel",serif;
+  font-size:11px;
+  color:var(--text-secondary);
+  margin-top:8px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+#rq-embed .share-custom-text {
+  width:100%;
+  padding:12px 14px;
+  background:rgba(31, 77, 58, 0.03);
+  border:1px solid rgba(31, 77, 58, 0.2);
+  border-radius:var(--radius-sm);
+  font-family:"Lora",serif;
+  font-size:14px;
+  color:var(--text-gold);
+  margin:12px 0;
+  resize:none;
+  min-height:80px;
+  transition:all var(--transition-normal);
+}
+#rq-embed .share-custom-text:focus {
+  outline:none;
+  border-color:var(--accent-gold);
+  box-shadow:0 0 0 2px rgba(31, 77, 58, 0.15);
+}
+#rq-embed .share-custom-text::placeholder {
+  color:var(--text-muted);
+}
+#rq-embed .share-modal-content {padding:16px 20px 20px;}
+#rq-embed .share-score-display {text-align:center;padding:16px 24px 12px;font-family:Cinzel,serif;font-size:18px;color:var(--forest);letter-spacing:2px;border-bottom:1px solid rgba(31,77,58,0.1);}
+#rq-embed .share-all-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+#rq-embed .share-tile {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:16px 8px;
+  background:#171310;
+  border:1px solid rgba(193,176,133,0.3);
+  border-radius:6px;
+  cursor:pointer;
+  text-decoration:none;
+  color:var(--accent-gold-light) !important;
+  font-family:"Cinzel",serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  transition:all 0.18s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+#rq-embed .share-tile:hover, #rq-embed .share-tile:active {
+  background:rgba(193,176,133,0.12);
+  border-color:#c1b085;
+  transform:translateY(-1px);
+}
+#rq-embed .share-tile span {
+  color:var(--accent-gold-light) !important;
+  font-size:12px;
+  font-weight:600;
+  font-family:"Cinzel",serif;
+}
+#rq-embed .share-modal-logo {
+  width:auto;
+  height:auto;
+  max-width:80%;
+  max-height:60px;
+  margin:0 auto 20px;
+  display:block;
+  opacity:0.95;
+  filter: drop-shadow(0 0 8px rgba(31, 77, 58, 0.4));
+}
+#rq-embed .share-platforms {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px;
+  margin-bottom:0;
+}
+#rq-embed .share-btn, #rq-embed .share-action-btn {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:16px 10px;
+  background:rgba(31,77,58,0.05);
+  border:1px solid rgba(31,77,58,0.25);
+  border-radius:4px;
+  cursor:pointer;
+  transition:all 0.2s ease;
+  text-decoration:none;
+  color:#efe9df !important;
+  font-family:"Cinzel",serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  text-transform:none;
+  /* override global button styles */
+  width:auto !important;
+  min-height:auto !important;
+  min-width:auto !important;
+  margin-top:0 !important;
+  box-shadow:none !important;
+  line-height:1.2 !important;
+}
+#rq-embed .share-btn:hover, #rq-embed .share-action-btn:hover {
+  background:rgba(31,77,58,0.12);
+  border-color:var(--accent-gold);
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(31,77,58,0.15) !important;
+}
+#rq-embed .share-btn span, #rq-embed .share-action-btn span {
+  color:#efe9df !important;
+  font-size:12px !important;
+  font-family:"Cinzel",serif !important;
+  font-weight:600 !important;
+  letter-spacing:0.5px !important;
+  text-transform:none !important;
+}
+#rq-embed .share-icon {
+  width:28px;
+  height:28px;
+  transition:transform 0.2s ease;
+}
+#rq-embed .share-btn:hover .share-icon, #rq-embed .share-action-btn:hover .share-icon {
+  transform:scale(1.1);
+}
+#rq-embed .share-actions {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px;
+  margin-top:8px;
+}
+#rq-embed .mark {
+  font-family:Cinzel,serif;
+  font-size:30px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--accent-gold);
+  opacity:1;
+  font-weight:400;
+  text-shadow:0 1px 8px rgba(184,146,42,0.25);
+}
+#rq-embed .heading {
+  font-family:Cinzel,serif;
+  font-size:32px;
+  margin:0 0 14px;
+  color:var(--accent-gold);
+  font-weight:400;
+  font-style:normal;
+}
+#rq-embed .sub {
+  color:var(--text-secondary);
+  line-height:2.0;
+  font-size:21px;
+  font-family:"Lora",serif;
+}
+#rq-embed .rule {
+  border:none;
+  border-top:none;
+  margin:20px 0;
+}
+#rq-embed .toggle {
+  border:1px solid rgba(193,176,133,0.14);
+  padding:9px 12px;
+  margin:7px 0;
+  background:#1c1712;
+  border-radius:6px;
+  transition:all var(--transition-normal);
+  width:100%;
+}
+#rq-embed .toggle:hover {background:rgba(31, 77, 58, 0.03);}
+#rq-embed .toggle.aR {border-left:3px solid var(--recorded) !important;background:rgba(31,122,82,0.06) !important;box-shadow:0 0 14px rgba(31,122,82,0.18) !important;}
+#rq-embed .toggle.aU {border-left:3px solid var(--missing) !important;background:rgba(192,57,43,0.05) !important;box-shadow:0 0 14px rgba(184,50,50,0.18) !important;}
+#rq-embed .toggle.aN {border-left:3px solid #B8922A !important;background:rgba(184,146,42,0.04) !important;}
+#rq-embed .toggle.unanswered {
+  border-left: 3px solid #FFA500;
+  background-color: rgba(255, 165, 0, 0.05);
+}
+#rq-embed .trow {display:flex;flex-direction:column;gap:6px;align-items:center;padding:4px 0;}
+#rq-embed .tlabel {margin-bottom:2px;}
+#rq-embed .roman-numeral {
+  font-family:Cinzel,serif;
+  color:#c1b085;
+  font-weight:700;
+  margin-right:8px;
+  font-size:18px;
+}
+#rq-embed .tlabel .info-tooltip {
+  display:inline-block;
+}
+#rq-embed .tlabel .info-icon {
+  width:16px;
+  height:16px;
+  margin-left:6px;
+  opacity:0.7;
+  vertical-align:middle;
+}
+#rq-embed .info-tooltip {position:relative;}
+#rq-embed .opts {display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
+@media (max-width:768px) {
+#rq-embed .card {padding:12px 10px 20px;}
+#rq-embed .sub {line-height:1.6;}
+#rq-embed #app > div:first-child > p:first-child {
+    margin-bottom: 6px !important;
+  }
+#rq-embed #app > div:first-child > p:nth-child(2) {
+    margin-bottom: 10px !important;
+  }
+}
+#rq-embed .not-business-owner-btn {
+  width:auto;
+  padding:14px 24px;
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  border:1px solid #8A6E2A;
+  border-radius:var(--radius-sm);
+  font-family:"Cinzel",serif;
+  font-weight:600;
+  letter-spacing:1.5px;
+  margin:20px auto;
+  cursor:pointer;
+  font-size:14px;
+  text-transform:uppercase;
+  color:#1a1a2e;
+  transition:all 0.2s ease;
+  display:block;
+  box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
+  position:relative;
+  overflow:hidden;
+}
+#rq-embed .not-business-owner-btn::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(45deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+  transition:all 0.3s ease;
+}
+#rq-embed .not-business-owner-btn:hover::before {
+  left:100%;
+}
+#rq-embed .not-business-owner-btn:hover {
+  background:linear-gradient(145deg, #1F4D3A, #143326, #1F4D3A);
+  border-color:var(--accent-gold);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(31, 77, 58, 0.3);
+}
+#rq-embed .not-business-owner-btn:disabled {
+  opacity:0.4;
+  cursor:not-allowed;
+  transform:none;
+}
+#rq-embed .info-icon {
+  width:12px;
+  height:12px;
+  cursor:pointer;
+  margin-left:6px;
+  opacity:0.6;
+  transition:opacity 0.2s ease;
+  flex-shrink:0;
+  fill:var(--text-gold);
+}
+#rq-embed .info-icon:hover {
+  opacity:1;
+}
+#rq-embed .info-tooltip {
+  position:relative;
+  display:inline-block;
+}
+#rq-embed .info-tooltip:hover .tooltip-content, #rq-embed .info-tooltip:focus .tooltip-content {
+  opacity:1;
+  visibility:visible;
+}
+#rq-embed .info-tooltip .tooltip-content::before {
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:#efe9df;
+}
+#rq-embed .cpbadge {
+  display:flex;align-items:center;gap:8px;margin-top:25px;
+  font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
+  color:#7A5C18;
+  font-family:"Cinzel",serif;
+  font-weight:600;
+  padding:12px 16px;
+  background:rgba(184,146,42,0.15);
+  border:1px solid rgba(184,146,42,0.5);
+  border-radius:var(--radius-sm);
+}
+#rq-embed .cpdot {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent-gold);
+  box-shadow:0 0 8px var(--subtle-glow);
+}
+#rq-embed .opt {
+  padding:12px 16px;
+  border:1px solid rgba(31, 77, 58, 0.4);
+  cursor:pointer;
+  border-radius:var(--radius-sm);
+  font-family:"Cinzel",serif;
+  font-size:14px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  transition:all var(--transition-normal);
+  color:var(--accent-gold);
+  background:transparent;
+  user-select:none;
+  font-weight:500;
+  min-width:88px;
+  min-height:44px;
+  text-align:center;
+}
+#rq-embed .opt:hover {
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
+  background:rgba(31, 77, 58, 0.05);
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
+}
+#rq-embed .opt:active {
+  transform:translateY(0);
+}
+#rq-embed .opt {
+  border:1px solid rgba(193,176,133,0.35);
+  border-radius:4px;
+  background:#171310;
+  color:var(--accent-gold-light);
+  font-weight:500;
+  letter-spacing:0.5px;
+  transition:all 0.18s ease;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
+}
+#rq-embed .opt:hover, #rq-embed .opt:focus {
+  border-color:var(--forest);
+  background:var(--forest-pale);
+  box-shadow:var(--shadow-hover);
+  transform:translateY(-1px);
+}
+#rq-embed .opt.oR {
+  border-color:var(--recorded) !important;
+  color:#fff !important;
+  background:var(--recorded) !important;
+  box-shadow:0 0 0 2px var(--recorded), 0 0 18px rgba(26,122,74,0.6) !important;
+  transform:translateY(-1px);
+}
+#rq-embed .opt.oU {
+  border-color:var(--missing) !important;
+  color:#fff !important;
+  background:var(--missing) !important;
+  box-shadow:0 0 0 2px var(--missing), 0 0 18px rgba(184,50,50,0.6) !important;
+  transform:translateY(-1px);
+}
+#rq-embed .opt.oN {
+  border-color:#B8922A !important;
+  color:#fff !important;
+  background:#B8922A !important;
+  box-shadow:0 0 0 2px #B8922A, 0 0 18px rgba(184,146,42,0.6) !important;
+  transform:translateY(-1px);
+}
+#rq-embed .counter {text-align:center;margin:16px 0 24px;}
+#rq-embed .counter-circle {
+  display:inline-block;
+  padding:8px 16px;
+  background:rgba(31, 77, 58, 0.05);
+  border:1px solid rgba(31, 77, 58, 0.4);
+  border-radius:var(--radius-sm);
+  font-family:"Cinzel",serif;
+  font-size:14px;
+  color:var(--accent-gold);
+  letter-spacing:1.5px;
+  box-shadow: 0 0 15px rgba(31, 77, 58, 0.3);
+  font-weight:600;
+  transition:all var(--transition-normal);
+}
+#rq-embed .counter-circle:hover {
+  background:rgba(31, 77, 58, 0.1);
+  border-color:var(--accent-gold);
+}
+#rq-embed .counter-progress {
+  font-size:11px;
+  color:var(--text-secondary);
+  margin-top:4px;
+}
+#rq-embed .cpbadge {
+  display:flex;align-items:center;gap:8px;margin-top:20px;
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent-gold);
+  font-family:"Cinzel",serif;
+  font-weight:500;
+}
+#rq-embed .cpdot {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--accent-gold);
+  box-shadow:0 0 6px var(--subtle-glow);
+}
+#rq-embed .cta-primary {
+  width:100%;
+  padding:18.9px 24px;
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  border:none;
+  font-family:Cinzel,serif;
+  font-weight:600;
+  letter-spacing:3px;
+  margin:28px 0 16px;
+  cursor:pointer;
+  font-size:14px;
+  text-transform:uppercase;
+  color:#1a1a2e;
+  border-radius:var(--radius-sm);
+  transition:all var(--transition-normal);
+  box-shadow:0 4px 15px rgba(31, 77, 58, 0.3);
+  border:1px solid #8A6E2A;
+  position:relative;
+  overflow:hidden;
+}
+#rq-embed .cta-primary::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition:left 0.5s ease;
+}
+#rq-embed .cta-primary:hover::before {
+  left:100%;
+}
+#rq-embed .cta-primary:hover {
+  background:linear-gradient(135deg, #143326, #1F4D3A, #2D6A4F);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(31, 77, 58, 0.4);
+}
+#rq-embed .cta-primary:active {
+  transform:translateY(0);
+  box-shadow:0 2px 8px rgba(31, 77, 58, 0.3);
+}
+#rq-embed button.alt {
+  background:transparent;
+  color:var(--accent-gold);
+  border:1px solid rgba(31, 77, 58, 0.4);
+  box-shadow:none;
+}
+#rq-embed button.alt:hover {
+  color:var(--accent-gold);
+  border-color:var(--accent-gold);
+  background:rgba(31, 77, 58, 0.05);
+}
+#rq-embed .social-proof {
+  background:rgba(31, 77, 58, 0.03);
+  border-left:3px solid #1F4D3A;
+  padding:18.9px;
+  margin:22px 0;
+  font-style:italic;
+  font-size:20.4px;
+  color:#efe9df;
+}
+#rq-embed .trust-badges {
+  display:flex;
+  justify-content:center;
+  gap:18.9px;
+  margin:22px 0;
+  flex-wrap:wrap;
+}
+#rq-embed .trust-badge {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:16.5px;
+  color:#efe9df;
+}
+#rq-embed .trust-badge-icon {
+  width:18.9px;
+  height:18.9px;
+  color:var(--accent-gold);
+}
+#rq-embed .info-tooltip {
+  position:relative;
+  display:inline-block;
+  cursor:help;
+}
+#rq-embed .info-icon {
+  width:14px;
+  height:14px;
+  margin-left:4px;
+  opacity:0.6;
+  transition:opacity var(--transition-fast);
+}
+#rq-embed .info-tooltip:hover .info-icon {
+  opacity:1;
+}
+#rq-embed .tooltip-content {
+  position:absolute;
+  bottom:auto;
+  top:100%;
+  margin-top:8px;
+  left:0;
+  right:auto;
+  transform:none;
+  background:#1F4D3A;
+  color:#F4ECDC;
+  padding:8px 12px;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  white-space:normal;
+  word-wrap:break-word;
+  opacity:0;
+  visibility:hidden;
+  transition:all var(--transition-fast);
+  z-index:1000;
+  box-shadow:0 4px 12px rgba(20, 32, 26, 0.25);
+  border:1px solid rgba(212, 175, 55, 0.3);
+  width:max-content;
+  max-width:240px;
+  min-width:160px;
+  text-align:center;
+  line-height:1.4;
+}
+#rq-embed .info-tooltip:hover .tooltip-content {
+  opacity:1;
+  visibility:visible;
+}
+#rq-embed button {
+  width:100%;
+  padding:16px 20px;
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  border:none;
+  font-family:Cinzel,serif;
+  font-weight:600;
+  letter-spacing:3px;
+  margin-top:25px;
+  cursor:pointer;
+  font-size:12px;
+  text-transform:uppercase;
+  color:#1a1a2e;
+  border-radius:var(--radius-sm);
+  transition:all var(--transition-normal);
+  box-shadow:0 2px 10px rgba(0, 0, 0, 0.2);
+  border:1px solid var(--accent-gold-dark);
+  min-height:48px;
+  min-width:140px;
+  position:relative;
+  overflow:hidden;
+}
+#rq-embed button::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(45deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+  transition:all 0.3s ease;
+}
+#rq-embed button:hover::before {
+  left:100%;
+}
+#rq-embed button:hover {
+  background:linear-gradient(135deg, #143326, #1F4D3A, #2D6A4F);
+  transform:translateY(-1px);
+  box-shadow:0 4px 15px rgba(31, 77, 58, 0.4);
+  color:#FBF6EA;
+}
+#rq-embed button:hover {
+  background:linear-gradient(145deg, #1F4D3A, #143326, #1F4D3A);
+  transform:translateY(-1px);
+  box-shadow:0 4px 15px rgba(31, 77, 58, 0.3);
+  color:#FBF6EA;
+}
+#rq-embed button:active {
+  transform:translateY(0);
+  box-shadow:0 1px 4px rgba(31, 77, 58, 0.2);
+}
+#rq-embed button:disabled {opacity:0.4;cursor:not-allowed;}
+#rq-embed button.start-btn {
+  margin-top:30px;
+  font-size:18.9px;
+  padding:18.9px 24px;
+  letter-spacing:4px;
+  color:#1F4D3A;
+}
+#rq-embed button.sm {
+  width:auto;
+  padding:10px 16px;
+  font-size:11px;
+  margin-top:10px;
+  letter-spacing:2px;
+}
+#rq-embed .navrow {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:20px;
+}
+#rq-embed .ringwrap {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:16px 0 24px;
+}
+#rq-embed .ringlabel {
+  font-family:Cinzel,serif;
+  font-size:27px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--accent-gold);
+  opacity:0.9;
+  margin-bottom:12px;
+}
+#rq-embed .ring-glow-outer {
+  position:relative;
+  width:140px;
+  height:140px;
+  margin:0 auto 10px;
+  border-radius:50%;
+}
+#rq-embed .ring {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  border:none;
+  background:#1c1712;
+  overflow:hidden;
+  margin:0;
+  box-shadow:none;
+  animation:float 4s ease-in-out infinite;
+  z-index:1;
+}
+#rq-embed .ring::after {
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  border:none;
+  pointer-events:none;
+}
+#rq-embed .ringconic {position:absolute;inset:-42%;border-radius:50%;}
+#rq-embed .ringinner {position:relative;z-index:2;text-align:center;}
+#rq-embed .scorenum {
+  font-family:Cinzel,serif;
+  font-size:64px;
+  color:#1F4D3A;
+  line-height:1;
+  text-shadow:0 0 8px rgba(0,0,0,0.2);
+}
+#rq-embed .scoresub {
+  font-size:15px;
+  color:var(--text-primary);
+  margin-top:4px;
+  letter-spacing:0.5px;
+  opacity:1;
+  font-weight:500;
+}
+#rq-embed .tierbadge {
+  text-align:center;
+  font-family:Cinzel,serif;
+  letter-spacing:1.5px;
+  font-size:24px;
+  font-weight:700;
+  text-transform:uppercase;
+  margin-bottom:4px;
+  color:var(--accent-gold);
+  color:var(--btn-color);
+}
+#rq-embed .tR {color:#B22222;}
+#rq-embed .tD {color:#8B4513;}
+#rq-embed .tS {color:#1F4D3A;}
+#rq-embed .tL {color:#008000;}
+#rq-embed .legblock {
+  margin-top:20px;
+  padding:16px 18.9px;
+  border:1px solid rgba(31, 77, 58, 0.2);
+  border-radius:8px;
+  background:rgba(31, 77, 58, 0.02);
+}
+#rq-embed .legrow {margin-bottom:12px;}
+#rq-embed .legname {
+  font-family:Cinzel,serif;
+  font-size:20px;
+  letter-spacing:1px;
+}
+#rq-embed .legrange {
+  font-size:16px;
+  opacity:.8;
+  margin:2px 0;
+  color:var(--accent-gold);
+  font-weight:500;
+}
+#rq-embed .legtext {
+  font-size:14px;
+  color:#efe9df;
+  line-height:1.7;
+}
+#rq-embed .bkwrap {margin-top:20px;}
+#rq-embed .bktitle {
+  font-family:Cinzel,serif;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--btn-color);
+  opacity:0.8;
+  border-bottom:1px solid rgba(198, 168, 90, 0.2);
+  padding-bottom:6px;
+  margin-bottom:12px;
+}
+#rq-embed .prow {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  padding:12px 16px;
+  background:#1c1712;
+  border-radius:6px;
+  border:1px solid rgba(31,77,58,0.1);
+  box-shadow:0 1px 3px rgba(26,58,42,0.04);
+}
+#rq-embed .prow:last-child {margin-bottom:0;}
+#rq-embed .pname {
+  font-size:14px;
+  color:var(--accent-gold);
+  width:180px;
+  flex-shrink:0;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:nowrap;
+}
+#rq-embed .ptrack {
+  flex:1;
+  height:4px;
+  background:rgba(31, 77, 58, 0.1);
+  border-radius:2px;
+  overflow:hidden;
+}
+#rq-embed .pfill {
+  height:100%;
+  background:linear-gradient(90deg, #B8922A, #D4AF37, #B8922A);
+  background-size:200% 100%;
+  transform-origin:left;
+  animation:barRise .85s cubic-bezier(.22,1,.36,1) forwards, shimmer 2.5s linear infinite;
+  border-radius:2px;
+}
+#rq-embed .ppct {
+  font-family:Cinzel,serif;
+  font-size:27px;
+  color:var(--btn-color);
+  width:35px;
+  text-align:right;
+  flex-shrink:0;
+}
+#rq-embed .gapwrap {margin-top:24px;}
+#rq-embed .gaptitle {
+  font-family:Cinzel,serif;
+  font-size:19px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--accent-gold);
+  opacity:0.9;
+  border-bottom:1px solid rgba(31, 77, 58, 0.3);
+  padding-bottom:8px;
+  margin-bottom:16px;
+}
+#rq-embed .gapitem {
+  display:flex;
+  gap:12px;
+  margin-bottom:14px;
+  padding:12px 14px;
+  border-radius:8px;
+  background:rgba(31, 77, 58, 0.03);
+  border-left:3px solid;
+  transition:all 0.2s ease;
+}
+#rq-embed .gapitem:hover {background:rgba(31, 77, 58, 0.06);}
+#rq-embed .gapname {
+  font-size:15px;
+  color:#efe9df !important;
+  margin-bottom:4px;
+  flex:1;
+}
+#rq-embed .gapexpl {
+  font-size:14px;
+  color:#000000 !important;
+  line-height:1.65;
+  font-style:normal;
+  margin-bottom:4px;
+}
+#rq-embed .gappillar {
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-top:2px;
+  opacity:0.7;
+  color:#000000 !important;
+}
+#rq-embed .inputrow {display:flex;gap:10px;margin-top:18.9px;flex-wrap:wrap;}
+#rq-embed .inputfield {flex:1;min-width:0;}
+#rq-embed .inputfield label {
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:0.8;
+}
+#rq-embed .inputfield input {
+  width:100%;
+  padding:11px 13px;
+  margin-top:5px;
+  background:#1c1712;
+  border:1px solid rgba(31, 77, 58, 0.2);
+  color:var(--text-primary);
+  border-radius:6px;
+  font-size:14px;
+  font-family:"Lora",serif;
+}
+#rq-embed .inputfield input::placeholder {color:#8A9E94;opacity:1;}
+#rq-embed .inputfield input:focus {
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(31, 77, 58, 0.1);
+}
+#rq-embed .alertmsg {
+  margin-top:8px;
+  font-size:12px;
+  color:var(--gap-red);
+  font-style:italic;
+}
+#rq-embed .successwrap {text-align:center;padding:28px 0;}
+#rq-embed .successmark {
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid var(--success);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18.9px;font-size:21.85px;color:var(--success);
+  font-family:Cinzel,serif;
+}
+#rq-embed .successhead {font-family:Cinzel,serif;font-size:19.05px;color:var(--bronze);margin-bottom:10px;letter-spacing:2px;}
+#rq-embed .ldots span {display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--vellum);margin:0 2px;animation:dot .9s infinite;}
+#rq-embed .ldots span:nth-child(2) {animation-delay:.18s;}
+#rq-embed .ldots span:nth-child(3) {animation-delay:.36s;}
+@keyframes  dot {0%,80%,100%{opacity:.25;}40%{opacity:.9;}}
+#rq-embed .sharelink {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  width:fit-content;
+  width:-webkit-fit-content;
+  margin:20px auto 0;
+  cursor:pointer;
+  padding:12px 20px;
+  border-radius:8px;
+  border:1px solid rgba(184,146,42,0.25);
+  background:rgba(184,146,42,0.04);
+  transition:all 0.2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+#rq-embed .sharelink:hover, #rq-embed .sharelink:active {
+  background:rgba(184,146,42,0.1);
+  border-color:var(--accent-gold);
+  transform:translateY(-1px);
+}
+#rq-embed .sharelink svg {
+  display:block;
+  transition:transform 0.2s ease;
+}
+#rq-embed .sharelink:hover svg { transform:scale(1.12); }
+#rq-embed .sharelink span {
+  font-family:"Cinzel",serif;
+  font-size:11px;
+  color:var(--accent-gold-light) !important;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+#rq-embed .footnote {
+  margin-top:20px;
+  font-size:16px;
+  color:var(--text-secondary);
+  text-align:center;
+  letter-spacing:0.5px;
+  line-height:1.7;
+}
+#rq-embed .successwrap {
+  text-align:center;
+  padding:28px 0;
+}
+#rq-embed .successmark {
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid var(--btn-color);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 18.9px;
+  font-size:22px;
+  color:var(--btn-color);
+  font-family:Cinzel,serif;
+  animation:float 2s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
+}
+#rq-embed .successhead {
+  font-family:Cinzel,serif;
+  font-size:17px;
+  color:var(--accent-gold);
+  margin-bottom:10px;
+  letter-spacing:1.5px;
+}
+#rq-embed .successscore {
+  padding:18.9px 22px;
+  border:1px solid rgba(198, 168, 90, 0.3);
+  border-radius:8px;
+  background:rgba(198, 168, 90, 0.05);
+  margin:16px auto;
+  max-width:400px;
+}
+#rq-embed .successscore span {
+  font-family:Cinzel,serif;
+  font-size:17px;
+  letter-spacing:1px;
+}
+#rq-embed .ldots span {
+  display:inline-block;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--text-primary);
+  margin:0 2px;
+  animation:dot .9s infinite;
+}
+#rq-embed .ldots span:nth-child(2) {animation-delay:.18s;}
+#rq-embed .ldots span:nth-child(3) {animation-delay:.36s;}
+@keyframes  dot {0%,80%,100%{opacity:.25;}40%{opacity:.9;}}
+@media (max-width:768px) {
+#rq-embed #wrap {padding:14.4px 10.8px 28.8px;}
+#rq-embed .card {padding:18.9px 14.4px 21.6px;}
+#rq-embed .trow {flex-direction:column;align-items:center;}
+#rq-embed .tlabel {margin-bottom:4px;}
+#rq-embed .opts {justify-content:center;}
+#rq-embed .ring {width:120px;height:120px;}
+#rq-embed .scorenum {font-size:33.6px;}
+#rq-embed .ringlabel {font-size:17px !important;}
+#rq-embed .tierbadge {font-size:18px !important;font-weight:700 !important;}
+#rq-embed .inputrow {flex-direction:column;}
+#rq-embed .pname {width:120px;}
+#rq-embed .gapitem {padding:8px 10px;}
+#rq-embed .legblock, #rq-embed .bkwrap, #rq-embed .gapwrap, #rq-embed .sub, #rq-embed .legtext, #rq-embed .legrow, #rq-embed .bktitle, #rq-embed .gaptitle {
+    font-size:115% !important;
+  }
+#rq-embed .successwrap {padding:10px 0 28px;}
+#rq-embed .ringwrap {margin-top:0 !important;}
+#rq-embed .start-btn {margin-top:20px;}
+#rq-embed #app { display: block; }
+#rq-embed .start-btn { margin-bottom: 20px; }
+}
+#rq-embed .pillars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+#rq-embed .pillar-item {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+#rq-embed .pillar-item .info-tooltip {
+  display: block;
+  font-size: 16.5px;
+  line-height: 1.575;
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  cursor: help;
+}
+@media  (max-width: 480px)  {
+#rq-embed { font-size: 18.9px; }
+#rq-embed #wrap { padding: 12px 10px 20px; }
+#rq-embed .card { padding: 20px 15px 25px; }
+#rq-embed .mark { font-size: 24px !important; }
+#rq-embed .sub { font-size: 16px !important; }
+#rq-embed .heading { font-size: 24px !important; }
+#rq-embed .tlabel { font-size: 20px !important; }
+#rq-embed .opt { 
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    min-width: 70px !important;
+  }
+#rq-embed .ring { width: 100px !important; height: 100px !important; }
+#rq-embed .scorenum { font-size: 28px !important; }
+#rq-embed .ringlabel { font-size: 14px !important; }
+#rq-embed .tierbadge { font-size: 16px !important; font-weight: 700 !important; }
+#rq-embed .pname { width: 140px !important; font-size: 14px !important; }
+#rq-embed .legblock, #rq-embed .bkwrap, #rq-embed .gapwrap { font-size: 14px !important; }
+#rq-embed button { 
+    padding: 14px 18.9px !important;
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+  }
+#rq-embed .start-btn { 
+    padding: 16px 20px !important;
+    font-size: 12px !important;
+    letter-spacing: 3px !important;
+  }
+#rq-embed .cta-primary { 
+    padding: 16px 20px !important;
+    font-size: 12px !important;
+  }
+#rq-embed .social-proof { font-size: 15px !important; }
+#rq-embed .trust-badge { font-size: 13.5px !important; }
+#rq-embed .trust-badges { gap: 12px !important; }
+}
+@media  (min-width: 481px) and (max-width: 768px)  {
+#rq-embed { font-size: 19px; }
+#rq-embed #wrap { padding: 15px 12px 25px; }
+#rq-embed .card { padding: 24px 18.9px 30px; }
+#rq-embed .mark { font-size: 26px !important; }
+#rq-embed .sub { font-size: 17px !important; }
+#rq-embed .tlabel { font-size: 21px !important; }
+#rq-embed .opt { 
+    padding: 11px 14px !important;
+    font-size: 13px !important;
+  }
+#rq-embed .ring { width: 110px !important; height: 110px !important; }
+#rq-embed .scorenum { font-size: 30px !important; }
+#rq-embed .pname { width: 160px !important; }
+#rq-embed button { 
+    padding: 15px 19px !important;
+    font-size: 11.5px !important;
+  }
+#rq-embed .social-proof { font-size: 16px !important; }
+#rq-embed .trust-badge { font-size: 14px !important; }
+}
+@media  (min-width: 769px) and (max-width: 1024px)  {
+#rq-embed #wrap { max-width: 900px; }
+#rq-embed .card { padding: 28px 22px 33px; }
+#rq-embed .mark { font-size: 28px !important; }
+#rq-embed .sub { font-size: 18.9px !important; }
+#rq-embed .tlabel { font-size: 22px !important; }
+#rq-embed .opt { 
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+#rq-embed button { 
+    padding: 16px 22px !important;
+    font-size: 12.5px !important;
+  }
+}
+#rq-embed { color-scheme: only dark; }
+#rq-embed #wrap, #rq-embed #app, #rq-embed .card, #rq-embed #wrap *, #rq-embed #app * {
+  box-sizing: border-box;
+}
+#rq-embed #wrap, #rq-embed #app {
+  background: #0f0c08 !important;
+}
+#rq-embed .card {
+  background: #1c1712 !important;
+}
+#rq-embed .toggle {
+  background: #171310 !important;
+}
+#rq-embed input, #rq-embed textarea {
+  background: #171310 !important;
+  color: #efe9df !important;
+  border-color: rgba(193,176,133,0.25) !important;
+}
+#rq-embed input::placeholder, #rq-embed textarea::placeholder { color: #9a8f7c !important; }
+#rq-embed #wrap p, #rq-embed #app p, #rq-embed #wrap label, #rq-embed #app label, #rq-embed #wrap li, #rq-embed #app li, #rq-embed #wrap td, #rq-embed #app td, #rq-embed #wrap th, #rq-embed #app th, #rq-embed .sub, #rq-embed .tlabel, #rq-embed .legtext, #rq-embed .footnote, #rq-embed .item-name, #rq-embed .item-desc, #rq-embed .share-modal-title {
+  color: #c9c0b1 !important;
+}
+#rq-embed .mark, #rq-embed .heading, #rq-embed .ringlabel, #rq-embed .tierbadge, #rq-embed .counter-circle, #rq-embed .gaptitle, #rq-embed .bktitle, #rq-embed .legrange, #rq-embed .roman-numeral, #rq-embed .pname, #rq-embed .ppct, #rq-embed .cpbadge {
+  color: #c1b085 !important;
+}
+#rq-embed .pillar-title, #rq-embed .pillar-title span, #rq-embed .pillar-title strong, #rq-embed .legname {
+  color: #d4c49a !important;
+}
+#rq-embed .opt.oR, #rq-embed .opt.oR span, #rq-embed .opt.oU, #rq-embed .opt.oU span, #rq-embed .opt.oN, #rq-embed .opt.oN span { color: #fff !important; }
+#rq-embed .back-to-site-btn { color: #191307 !important; }
+#rq-embed * { text-shadow: none !important; -webkit-text-stroke: 0 !important; }
+@media  (prefers-color-scheme: light)  {
+#rq-embed #wrap, #rq-embed #app { background: #0f0c08 !important; }
+#rq-embed .card { background: #1c1712 !important; }
+#rq-embed .toggle:not(.aR):not(.aU):not(.aN) { background: #171310 !important; border-color: rgba(193,176,133,0.25) !important; }
+#rq-embed .opt:not(.oR):not(.oU):not(.oN) { background: #171310 !important; border-color: rgba(193,176,133,0.25) !important; color: #c9c0b1 !important; }
+#rq-embed input, #rq-embed textarea { background: #171310 !important; color: #efe9df !important; }
+#rq-embed .opt.oR { background: var(--recorded) !important; border-color: var(--recorded) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--recorded), 0 0 18px rgba(127,174,122,0.5) !important; }
+#rq-embed .opt.oU { background: var(--missing) !important; border-color: var(--missing) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--missing), 0 0 18px rgba(199,123,107,0.5) !important; }
+#rq-embed .opt.oN { background: #c1b085 !important; border-color: #c1b085 !important; color: #191307 !important; box-shadow: 0 0 0 2px #c1b085, 0 0 18px rgba(193,176,133,0.5) !important; }
+#rq-embed .toggle.aR { background: rgba(127,174,122,0.1) !important; border-left-color: var(--recorded) !important; }
+#rq-embed .toggle.aU { background: rgba(199,123,107,0.1) !important; border-left-color: var(--missing) !important; }
+#rq-embed .toggle.aN { background: rgba(193,176,133,0.1) !important; border-left-color: #c1b085 !important; }
+}
+#rq-embed .phead, #rq-embed .mark, #rq-embed h2.phead {
+  border-bottom:1px solid rgba(184,146,42,0.35);
+  padding-bottom:8px;
+  margin-bottom:16px;
+}
+#rq-embed .seg.done {background:var(--forest-mid);}
+#rq-embed .seg.active {background:#B8922A !important;box-shadow:0 0 8px rgba(184,146,42,0.5);}
+#rq-embed .counter-circle {
+  border:1px solid rgba(184,146,42,0.4);
+  background:rgba(184,146,42,0.06);
+}
+#rq-embed .tally-r {color:var(--recorded);font-weight:600;}
+#rq-embed .tally-u {color:var(--missing);font-weight:600;}
+#rq-embed .tally-n {color:var(--na);font-weight:600;}
+#rq-embed .card::before {
+  content:"";
+  display:block;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(184,146,42,0.4),transparent);
+  margin-bottom:20px;
+}
+#rq-embed .opt.oR .opt-label, #rq-embed .opt.oR {color:#fff !important;}
+#rq-embed .opt.oU .opt-label, #rq-embed .opt.oU {color:#fff !important;}
+#rq-embed .opt.oN .opt-label, #rq-embed .opt.oN {border-color:#c1b085;color:#fff !important;background:#c1b085;box-shadow:0 0 0 2px #c1b085, 0 0 16px rgba(193,176,133,0.55);transform:translateY(-1px);}
+#rq-embed .item-heading {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:0;
+}
+#rq-embed .roman-numeral {
+  font-family:"Cinzel",serif;
+  font-size:16px;
+  color:var(--accent-gold);
+  font-weight:600;
+  flex-shrink:0;
+}
+#rq-embed .item-name {
+  font-size:15.5px;
+  color:var(--text-primary);
+  font-weight:500;
+  line-height:1.3;
+}
+#rq-embed .item-what {
+  font-size:13px;
+  color:var(--text-secondary);
+  line-height:1.4;
+  margin:0 0 3px 0;
+  padding-left:2px;
+}
+#rq-embed .item-desc {
+  font-style:italic;
+  font-size:12.5px;
+  color:var(--text-muted);
+  line-height:1.4;
+  margin:0 0 8px 0;
+  padding-left:2px;
+}
+#rq-embed .seg {
+  display:flex;
+  width:100%;
+  margin-top:10px;
+  border:1px solid rgba(193,176,133,0.28);
+  border-radius:8px;
+  overflow:hidden;
+  background:#141009;
+}
+
+</style>
+<script src="/assets/qrcode.min.js"></script>
 </head>
 <body>
 <div class="atmos" aria-hidden="true"><div class="atmos-grid"></div><div class="atmos-glow"></div></div>
@@ -710,6 +2194,7 @@
       <a href="/pillars">7 Pillars</a>
       <a href="/about">About</a>
       <a href="/faq">FAQ</a>
+      <a href="/resources">Resources</a>
       <a class="nav-cta" href="/readiness">Readiness Check</a>
     </div>
     <button class="mode-btn" type="button" aria-label="Switch light or dark reading mode" title="Reading mode">
@@ -725,6 +2210,7 @@
       <a class="m-link" href="/pillars">7 Pillars</a>
       <a class="m-link" href="/about">About</a>
       <a class="m-link" href="/faq">FAQ</a>
+      <a class="m-link" href="/resources">Resources</a>
       <a class="m-cta" href="/readiness">Readiness Check</a>
       <div class="m-soc">
         <a href="https://www.linkedin.com/company/legacy-architect-rva/" aria-label="LinkedIn" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12H3v-12zM9 8.98h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76v6.55h-4v-5.8c0-1.39-.03-3.17-2-3.17-2 0-2.3 1.51-2.3 3.07v5.9H9v-12z"/></svg></a>
@@ -754,7 +2240,7 @@
       <div class="ql-eyebrow">The Readiness Check</div>
       <h2>Seven areas. Two minutes. One clear score.</h2>
       <p>You'll answer a short set of questions and get an instant readiness score, plus a starting point for what to organize first.</p>
-      <a class="btn btn-gold ql-btn" href="https://legacyarchitectrva.github.io/Readiness-Check/quiz_fixed-9-1.html" target="_blank" rel="noopener">Check Your Readiness</a>
+      <a class="btn btn-gold ql-btn" href="#rq-embed">Check Your Readiness</a>
       <div class="ql-note">Opens in a new tab. Nothing to install.</div>
     </div>
   </div>
@@ -797,6 +2283,7 @@
       <a href="/services#editions">Editions</a>
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
+      <a href="/resources">Resources</a>
       <a href="/#handoff">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
@@ -1313,6 +2800,1215 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
     }
   }, true);
+</script>
+<div id="rq-embed">
+
+<!-- Skip link for accessibility -->
+<a href="#app" class="skip-link">Skip to content</a>
+
+<!-- Progress indicator -->
+<div class="progress-container" id="progressContainer">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+
+
+<div id="wrap">
+  <span id="la-top" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:1px;"></span>
+  <div id="app" class="card"></div>
+</div>
+
+
+</div>
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.com'] }
+  });
+
+</script>
+<script>
+
+const WH="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
+const PILLARS=[
+  {n:"01: Digital Life",d:"Credentials, accounts, and digital access.",i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Recovery","Social Media Accounts","Digital Archive"]},
+  {n:"02: Financial & Assets",d:"Banking, investments, and financial records.",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
+  {n:"03: Household & Property",d:"Property, vehicles, and household documentation.",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
+  {n:"04: Health & Medical",d:"Insurance, records, and medical directives.",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
+  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
+  {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
+  {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
+];
+const PILLAR_COLORS={"Digital Life":"var(--ch1)","Financial & Assets":"var(--ch2)","Household & Property":"var(--ch4)","Health & Medical":"var(--ch5)","Legal & Estate":"var(--ch6)","Business Continuity":"var(--ch7)","Legacy & Wishes":"var(--ch3)"};
+const DESC={
+  "Primary Email Access":"Your main email account and how to log into it.",
+  "Password Manager":"The app or list that holds all your passwords.",
+  "Cloud Storage":"Files and photos kept in Google Drive, iCloud, Dropbox, or similar.",
+  "2-Factor Authentication Recovery":"Backup codes and recovery methods for accounts with two-step login.",
+  "Social Media Accounts":"Your profiles on Facebook, Instagram, LinkedIn, and the rest.",
+  "Digital Archive":"Older files, downloads, and digital records worth keeping.",
+  "Banking Accounts":"Checking, savings, and where the money actually sits.",
+  "Credit Accounts":"Credit cards, lines of credit, and their balances.",
+  "Investment & Retirement Accounts":"Brokerage, 401(k), IRA, and pension accounts.",
+  "Life Insurance Policies":"Policies you hold and which company issued them.",
+  "Cryptocurrency & Digital Assets":"Crypto wallets, keys, and any digital holdings.",
+  "Recurring Bills & Subscriptions":"Auto-pay bills and monthly subscriptions.",
+  "Property Deeds & Titles":"Ownership papers for your home and land.",
+  "Vehicle Titles & Registration":"Titles and registration for your cars.",
+  "Home Maintenance Records":"Service history, warranties, and repair records for the house.",
+  "Utility Accounts":"Electric, gas, water, internet, and phone accounts.",
+  "Security Systems & Access Codes":"Alarm codes, smart locks, and entry access.",
+  "Household Inventory Documentation":"A record of what you own inside the home.",
+  "Health Insurance Information":"Your health plan, policy numbers, and coverage.",
+  "Medical Providers & Contacts":"Your doctors, specialists, and how to reach them.",
+  "Prescription Information":"Medications, dosages, and pharmacies.",
+  "Medical History & Records":"Your conditions, history, and where records live.",
+  "Advance Healthcare Directives":"Your written wishes for care if you can't speak for yourself.",
+  "Emergency Medical Instructions":"What responders and family should know in a crisis.",
+  "Last Will & Testament":"The document that says who gets what.",
+  "Trust Documentation":"Any trust you've set up and its paperwork.",
+  "Financial Power of Attorney":"Who can manage your money if you can't.",
+  "Healthcare Power of Attorney":"Who makes medical decisions if you can't.",
+  "Beneficiary Designations":"Who's named to receive accounts and policies.",
+  "Estate Planning Documents":"The broader set of documents for settling your estate.",
+  "Entity Formation Documents":"The papers that legally created your business.",
+  "Business Banking Access":"Business accounts and who can reach them.",
+  "Operating Agreements":"The rules for how your business is owned and run.",
+  "Key Vendor Relationships":"The suppliers and contractors the business depends on.",
+  "Client & Contract Records":"Your clients, contracts, and commitments.",
+  "Succession & Continuity Planning":"The plan for who runs things if you step away.",
+  "Personal Letters":"Notes or letters written for specific people.",
+  "Family History & Stories":"The family stories and history you carry.",
+  "Ethical Will":"Your values and lessons for the next generation.",
+  "Funeral Preferences":"How you want your service and arrangements handled.",
+  "Obituary Information":"The biographical details for your obituary.",
+  "Personal Wishes & Instructions":"Sentimental instructions no legal form covers."
+};
+const EXPL={
+  "Primary Email Access":"The master key to all account recovery. Without it, nothing downstream is retrievable by those acting on your behalf.",
+  "Password Manager":"Every credential lives here. If undocumented, critical accounts become permanently inaccessible.",
+  "Cloud Storage":"Files and records stored here are invisible to successors without credentials.",
+  "2-Factor Authentication Recovery":"Without backup codes, two-factor barriers are absolute. No institution can override them.",
+  "Social Media Accounts":"Active, undocumented accounts remain exposed and cannot be memorialized or removed.",
+  "Digital Archive":"A repository of personal history. Left undocumented, it passes into unrecoverable silence.",
+  "Banking Accounts":"Unrecorded accounts delay estate settlement and may eventually be escheated to the state.",
+  "Credit Accounts":"Outstanding obligations and automatic payments create hidden liabilities without documented access.",
+  "Investment & Retirement Accounts":"Retirement accounts must be claimed by beneficiaries. Undocumented accounts remain dormant for years.",
+  "Life Insurance Policies":"Policies go unclaimed at a striking rate. Beneficiaries cannot file without documentation.",
+  "Cryptocurrency & Digital Assets":"There is no recovery mechanism. Undocumented wallets and keys are permanently, irrevocably inaccessible.",
+  "Recurring Bills & Subscriptions":"Automatic payments continue after death. Services require documented access to cancel.",
+  "Property Deeds & Titles":"Title transfer requires the original deed. Without it, estate settlement requires court intervention.",
+  "Vehicle Titles & Registration":"Ownership cannot transfer without the title. Vehicles become legally stranded.",
+  "Home Maintenance Records":"Service history and warranties affect value and liability. Undocumented properties carry unknown exposure.",
+  "Utility Accounts":"Access is required to transfer, pause, or cancel service during a transition.",
+  "Security Systems & Access Codes":"Undocumented codes leave property unsecured during any transition.",
+  "Household Inventory Documentation":"Insurance claims and estate valuations require documentation. Undocumented assets are routinely overlooked.",
+  "Health Insurance Information":"Coverage, policy numbers, and providers must be documented for uninterrupted care.",
+  "Medical Providers & Contacts":"Care coordination requires a contact list. Providers cannot release records without it.",
+  "Prescription Information":"Active prescriptions require documentation for continuity of care. Interruption carries real consequences.",
+  "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
+  "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
+  "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
+  "Last Will & Testament":"Without a will, assets distribute by state law &mdash; not your intentions.",
+  "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
+  "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
+  "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
+  "Beneficiary Designations":"Designations override your will entirely. Outdated entries pass assets contrary to your current wishes.",
+  "Estate Planning Documents":"Incomplete documents create delays, disputes, and unintended distributions.",
+  "Entity Formation Documents":"Formation documents are required for any transfer of ownership or operational control.",
+  "Business Banking Access":"Without documented access, operations cease immediately. Payroll and obligations go unmet.",
+  "Operating Agreements":"Undocumented agreements leave ownership and authority ambiguous during any transition.",
+  "Key Vendor Relationships":"Contract terms and contacts, if undocumented, cannot be honored or renegotiated.",
+  "Client & Contract Records":"Revenue relationships require a documented transition. Clients will not wait.",
+  "Succession & Continuity Planning":"Without a plan, the business may dissolve rather than continue.",
+  "Personal Letters":"Messages written for specific people. Once lost, they cannot be recovered or spoken.",
+  "Family History & Stories":"Stories and lineage not written down are lost with you.",
+  "Ethical Will":"Values, beliefs, and lessons for future generations. An undocumented ethical will simply vanishes.",
+  "Funeral Preferences":"Without documented preferences, family members make irreversible decisions under duress.",
+  "Obituary Information":"Biographical details required for an accurate obituary are often unknown to survivors.",
+  "Personal Wishes & Instructions":"Instructions for sentimental matters that no legal document addresses."
+};
+let step=0,biz=false,isBack=false;
+const ANS={};
+function aP(){return PILLARS;}
+function calc(){
+  let r=0,na=0,tot=0;
+  aP().forEach((p,pi)=>{p.i.forEach((_,ii)=>{tot++;const v=ANS[pi+"_"+ii];if(v==="R")r++;if(v==="N")na++;});});
+  const eff=Math.max(1,tot-na);
+  return{pct:Math.round((r/eff)*100),rec:r,eff,tot};
+}
+function bkdown(){
+  return aP().map((p,pi)=>{
+    let r=0,u=0,na=0;
+    p.i.forEach((_,ii)=>{const v=ANS[pi+"_"+ii];if(v==="R")r++;else if(v==="U")u++;else if(v==="N")na++;});
+    const e=p.i.length-na;
+    return{nm:p.n.replace(/^\d+: /,""),r,u,na,pct:e>0?Math.round((r/e)*100):0};
+  });
+}
+function getGaps(){
+  const g=[];
+  aP().forEach((p,pi)=>{
+    p.i.forEach((item,ii)=>{
+      if(ANS[pi+"_"+ii]==="U")g.push({pl:p.n.replace(/^\d+: /,""),item});
+    });
+  });
+  return g;
+}
+function getStr(){
+  const s=[];
+  aP().forEach((p,pi)=>{p.i.forEach((item,ii)=>{if(ANS[pi+"_"+ii]==="R")s.push({pl:p.n.replace(/^\d+: /,""),item});});});
+  return s;
+}
+function tLabel(s){if(s>=86)return"Continuity Legend";if(s>=71)return"Continuity Steward";if(s>=61)return"Continuity Builder";return"Continuity Sentinel";}
+function tCls(s){if(s>=86)return"tL";if(s>=71)return"tS";if(s>=61)return"tD";return"tR";}
+function rec(s){
+  if(s<61)return"Begin by centralizing your most critical digital and financial credentials into a single, secure location.";
+  if(s<71)return"A foundation exists. Prioritize Legal & Estate documentation and close your single points of failure.";
+  if(s<86)return"Strong positioning. Focus on completeness in your remaining gaps and an annual review cadence.";
+  return"Excellent posture. Ensure your successors know precisely where everything lives and how to access it.";
+}
+// Convert number to Roman numeral (1-6)
+function toRoman(num) {
+  const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+  return romanNumerals[num - 1] || '';
+}
+
+function pick(key,val){
+  const previousValue = ANS[key];
+  if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
+  const pi=step-1;const ps=aP();
+  const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
+  render(); // re-render in place — NO scroll to top
+  if(done){
+    // All answered: show badge and scroll to Continue button
+    const b=document.getElementById("cpbadge");
+    if(b)b.style.display="flex";
+    setTimeout(()=>{
+      const btn=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()==='Continue');
+      if(btn){
+        btn.scrollIntoView({behavior:'smooth',block:'nearest'});
+        try{
+          const card=document.querySelector('.card');
+          if(card){const bRect=btn.getBoundingClientRect();const cRect=card.getBoundingClientRect();if(bRect.bottom>cRect.bottom){card.scrollTop+=bRect.bottom-cRect.bottom+20;}}
+        }catch(e){}
+        btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
+        btn.style.background='var(--forest)';
+        btn.style.color='#1c1712';
+        btn.style.borderColor='var(--forest)';
+      }
+    },80);
+  } else {
+    // Not all answered: scroll to next unanswered item
+    setTimeout(()=>{
+      const keyParts=key.split('_');
+      const currentIdx=parseInt(keyParts[keyParts.length-1]);
+      const nextKey=pi+'_'+(currentIdx+1);
+      const nextToggle=document.getElementById('toggle-'+nextKey);
+      if(nextToggle){
+        nextToggle.scrollIntoView({behavior:'smooth',block:'nearest'});
+        try{
+          const card=document.querySelector('.card');
+          if(card){const tRect=nextToggle.getBoundingClientRect();const cRect=card.getBoundingClientRect();if(tRect.bottom>cRect.bottom||tRect.top<cRect.top){card.scrollTop+=tRect.top-cRect.top-20;}}
+        }catch(e){}
+        nextToggle.style.boxShadow='0 0 0 2px rgba(31, 77, 58, 0.5)';
+        setTimeout(()=>{nextToggle.style.boxShadow='';},1000);
+      }
+    },80);
+  }
+  
+  // Track answer selection
+  trackEvent('answer', {
+    pillar: pi + 1,
+    item: key,
+    value: val || 'none',
+    previousValue: previousValue || 'none'
+  });
+}
+function goN(){
+  const currentStep = step;
+  // Check if all questions in current pillar are answered
+  const pi=step-1;
+  const ps=aP();
+  if(pi >= 0 && pi < ps.length){
+    const currentPillar = ps[pi];
+    const allAnswered = currentPillar.i.every((_,ii)=>ANS[pi+"_"+ii]);
+    if(!allAnswered){
+      // Find first unanswered question in this pillar
+      const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
+      if(firstUnanswered !== -1){
+        // Mark unanswered questions and stay on page
+        render();scrollToTop();
+        // Add unanswered class to unanswered toggles
+        setTimeout(() => {
+          const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
+          unansweredToggles.forEach(el => el.classList.add('unanswered'));
+        }, 50);
+        // Scroll to first unanswered
+        setTimeout(()=>{
+          const unansweredElements = document.querySelectorAll('.toggle.unanswered');
+          if(unansweredElements.length > 0){
+            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }, 100);
+        return;
+      }
+    }
+  }
+  step++;isBack=false;render();scrollToTop();
+  trackNavigation('next', currentStep, step);
+}
+function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();scrollToTop();trackNavigation('back', currentStep, step);setTimeout(() => {
+    // scroll handled by scrollToTop()
+  }, 10);}}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;scrollToTop();render();trackEvent('reset');}
+function animNum(el,tgt){
+  let st=null;
+  function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
+  requestAnimationFrame(f);
+}
+function animRing(el,tgt,color="var(--btn-color)"){
+  let st=null;
+  function f(ts){
+    if(!st)st=ts;const p=Math.min((ts-st)/1500,1);const e=1-Math.pow(1-p,3);
+    const a=Math.round(e*tgt*3.6);
+    // Convert CSS variable to RGB for conic gradient
+    const colorMap = {
+      "var(--ch1)": "rgba(96, 165, 250, 0.9)",
+      "var(--ch2)": "rgba(248, 113, 113, 0.9)",
+      "var(--ch3)": "rgba(226, 232, 240, 0.9)",
+      "var(--ch4)": "rgba(52, 211, 153, 0.9)",
+      "var(--ch5)": "rgba(31, 77, 58, 0.9)",
+      "var(--ch6)": "rgba(148, 163, 184, 0.9)",
+      "var(--ch7)": "rgba(192, 132, 252, 0.9)",
+      "var(--btn-color)": "rgba(198, 168, 90, 0.9)"
+    };
+    const baseColor = colorMap[color] || "rgba(198, 168, 90, 0.9)";
+    const darkColor = baseColor.replace("0.9", "0.7");
+    const darkerColor = baseColor.replace("0.9", "0.5");
+    const darkestColor = baseColor.replace("0.9", "0.3");
+    el.style.background=`conic-gradient(${darkestColor} 0deg,${baseColor} ${a}deg,${darkerColor} ${a}deg,${darkestColor} 360deg)`;
+    if(p<1)requestAnimationFrame(f);
+  }
+  requestAnimationFrame(f);
+}
+function markAllAsNAAndScroll(){
+  markAllAsNA();
+  setTimeout(() => {
+    // Try multiple selectors to find the continue button
+    let btn = document.querySelector('button[onclick*="goN"]');
+    if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Continue');
+    if(btn) {
+      btn.scrollIntoView({behavior:'smooth', block:'nearest'});
+      // Also scroll card container
+      try{const card=document.querySelector('.card');if(card){const bRect=btn.getBoundingClientRect();const cRect=card.getBoundingClientRect();card.scrollTop+=bRect.bottom-cRect.bottom+20;}}catch(e){}
+      // Gold ring highlight
+      btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
+      btn.style.background='var(--forest)';
+      btn.style.color='#1c1712';
+      btn.style.borderColor='var(--forest)';
+      setTimeout(() => {
+        btn.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+      }, 1000);
+    }
+  }, 500);
+}
+
+// Focus next toggle after selecting an answer
+function markAllAsNA(){
+  const pi=step-1;
+  const ps=aP();
+  if(pi >= 0 && pi < ps.length){
+    ps[pi].i.forEach((_,ii)=>{
+      ANS[pi+"_"+ii]="N";
+    });
+    scrollToTop();render();
+    // Force show the badge
+    setTimeout(() => {
+      const b=document.getElementById("cpbadge");
+      if(b)b.style.display="flex";
+    }, 50);
+  }
+}
+
+const LA_SHARE_IMAGE = 'https://pub-edbffba3e85240eabfa80aa13a1b8169.r2.dev/Site/share-card-square.png';
+function saveShareImage(btn){
+  var orig = btn ? btn.textContent : '';
+  if (btn) btn.textContent = 'Preparing...';
+  fetch(LA_SHARE_IMAGE, { mode: 'cors' })
+    .then(function(r){ return r.blob(); })
+    .then(function(blob){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'legacy-architect-readiness-check.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      if (btn) btn.textContent = 'Saved. Now share it!';
+      setTimeout(function(){ if(btn) btn.textContent = orig; }, 3000);
+    })
+    .catch(function(){
+      // Fallback: open the image so the user can long-press to save.
+      window.open(LA_SHARE_IMAGE, '_blank');
+      if (btn) btn.textContent = orig;
+    });
+}
+window.saveShareImage = saveShareImage;
+
+function shareScore(){
+  const d=calc();
+  const tierLabel = tLabel(d.pct);
+  const scoreText = `I just scored ${d.pct}% (${tierLabel}) on the 7-Pillar Readiness Check. Could your family actually step in if something happened to you? Find out: https://legacyarchitectrva.com/#howprepared`;
+
+  showShareModal(d.pct, tierLabel, scoreText, 'https://legacyarchitectrva.com/#howprepared');
+}
+
+function showShareModal(score, tierLabel, text, url) {
+  const analysisUrl = 'https://legacyarchitectrva.com/#howprepared';
+  const shareText = 'I scored ' + score + ' percent (' + tierLabel + ') on the 7-Pillar Readiness Check. Could your family actually step in if something happened to you? Find out: ' + analysisUrl;
+  const encodedUrl = encodeURIComponent(analysisUrl);
+  const encodedText = encodeURIComponent(shareText);
+
+  // Helper: copy text silently (no UI change needed, platform button gives feedback)
+  function silentCopy(t) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).catch(() => {});
+    }
+    try {
+      const el = document.createElement('textarea');
+      el.value = t;
+      el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(el);
+      el.focus({preventScroll:true}); el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    } catch(e) {}
+  }
+
+  // For platforms that don't support text pre-fill: copy text + open platform
+  window._shareText = shareText;
+  window._shareUrl  = analysisUrl;
+
+  const modal = document.createElement('div');
+  modal.className = 'share-modal-overlay';
+  modal.setAttribute('onclick', 'handleModalClick(event)');
+
+  // Build mailto URL for email button
+  const mailSubject = encodeURIComponent('My Continuity Readiness Score');
+  const mailBody    = encodeURIComponent(shareText + '\n\nTake the check: ' + analysisUrl);
+
+  modal.innerHTML = `
+    <div class="share-modal" style="max-width:420px;">
+      <div class="share-modal-header">
+        <h3 class="share-modal-title">Share Your Results</h3>
+        <span class="share-modal-close" onclick="closeShareModal()">\u00d7</span>
+      </div>
+      <div class="share-modal-content" style="padding:16px;">
+        <p class="share-score-display" style="text-align:center;font-family:Cinzel,serif;font-size:16px;color:#c1b085;letter-spacing:2px;margin:0 0 14px;">${score}% \u2014 ${tierLabel}</p>
+        <div id="shareCopiedMsg" style="display:none;background:rgba(193,176,133,0.12);border:1px solid rgba(193,176,133,0.4);border-radius:4px;padding:8px 12px;font-family:'Cinzel',serif;font-size:11px;color:#d4c49a;text-align:center;margin-bottom:10px;letter-spacing:1px;">
+          MESSAGE COPIED - PASTE IT INTO YOUR POST
+        </div>
+        <div class="share-all-grid">
+          <a href="https://x.com/intent/post?text=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="trackShare('x')">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#efe9df"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <span>X</span>
+          </a>
+          <a href="https://www.threads.net/intent/post?text=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="trackShare('threads')">
+            <svg width="26" height="26" viewBox="0 0 192 192" fill="#efe9df"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.035l13.78 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.25.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.244-15.224-1.626-23.68-1.14-23.82 1.372-39.134 15.265-38.105 34.569.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.452-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.352-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C57.053 24.425 74.303 17.11 97.113 16.94c22.95.17 40.526 7.52 52.26 21.845 5.78 7.017 10.007 15.75 12.605 25.88l16.248-4.333c-3.19-12.545-8.6-23.493-16.177-32.602C147.3 10.645 125.202 1.205 97.17 1h-.255C68.946 1.205 47.042 10.68 32.77 27.222 19.936 42.018 13.19 63.04 12.996 96c.194 32.96 6.94 53.982 19.774 68.778C46.767 181.319 68.67 190.794 96.915 191h.255c24.817-.176 42.36-6.68 56.805-21.114 18.713-18.694 18.178-42.084 12.01-56.422-4.442-10.355-12.994-18.669-24.448-23.476zm-38.697 37.083c-10.438.583-21.256-4.098-21.795-14.084-.398-7.455 5.308-15.788 22.44-16.771 1.962-.113 3.893-.169 5.795-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.668-23.811 29.259z"/></svg>
+            <span>Threads</span>
+          </a>
+          <a href="https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="silentCopy(window._shareText);showCopiedBanner();trackShare('linkedin');">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="silentCopy(window._shareText);showCopiedBanner();trackShare('facebook');">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://nextdoor.com/sharekit/?source=legacyarchitect&body=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="silentCopy(window._shareText);showCopiedBanner();trackShare('nextdoor');">
+            <svg width="26" height="26" viewBox="0 0 500 500" fill="none"><rect width="500" height="500" rx="100" fill="#00B246"/><path d="M250 80L95 220h65v200h80v-130h20v130h80V220h65L250 80z" fill="white"/></svg>
+            <span>Nextdoor</span>
+          </a>
+          <a href="#" class="share-tile" onclick="copyForInstagram(window._shareText, this);return false;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="#" class="share-tile" onclick="copyToClipboard('https://legacyarchitectrva.com/#howprepared',this);return false;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#d4c49a"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <span>Copy Link</span>
+          </a>
+          <a href="mailto:?subject=${mailSubject}&body=${mailBody}" class="share-tile" onclick="trackShare('email')">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#d4c49a"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+        <button onclick="saveShareImage(this)" style="width:100%;margin-top:14px;padding:14px;background:transparent;border:1px solid rgba(193,176,133,0.5);border-radius:6px;color:var(--accent-gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;">
+          Save Image to Share
+        </button>
+        <div class="share-qr-container" style="margin-top:14px;">
+          <div id="shareQrCode" class="share-qr-code"></div>
+          <p class="share-qr-label">Scan to share</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Expose silentCopy helper globally for onclick use
+  window.silentCopy = function(t){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).catch(() => {});
+    }
+    try {
+      const el = document.createElement('textarea');
+      el.value = t;
+      el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(el); el.focus({preventScroll:true}); el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    } catch(e) {}
+  };
+  window.showCopiedBanner = function(){
+    const msg = document.getElementById('shareCopiedMsg');
+    if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 3500); }
+  };
+  window.silentCopyAndOpen = function(t, platformUrl) {
+    const msg = document.getElementById('shareCopiedMsg');
+    // Silent copy
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).catch(() => {});
+    }
+    try {
+      const el = document.createElement('textarea');
+      el.value = t;
+      el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(el); el.focus({preventScroll:true}); el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    } catch(e) {}
+    // Show copied banner in modal
+    if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 3000); }
+    window.open(platformUrl, '_blank');
+  };
+
+  const wrap = document.getElementById('wrap') || document.getElementById('app') || document.body;
+  wrap.appendChild(modal);
+  // Position the overlay at the CURRENT scroll offset inside the iframe so it
+  // appears where the user is looking, not pinned to the (possibly far-above)
+  // top of a tall iframe. Height covers the full document so the backdrop fills.
+  var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var viewH = window.innerHeight || document.documentElement.clientHeight || 700;
+  modal.style.cssText = 'position:absolute;top:' + scrollY + 'px;left:0;width:100%;height:' + viewH + 'px;background:rgba(15,12,8,0.75);backdrop-filter:blur(4px);z-index:99999;display:flex;align-items:flex-start;justify-content:center;padding-top:20px;box-sizing:border-box;overflow-y:auto;';
+  modal.querySelector('.share-modal').classList.add('share-modal-visible');
+  document.body.style.overflow = 'hidden';
+  generateQRCode(analysisUrl, 'shareQrCode');
+}
+
+function closeShareModal() {
+  const modal = document.querySelector('.share-modal-overlay');
+  if (modal) {
+    modal.querySelector('.share-modal').classList.remove('share-modal-visible');
+    document.body.style.overflow='';
+    setTimeout(() => modal.remove(), 300);
+  }
+}
+
+// Analytics tracking
+let analyticsEvents = [];
+
+function trackEvent(eventName, data = {}) {
+  analyticsEvents.push({
+    timestamp: new Date().toISOString(),
+    event: eventName,
+    data: data,
+    userAgent: navigator.userAgent,
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight
+  });
+  
+  // Log to console for debugging
+  console.log('Analytics:', eventName, data);
+  
+  // Send to analytics endpoint if available
+  if (window.ga || window.gtag) {
+    try {
+      if (window.gtag) {
+        gtag('event', eventName, data);
+      } else if (window.ga) {
+        ga('send', 'event', 'Analysis', eventName, JSON.stringify(data));
+      }
+    } catch (e) {
+      console.log('Analytics error:', e);
+    }
+  }
+}
+
+function trackShare(platform) {
+  trackEvent('share', { platform: platform, step: step });
+}
+
+// Track navigation
+function trackNavigation(action, fromStep, toStep) {
+  trackEvent('navigation', { action: action, fromStep: fromStep, toStep: toStep });
+}
+
+// Enhanced share via email
+function shareViaEmail(text, url) {
+  const subject = encodeURIComponent('My Continuity Readiness Score');
+  const body = encodeURIComponent(text + '\n\n' + url);
+  window.open('mailto:?subject=' + subject + '&body=' + body, '_blank');
+  trackShare('email');
+}
+
+function copyForInstagram(text, btn) {
+  let plain = text;
+  try { if(/%[0-9A-Fa-f]{2}/.test(text)) plain = decodeURIComponent(text); } catch(e) {}
+  function done() {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    setTimeout(() => { window.open('https://www.instagram.com/', '_blank'); }, 600);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(plain).then(done).catch(() => {
+      const el = document.createElement('textarea');
+      el.value = plain; el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(el); el.focus({preventScroll:true}); el.select();
+      try { document.execCommand('copy'); done(); } catch(e) { prompt('Copy for Instagram:', plain); }
+      document.body.removeChild(el);
+    });
+  } else {
+    const el = document.createElement('textarea');
+    el.value = plain; el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+    document.body.appendChild(el); el.focus({preventScroll:true}); el.select();
+    try { document.execCommand('copy'); done(); } catch(e) { prompt('Copy for Instagram:', plain); }
+    document.body.removeChild(el);
+  }
+  trackShare('instagram');
+}
+
+function copyToClipboard(text, btn) {
+  // text may be plain or encoded — normalise it
+  let plain = text;
+  try { if(/%[0-9A-Fa-f]{2}/.test(text)) plain = decodeURIComponent(text); } catch(e) {}
+  function showCopied(target) {
+    if(!target) return;
+    const orig = target.innerHTML;
+    target.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#d4c49a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
+    setTimeout(()=>{ target.innerHTML = orig; }, 2000);
+  }
+  function execFallback() {
+    const el = document.createElement('textarea');
+    el.value = plain;
+    el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+    document.body.appendChild(el);
+    el.focus({preventScroll:true}); el.select();
+    try { document.execCommand('copy'); showCopied(btn); }
+    catch(e) { prompt('Copy this link:', plain); }
+    document.body.removeChild(el);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(plain).then(()=>showCopied(btn)).catch(execFallback);
+  } else {
+    execFallback();
+  }
+  trackShare('copy');
+}
+
+// Generate QR Code
+function generateQRCode(url, elementId) {
+  try {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    el.innerHTML = '';
+    new QRCode(el, {
+      text: url,
+      width: 120,
+      height: 120,
+      colorDark: '#0f0c08',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch(e) {
+    // Fallback: show URL text if QR lib not loaded
+    const el = document.getElementById(elementId);
+    if (el) el.innerHTML = '<p style="font-size:10px;word-break:break-all;color:#0f0c08;">'+url+'</p>';
+  }
+}
+
+// Close modal when clicking outside
+function handleModalClick(e) {
+  if (e.target.classList.contains('share-modal-overlay')) {
+    closeShareModal();
+  }
+}
+function submit(){
+  const btn=document.getElementById("s7btn");
+  const ae=document.getElementById("s7al");
+  const fn=(document.getElementById("s7fn")||{}).value?.trim()||"";
+  const em=(document.getElementById("s7em")||{}).value?.trim()||"";
+  if(ae)ae.textContent="";
+  if(!em){if(ae)ae.textContent="An email address is required to unlock your full results.";return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){if(ae)ae.textContent="Please enter a valid email address.";return;}
+  
+  const d=calc();const sc=d.pct;const tl=tLabel(sc);
+  
+  // Track submission
+  trackEvent('submit', {
+    score: sc,
+    tier: tl,
+    hasName: !!fn,
+    hasEmail: !!em
+  });
+  
+  btn.disabled=true;
+  btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
+  const gaps=getGaps();const str=getStr();const bk=bkdown();
+  // Pre-compute all email display values here so Make does pure token substitution
+  const riskLevel = sc >= 71 ? 'LOW' : sc >= 40 ? 'MODERATE' : 'HIGH';
+  const situationBorderColor = sc >= 71 ? '#52D399' : sc >= 40 ? '#D4AF37' : '#F87171';
+  const riskPosition = (() => {
+    if (sc >= 71) return Math.round((100 - sc) / 29 * 33) + '%';
+    if (sc >= 40) return Math.round((70 - sc) / 30 * 33 + 33) + '%';
+    return Math.round((39 - sc) / 39 * 33 + 67) + '%';
+  })();
+  const situationTitle = tl === 'Continuity Legend' ? 'CONTINUITY LEGEND'
+    : tl === 'Continuity Steward' ? 'CONTINUITY STEWARD'
+    : tl === 'Continuity Builder' ? 'CONTINUITY BUILDER'
+    : 'CONTINUITY SENTINEL';
+  const situationText = tl === 'Continuity Legend'
+    ? 'Documented, accessible, and resilient. Others can carry on with minimal friction.'
+    : tl === 'Continuity Steward'
+    ? 'Strong positioning. Focus on completeness in your remaining gaps and an annual review cadence.'
+    : tl === 'Continuity Builder'
+    ? 'Your current readiness score shows potential vulnerabilities in your digital and financial organization. Addressing these gaps will protect your assets and provide clarity for your successors. Without proper documentation, your family may face legal battles, lost assets, and emotional stress during an already difficult time.'
+    : 'Every family\'s situation is unique. This check provides a framework for understanding their preparedness.';
+  const lowestPillar = bk.filter(p => p.na < p.r + p.u + p.na).reduce((a, b) => b.pct < a.pct ? b : a, bk[0]);
+  const highestRiskPillar = lowestPillar
+    ? 'Lowest pillar score: ' + lowestPillar.pct + '% in the ' + lowestPillar.nm + ' pillar.'
+    : 'No pillar data available.';
+  const formattedGaps = gaps.map(g => '<li style="margin-bottom:8px; color:#e0d8c8;">' + g.item + '</li>').join('');
+  const formattedPillars = bk.map(p => {
+    if (p.na === 6) return '';
+    const color = p.pct >= 71 ? '#52D399' : p.pct >= 40 ? '#D4AF37' : '#F87171';
+    const label = p.pct >= 71 ? 'STRONG' : p.pct >= 40 ? 'MODERATE' : 'AT RISK';
+    const total = p.r + p.u;
+    return '<div style="margin-bottom:14px; padding:14px 16px; background:#141414; border-radius:6px; border:1px solid #2a2a2a; border-left:4px solid ' + color + ';">'
+      + '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">'
+      + '<tr>'
+      + '<td style="font-family:Cinzel,serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#e0d8c8; font-weight:600; vertical-align:middle;">' + p.nm + '</td>'
+      + '<td align="right" style="font-family:Cinzel,serif; font-size:16px; font-weight:700; color:' + color + '; vertical-align:middle; white-space:nowrap; padding-left:8px;">' + p.pct + '%</td>'
+      + '</tr>'
+      + '</table>'
+      + '<div style="height:10px; width:100%; background:#2a2a2a; border-radius:5px; margin-bottom:10px; overflow:hidden;">'
+      + '<div style="height:10px; width:' + p.pct + '%; background:' + color + '; border-radius:5px; display:block;"></div>'
+      + '</div>'
+      + '<table width="100%" cellpadding="0" cellspacing="0" border="0">'
+      + '<tr>'
+      + '<td style="font-size:11px; color:#8a7d6e; vertical-align:middle;">' + p.r + ' of ' + total + ' documented &nbsp;&bull;&nbsp; ' + p.u + ' gap' + (p.u === 1 ? '' : 's') + ' remaining</td>'
+      + '<td align="right" style="font-family:Cinzel,serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:' + color + '; font-weight:700; vertical-align:middle; white-space:nowrap; padding-left:8px;">' + label + '</td>'
+      + '</tr>'
+      + '</table>'
+      + '</div>';
+  }).join('');
+  const conversionBlock = tl === 'Continuity Legend'
+    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">You have done serious work here. Your documents are in place, your successor has what they need, and the people you care about will not be left searching for answers at the worst possible moment.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">What tends to erode readiness at this level is time. Accounts change. Policies renew. People move. An annual review keeps everything current without starting over.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Legacy Architect annual review takes roughly an hour and costs less than a single missed insurance claim. Schedule one before anything in your life changes.</p>'
+    : tl === 'Continuity Steward'
+    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">You are further along than most. The foundation is solid. The gaps that remain are exactly the kind that surface at the worst time: a hospitalization, an unexpected death, a family member trying to locate account numbers at midnight.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Your lowest scoring pillar is the place where a successor would stall. One missing document in Legal &amp; Estate can freeze an estate for months. One undocumented account can mean a permanent loss.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session identifies every remaining gap and maps a clear path to closing them. From there, the Just-In-Case Plan is a simple starting point to document the essentials yourself, or a Life Manual tier handles the full facilitation so everything lands in one place a successor can act on immediately.</p>'
+    : tl === 'Continuity Builder'
+    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">The gaps in your current readiness are real. Not every one will cause a problem, but some of them will, and there is no way to know in advance which ones. Families who face this without documentation spend months untangling what should take days.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Frozen accounts. Insurance claims with no policy number. A family locked out of a house because no one knew where the deed was. These are not edge cases. They are what happens when nothing is written down.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session maps every gap, assigns a priority, and produces a clear picture of what needs to happen next. The Just-In-Case Plan and the Life Manual tiers are how you close those gaps, each at a different level of support.</p>'
+    : '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Right now, if someone had to step in for you, they would have questions you have not answered yet. Not because you have not thought about it, but because there has not been a structured place to put it all.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session is the starting point. It identifies every gap across all seven pillars and produces a clear priority map. The Just-In-Case Plan and the Life Manual tiers give you two paths to document everything so your successor has one place to go, in the order they would need it.</p>';
+  const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk,riskLevel,situationBorderColor,riskPosition,situationTitle,situationText,highestRiskPillar,formattedGaps,formattedPillars,conversionBlock};
+
+  // Timeout guard: if Make is slow or unreachable, don't trap the user on the
+  // spinner. After 8s we proceed to their results anyway (the on-screen results
+  // are the main payoff; the emailed copy is a bonus).
+  var didProceed = false;
+  function proceed(ok){
+    if(didProceed) return;
+    didProceed = true;
+    trackEvent(ok ? 'submit_success' : 'submit_timeout', { score: sc, tier: tl });
+    renderSuccess();
+  }
+  var killTimer = setTimeout(function(){ proceed(false); }, 8000);
+
+  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(r=>{
+    if(r.ok || r.status===200 || r.status===202 || r.status===204){
+      return r.text().catch(()=>'ok');
+    }
+    throw new Error('Network response was not ok: '+r.status);
+  })
+  .then(()=>{
+    clearTimeout(killTimer);
+    proceed(true);
+  })
+  .catch((err)=>{
+    clearTimeout(killTimer);
+    // A no-cors/opaque or text response can reject parsing even though Make
+    // received the POST. In all these cases the data most likely arrived, so
+    // show the user their results rather than blocking them.
+    trackEvent('submit_success_softfail', { score: sc, tier: tl });
+    proceed(true);
+    return;
+    // (Unreachable hard-fail path kept intentionally minimal.)
+    btn.disabled=false;
+    btn.innerText="Try Again";
+    if(ae)ae.textContent="Something went wrong. Please check your connection and try again.";
+  });
+}
+function segs(tot,cur,allDone){
+  return Array.from({length:tot},(_,i)=>{
+    let c="seg";
+    if(allDone||i<cur)c+=" done";
+    else if(i===cur)c+=" active";
+    return`<div class="${c}"></div>`;
+  }).join("");
+}
+// Scroll to top — works inside Carrd iframe and standalone
+function scrollToTop(){
+  // Blur any focused element first so the browser doesn't auto-scroll to it.
+  try { if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch(e){}
+
+  const card = document.querySelector('.card');
+  const wrap = document.getElementById('wrap') || document.getElementById('app');
+  if(card) card.scrollTop = 0;
+  if(wrap) wrap.scrollTop = 0;
+
+  // Scroll the page to the top of the #rq-embed container, not the top of the document.
+  function scrollEmbedIntoView(){
+    var embed = document.getElementById('rq-embed');
+    if(!embed) return;
+    var nav = document.querySelector('nav');
+    var navH = nav ? nav.getBoundingClientRect().height : 0;
+    var top = embed.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+    window.scrollTo(0, Math.max(top, 0));
+  }
+  try { scrollEmbedIntoView(); } catch(e){}
+  try { requestAnimationFrame(function(){ scrollEmbedIntoView(); if(wrap) wrap.scrollTop = 0; }); } catch(e){}
+
+  try { reportHeightSoon(); } catch(e){}
+}
+
+// ============================================
+// IFRAME AUTO-RESIZE: report our height to the Carrd parent so the
+// embed resizes to fit each screen. No internal scrolling, no empty space.
+// A tiny listener in Carrd (custom code) applies this height to the iframe.
+// ============================================
+function reportHeight(){
+  try {
+    if (window.parent && window.parent !== window) {
+      // Measure the true content height.
+      var h = Math.max(
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement ? document.documentElement.scrollHeight : 0,
+        document.body ? document.body.offsetHeight : 0
+      );
+      if (h && h > 0) {
+        window.parent.postMessage({ type: 'la-resize', height: h }, '*');
+      }
+    }
+  } catch(e){}
+}
+// Report after layout settles, and again shortly after (fonts/images shift height).
+function reportHeightSoon(){
+  requestAnimationFrame(reportHeight);
+  setTimeout(reportHeight, 60);
+  setTimeout(reportHeight, 250);
+  setTimeout(reportHeight, 600);
+}
+window.addEventListener('load', reportHeightSoon);
+window.addEventListener('resize', reportHeight);
+
+function render() {
+  const app=document.getElementById("app");
+  const ps=aP();
+  if(step===0){renderIntro(app,ps);}
+  else if(step<=ps.length){renderQ(app,ps);}
+  else{
+    // Check if all questions are answered before showing results
+    const allAnswered = ps.every((p,pi)=>p.i.every((_,ii)=>ANS[pi+"_"+ii]));
+    if(!allAnswered){
+      // Find first pillar with unanswered questions
+      const firstUnfinishedPillar = ps.findIndex((p,pi)=>!p.i.every((_,ii)=>ANS[pi+"_"+ii]));
+      if(firstUnfinishedPillar !== -1){
+        step = firstUnfinishedPillar + 1;
+        isBack = false;
+        renderQ(app, ps);
+        // Add visual marker to unanswered questions
+        setTimeout(()=>{
+          const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
+          unansweredToggles.forEach(el => {
+            el.style.borderLeft = '3px solid var(--missing)';
+            el.style.backgroundColor = 'rgba(239, 68, 68, 0.05)';
+          });
+          if(unansweredToggles.length > 0){
+            unansweredToggles[0].scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }, 100);
+        return;
+      }
+    }
+    renderResults(app,ps);
+  }
+  
+  // Update progress bar
+  updateProgressBar();
+}
+
+// Update progress bar
+function updateProgressBar() {
+  const progressContainer = document.getElementById('progressContainer');
+  const progressBar = document.getElementById('progressBar');
+  const ps = aP();
+  
+  if (step === 0) {
+    progressContainer.classList.remove('visible');
+    return;
+  }
+  
+  progressContainer.classList.add('visible');
+  
+  // Calculate progress percentage
+  let totalQuestions = 0;
+  let answeredQuestions = 0;
+  
+  for (let i = 0; i < ps.length; i++) {
+    totalQuestions += ps[i].i.length;
+    for (let j = 0; j < ps[i].i.length; j++) {
+      if (ANS[`${i}_${j}`]) {
+        answeredQuestions++;
+      }
+    }
+  }
+  
+  const progress = (answeredQuestions / totalQuestions) * 100;
+  progressBar.style.width = `${progress}%`;
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  updateProgressBar();
+});
+function renderIntro(app,ps){
+  const tot=ps.length+1;
+  app.innerHTML=`
+<div>
+    <p class="mark" style="margin-bottom:10px;color:#B8922A !important;text-shadow:0 1px 8px rgba(184,146,42,0.2);">7-Pillar Readiness Check</p>
+    <p class="sub" style="margin-bottom:14px;">See the exact gaps your family would face, and the next steps to close them. A few minutes, seven pillars.</p>
+    <div class="pillars-container" style="margin-bottom:14px;">
+      <div class="pillar-item"><span style="color:var(--forest);">01: Digital Life</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">02: Financial &amp; Assets</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">03: Household &amp; Property</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">04: Health &amp; Medical</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">05: Legal &amp; Estate</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">06: Business Continuity</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">07: Legacy &amp; Wishes</span></div>
+    </div>
+    <p class="sub" style="margin-bottom:14px;line-height:1.7;font-size:14px;">
+      For each item, mark <strong style="color:var(--recorded);font-weight:600;">Recorded</strong>, <strong style="color:var(--missing);font-weight:600;">Undocumented</strong>, or <strong style="color:#B8922A !important;font-weight:600;">Not Applicable</strong>.
+    </p>
+    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Checking</button>
+    <div class="social-proof" style="margin-top:14px;">
+      Most households score between 40-65% on their first pass. Free and confidential.
+    </div>
+  </div>`;
+}function renderQ(app,ps){
+  const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
+  const done=p.i.every((_,ii)=>ANS[pi+"_"+ii]);
+  // Calculate running total for current pillar
+  const answered = p.i.filter((_,ii)=>ANS[pi+"_"+ii]).length;
+  const total = p.i.length;
+  const isBusinessPillar = pi === 5; // Pillar 6 (index 5) is Business Continuity
+  let html=`<div>
+    <div class="stepbar">${segs(tot,step,false)}</div>
+    <p class="mark" style="margin-bottom:8px;">${p.n}</p>
+    <p class="sub" style="font-size:17px;margin-bottom:14px;">${p.d}</p>
+    <div class="counter">
+      <span class="counter-circle">${answered}/${total}</span>
+    </div>`;
+  
+  // Add "Not a business owner" button for Business Continuity pillar
+  if(isBusinessPillar){
+    html += `<button class="not-business-owner-btn" onclick="markAllAsNAAndScroll()">Not a business owner</button>`;
+  }
+  
+  html += ``;
+  p.i.forEach((item,idx)=>{
+    const key=pi+"_"+idx;const val=ANS[key]||"";
+    const tc=val==="R"?"aR":val==="U"?"aU":"";
+    const expl=EXPL[item]||"";
+    const desc=DESC[item]||"";
+    const romanNumeral = toRoman(idx + 1);
+    html+=`<div class="toggle ${tc}" id="toggle-${key}">
+      <div class="trow">
+        <div class="tlabel">
+          <div class="item-heading">
+            <span class="roman-numeral">${romanNumeral}.</span>
+            <span class="item-name">${item}</span>
+          </div>
+          ${desc ? `<p class="item-what">${desc}</p>` : ''}
+          ${expl ? `<p class="item-desc">${expl}</p>` : ''}
+        </div>
+        <div class="opts">
+          <div class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R')">Recorded</div>
+          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U')">Undocumented</div>
+          <div class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N')">N/A</div>
+        </div>
+      </div>
+    </div>`;
+  });
+  html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
+    <div class="cpdot"></div>All items addressed
+  </div>
+  <button onclick="goN();" class="start-btn">Continue</button>
+  <div class="navrow">
+    <button class="sm alt" onclick="goB()">Back</button>
+    <button class="sm alt" onclick="reset()">Reset</button>
+  </div></div>`;
+  app.innerHTML=html;}
+function renderResults(app,ps){
+  const tot=ps.length+1;const d=calc();const sc=d.pct;
+  const bk=bkdown();const gaps=getGaps().slice(0,6);
+  const tierCls = tCls(sc);
+  const tierColor = sc >= 86 ? "var(--ch4)" : sc >= 71 ? "var(--ch5)" : sc >= 61 ? "var(--ch2)" : "#B22222";
+  
+  // Scroll to top of results
+  setTimeout(() => {
+    const appElement = document.getElementById('app');
+    if(appElement) appElement.scrollTop = 0;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, 10);
+  
+  const barsH=bk.map((b,i)=>`<div class="prow">
+    <div class="pname">${b.nm}</div>
+    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;background:linear-gradient(90deg, #B8922A, #D4AF37, #B8922A);"></div></div>
+    <div class="ppct">${b.pct}%</div>
+  </div>`).join("");
+  
+  const gapsH=gaps.length?gaps.map((g,i)=>{
+    const expl=EXPL[g.item]||"";
+    const col = PILLAR_COLORS[g.pl] || "var(--ch1)";
+    return`<div class="gapitem" style="border-left-color:${col};">
+      <div>
+        <div class="gapname">${g.pl}: ${g.item}</div>
+        ${expl?`<div class="gapexpl">${expl}</div>`:""}
+      </div>
+    </div>`;
+  }).join(""):`<p class="sub">No unprepared items recorded.</p>`;
+  app.innerHTML=`<div>
+    <div class="stepbar">${segs(tot,tot,true)}</div>
+    <div class="ringwrap">
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:Cinzel,serif;font-size:30px;">Readiness Score</div>
+      <div class="ring-glow-outer"><div class="ring" style="background:#1c1712;">
+        <div id="r7conic" class="ringconic"></div>
+        <div class="ringinner">
+          <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:32px;font-weight:bold;">0%</div>
+          <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
+        </div>
+      </div></div>
+    </div>
+    <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:Cinzel,serif;font-size:23px;font-weight:700;">${tLabel(sc)}</div>
+    <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
+
+    <!-- PARTIAL TEASE: gap count only, full detail gated below -->
+    <div class="gapcount" style="text-align:center;font-family:'Lora',Georgia,serif;font-size:22px;color:var(--text-primary);margin:18px auto 4px;max-width:420px;line-height:1.35;">
+      ${gaps.length?`You have <b style="color:var(--missing);font-style:italic;">${getGaps().length} gap${getGaps().length===1?'':'s'}</b> across your seven pillars.`:`Remarkable. You're more prepared than almost anyone.`}
+    </div>
+
+    <!-- EMAIL GATE -->
+    <div class="gatewrap" id="s7gate">
+      <div class="gatehead" style="font-family:Cinzel,serif;font-size:17px;color:var(--accent-gold);text-align:center;letter-spacing:1px;margin:20px 0 6px;">SEE EXACTLY WHERE YOUR GAPS ARE</div>
+      <p class="sub" style="text-align:center;max-width:420px;margin:0 auto 14px;">Your pillar-by-pillar breakdown, the specific gaps, and your next steps are one click away.</p>
+      <div class="inputrow">
+        <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
+        <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To unlock your full results"></div>
+      </div>
+      <div id="s7al" class="alertmsg"></div>
+      <button id="s7btn" onclick="submit()">Unlock My Full Results</button>
+      <div class="navrow">
+        <button class="sm alt" onclick="goB()">Back</button>
+        <button class="sm alt" onclick="reset()">Reset</button>
+      </div>
+    </div>
+
+    <!-- FULL RESULTS: hidden until email submitted, revealed by renderSuccess flow -->
+    <div class="fullresults" id="s7full" style="display:none;">
+      <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
+      ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
+      <div class="legblock">
+        <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86&mdash;100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+        <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71&mdash;85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+        <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61&mdash;70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+        <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0&mdash;60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      </div>
+    </div>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check&trade; &mdash; Legacy Architect RVA</div>
+  </div>`;
+  setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderSuccess(){
+  const d=calc();
+  const tierLabel = tLabel(d.pct);
+  const tierColor = d.pct >= 86 ? "var(--ch4)" : d.pct >= 71 ? "var(--ch5)" : d.pct >= 61 ? "var(--ch2)" : "#B22222";
+  const colorMap = {
+    "var(--ch1)": "rgba(96, 165, 250, 0.4)",
+    "var(--ch2)": "rgba(248, 113, 113, 0.4)",
+    "var(--ch3)": "rgba(226, 232, 240, 0.4)",
+    "var(--ch4)": "rgba(52, 211, 153, 0.4)",
+    "var(--ch5)": "rgba(31, 77, 58, 0.4)",
+    "var(--ch6)": "rgba(148, 163, 184, 0.4)",
+    "var(--ch7)": "rgba(192, 132, 252, 0.4)"
+  };
+  const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
+  document.getElementById("app").innerHTML=`<div class="successwrap">
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">&check;</div>
+    <div class="successhead" style="font-family:Cinzel,serif;font-size:24px;">Your Full Results Are On The Way</div>
+    <p class="sub" style="font-size:18px;max-width:400px;margin:0 auto 16px;">We've sent your complete breakdown and priority gaps to your inbox. When you're ready to close them, here's where to start.</p>
+    <div class="successscore" style="border:none;box-shadow:none;">
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% &mdash; ${tierLabel}</span>
+    </div>
+
+    <!-- NEXT STEPS: the two offers -->
+    <div class="offerwrap" style="margin:26px auto 0;max-width:440px;text-align:left;">
+      <div class="offercard" style="background:linear-gradient(160deg,var(--card-bg),#0f0c08);border:1px solid var(--border-default);border-radius:14px;padding:18px;margin-bottom:14px;">
+        <div style="font-family:Inter,sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-gold-dark);font-weight:600;">Start here</div>
+        <div style="font-family:Cinzel,serif;font-size:19px;color:var(--text-primary);margin:5px 0 2px;">The Just-In-Case Plan</div>
+        <div style="font-family:Cinzel,serif;font-size:15px;color:var(--accent-gold-light);margin-bottom:8px;">$29</div>
+        <p style="font-family:'Lora',Georgia,serif;font-size:15.5px;color:var(--text-secondary);line-height:1.4;margin-bottom:14px;">The fastest way to close your most urgent gaps. A guided starting point your family could actually use tomorrow.</p>
+        <button class="back-to-site-btn" style="margin:0;width:100%;" onclick="window.open('https://buy.stripe.com/5kQ28t3U20XQ7PzbVb5Rm02','_blank')">Get the Just-In-Case Plan</button>
+      </div>
+      <div class="offercard" style="background:linear-gradient(160deg,var(--card-bg),#0f0c08);border:1px solid var(--border-default);border-radius:14px;padding:18px;margin-bottom:14px;">
+        <div style="font-family:Inter,sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-gold-dark);font-weight:600;">Go deeper</div>
+        <div style="font-family:Cinzel,serif;font-size:19px;color:var(--text-primary);margin:5px 0 2px;">The Blueprint Session</div>
+        <div style="font-family:Cinzel,serif;font-size:15px;color:var(--accent-gold-light);margin-bottom:8px;">$249</div>
+        <p style="font-family:'Lora',Georgia,serif;font-size:15.5px;color:var(--text-secondary);line-height:1.4;margin-bottom:14px;">We map your whole picture together and build a prioritized 72-hour action plan. You leave knowing exactly what to do next.</p>
+        <button class="back-to-site-btn" style="margin:0;width:100%;" onclick="window.open('https://buy.stripe.com/7sY8wR0HQ4a2c5PaR75Rm03','_blank')">Book a Blueprint Session</button>
+      </div>
+    </div>
+
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services','_blank')">See all services</button>
+
+    <div class="sharerow" style="margin-top:22px;padding-top:16px;border-top:1px solid var(--border-default);">
+      <p class="sub" style="margin-bottom:8px;">Know someone who'd fail this? Send it their way.</p>
+      <div style="text-align:center;"><div class="sharelink" onclick="window.shareScore()" role="button" aria-label="Share your score" style="display:inline-flex;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4c49a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        <span>Share the Readiness Check</span>
+      </div></div>
+    </div>
+
+    <button style="margin-top:18px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
+    <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);" onerror="this.style.display='none';">
+    <div class="footnote" style="font-family:Cinzel,serif;font-style:italic;color:var(--accent-gold-dark);">Order in Your Absence</div>
+  </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});}
+window.pick=pick;
+window.goN=goN;
+window.goB=goB;
+window.reset=reset;
+window.submit=submit;
+window.shareScore=shareScore;window.showShareModal=showShareModal;
+window.closeShareModal=closeShareModal;
+window.trackShare=trackShare;
+window.shareViaEmail=shareViaEmail;
+window.copyToClipboard=copyToClipboard;
+window.handleModalClick=handleModalClick;
+window.markAllAsNA=markAllAsNA;
+
+// ============================================
+// OFFLINE SUPPORT & LOCAL STORAGE
+// ============================================
+
+// Load saved state from localStorage
+function loadState() {
+  try {
+    const savedState = localStorage.getItem('continuityAnalysisState');
+    if (savedState) {
+      const state = JSON.parse(savedState);
+      // Restore answers
+      if (state.answers) {
+        Object.assign(ANS, state.answers);
+      }
+      // Restore step
+      if (state.step !== undefined) {
+        step = state.step;
+      }
+      // Restore business owner flag
+      if (state.biz !== undefined) {
+        biz = state.biz;
+      }
+      return true;
+    }
+  } catch (e) {
+    console.log('Error loading state:', e);
+  }
+  return false;
+}
+
+// Save state to localStorage — DISABLED for shareable quiz.
+// Persistence is intentionally off so answers never carry between visitors.
+function saveState() {
+  // no-op
+}
+
+// Auto-save on answer changes
+// Override the pick function to save state
+const originalPick = window.pick || pick;
+window.pick = function(key, val) {
+  originalPick(key, val);
+  saveState();
+};
+
+// Load state on page load — DISABLED for a public, shareable quiz.
+// Every visitor starts fresh. We clear any leftover state so one person's
+// answers never carry over to the next person on a shared link or device.
+try { localStorage.removeItem('continuityAnalysisState'); } catch (e) {}
+const hasLoadedState = false;
+
+// Track initial load
+trackEvent('page_load', {
+  hasSavedState: hasLoadedState,
+  screenWidth: window.innerWidth,
+  screenHeight: window.innerHeight
+});
+
+// Do NOT save on unload — a shareable quiz should not persist between visitors.
+// (Intentionally no beforeunload save.)
+
+// Clear state when user completes analysis
+function clearState() {
+  try {
+    localStorage.removeItem('continuityAnalysisState');
+  } catch (e) {
+    console.log('Error clearing state:', e);
+  }
+}
+
+// Clear state on successful submission
+const originalSubmit = window.submit || submit;
+window.submit = function() {
+  originalSubmit();
+  clearState();
+};
+
+// ============================================
+// INITIALIZE
+// ============================================
+step = 0;                       // always begin at the intro
+render();                       // draw the intro first
+scrollToTop();                  // then pin the view to the very top
+// Belt-and-suspenders: pin to top again once layout settles and on full load.
+window.addEventListener('load', function(){ scrollToTop(); });
+setTimeout(scrollToTop, 60);
+
+
 </script>
 </body>
 </html>
