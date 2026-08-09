@@ -1,0 +1,4 @@
+# Clean URL routing for Cloudflare Pages
+/home  /  301
+/samples  /services  301
+/editions  /services  301
