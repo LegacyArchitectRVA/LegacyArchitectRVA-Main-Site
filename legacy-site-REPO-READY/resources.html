@@ -292,7 +292,7 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
 <footer>
   <div class="wrap">
     <div class="f-contact">
-      <a href="/cdn-cgi/l/email-protection#7e171018113e121b191f1d071f0c1d16170a1b1d0a0c081f501d1113"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="__cf_email__" data-cfemail="e0898e868fa08c8587818399819283888994858394929681ce838f8d">[email&#160;protected]</span></a>
+      <a href="mailto:info@legacyarchitectrva.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>info@legacyarchitectrva.com</a>
       <a href="tel:+18048661320"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z"/></svg>(804) 866-1320</a>
       <span class="f-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Richmond, Virginia</span>
     </div>
@@ -317,59 +317,6 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
   },{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-<script data-cfasync="false">
-  // ===== 7 PILLARS INTERACTIVE =====
-  const PILLARS = [
-    {n:'01', name:'Digital Life', img:'/assets/pillars/g_digital-e.webp', items:['Cloud storage and where files actually live','Communication, messaging, and primary email','Devices, operating systems, and unlock paths','Digital financial accounts and payment apps','Password manager and 2FA recovery codes','Subscriptions, renewals, and online presence']},
-    {n:'02', name:'Emergency & Successor Access', img:'/assets/pillars/g_emergency-e.webp', items:['Who steps in, and in what order','The first 48-hour plan, written out','Emergency and critical contact directory','Child care and dependent arrangements','Where to find everything, fast']},
-    {n:'03', name:'Financial & Assets', img:'/assets/pillars/g_financial-e.webp', items:['Titles, ownership, and how things are held','Accounts and institutions, with contacts','Beneficiaries and where money moves','Insurance policies and claim contacts','Bills, obligations, and due dates']},
-    {n:'04', name:'Household Operations', img:'/assets/pillars/g_household-e.webp', items:['Home systems and shut-off locations','Security, access codes, and spare keys','Maintenance schedules and trusted vendors','Vehicle information and registrations','Pet care and daily routines']},
-    {n:'05', name:'Vital Records', img:'/assets/pillars/g_vital-e.webp', items:['Identification and legal documents','Legal documents in force, and where held','Medical directives and health information','Deeds, titles, and certificates','Where the originals are kept']},
-    {n:'06', name:'Legacy & Wishes', img:'/assets/pillars/g_legacy-e.webp', items:['Final wishes and memorial preferences','Personal letters and messages','Values and traditions to carry on','Digital narrative and memory','What you wanted, in your own words']},
-    {n:'07', name:'Business Continuity', img:'/assets/pillars/g_business-e.webp', items:['Who has authority, and over what','Stabilization protocol, phase by phase','Key vendors, clients, and payroll','Business accounts and lines of credit','Whether it continues or winds down']}
-  ];
-  (function(){
-    const grid = document.querySelector('.pillars-grid');
-    if(!grid) return;
-    PILLARS.forEach((p,i)=>{
-      const el = document.createElement('div');
-      el.className='pillar';
-      const panelId = 'pillar-panel-'+p.n;
-      el.setAttribute('role','button');
-      el.setAttribute('tabindex','0');
-      el.setAttribute('aria-expanded','false');
-      el.setAttribute('aria-controls',panelId);
-      el.innerHTML = `
-        <picture><source srcset="${p.img.replace(/\.jpg$/,'.webp')}" type="image/webp"><img class="pillar-img" src="${p.img}" alt="" decoding="async"></picture>
-        <div class="pillar-plus" aria-hidden="true">+</div>
-        <div class="pillar-label">
-          <div class="pillar-num">PILLAR ${p.n}${p.legacy?' &middot; LEGACY':''}</div>
-          <div class="pillar-name">${p.name}</div>
-          <div class="pillar-hint" aria-hidden="true">Tap to see what it holds</div>
-          <div class="pillar-detail" id="${panelId}"><ul>${p.items.map(it=>`<li>${it}</li>`).join('')}</ul></div>
-        </div>`;
-      function toggle(){
-        const wasOpen = el.classList.contains('open');
-        grid.querySelectorAll('.pillar').forEach(x=>{
-          x.classList.remove('open');
-          x.setAttribute('aria-expanded','false');
-        });
-        if(!wasOpen){
-          el.classList.add('open');
-          el.setAttribute('aria-expanded','true');
-        }
-      }
-      el.addEventListener('click',toggle);
-      el.addEventListener('keydown',e=>{
-        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }
-      });
-      grid.appendChild(el);
-    });
-  })();
-
-</script>
-<script data-cfasync="false">
 </script>
 <script data-cfasync="false">
   // reading progress + back to top
@@ -453,74 +400,6 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
   });
 })();
 
-/* ---------- THE THREAD ---------- */
-(function(){
-  var NODES = (typeof PILLARS !== 'undefined' && PILLARS.length)
-    ? PILLARS.map(function(p){ return [p.name, p.items[0], p.img, p.n, p.items]; })
-    : [];
-  if(!NODES.length) return;
-  var host=document.getElementById('threadNodes');
-  if(!host) return;
-  NODES.forEach(function(n){
-    var d=document.createElement('div');
-    d.className='tnode';
-    var items=(n[4]||[]).map(function(x){return '<li>'+x+'</li>';}).join('');
-    d.innerHTML='<div class="side">'+
-        '<button class="pcard" aria-expanded="false">'+
-          '<picture><source srcset="'+n[2].replace(/\.jpg$/,'.webp')+'" type="image/webp"><img class="pimg" src="'+n[2]+'" alt="" decoding="async"></picture>'+
-          '<span class="ptext"><span class="pnum">'+n[3]+'</span>'+
-          '<span class="pname">'+n[0]+'</span>'+
-          '<span class="pgap">'+n[1]+'</span></span>'+
-          '<span class="chev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>'+
-        '</button>'+
-        '<div class="pbody"><ul>'+items+'</ul></div>'+
-      '</div>'+
-      '<div class="dot"></div><div class="side"></div>';
-    host.appendChild(d);
-  });
-  host.querySelectorAll('.pcard').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var side=btn.parentElement;
-      var open=side.classList.toggle('open');
-      btn.setAttribute('aria-expanded',open?'true':'false');
-    });
-  });
-  var wrap=document.getElementById('threadWrap');
-  var fill=document.getElementById('threadFill');
-  var foot=document.getElementById('threadFoot');
-  var nodes=[].slice.call(host.querySelectorAll('.tnode'));
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){
-    fill.style.height='100%';
-    nodes.forEach(function(n){n.classList.add('lit');});
-    foot.classList.add('on');
-    return;
-  }
-  var ticking=false;
-  function update(){
-    ticking=false;
-    var r=wrap.getBoundingClientRect();
-    var vh=window.innerHeight;
-    var start=vh*0.82, end=vh*0.28;
-    var p=(start-r.top)/(r.height+(start-end));
-    p=Math.max(0,Math.min(1,p));
-    fill.style.height=(p*100)+'%';
-    var lit=0;
-    nodes.forEach(function(n,i){
-      var nr=n.getBoundingClientRect();
-      var dotY=nr.top+nr.height/2;
-      var reached=dotY < r.top + r.height*p + 8;
-      n.classList.toggle('lit',reached);
-      if(reached) lit++;
-    });
-    foot.classList.toggle('on',lit===nodes.length);
-  }
-  window.addEventListener('scroll',function(){
-    if(!ticking){ ticking=true; requestAnimationFrame(update); }
-  },{passive:true});
-  window.addEventListener('resize',update);
-  update();
-})();
 
 
 
@@ -1011,5 +890,5 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
     }
   }, true);
 </script>
-<foreignObject></foreignObject><script data-cfasync="false">(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a26546b70dfd3c9c',t:'MTc4NTkyNzM5Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><foreignObject></foreignObject><script data-cfasync="false">(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2826f8df943eb00',t:'MTc4NjIzMzE1Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><foreignObject></foreignObject><script data-cfasync="false">(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a283c2aeea5ce81e',t:'MTc4NjI0NzA0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
