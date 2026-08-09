@@ -3,7 +3,7 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
-<script>
+<script data-cfasync="false">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -839,7 +839,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false">
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 /* Route the booking to the right Cal.com event based on what was purchased.
    Stripe appends ?p=blueprint | ?p=jic | ?p=manual on redirect.
@@ -910,7 +910,7 @@ document.getElementById('modalSkip').addEventListener('click',closeModal);
 modalBg.addEventListener('click',e=>{if(e.target===modalBg)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
-<script>
+<script data-cfasync="false">
   // reading progress + back to top
   (function(){
     const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
@@ -1421,7 +1421,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 <div style="text-align:center;padding:26px 22px 40px">
   <a href="/#handoff" style="color:#d4b661;font-size:13.5px;letter-spacing:.04em;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px">While you're here: The Handoff, a free one-page starter. Download it.</a>
 </div>
-<script>
+<script data-cfasync="false">
   // conversion event tracking - catches every instance of these links, including JS-rendered ones
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
