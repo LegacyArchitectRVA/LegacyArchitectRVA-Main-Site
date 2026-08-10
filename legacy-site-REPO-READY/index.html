@@ -693,19 +693,28 @@ function handoffSubmit(e){
   var ticking=false;
   function update(){
     ticking=false;
+    // Batch every geometry read before touching the DOM at all, then apply
+    // every write afterward. Interleaving getBoundingClientRect() calls with
+    // style/class writes (the way this used to run) forces the browser to
+    // synchronously recompute layout on every single node, every scroll frame.
     var r=wrap.getBoundingClientRect();
     var vh=window.innerHeight;
     var start=vh*0.82, end=vh*0.28;
     var p=(start-r.top)/(r.height+(start-end));
     p=Math.max(0,Math.min(1,p));
+
+    var nodeRects=nodes.map(function(n){ return n.getBoundingClientRect(); });
+
+    var reachedFlags=nodeRects.map(function(nr){
+      var dotY=nr.top+nr.height/2;
+      return dotY < r.top + r.height*p + 8;
+    });
+
     fill.style.height=(p*100)+'%';
     var lit=0;
     nodes.forEach(function(n,i){
-      var nr=n.getBoundingClientRect();
-      var dotY=nr.top+nr.height/2;
-      var reached=dotY < r.top + r.height*p + 8;
-      n.classList.toggle('lit',reached);
-      if(reached) lit++;
+      n.classList.toggle('lit',reachedFlags[i]);
+      if(reachedFlags[i]) lit++;
     });
     foot.classList.toggle('on',lit===nodes.length);
   }
