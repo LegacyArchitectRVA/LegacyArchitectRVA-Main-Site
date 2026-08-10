@@ -93,16 +93,16 @@
   .ql-note{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mut);margin-top:16px;opacity:.8}
   .free-resource{margin:50px 0 40px;border:1px solid rgba(216,199,154,.3);border-radius:10px;padding:48px 40px;text-align:center;background:var(--bg2)}
   .fr-inner{max-width:38ch;margin:0 auto}
-  .fr-eyebrow{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .fr-eyebrow{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px} html.lightmode .fr-eyebrow{color:#7D6224}
   .free-resource h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:14px}
   .free-resource p{color:var(--mut);font-size:1.12rem;margin-bottom:28px}
-  .fr-note{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mut);margin-top:14px;opacity:.8}
+  .fr-note{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mut);margin-top:14px} html.lightmode .fr-note{color:#5a5448}
 
   footer{border-top:1px solid var(--line);padding:42px 0;text-align:center}
   footer .f-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
   footer .f-links a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none}
   footer .f-links a:hover{color:var(--gold)}
-  footer .f-note{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.08em;color:var(--mut);opacity:.7}
+  footer .f-note{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.08em;color:var(--mut)}
 
   @media(min-width:1400px){.wrap{max-width:1100px}}
   @media(max-width:900px){.wrap{padding:0 24px}}
@@ -678,7 +678,7 @@
   html.lightmode :is(.what,.free-resource) :is(h2,h3,h4){color:#181410 !important}
   
   /* ---- light mode: card surfaces lighten with their sections ---- */
-  html.lightmode :is(.what,.free-resource) .card{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
+  html.lightmode :is(.what,.free-resource) .card{background:#FAF6EC;border-color:rgba(125,98,36,.22)} html.lightmode :is(.what,.free-resource) .card .n{color:#7D6224}
   html.lightmode :is(.next,.booking) .step{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
   html.lightmode .closer .readiness{color:#7D6224 !important;border-color:#7D6224 !important;background:transparent}
   
@@ -2206,6 +2206,7 @@ html.lightmode #rq-embed { color-scheme: only light; }
   background:#141009;
 }
 
+#rq-embed .mark{color:#7D6224 !important;}
 </style>
 <script src="/assets/qrcode.min.js"></script>
 </head>
@@ -3726,7 +3727,7 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
 <div>
-    <p class="mark" style="margin-bottom:10px;color:#B8922A !important;text-shadow:0 1px 8px rgba(184,146,42,0.2);">7-Pillar Readiness Check</p>
+    <p class="mark" style="margin-bottom:10px;color:#7D6224 !important;text-shadow:0 1px 8px rgba(184,146,42,0.2);">7-Pillar Readiness Check</p>
     <p class="sub" style="margin-bottom:14px;">See the exact gaps your family would face, and the next steps to close them. A few minutes, seven pillars.</p>
     <div class="pillars-container" style="margin-bottom:14px;">
       <div class="pillar-item"><span style="color:var(--forest);">01: Digital Life</span></div>
