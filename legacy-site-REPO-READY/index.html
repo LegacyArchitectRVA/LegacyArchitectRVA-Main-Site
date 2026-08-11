@@ -596,10 +596,18 @@ function handoffSubmit(e){
     if(!imgs.length) return;
     let ticking=false;
     function update(){
-      imgs.forEach(img=>{
+      // Batch every geometry read first, then apply every write, same fix
+      // as the timeline scroll handler: interleaving reads and writes here
+      // forced a layout recalculation on every single image, every frame.
+      const entries=Array.from(imgs).map(img=>{
         const card=img.closest('.pillar');
-        if(!card) return;
+        if(!card) return null;
         const r=card.getBoundingClientRect();
+        return { img, r };
+      });
+      entries.forEach(entry=>{
+        if(!entry) return;
+        const { img, r } = entry;
         if(r.bottom<0||r.top>window.innerHeight) return;
         const progress=(r.top+r.height/2-window.innerHeight/2)/window.innerHeight;
         img.style.transform=`translateY(${(progress*-14).toFixed(1)}px) scale(1.08)`;
