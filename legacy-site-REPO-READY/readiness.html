@@ -2383,23 +2383,25 @@ function submit(){
 
   fetch(WH,{method:"POST",mode:'cors',headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
   .then(r=>{
+    console.log('Make webhook response:', r.status, r.statusText);
     if(r.ok || r.status===200 || r.status===202 || r.status===204){
       return r.text().catch(()=>'ok');
     }
     throw new Error('Network response was not ok: '+r.status);
   })
   .then(()=>{
+    console.log('Make webhook succeeded');
     clearTimeout(killTimer);
     proceed(true);
   })
   .catch((err)=>{
     clearTimeout(killTimer);
+    console.error('Make webhook failed:', err);
     // A no-cors/opaque or text response can reject parsing even though Make
     // received the POST. In all these cases the data most likely arrived, so
     // show the user their results rather than blocking them.
-    trackEvent('submit_success_softfail', { score: sc, tier: tl });
+    trackEvent('submit_success_softfail', { score: sc, tier: tl, error: err.message });
     proceed(true);
-    return;
     // (Unreachable hard-fail path kept intentionally minimal.)
     btn.disabled=false;
     btn.innerText="Try Again";
