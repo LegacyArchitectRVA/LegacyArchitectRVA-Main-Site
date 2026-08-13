@@ -2381,7 +2381,7 @@ function submit(){
   }
   var killTimer = setTimeout(function(){ proceed(false); }, 8000);
 
-  fetch(WH,{method:"POST",mode:'cors',headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  fetch(WH,{method:"POST",mode:'cors',credentials:'omit',headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
   .then(r=>{
     console.log('Make webhook response:', r.status, r.statusText);
     if(r.ok || r.status===200 || r.status===202 || r.status===204){
