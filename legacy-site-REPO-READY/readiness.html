@@ -2381,9 +2381,19 @@ function submit(){
   }
   var killTimer = setTimeout(function(){ proceed(false); }, 8000);
 
-  // Try with no-cors first, then fallback to navigator.sendBeacon if available
+  // Use sendBeacon which works reliably from browsers without CORS issues
   var webhookSuccess = false;
-  var webhookPromise = fetch(WH, {method: "POST", mode: 'no-cors', headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
+  if(navigator.sendBeacon) {
+    try {
+      var blob = new Blob([JSON.stringify(payload)], {type: 'application/json'});
+      webhookSuccess = navigator.sendBeacon(WH, blob);
+      console.log('Webhook sent via sendBeacon:', webhookSuccess);
+    } catch(e) {
+      console.error('sendBeacon error:', e);
+    }
+  } else {
+    // Fallback to fetch for older browsers
+    fetch(WH, {method: "POST", mode: 'no-cors', headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
     .then(r => {
       console.log('Make webhook response status:', r.status);
       if(r.ok || r.status === 200 || r.status === 202 || r.status === 204) {
@@ -2410,15 +2420,12 @@ function submit(){
       }
     });
 
-  // Wait for fetch or beacon, then proceed
-  Promise.race([
-    webhookPromise,
-    new Promise(resolve => setTimeout(resolve, 2000))
-  ]).then(() => {
+  // Proceed after a short delay to allow sendBeacon to complete
+  setTimeout(() => {
     clearTimeout(killTimer);
     trackEvent(webhookSuccess ? 'submit_success' : 'submit_success_softfail', { score: sc, tier: tl });
     proceed(webhookSuccess);
-  });
+  }, 1000);
 }
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
