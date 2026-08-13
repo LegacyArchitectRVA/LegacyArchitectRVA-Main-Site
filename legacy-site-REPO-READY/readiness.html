@@ -2381,31 +2381,43 @@ function submit(){
   }
   var killTimer = setTimeout(function(){ proceed(false); }, 8000);
 
-  fetch(WH,{method:"POST",mode:'no-cors',headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-  .then(r=>{
-    console.log('Make webhook response:', r.status, r.statusText);
-    if(r.ok || r.status===200 || r.status===202 || r.status===204){
-      return r.text().catch(()=>'ok');
-    }
-    throw new Error('Network response was not ok: '+r.status);
-  })
-  .then(()=>{
-    console.log('Make webhook succeeded');
+  // Try with no-cors first, then fallback to navigator.sendBeacon if available
+  var webhookSuccess = false;
+  var webhookPromise = fetch(WH, {method: "POST", mode: 'no-cors', headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
+    .then(r => {
+      console.log('Make webhook response status:', r.status);
+      if(r.ok || r.status === 200 || r.status === 202 || r.status === 204) {
+        webhookSuccess = true;
+        return r.text().catch(() => 'ok');
+      }
+      throw new Error('Status: ' + r.status);
+    })
+    .then(() => {
+      console.log('Make webhook succeeded via fetch');
+      webhookSuccess = true;
+    })
+    .catch(err => {
+      console.error('Make webhook fetch failed:', err);
+      // Try sendBeacon as fallback
+      if(navigator.sendBeacon) {
+        try {
+          var blob = new Blob([JSON.stringify(payload)], {type: 'application/json'});
+          webhookSuccess = navigator.sendBeacon(WH, blob);
+          console.log('Make webhook sent via sendBeacon:', webhookSuccess);
+        } catch(e) {
+          console.error('sendBeacon failed:', e);
+        }
+      }
+    });
+
+  // Wait for fetch or beacon, then proceed
+  Promise.race([
+    webhookPromise,
+    new Promise(resolve => setTimeout(resolve, 2000))
+  ]).then(() => {
     clearTimeout(killTimer);
-    proceed(true);
-  })
-  .catch((err)=>{
-    clearTimeout(killTimer);
-    console.error('Make webhook failed:', err);
-    // A no-cors/opaque or text response can reject parsing even though Make
-    // received the POST. In all these cases the data most likely arrived, so
-    // show the user their results rather than blocking them.
-    trackEvent('submit_success_softfail', { score: sc, tier: tl, error: err.message });
-    proceed(true);
-    // (Unreachable hard-fail path kept intentionally minimal.)
-    btn.disabled=false;
-    btn.innerText="Try Again";
-    if(ae)ae.textContent="Something went wrong. Please check your connection and try again.";
+    trackEvent(webhookSuccess ? 'submit_success' : 'submit_success_softfail', { score: sc, tier: tl });
+    proceed(webhookSuccess);
   });
 }
 function segs(tot,cur,allDone){
