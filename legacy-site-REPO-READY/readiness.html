@@ -1328,6 +1328,24 @@ function close_(){
   userActed = true;
   try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
 }
+
+/* Proactive nudge from the Readiness Check: opens the panel with a
+   context-specific offer instead of the standard first-open greeting,
+   and only ever fires once per visit even if called again. */
+var readinessNudgeShown = false;
+function elaraOfferReadinessHelp(){
+  if(readinessNudgeShown) return;
+  if(panel.classList.contains('on')) return; // already open, don't interrupt
+  readinessNudgeShown = true;
+  greeted = true;
+  panel.classList.add('on'); orb.classList.add('open');
+  orb.setAttribute('aria-expanded','true'); orb.setAttribute('aria-label','Close Elara');
+  think(function(){
+    say('I\'m Elara. Need a hand with any of these? I can explain what something means, or just tell you what actually counts as documented.\n\nOr keep going, whatever\'s easier.');
+    home();
+  });
+}
+window.elaraOfferReadinessHelp = elaraOfferReadinessHelp;
 var asstX=document.getElementById('asstX');
 if(asstX){asstX.addEventListener('click',function(e){e.stopPropagation();close_();});}
 orb.addEventListener('click',function(){
@@ -1722,6 +1740,12 @@ function pick(key,val){
   const pi=step-1;const ps=aP();
   const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
   render(); // re-render in place — NO scroll to top
+  // After the 2nd answer anywhere in the check, let Elara offer a hand.
+  // elaraOfferReadinessHelp guards itself so this is safe to call every
+  // time the count reaches 2, it only ever actually fires once.
+  if(Object.keys(ANS).length >= 2 && typeof window.elaraOfferReadinessHelp === 'function'){
+    window.elaraOfferReadinessHelp();
+  }
   if(done){
     // All answered: show badge and scroll to Continue button
     const b=document.getElementById("cpbadge");
@@ -2381,7 +2405,7 @@ function submit(){
   }
   var killTimer = setTimeout(function(){ proceed(false); }, 8000);
 
-  fetch(WH,{method:"POST",mode:'cors',headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
   .then(r=>{
     if(r.ok || r.status===200 || r.status===202 || r.status===204){
       return r.text().catch(()=>'ok');
