@@ -34,6 +34,8 @@
 <meta name="twitter:description" content="Real sample pages plus both Life Manual editions, Personal and Business. Pay in full or start with a 50% deposit.">
 <meta name="twitter:image" content="https://legacyarchitectrva.com/assets/share-card.jpg">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-16.png" type="image/png" sizes="16x16">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png" sizes="180x180">
@@ -1058,6 +1060,7 @@ EDITIONS.forEach(ed=>{
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/about">About</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/readiness">Readiness Check</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/resources">Resources</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">The Handoff (free)</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/privacy">Privacy</a>
       <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/terms">Terms</a>
     </div>
@@ -1366,17 +1369,13 @@ orb.addEventListener('click',function(){
   panel.classList.contains('on')?close_():open_();
 });
 
-/* Open on its own a few seconds in, but only once per visit and only if
-   the person has not already opened or dismissed it themselves. */
+/* Auto-open removed per Craig: click-to-open only now, no timer-driven
+   popup covering the page. userActed/la_asst_seen are kept in case
+   something downstream still reads them, but nothing sets a timeout
+   anymore. */
 var userActed = false;
 try{ if(localStorage.getItem('la_asst_seen')==='1') userActed = true; }catch(e){}
 
-setTimeout(function(){
-  if(userActed) return;
-  if(panel.classList.contains('on')) return;
-  open_();
-  try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
-}, 4000);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('on'))close_();});
 document.getElementById('send').addEventListener('click',function(){
   var i=document.getElementById('ask'); var v=i.value.trim(); if(!v)return; i.value=''; ask(v);});

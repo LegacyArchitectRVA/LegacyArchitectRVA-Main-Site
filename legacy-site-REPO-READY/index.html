@@ -150,9 +150,8 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
     <div class="cta-row">
       <div class="cta-buttons">
         <a class="btn btn-gold" href="/readiness">See My Readiness Score</a>
-        <a class="btn btn-ghost" href="/services#samples">Book My Blueprint Session</a>
       </div>
-      <div class="sub-cta">The check is free and takes two minutes. The Blueprint fee credits toward any edition.</div>
+      <div class="sub-cta">Free, two minutes, no email required. Already know you want a Blueprint Session? <a href="/services#samples" style="color:var(--gold-b);text-decoration:underline">Book it here</a>, the fee credits toward any edition.</div>
     </div>
   </div>
   <div class="hero-visual">
@@ -294,6 +293,7 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
       <a href="/resources">Resources</a>
+      <a href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
     </div>
@@ -1005,6 +1005,8 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
     } else if(href.indexOf('/readiness') > -1){
       gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
     } else if(href.indexOf('mailto:') === 0){
       gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
     } else if(href.indexOf('tel:') === 0){
