@@ -166,7 +166,7 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
         <h3>The Handoff</h3>
         <div class="pprice">Instant download</div>
         <p>Who to call first, what keeps running, where the keys live. Fill in what you can, leave the rest blank, and keep it where somebody you trust can reach it. No passwords go on it.</p>
-        <div class="pcta"><a href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">Get The Handoff</a></div>
+        <div class="pcta"><a href="#handoff" onclick="openHandoffGate(event)">Get The Handoff</a></div>
       </div>
 
     </div>
@@ -304,7 +304,7 @@ letter-spacing:.08em;text-transform:uppercase;color:var(--gold);white-space:nowr
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
       <a href="/resources">Resources</a>
-      <a href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">The Handoff (free)</a>
+      <a href="#handoff" onclick="openHandoffGate(event)">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
     </div>
@@ -886,5 +886,6 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
     }
   }, true);
 </script>
+<script src="/assets/handoff-gate.js" defer></script>
 </body>
 </html>

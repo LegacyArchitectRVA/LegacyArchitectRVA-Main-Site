@@ -1006,7 +1006,7 @@ html.lightmode #rq-embed .rq-scorewrap{color:var(--ink);background:#171310;borde
       <div class="fr-eyebrow">Free resource</div>
       <h2>The Handoff</h2>
       <p>A simple, fillable one-page guide that captures the essentials someone would need first. Print it, fill it in, keep it somewhere they'll find it. No signup, no cost.</p>
-      <a class="btn btn-gold" href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">Download The Handoff</a>
+      <a class="btn btn-gold" href="#handoff" onclick="openHandoffGate(event)">Download The Handoff</a>
       <div class="fr-note">Fillable PDF &middot; Nothing to sign up for</div>
     </div>
   </section>
@@ -1029,7 +1029,7 @@ html.lightmode #rq-embed .rq-scorewrap{color:var(--ink);background:#171310;borde
       <a href="/about">About</a>
       <a href="/readiness">Readiness Check</a>
       <a href="/resources">Resources</a>
-      <a href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">The Handoff (free)</a>
+      <a href="#handoff" onclick="openHandoffGate(event)">The Handoff (free)</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
     </div>
@@ -2898,5 +2898,6 @@ render();                       // draw the intro first
 
 
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a294f9a0088c617e',t:'MTc4NjQyNzU1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a294f9a0088c617e',t:'MTc4NjQyNzU1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script src="/assets/handoff-gate.js" defer></script>
+</body>
 </html>
