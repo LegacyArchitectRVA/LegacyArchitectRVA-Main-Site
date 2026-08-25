@@ -70,8 +70,10 @@
     + '<form id="handoff-form" novalidate>'
     +   '<div class="hg-field"><label for="handoff-email">Email</label>'
     +   '<input type="email" id="handoff-email" name="email" required placeholder="you@email.com"></div>'
-    +   '<div class="hg-field"><label for="handoff-firstname">First name (optional)</label>'
+    +   '<div class="hg-field"><label for="handoff-firstname">First name</label>'
     +   '<input type="text" id="handoff-firstname" name="firstname" placeholder="First name"></div>'
+    +   '<div class="hg-field"><label for="handoff-lastname">Last name</label>'
+    +   '<input type="text" id="handoff-lastname" name="lastname" placeholder="Last name"></div>'
     +   '<div id="handoff-error"></div>'
     +   '<button type="submit" id="handoff-submit-btn">Send It Over</button>'
     + '</form>'
@@ -84,6 +86,7 @@
   var form = overlay.querySelector('#handoff-form');
   var emailInput = overlay.querySelector('#handoff-email');
   var firstnameInput = overlay.querySelector('#handoff-firstname');
+  var lastnameInput = overlay.querySelector('#handoff-lastname');
   var submitBtn = overlay.querySelector('#handoff-submit-btn');
   var errorBox = overlay.querySelector('#handoff-error');
   var successBox = overlay.querySelector('#handoff-success');
@@ -122,6 +125,9 @@
     var fields = [{name: 'email', value: email}];
     if (firstnameInput.value.trim()) {
       fields.push({name: 'firstname', value: firstnameInput.value.trim()});
+    }
+    if (lastnameInput.value.trim()) {
+      fields.push({name: 'lastname', value: lastnameInput.value.trim()});
     }
 
     var payload = {
