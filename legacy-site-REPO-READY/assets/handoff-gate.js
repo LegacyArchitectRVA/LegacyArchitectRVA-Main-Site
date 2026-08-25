@@ -28,6 +28,10 @@
     + "#handoff-form label{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.1em;"
     + "text-transform:uppercase;color:#a8a08f;margin-bottom:6px;display:block}"
     + "#handoff-form .hg-field{margin-bottom:16px}"
+    + "#handoff-consent{display:flex;align-items:flex-start;gap:10px;margin:2px 0 18px}"
+    + "#handoff-consent input{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:#d4b661}"
+    + "#handoff-consent label{font-family:'Inter',sans-serif;font-size:12px;color:#a8a08f;line-height:1.5;"
+    + "text-transform:none;letter-spacing:normal;margin:0}"
     + "#handoff-form input[type=text],#handoff-form input[type=email]{width:100%;font-family:'Inter',sans-serif;"
     + "font-size:15.5px;background:#1c1710;border:1px solid rgba(212,182,97,.22);border-radius:3px;"
     + "color:#f2ede2;padding:12px;min-height:46px;box-sizing:border-box}"
@@ -56,6 +60,7 @@
     + "#handoff-error.show{display:block}"
     + "#handoff-gate-note{font-family:'Inter',sans-serif;font-size:11px;color:#8d8676;line-height:1.6;"
     + "margin-top:16px}"
+    + "#handoff-hp-wrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}"
     + "@media(max-width:480px){#handoff-gate-panel{padding:26px 20px 22px}}";
   document.head.appendChild(style);
 
@@ -67,6 +72,9 @@
     + '<div id="handoff-gate-eyebrow">Free &middot; One Page</div>'
     + '<h3 id="handoff-gate-title">Get The Handoff</h3>'
     + '<p class="hg-sub">Who to call first, what keeps running, where the keys live. Enter your email and it\'s yours.</p>'
+    + '<div id="handoff-hp-wrap" aria-hidden="true">'
+    +   '<label for="handoff-hp">Leave this field blank</label>'
+    +   '<input type="text" id="handoff-hp" name="website" tabindex="-1" autocomplete="off"></div>'
     + '<form id="handoff-form" novalidate>'
     +   '<div class="hg-field"><label for="handoff-email">Email</label>'
     +   '<input type="email" id="handoff-email" name="email" required placeholder="you@email.com"></div>'
@@ -74,6 +82,8 @@
     +   '<input type="text" id="handoff-firstname" name="firstname" placeholder="First name"></div>'
     +   '<div class="hg-field"><label for="handoff-lastname">Last name</label>'
     +   '<input type="text" id="handoff-lastname" name="lastname" placeholder="Last name"></div>'
+    +   '<div id="handoff-consent"><input type="checkbox" id="handoff-consent-check" required>'
+    +   '<label for="handoff-consent-check">It\'s okay to email me this and store my info so Legacy Architect RVA can follow up.</label></div>'
     +   '<div id="handoff-error"></div>'
     +   '<button type="submit" id="handoff-submit-btn">Send It Over</button>'
     + '</form>'
@@ -87,6 +97,8 @@
   var emailInput = overlay.querySelector('#handoff-email');
   var firstnameInput = overlay.querySelector('#handoff-firstname');
   var lastnameInput = overlay.querySelector('#handoff-lastname');
+  var consentCheck = overlay.querySelector('#handoff-consent-check');
+  var hpInput = overlay.querySelector('#handoff-hp');
   var submitBtn = overlay.querySelector('#handoff-submit-btn');
   var errorBox = overlay.querySelector('#handoff-error');
   var successBox = overlay.querySelector('#handoff-success');
@@ -115,10 +127,21 @@
     e.preventDefault();
     errorBox.classList.remove('show');
 
+    if (hpInput.value.trim()) {
+      // Honeypot tripped, almost certainly a bot. Fake success, give it nothing useful.
+      form.style.display = 'none';
+      successBox.classList.add('show');
+      return;
+    }
+
     var email = emailInput.value.trim();
     if (!isValidEmail(email)) {
       showError('That email doesn\u2019t look complete. Double check it and try again.');
       emailInput.focus();
+      return;
+    }
+    if (!consentCheck.checked) {
+      showError('Check the box above so we know it\u2019s okay to send this over.');
       return;
     }
 
@@ -135,6 +158,12 @@
       context: {
         pageUri: location.href,
         pageName: document.title
+      },
+      legalConsentOptions: {
+        consent: {
+          consentToProcess: true,
+          text: 'I agree to allow Legacy Architect RVA to store and process my personal data, and to email me The Handoff.'
+        }
       }
     };
     var hutk = getCookie('hubspotutk');
