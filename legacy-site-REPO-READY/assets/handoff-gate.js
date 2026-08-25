@@ -30,6 +30,10 @@
     + "#handoff-gate-note{font-family:'Inter',sans-serif;font-size:11px;color:#8d8676;line-height:1.6;"
     + "margin-top:16px}"
     + "#handoff-hs-form-loading{font-family:'Inter',sans-serif;font-size:13px;color:#a8a08f}"
+    + "#handoff-fallback{display:none;font-family:'Inter',sans-serif;font-size:13px;color:#a8a08f;"
+    + "line-height:1.6;margin-top:6px}"
+    + "#handoff-fallback.show{display:block}"
+    + "#handoff-fallback a{color:#e8c869;text-decoration:underline}"
     + "@media(max-width:480px){#handoff-gate-panel{padding:26px 20px 22px}}";
   document.head.appendChild(style);
   /* HubSpot renders the form inside a cross-origin iframe, so CSS from this page
@@ -46,6 +50,8 @@
     + '<h3 id="handoff-gate-title">Get The Handoff</h3>'
     + '<p class="hg-sub">Who to call first, what keeps running, where the keys live. Enter your email and it\'s yours.</p>'
     + '<div id="handoff-hs-form-wrap"><div id="handoff-hs-form-loading">Loading form&hellip;</div></div>'
+    + '<div id="handoff-fallback">Form not loading? Some browsers and ad blockers hold it back. '
+    + '<a href="/assets/The-Handoff.pdf" target="_blank" rel="noopener">Get the file directly instead</a>.</div>'
     + '<div id="handoff-gate-note">No passwords go on it, and nothing you send here gets sold or shared.</div>'
     + '</div>';
   document.body.appendChild(overlay);
@@ -53,6 +59,13 @@
   function closeGate(){
     overlay.classList.remove('on');
     document.body.style.overflow = '';
+  }
+
+  var fallbackTimer = null;
+
+  function showFallback(){
+    var fb = document.getElementById('handoff-fallback');
+    if (fb) fb.classList.add('show');
   }
 
   function renderForm(){
@@ -64,6 +77,7 @@
       region: HS_REGION,
       target: '#handoff-hs-form-wrap',
       onFormReady: function(){
+        clearTimeout(fallbackTimer);
         var loading = document.getElementById('handoff-hs-form-loading');
         if (loading) loading.remove();
       },
@@ -76,12 +90,14 @@
   }
 
   function loadHsScriptThenRender(){
+    fallbackTimer = setTimeout(showFallback, 5000);
     if (hsScriptLoaded) { renderForm(); return; }
     hsScriptLoaded = true;
     var s = document.createElement('script');
     s.src = '//js-na2.hsforms.net/forms/embed/v2.js';
     s.charset = 'utf-8';
     s.onload = renderForm;
+    s.onerror = showFallback;
     document.body.appendChild(s);
   }
 
