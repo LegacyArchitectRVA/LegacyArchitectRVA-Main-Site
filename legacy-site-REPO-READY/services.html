@@ -1,51 +1,1586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CVZXR46GL"></script>
+<script data-cfasync="false">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8CVZXR46GL', {
+    linker: { domains: ['legacyarchitectrva.github.io'] }
+  });
+</script>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Services & Editions | Legacy Architect RVA</title>
 <meta name="description" content="Real sample pages plus both Life Manual editions, Personal and Business. Pay in full or start with a 50% deposit.">
+<link rel="canonical" href="https://legacyarchitectrva.com/services">
+<meta name="theme-color" content="#0f0c08">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Legacy Architect RVA">
+<meta property="og:title" content="Services | Legacy Architect RVA">
+<meta property="og:description" content="Real sample pages plus both Life Manual editions, Personal and Business. Pay in full or start with a 50% deposit.">
+<meta property="og:url" content="https://legacyarchitectrva.com/services">
+<meta property="og:image" content="https://legacyarchitectrva.com/assets/share-card.jpg">
+<meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Legacy Architect RVA. Order in Your Absence.">
+  <meta name="twitter:image:alt" content="Legacy Architect RVA. Order in Your Absence.">
+  <meta name="theme-color" content="#0f0c08">
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Services | Legacy Architect RVA">
+<meta name="twitter:description" content="Real sample pages plus both Life Manual editions, Personal and Business. Pay in full or start with a 50% deposit.">
+<meta name="twitter:image" content="https://legacyarchitectrva.com/assets/share-card.jpg">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" sizes="180x180">
 <style>
-  body { font-family: system-ui, sans-serif; background: #0f0c09; color: #f2ede2; margin: 0; padding: 40px 20px; line-height: 1.6; }
-  .wrap { max-width: 900px; margin: 0 auto; }
-  h1 { font-size: 2rem; font-weight: 400; }
-  .editions { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
-  .card { background: #18130c; border: 1px solid rgba(200,204,208,.35); border-radius: 8px; padding: 28px; }
-  .card.business { border-color: rgba(212,182,97,.5); }
-  .price { font-size: 1.8rem; margin: 12px 0; }
-  a.btn { display: inline-block; background: #c9a227; color: #0f0c09; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; margin: 8px 8px 0 0; }
-  a.btn.secondary { background: transparent; border: 1px solid #c9a227; color: #c9a227; }
-  .note { font-size: 0.9rem; color: #a49c8b; margin-top: 24px; }
-  @media (max-width: 600px) { .editions { grid-template-columns: 1fr; } }
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
+  :root{
+    --bg:#0f0c08; --bg2:#161109; --ink:#f2ede2; --mut:#a8a08f;
+    --gold:#d4b661; --gold-b:#e8c869; --line:rgba(212,182,97,.18);
+    --card:#18130c; --card2:#1d1710;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;animation:pageIn .5s ease both}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){body{animation:none}}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+  header.hero{padding:74px 0 44px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -10%, rgba(212,182,97,.09), transparent 60%)}
+  header.hero h1{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2.4rem,6vw,4rem);line-height:1.04;margin:20px 0 14px}
+  header.hero p{color:var(--mut);max-width:600px;margin:0 auto;font-size:1.22rem}
+
+  /* SAMPLES */
+  .product{padding:60px 0;border-bottom:1px solid var(--line)}
+  .p-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px 20px;margin-bottom:8px}
+  .p-head h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.9rem,4vw,2.8rem)}
+  .p-price{font-family:'Inter',sans-serif;font-weight:600;color:var(--gold);font-size:1rem;border:1px solid var(--line);padding:5px 12px;border-radius:2px}
+  .p-tag{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+  .p-desc{color:var(--mut);max-width:660px;margin:14px 0 30px;font-size:1.2rem}
+  .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(190px,1fr);gap:16px;overflow-x:auto;padding:6px 2px 20px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+  .strip::-webkit-scrollbar{height:6px}
+  .strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+  .thumb{scroll-snap-align:start;cursor:zoom-in;border:1px solid var(--line);background:var(--card);border-radius:3px;overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .thumb:hover,.thumb:focus-visible{border-color:var(--gold);transform:translateY(-3px);outline:none}
+  .thumb img{width:100%;display:block;aspect-ratio:3/3.9;object-fit:cover;object-position:top}
+  .thumb span{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);padding:10px 12px;text-align:center}
+  .p-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px}
+  .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:15px 30px;border-radius:2px;display:inline-block;transition:.22s;cursor:pointer;border:none}
+  .btn-gold{position:relative;overflow:hidden;background:linear-gradient(180deg,#d4c294 0%,#d4b661 55%,#b3a074 100%);color:#1a1509;box-shadow:0 1px 0 rgba(255,248,230,.4) inset,0 8px 22px rgba(0,0,0,.32),0 2px 6px rgba(0,0,0,.25);border:1px solid rgba(216,199,154,.6)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,248,230,.5) inset,0 14px 32px rgba(0,0,0,.4),0 4px 10px rgba(0,0,0,.28)}
+  .hint{font-family:'Inter',sans-serif;font-size:11px;color:var(--mut);letter-spacing:.04em}
+
+  /* EDITIONS */
+  .editions-section{padding:72px 0 30px;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+  .ed-intro{text-align:center;margin-bottom:6px}
+  .ed-intro h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2.1rem,5vw,3.2rem);margin:16px 0 12px}
+  .ed-intro p{color:var(--mut);max-width:600px;margin:0 auto;font-size:1.2rem}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .editions{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;padding:44px 0 30px;max-width:840px;margin:0 auto}
+  @media(max-width:920px){.editions{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+  .ed{position:relative;border:1px solid var(--line);border-radius:5px;background:var(--card);padding:32px 26px;display:flex;flex-direction:column}
+  .ed.feature{border-color:var(--gold);background:linear-gradient(180deg,#1c160d 0%,var(--card) 42%);
+    box-shadow:0 0 0 1px rgba(212,182,97,.22),0 30px 70px rgba(0,0,0,.45);padding-top:40px}
+  .ed-name{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.9rem;margin-bottom:4px}
+  .ed-sub{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:20px}
+  .ed-benefit{font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.55;color:var(--ink);margin:-10px 0 18px;max-width:34ch}
+  /* premium badge: centered tab riding the top border, hairline gold rules flanking the words */
+  .ed-badge{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:9px;white-space:nowrap;z-index:6;
+    background:linear-gradient(180deg,#221a0e,#17110a);
+    border:1px solid var(--gold);border-radius:999px;padding:7px 18px;
+    box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .ed-badge:before,.ed-badge:after{content:'';width:12px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .ed-badge:after{transform:scaleX(-1)}
+  .ed-badge span{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold-b)}
+  .price-block{margin-bottom:8px;min-height:80px}
+  .price-now{font-family:'Inter',sans-serif;font-size:2.15rem;font-weight:600;letter-spacing:.01em;line-height:1;color:var(--ink);font-variant-numeric:lining-nums tabular-nums}
+  .price-was{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);text-decoration:line-through;margin-left:8px}
+  .price-lane{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+  /* full chapter list: included lit, excluded dimmed */
+  .incl{list-style:none;margin:22px 0 24px;flex:1}
+  .incl li{padding:7px 0 7px 27px;position:relative;font-size:1.06rem;border-bottom:1px solid rgba(212,182,97,.07);transition:color .2s}
+  .incl li.on{color:var(--ink)}
+  .incl li.off{color:#8a8272}
+  /* included: gold check */
+  .incl li.on:before{content:'';position:absolute;left:3px;top:13px;width:11px;height:7px;
+    border-left:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(-45deg)}
+  /* excluded: faint dash */
+  .incl li.off:before{content:'';position:absolute;left:4px;top:17px;width:9px;height:1.5px;background:#8a8272;border-radius:1px}
+  .incl-head{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:4px;padding-left:2px}
+  .pay{margin-top:auto}
+  .toggle{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px}
+  .toggle button{flex:1;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:13px 8px;min-height:44px;background:transparent;color:var(--mut);border:none;cursor:pointer;transition:.2s}
+  .toggle button.on{background:var(--gold);color:#1a1509}
+  .pay-amt{font-family:'Inter',sans-serif;font-size:12px;color:var(--mut);text-align:center;margin-bottom:12px;letter-spacing:.03em;min-height:16px}
+  .ed-cta:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,248,230,.5) inset,0 12px 26px rgba(0,0,0,.36)}
+  .ed:not(.feature) .ed-cta:hover{background:rgba(212,182,97,.1)}
+
+  .closer{padding:64px 0 90px;text-align:center;background:var(--bg2)}
+  .closer .tagline{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:10px}
+  .closer p{color:var(--mut);max-width:540px;margin:0 auto 30px;font-size:1.15rem}
+  .closer a.readiness{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:14px 28px;border-radius:2px;display:inline-block;transition:.2s}
+  .closer a.readiness:hover{background:rgba(212,182,97,.1)}
+  .micro{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--mut);margin-top:44px;text-transform:uppercase} html.lightmode .micro{color:#5a5448}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;background:rgba(6,4,2,.94);display:none;z-index:100;align-items:center;justify-content:center;padding:30px;backdrop-filter:blur(3px)}
+  .lb.open{display:flex}
+  .lb img{max-width:100%;max-height:88vh;border:1px solid var(--line);border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb-close{position:absolute;top:20px;right:26px;color:var(--ink);font-size:34px;cursor:pointer;font-family:'Inter',sans-serif;line-height:1;background:none;border:none;opacity:.8}
+  .lb-close:hover{opacity:1}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(212,182,97,.1);border:1px solid var(--line);color:var(--gold);width:52px;height:52px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .lb-nav:hover{background:rgba(212,182,97,.2)}
+  .lb-prev{left:24px}.lb-next{right:24px}
+  .lb-cap{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  @media(max-width:640px){.lb-nav{width:42px;height:42px;font-size:18px}.lb-prev{left:10px}.lb-next{right:10px}body{font-size:17px}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
+
+  nav{position:sticky;top:0;z-index:115;background:rgba(15,12,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .inner{max-width:1120px;margin:0 auto;padding:14px 26px;display:flex;align-items:center;justify-content:space-between}
+  nav .brand{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--ink)}
+  nav .brand img{height:54px;width:auto;display:block}
+  nav .brand span{font-family:'Bodoni Moda',serif;font-size:1.02rem;letter-spacing:.04em}
+  nav .links{display:flex;gap:26px;align-items:center}
+  nav .links a{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);text-decoration:none;transition:.2s}
+  nav .links a:hover{color:var(--gold)}
+  nav .nav-cta{font-family:'Inter',sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:#17120a !important;
+    background:linear-gradient(180deg,#d4c294 0%,#d4b661 55%,#b3a074 100%);
+    border:1px solid rgba(216,199,154,.65);padding:11px 20px;border-radius:3px;
+    box-shadow:0 1px 0 rgba(255,248,230,.35) inset,0 3px 10px rgba(0,0,0,.3);
+    transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s;white-space:nowrap}
+  nav .nav-cta:hover{background:linear-gradient(180deg,#dfcda1 0%,#cebd92 55%,#bfab7f 100%);
+    transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,248,230,.45) inset,0 6px 16px rgba(0,0,0,.38)}
+  nav .nav-cta:active{transform:translateY(0);box-shadow:0 1px 0 rgba(255,248,230,.3) inset,0 2px 6px rgba(0,0,0,.3)}
+  
+
+  @media(max-width:900px){.wrap{padding:0 24px}}
+  @media(max-width:600px){.wrap{padding:0 20px}}
+  @media(max-width:400px){.wrap{padding:0 16px}}
+
+  /* reading progress */
+  .read-progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:60;
+    background:linear-gradient(90deg,var(--gold),var(--gold-b));transition:width .1s linear}
+  /* back to top */
+  .to-top{position:fixed;right:20px;bottom:20px;z-index:55;width:44px;height:44px;border-radius:50%;
+    background:rgba(15,12,8,.85);border:1px solid var(--line);color:var(--gold);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:17px;opacity:0;pointer-events:none;
+    transition:opacity .3s,transform .3s,border-color .2s;backdrop-filter:blur(6px)}
+  .to-top.show{opacity:1;pointer-events:auto}
+  .to-top:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .compass-needle{width:22px;height:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+  .to-top:hover .compass-needle{transform:rotate(0deg)!important}
+  .to-top.pulse .compass-needle{animation:compassPulse .5s ease}
+  @keyframes compassPulse{0%{transform:scale(1) rotate(0deg)}40%{transform:scale(1.35) rotate(0deg)}100%{transform:scale(1) rotate(0deg)}}
+  @media(prefers-reduced-motion:reduce){.read-progress{transition:none}.to-top{transition:none}.compass-needle{transition:none}.to-top.pulse .compass-needle{animation:none}}
+
+  /* ===== TAP TARGET ACCESSIBILITY (mobile) ===== */
+  @media(max-width:900px){
+    footer a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 10px;
+    }
+    footer .f-links,
+    footer div[style*="display:flex"]{
+      gap:8px !important;
+      row-gap:0 !important;
+    }
+    .nav-cta{
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .toggle button,
+    .pay-toggle button,
+    button.on,
+    button.off{
+      min-height:44px;
+    }
+    a.brand{
+      min-width:44px;
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal .m-skip{
+      min-height:44px;
+      padding:12px 0;
+    }
+  }
+
+  /* ---------- MOBILE MENU (full-screen overlay) ---------- */
+  .burger{display:none;width:44px;height:44px;flex-direction:column;align-items:center;
+    justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;
+    position:relative;z-index:120}
+  .burger span{display:block;width:22px;height:1.5px;background:var(--gold);
+    transition:transform .34s cubic-bezier(.4,0,.2,1),opacity .2s}
+  .burger.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger.on span:nth-child(2){opacity:0}
+  .burger.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .m-menu{position:fixed;inset:0;background:rgba(15,12,8,.985);z-index:110;opacity:0;
+    pointer-events:none;transition:opacity .32s;padding:96px 26px 34px;
+    display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+  .m-menu.on{opacity:1;pointer-events:auto}
+  .m-menu a.m-link{display:block;font-family:'Bodoni Moda',serif;font-size:25px;font-weight:400;
+    color:var(--ink);text-decoration:none;padding:15px 0;border-bottom:1px solid var(--line);
+    text-align:center;opacity:0;transform:translateY(12px);
+    transition:opacity .4s,transform .4s;min-height:44px}
+  .m-menu.on a.m-link{opacity:1;transform:none}
+  .m-menu.on a.m-link:nth-of-type(1){transition-delay:.06s}
+  .m-menu.on a.m-link:nth-of-type(2){transition-delay:.12s}
+  .m-menu.on a.m-link:nth-of-type(3){transition-delay:.18s}
+  .m-menu.on a.m-link:nth-of-type(4){transition-delay:.24s}
+  .m-menu .m-cta{display:flex;align-items:center;justify-content:center;margin-top:22px;
+    font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:#17120a;text-decoration:none;background:linear-gradient(180deg,#d4c294 0%,#d4b661 55%,#b3a074 100%);
+    padding:17px;border-radius:3px;font-weight:600;min-height:44px;
+    opacity:0;transform:translateY(12px);transition:opacity .4s .3s,transform .4s .3s}
+  .m-menu.on .m-cta{opacity:1;transform:none}
+  .m-soc{display:flex;gap:14px;justify-content:center;margin-top:26px;padding-top:22px;
+    border-top:1px solid var(--line)}
+  .m-soc a{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;
+    transition:border-color .25s,color .25s}
+  .m-soc a:hover{border-color:var(--gold);color:var(--gold-b)}
+  .m-soc svg{width:17px;height:17px;fill:currentColor}
+  body.menu-open{overflow:hidden}
+  @media(max-width:720px){
+    .burger{display:flex}
+    nav .links{display:none}
+  }
+  @media(min-width:721px){
+    .m-menu{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .m-menu,.m-menu a.m-link,.m-menu .m-cta,.burger span{transition:none}
+  }
+
+  
+  /* ---------- DOOR BUTTONS ---------- */
+  .btn,.nav-cta,.ed-cta,.m-cta,.m-btn,.readiness{position:relative;display:inline-flex;align-items:center;
+    justify-content:center;font-family:'Bodoni Moda',serif!important;font-size:15px!important;
+    font-weight:500!important;letter-spacing:.015em!important;text-transform:none!important;
+    min-height:46px;padding:13px 30px;border:none;border-radius:3px;cursor:pointer;
+    text-decoration:none;overflow:hidden;isolation:isolate;background:#0d0a06;color:#191307;
+    transition:color .32s ease;-webkit-tap-highlight-color:transparent;box-shadow:none!important}
+  .btn::before,.btn::after,.nav-cta::before,.nav-cta::after,
+  .ed-cta::before,.ed-cta::after,.m-cta::before,.m-cta::after,
+  .m-btn::before,.m-btn::after,.readiness::before,.readiness::after{
+    content:"";position:absolute;top:0;bottom:0;left:0;width:100%;z-index:-1;
+    background:linear-gradient(103deg,#6f5620 0%,#ac8a32 14%,#d0a945 30%,#fff3c6 46%,
+      #fffbe6 50%,#e8c869 56%,#c9a340 72%,#96762a 88%,#6b521d 100%);
+    transition:transform .46s cubic-bezier(.4,0,.2,1)}
+  .btn::before,.nav-cta::before,.ed-cta::before,.m-cta::before,.m-btn::before,.readiness::before{clip-path:inset(0 48.8% 0 0);transform:translateX(0)}
+  .btn::after,.nav-cta::after,.ed-cta::after,.m-cta::after,.m-btn::after,.readiness::after{clip-path:inset(0 0 0 48.8%);transform:translateX(0)}
+  .btn:hover::before,.nav-cta:hover::before,.ed-cta:hover::before,.m-cta:hover::before,.m-btn:hover::before,.readiness:hover::before{transform:translateX(-2px)}
+  .btn:hover::after,.nav-cta:hover::after,.ed-cta:hover::after,.m-cta:hover::after,.m-btn:hover::after,.readiness:hover::after{transform:translateX(2px)}
+  .btn.go::before,.nav-cta.go::before,.ed-cta.go::before,.m-cta.go::before,.m-btn.go::before,.readiness.go::before{transform:translateX(-100%)}
+  .btn.go::after,.nav-cta.go::after,.ed-cta.go::after,.m-cta.go::after,.m-btn.go::after,.readiness.go::after{transform:translateX(100%)}
+  .btn.go,.nav-cta.go,.ed-cta.go,.m-cta.go,.m-btn.go,.readiness.go{color:#e8c869}
+  .nav-cta{min-height:44px;padding:11px 22px}
+  .ed-cta{width:100%;min-height:48px!important;padding:14px 20px!important}
+  @media(prefers-reduced-motion:reduce){
+    .btn::before,.btn::after,.nav-cta::before,.nav-cta::after,
+    .ed-cta::before,.ed-cta::after,.m-cta::before,.m-cta::after{transition:none}
+  }
+
+  
+  /* ---------- METALLIC TIERS ---------- */
+  .metal-bronze{background:linear-gradient(103deg,#6f4f28 0%,#a67a46 14%,#c1925a 30%,#f5d9ab 46%,#ffeed0 50%,#dcae70 56%,#b9884d 72%,#8a6437 88%,#5e4322 100%)}
+  .metal-silver{background:linear-gradient(103deg,#6f767d 0%,#9fa7ae 14%,#c3cad1 30%,#ffffff 46%,#ffffff 50%,#e2e8ed 56%,#b4bcc3 72%,#878e96 88%,#626970 100%)}
+  .metal-gold{background:linear-gradient(103deg,#6f5620 0%,#ac8a32 14%,#d0a945 30%,#fff3c6 46%,#fffbe6 50%,#e8c869 56%,#c9a340 72%,#96762a 88%,#6b521d 100%)}
+  .metal-steel{background:linear-gradient(103deg,#2b4d68 0%,#6289aa 14%,#7ea7c8 30%,#d9edfa 46%,#eef7ff 50%,#a0c4e0 56%,#7099bd 72%,#4a7398 88%,#2e5277 100%)}
+  .ed{position:relative;background:var(--card);border:none!important;border-radius:5px;
+      padding:0 0 24px!important;display:flex;flex-direction:column;overflow:visible;
+      transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s}
+  .ed:hover{transform:translateY(-3px)}
+  .ed .edge{position:absolute;inset:0;border-radius:5px;padding:1.5px;z-index:0}
+  .ed .edge::before{content:"";position:absolute;inset:1.5px;background:var(--card);border-radius:4px;z-index:2}
+  .ed .rail{position:absolute;left:0;right:0;top:0;height:4px;border-radius:5px 5px 0 0;z-index:3;overflow:hidden}
+  .ed.bronze:hover{box-shadow:0 16px 44px rgba(193,146,90,.16)}
+  .ed.silver:hover{box-shadow:0 16px 44px rgba(195,202,209,.14)}
+  .ed.gold:hover{box-shadow:0 18px 50px rgba(208,169,69,.2)}
+  /* the real shield, used as a mask so the tier metal shows THROUGH it */
+  .ed .mark{position:absolute;top:20px;right:18px;width:30px;height:34px;z-index:2;pointer-events:none;
+    -webkit-mask:url(/assets/favicon.png) center/100% 100% no-repeat;
+    mask:url(/assets/favicon.png) center/100% 100% no-repeat;
+    opacity:.42;transition:opacity .45s ease}
+  .ed:hover .mark{opacity:.62}
+  .ed.feature .mark{top:58px}
+  @media(max-width:560px){.ed .mark{width:26px;height:30px;top:18px;right:16px}
+    .ed.feature .mark{top:56px}}
+  .ed .mark img{display:none}
+  .ed-inner{padding:30px 24px 0;position:relative;z-index:4;display:flex;flex-direction:column;flex:1}
+  .ed.feature .ed-inner{padding-top:58px}
+  .ed-name{-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content;margin-bottom:4px}
+  .price-now{-webkit-background-clip:text;background-clip:text;color:transparent}
+  .grp{border-bottom:1px solid rgba(255,255,255,.055)}
+  .grp:last-of-type{border-bottom:none}
+  .grp-h{display:flex;align-items:center;justify-content:space-between;width:100%;
+    font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+    cursor:pointer;user-select:none;min-height:46px;background:none;border:none;padding:0;text-align:left}
+  .ed.bronze .grp-h{color:#d6a86b}
+  .ed.silver .grp-h{color:#c3cad1}
+  .ed.gold .grp-h{color:#e8c869}
+  .grp-h .cnt{font-size:9.5px;letter-spacing:.06em;color:var(--mut);display:flex;align-items:center;gap:7px}
+  .chev{font-size:10px;transition:transform .34s cubic-bezier(.4,0,.2,1)}
+  .grp.open .chev{transform:rotate(180deg)}
+  .grp-body{max-height:0;overflow:hidden;transition:max-height .42s cubic-bezier(.4,0,.2,1)}
+  .grp.open .grp-body{max-height:470px}
+  .grp ul{list-style:none;padding:2px 0 15px;margin:0}
+  .grp li{font-family:'Inter',sans-serif;font-size:12px;line-height:1.55;padding:5px 0 5px 19px;position:relative;color:var(--ink)}
+  .grp li::before{content:"";position:absolute;left:2px;top:10.5px;width:7px;height:7px;border-radius:50%}
+  .ed.bronze li::before{background:radial-gradient(circle at 32% 28%,#f5d9ab,#c1925a 55%,#8a6437)}
+  .ed.silver li::before{background:radial-gradient(circle at 32% 28%,#ffffff,#c3cad1 55%,#878e96)}
+  .ed.gold li::before{background:radial-gradient(circle at 32% 28%,#fff3c6,#d0a945 55%,#96762a)}
+  .grp li.off{color:rgba(164,156,139,.42)}
+  .grp li.off::before{background:none;box-shadow:inset 0 0 0 1px rgba(164,156,139,.34)}
+  .ed-foot{margin-top:auto;padding-top:17px}
+
+  
+  /* pay toggle: segmented control, so a metal sweep rather than doors */
+  .toggle button{position:relative;overflow:hidden;isolation:isolate}
+  .toggle button::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(103deg,#6f5620 0%,#ac8a32 14%,#d0a945 30%,#fff3c6 46%,
+      #fffbe6 50%,#e8c869 56%,#c9a340 72%,#96762a 88%,#6b521d 100%);
+    transform:translateX(-101%);transition:transform .42s cubic-bezier(.4,0,.2,1)}
+  .toggle button.on::before{transform:translateX(0)}
+  .toggle button.on{color:#191307!important;background:transparent!important}
+  @media(prefers-reduced-motion:reduce){.toggle button::before{transition:none}}
+
+  
+  /* back to top: utility control, gets a quiet metal fill on hover */
+  .to-top{position:relative;overflow:hidden;isolation:isolate;transition:color .3s}
+  .to-top::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(103deg,#6f5620 0%,#ac8a32 14%,#d0a945 30%,#fff3c6 46%,
+      #fffbe6 50%,#e8c869 56%,#c9a340 72%,#96762a 88%,#6b521d 100%);
+    opacity:0;transition:opacity .35s}
+  .to-top:hover::before{opacity:1}
+  .to-top:hover{color:#191307}
+  @media(prefers-reduced-motion:reduce){.to-top::before{transition:none}}
+
+  
+  /* label must ride above both leaves and stay centred */
+  .btn,.nav-cta,.ed-cta,.m-cta,.m-btn,.readiness{text-align:center!important;
+    display:inline-flex!important;align-items:center!important;justify-content:center!important}
+  .ed-cta{display:flex!important}
+
+  
+  /* menu open: lift the whole nav above the overlay so the burger stays tappable */
+  body.menu-open nav{z-index:130!important}
+  body.menu-open nav .links{pointer-events:none}
+  .m-menu{padding-top:104px}
+
+  
+  /* ---------- CONTACT BLOCK ---------- */
+  .f-contact{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 26px;
+    margin:0 auto 20px;padding-bottom:20px;border-bottom:1px solid var(--line);max-width:620px}
+  .f-contact a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 4px;
+    font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.02em;color:var(--gold);
+    text-decoration:none;transition:color .25s}
+  .f-contact a:hover{color:#e8c869;text-decoration:underline}
+  .f-contact svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.4;flex-shrink:0}
+  .f-contact .f-loc{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;
+    font-size:13px;color:var(--mut);min-height:44px}
+  @media(max-width:560px){.f-contact{flex-direction:column;gap:2px}}
+
+  
+  /* ---------- READABILITY: sized for older eyes ---------- */
+  /* small UI text carried the most strain, so it gains the most */
+  nav .links a{font-size:15px!important;letter-spacing:.05em!important}
+  .eyebrow{font-size:13px!important;letter-spacing:.24em!important}
+  .f-links a{font-size:13.5px!important}
+  .f-note{font-size:12.5px!important;line-height:1.7!important}
+  .f-contact a,.f-contact .f-loc{font-size:15px!important}
+  .grp li,.tnode .pbody li{font-size:14px!important;line-height:1.68!important}
+  .grp-h{font-size:11px!important;letter-spacing:.15em!important}
+  .grp-h .cnt{font-size:11px!important}
+  .ed-sub{font-size:12.5px!important;letter-spacing:.04em!important}
+  .price-lane{font-size:11px!important;letter-spacing:.11em!important}
+  .price-was{font-size:13.5px!important}
+  .pay-amt{font-size:12.5px!important}
+  .toggle button{font-size:12px!important;letter-spacing:.07em!important}
+  .tnode .pnum{font-size:11px!important;letter-spacing:.18em!important}
+  .tnode .pgap{font-size:14px!important;line-height:1.6!important}
+  .m-menu a.m-link{font-size:26px!important}
+  .m-cta,.btn,.nav-cta,.ed-cta,.m-btn,.readiness{font-size:17.5px!important}
+  nav .links a.nav-cta{font-size:15.5px!important}
+  /* body copy: modest lift plus more air between lines */
+  body{font-size:19.5px}
+  p{line-height:1.75}
+  .lead{font-size:1.2rem!important;line-height:1.7!important}
+  /* stop long lines: the eye loses its place past ~70 characters */
+  p,.lead{max-width:70ch}
+  .thread-head p,.pillars-head p,.head p{margin-left:auto;margin-right:auto}
+  @media(max-width:560px){
+    nav .links a{font-size:13.5px!important}
+    .grp li,.tnode .pbody li{font-size:13.5px!important}
+  }
+
+  
+  /* gold fills always carry dark text */
+  .readiness{color:#191307!important}
+  .readiness.go{color:#e8c869!important}
+  .to-top:hover{color:#191307!important}
+  .toggle button.on{color:#191307!important}
+
+  
+  
+  /* ---- fewer hard rules: let spacing separate sections instead ---- */
+  .beat{border-top:none!important}
+  .band{border-top:none!important}
+  .final{border-top:none!important}
+  .f-contact{border-bottom:none!important;padding-bottom:8px}
+  footer{border-top:none!important}
+  /* keep only the two that mark a genuine change of mode, and soften them
+     so they read as a seam rather than a cut */
+  .thread-sec{border-bottom:none!important}
+  .faq-section{border-top:none!important}
+  .thread-sec,.faq-section,footer{position:relative}
+  .thread-sec:after,.faq-section:before,footer:before{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    width:min(340px,72%);height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,182,97,.32),transparent)}
+  .thread-sec:after{bottom:0}
+  .faq-section:before{top:0}
+  footer:before{top:0}
+  /* give the sections that lost a rule a little more air so the page still breathes */
+  .beat{padding-top:8px}
+  .band{padding-top:10px}
+
+  
+
+  
+  /* ================= ATMOSPHERE =================
+     Three layers, all fixed so they sit behind the page as it scrolls:
+     1. depth  - large warm pools that give the black dimension
+     2. chart  - a faint ruled grid, like paper under lamplight
+     3. grain  - fine tooth so nothing looks digitally flat
+     Tuned to be felt rather than noticed. Turn the opacity numbers
+     down if it ever competes with the content.
+  ================================================ */
+  body{position:relative;background-color:#0d0a07}
+
+  /* layer 1: depth */
+  body:before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse 90% 62% at 12% -6%,  rgba(214,172,88,.20), transparent 58%),
+      radial-gradient(ellipse 72% 55% at 96% 24%,  rgba(196,158,92,.15), transparent 60%),
+      radial-gradient(ellipse 84% 60% at 50% 112%, rgba(184,148,86,.14), transparent 62%),
+      radial-gradient(ellipse 60% 44% at 78% 66%,  rgba(212,182,97,.09), transparent 64%);
+  }
+
+  /* layer 2: chart ruling, plus a slow drifting warm light */
+  .atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .atmos-grid{position:absolute;inset:-10%;
+    background-image:
+      linear-gradient(rgba(212,182,97,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,182,97,.055) 1px, transparent 1px),
+      linear-gradient(rgba(212,182,97,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,182,97,.028) 1px, transparent 1px);
+    background-size:172px 172px,172px 172px,43px 43px,43px 43px;
+    -webkit-mask:radial-gradient(ellipse 78% 68% at 50% 42%, #000 12%, transparent 76%);
+            mask:radial-gradient(ellipse 78% 68% at 50% 42%, #000 12%, transparent 76%);
+    opacity:.85}
+  /* a wide, slow band of light crossing the page */
+  .atmos-glow{position:absolute;width:150%;height:62%;left:-25%;top:8%;
+    background:radial-gradient(ellipse at center, rgba(232,200,105,.11), transparent 66%);
+    filter:blur(46px);animation:driftGlow 34s ease-in-out infinite alternate}
+  @keyframes driftGlow{
+    0%{transform:translate3d(-7%,-4%,0) rotate(-2deg)}
+    100%{transform:translate3d(9%,8%,0) rotate(2deg)}}
+
+  /* layer 3: grain */
+  body:after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:
+      repeating-linear-gradient(0deg,  rgba(255,246,220,.035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(255,246,220,.022) 0 1px, transparent 1px 4px);
+  }
+
+  /* keep real content above all three */
+  nav{z-index:115}
+  section,footer,main,.wrap,.hero{position:relative;z-index:1}
+  .m-menu{z-index:110}
+  .asst,.orb-wrap{z-index:200}
+
+  @media(prefers-reduced-motion:reduce){.atmos-glow{animation:none}}
+  @media(max-width:560px){
+    .atmos-grid{background-size:128px 128px,128px 128px,32px 32px,32px 32px}
+  }
+
+  
+  /* ---- section seams: a small mark rather than a line ---- */
+  .thread-sec:after,.faq-section:before,footer:before{
+    background:none!important;height:auto!important;width:auto!important;
+    content:"\2726";font-size:11px;color:rgba(212,182,97,.5);
+    line-height:1;letter-spacing:0}
+  .thread-sec:after{bottom:-6px}
+  .faq-section:before{top:-6px}
+  footer:before{top:-6px}
+  /* faint rules flanking the mark, fading out at both ends */
+  .thread-sec:before,.faq-section:after,footer:after{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    width:min(300px,64%);height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,182,97,.26) 22%,
+      transparent 46%,transparent 54%,rgba(212,182,97,.26) 78%,transparent);
+    pointer-events:none}
+  .thread-sec:before{bottom:0}
+  .faq-section:after{top:0}
+  footer:after{top:0}
+
+  
+/* ============================================================
+   THE ORB
+   A living mark: breathing, drifting scan lines, orbiting ring,
+   specular sweep. Speeds up while thinking.
+   ============================================================ */
+  .orb-wrap{position:fixed;right:22px;bottom:22px;z-index:2147483001;width:76px;height:76px;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;background:none;border:none;padding:0}
+  .orb{position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(circle at 34% 30%, rgba(255,247,214,1) 0%, rgba(240,212,124,.9) 20%, rgba(212,182,97,.55) 46%, rgba(120,96,44,.9) 74%, rgba(46,36,18,.98) 100%);
+    box-shadow:0 0 0 2px rgba(255,238,180,.55), 0 0 0 5px rgba(21,17,11,.9), 0 0 34px rgba(232,200,105,.55), 0 12px 34px rgba(0,0,0,.5)}
+  @keyframes breathe{0%,100%{transform:scale(1);box-shadow:0 0 0 1px rgba(212,182,97,.34),0 0 22px rgba(212,182,97,.2),0 10px 30px rgba(0,0,0,.55)}
+    50%{transform:scale(1.045);box-shadow:0 0 0 1px rgba(212,182,97,.5),0 0 34px rgba(212,182,97,.34),0 10px 30px rgba(0,0,0,.55)}}
+
+  /* holographic scan lines drifting through the sphere */
+  .orb-scan{position:absolute;inset:5px;border-radius:50%;overflow:hidden;opacity:.5;
+    -webkit-mask:radial-gradient(circle at 50% 50%,#000 58%,transparent 74%);
+            mask:radial-gradient(circle at 50% 50%,#000 58%,transparent 74%)}
+  .orb-scan:before{content:'';position:absolute;left:-20%;right:-20%;top:-60%;bottom:-60%;
+    background:repeating-linear-gradient(0deg,rgba(232,200,105,.5) 0 1px,transparent 1px 5px);
+    animation:drift 3.6s linear infinite}
+  @keyframes drift{0%{transform:translateY(0)}100%{transform:translateY(5px)}}
+
+  /* specular sheen that rotates like light moving across glass */
+  .orb-sheen{position:absolute;inset:0;border-radius:50%;overflow:hidden;
+    -webkit-mask:radial-gradient(circle at 50% 50%,#000 60%,transparent 76%);
+            mask:radial-gradient(circle at 50% 50%,#000 60%,transparent 76%)}
+  .orb-sheen:before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+    background:conic-gradient(from 0deg,transparent 0deg,rgba(255,248,220,.42) 42deg,transparent 96deg,transparent 360deg);
+    animation:sweep 6.5s linear infinite}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+
+  /* two counter rotating orbit rings */
+  .orb-ring{position:absolute;border-radius:50%;border:1px solid rgba(212,182,97,.3);
+    animation:spin 9s linear infinite}
+  .orb-ring.r1{inset:-5px;border-top-color:rgba(255,243,198,.75);border-bottom-color:transparent}
+  .orb-ring.r2{inset:2px;border-left-color:rgba(232,200,105,.6);border-right-color:transparent;
+    animation-duration:6s;animation-direction:reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* the premium chat mark, floating inside the sphere */
+  .orb-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    animation:bob 4.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+  .orb-mark svg{width:31px;height:31px;fill:none;stroke:#fff6da;stroke-width:1.5;
+    stroke-linecap:round;stroke-linejoin:round;
+    filter:drop-shadow(0 0 5px rgba(255,243,198,.85)) drop-shadow(0 0 12px rgba(212,182,97,.5))}
+  .orb-mark .dot{fill:#fff6da;stroke:none}
+
+  /* thinking: everything quickens */
+  .orb-wrap.think .orb{animation-duration:1.1s}
+  .orb-wrap.think .orb-sheen:before{animation-duration:1.5s}
+  .orb-wrap.think .orb-ring.r1{animation-duration:2.2s}
+  .orb-wrap.think .orb-ring.r2{animation-duration:1.6s}
+  .orb-wrap.think .orb-scan:before{animation-duration:1.1s}
+
+  /* open: mark becomes a close cross */
+  .orb-wrap .m-close{display:none}
+  .orb-wrap.open .m-chat{display:none}
+  .orb-wrap.open .m-close{display:block}
+  .orb-wrap:hover .orb{transform:scale(1.06)}
+  .orb-wrap:focus-visible{outline:2px solid var(--gold);outline-offset:5px;border-radius:50%}
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+  .asst{position:fixed;right:22px;bottom:112px;z-index:2147483000;width:min(392px,calc(100vw - 44px));
+    max-height:min(650px,calc(100vh - 150px));background:#15110b;border-radius:7px;
+    border:1px solid rgba(212,182,97,.3);box-shadow:0 26px 64px rgba(0,0,0,.66),0 0 40px rgba(212,182,97,.07);
+    display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(14px) scale(.97);
+    pointer-events:none;transition:opacity .36s cubic-bezier(.4,0,.2,1),transform .36s cubic-bezier(.4,0,.2,1)}
+  .asst.on{opacity:1;transform:none;pointer-events:auto}
+  .asst-top{background:#15110b;padding:16px 18px;border-bottom:1px solid rgba(212,182,97,.16);
+    background:linear-gradient(180deg,#1e1811,#15110b);position:relative;overflow:hidden}
+  .asst-top:after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(232,200,105,.6),transparent);
+    animation:scanline 3.4s ease-in-out infinite}
+  @keyframes scanline{0%,100%{opacity:.25}50%{opacity:.85}}
+  .asst-top h3{font-family:'Bodoni Moda',serif;font-size:17px;font-weight:500;color:#e8c869}
+  .asst-top p{font-family:'Inter',sans-serif;font-size:12px;color:var(--mut);margin-top:4px;line-height:1.5}
+  .asst-body{background:#15110b;flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-height:130px;scroll-behavior:smooth}
+  /* breathing room so the newest answer can rise to the top of the view */
+  #tail{flex:0 0 auto;height:0;transition:height .18s ease}
+  .msg{font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;max-width:88%;padding:11px 14px;
+    border-radius:4px;white-space:pre-wrap;animation:rise .32s cubic-bezier(.4,0,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+  .msg.bot{background:#1e1811;color:var(--ink);align-self:flex-start;border-left:2px solid rgba(212,182,97,.5)}
+  .msg.you{background:rgba(212,182,97,.14);color:var(--ink);align-self:flex-end}
+  .msg.warn{background:#241a10;border-left:2px solid #c98f3f}
+  .typing{display:flex;gap:5px;align-self:flex-start;padding:13px 15px;background:#1e1811;
+    border-radius:4px;border-left:2px solid rgba(212,182,97,.5)}
+  .typing i{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.4;
+    animation:pulse 1.3s ease-in-out infinite}
+  .typing i:nth-child(2){animation-delay:.18s}
+  .typing i:nth-child(3){animation-delay:.36s}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+  #panel .chips{background:#15110b;display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 14px;max-width:none;margin:0;width:auto;justify-content:flex-start}
+  .chip{font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.35;color:#e8c869;background:none;
+    border:1px solid rgba(212,182,97,.34);border-radius:100px;padding:9px 14px;min-height:44px;
+    cursor:pointer;transition:background .25s,border-color .25s;text-align:left}
+  .chip:hover{background:rgba(212,182,97,.12);border-color:rgba(212,182,97,.6)}
+  .askrow{background:#15110b;display:flex;gap:8px;padding:0 14px 12px}
+  .askrow input{flex:1;font-family:'Inter',sans-serif;font-size:15px;background:#1c1710;
+    border:1px solid rgba(212,182,97,.22);border-radius:3px;color:var(--ink);padding:12px;min-height:46px}
+  .askrow input:focus{outline:none;border-color:rgba(212,182,97,.6)}
+  .asksend{font-family:'Bodoni Moda',serif;font-size:15px;color:#191307;border:none;border-radius:3px;
+    padding:0 18px;min-height:46px;cursor:pointer;
+    background:linear-gradient(103deg,#ac8a32,#d0a945 30%,#fff3c6 50%,#e8c869 62%,#96762a)}
+  .asst-note{background:#15110b;font-family:'Inter',sans-serif;font-size:11px;color:#8d8676;line-height:1.6;
+    padding:11px 18px 12px;border-top:1px solid rgba(212,182,97,.1);
+    display:flex;flex-direction:column;gap:2px}
+  .asst-note .note-line{display:block}
+  .asst-note .note-mail{align-self:flex-start;display:inline-flex;align-items:center;
+    min-height:46px;color:#c9ad63;text-decoration:underline;text-underline-offset:2px;
+    font-size:11.5px;margin-top:-2px}
+  .asst-note a{color:#c9ad63;text-decoration:underline;text-underline-offset:2px}
+  /* the tap target comes from padding, not a tall line box */
+  .asst-note a{padding:2px 1px}
+  .form-row{display:flex;flex-direction:column;gap:9px;padding:0 18px 14px}
+  .form-row input,.form-row textarea{font-family:'Inter',sans-serif;font-size:15px;background:#1c1710;
+    border:1px solid rgba(212,182,97,.22);border-radius:3px;color:var(--ink);padding:12px;min-height:46px}
+  .form-row textarea{min-height:84px;resize:vertical}
+  .form-row label{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut)}
+  .fallback{font-family:'Inter',sans-serif;font-size:12px;color:var(--mut);line-height:1.7;padding:0 18px 14px}
+  .fallback a{color:#e8c869}
+  @media(max-width:560px){.asst{right:12px;left:12px;width:auto;bottom:96px;max-height:min(64vh,470px)}.orb-wrap{right:16px;bottom:16px}}
+  @media(prefers-reduced-motion:reduce){
+    .orb,.orb-scan:before,.orb-sheen:before,.orb-ring,.orb-mark,.asst-top:after,.typing i,.msg{animation:none!important}
+    .asst{transition:none}
+  }
+
+  /* ---- mobile: use the real visible height, not the reported one ---- */
+  @media(max-width:560px){
+    .asst{
+      right:10px;left:10px;width:auto;
+      bottom:88px;
+      top:auto;
+      max-height:min(64dvh,470px);
+      max-height:min(64vh,470px);
+    }
+    @supports (height: 100dvh){
+      .asst{max-height:min(64dvh,470px)}
+    }
+    /* the chat area gets priority over everything else */
+    .asst-body{min-height:120px}
+    /* chips scroll sideways instead of stacking five rows deep */
+    #panel .chips{background:#15110b;flex-wrap:nowrap;overflow-x:auto;padding-bottom:12px;max-width:none;margin:0;width:auto;justify-content:flex-start;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    #panel .chips::-webkit-scrollbar{display:none}
+    #panel .chip{flex:0 0 auto;white-space:nowrap;font-size:12px;padding:9px 13px}
+    /* trim the chrome so the conversation gets the room */
+    .asst-top{background:#15110b;padding:12px 16px}
+    .asst-top h3{font-size:15.5px}
+    .asst-top p{font-size:11px;margin-top:2px}
+    .asst-note{background:#15110b;padding:8px 16px 10px;font-size:10.5px;line-height:1.5}
+    .asst-note .note-mail{min-height:46px;font-size:11px}
+    .askrow{background:#15110b;padding:0 12px 10px}
+    .askrow input{min-height:44px;font-size:16px}
+    .asksend{min-height:44px;padding:0 15px;font-size:14px}
+    .orb-wrap{right:14px;bottom:14px;width:64px;height:64px}
+    .orb-mark svg{width:26px;height:26px}
+  }
+  @media(max-width:560px) and (max-height:700px){
+    /* short phones: claw back more */
+    .asst{bottom:80px;max-height:min(68dvh,430px)}
+    .asst-body{min-height:100px}
+    .asst-top p{display:none}
+  }
+
+  
+  /* chips sit in a fixed rail so the panel never reflows underneath them */
+  #panel .chips{min-height:62px;align-items:center;max-width:none;margin:0;width:auto}
+  @media(max-width:560px){#panel .chips{min-height:58px;max-width:none;margin:0;width:auto}}
+  #panel .chip{height:44px;display:inline-flex;align-items:center}
+
+  /* ---------- voice controls ---------- */
+  .voice-row{background:#15110b;display:flex;align-items:center;gap:6px;padding:0 14px 8px}
+  .vbtn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    min-height:46px;padding:0 14px;border-radius:100px;cursor:pointer;
+    background:none;border:1px solid rgba(212,182,97,.28);
+    font-family:'Inter',sans-serif;font-size:11.5px;color:#c9ad63;
+    transition:background .22s,border-color .22s,color .22s}
+  .vbtn:hover{background:rgba(212,182,97,.1);border-color:rgba(212,182,97,.5)}
+  .vbtn.on{background:rgba(212,182,97,.17);border-color:rgba(212,182,97,.62);color:#e8c869}
+  .vbtn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round}
+  .vbtn.listening{border-color:#e8c869;animation:micPulse 1.2s ease-in-out infinite}
+  @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,200,105,.4)}
+    50%{box-shadow:0 0 0 5px rgba(232,200,105,0)}}
+  .vbtn[hidden]{display:none}
+  @media(prefers-reduced-motion:reduce){.vbtn.listening{animation:none}}
+
+  
+  /* visible close control in the panel header */
+  .asst-top{position:relative;padding-right:62px}
+  .asst-x{position:absolute;top:50%;right:12px;transform:translateY(-50%);
+    width:46px;height:46px;min-width:46px;min-height:46px;box-sizing:border-box;border-radius:50%;cursor:pointer;
+    background:rgba(212,182,97,.1);border:1px solid rgba(212,182,97,.4);
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:background .2s,border-color .2s}
+  .asst-x:hover{background:rgba(212,182,97,.22);border-color:rgba(212,182,97,.7)}
+  .asst-x svg{width:16px;height:16px;stroke:#E8CE7C;stroke-width:2;
+    stroke-linecap:round;fill:none}
+  
+  .orb-wrap:not(.open) .orb{animation:orbPulse 3.6s ease-in-out infinite}
+  @keyframes orbPulse{0%,100%{box-shadow:0 0 0 2px rgba(255,238,180,.55),0 0 0 5px rgba(21,17,11,.9),0 0 34px rgba(232,200,105,.55),0 12px 34px rgba(0,0,0,.5)}
+    50%{box-shadow:0 0 0 2px rgba(255,238,180,.85),0 0 0 5px rgba(21,17,11,.9),0 0 52px rgba(232,200,105,.85),0 12px 34px rgba(0,0,0,.5)}}
+  @media(prefers-reduced-motion:reduce){.orb-wrap:not(.open) .orb{animation:none}}
+  
+  /* ================= LIGHT MODE (opt-in, dark is canonical) ================= */
+  .mode-btn{width:44px;height:44px;min-width:44px;border-radius:50%;cursor:pointer;
+    background:none;border:1px solid rgba(212,182,97,.34);display:inline-flex;
+    align-items:center;justify-content:center;flex:0 0 auto;
+    transition:background .2s,border-color .2s}
+  .mode-btn:hover{background:rgba(212,182,97,.12);border-color:rgba(212,182,97,.6)}
+  .mode-btn svg{width:17px;height:17px;stroke:var(--gold);stroke-width:1.7;fill:none;
+    stroke-linecap:round;stroke-linejoin:round}
+  .mode-btn .ic-moon{display:none}
+  html.lightmode .mode-btn .ic-sun{display:none}
+  html.lightmode .mode-btn .ic-moon{display:block}
+
+  html.lightmode .beat, html.lightmode .band:not(.thread-sec),
+  html.lightmode .faq-section, html.lightmode .dodont, html.lightmode .mission,
+  html.lightmode .story, html.lightmode .faq-cta, html.lightmode .what,
+  html.lightmode .free-resource, html.lightmode .editions-section,
+  html.lightmode .closer, html.lightmode .pillars-section,
+  html.lightmode .booking, html.lightmode .next, html.lightmode .legal-body{
+    background:#F2EDE2}
+  html.lightmode :is(.beat,.band:not(.thread-sec),.faq-section,.dodont,.mission,.story,.faq-cta,.what,.free-resource,.editions-section,.closer,.pillars-section,.booking,.next,.legal-body)
+    :is(h1,h2,h3,h4,.q,summary,strong){color:#181410}
+  html.lightmode :is(.beat,.band:not(.thread-sec),.faq-section,.dodont,.mission,.story,.faq-cta,.what,.free-resource,.editions-section,.closer,.pillars-section,.booking,.next,.legal-body)
+    :is(p,li,.a,.faq-a,td,.lead){color:#3A3529}
+  html.lightmode :is(.beat,.band:not(.thread-sec),.faq-section,.dodont,.mission,.story,.faq-cta,.what,.free-resource,.editions-section,.closer,.pillars-section,.booking,.next,.legal-body)
+    :is(.eyebrow,.faq-cat){color:#7D6224}
+  html.lightmode :is(.beat,.band:not(.thread-sec),.faq-section,.legal-body) a:not(.btn){color:#7D6224}
+  html.lightmode .faq-item{border-color:rgba(125,98,36,.22)}
+  html.lightmode .quote{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
+  html.lightmode .quote p{color:#2C2820}
+  html.lightmode .quote .who{color:#5C5648}
+  /* dark cards (editions, metallic) keep their own colors on the cream */
+  
+  /* ---- light mode: hard overrides for stubborn elements ---- */
+  html.lightmode .btn-gold{background:linear-gradient(180deg,#d4c294 0%,#d4b661 55%,#b3a074 100%) !important;
+    color:#17120a !important;border:1px solid rgba(125,98,36,.55) !important}
+  html.lightmode :is(.beat,.band:not(.thread-sec),.faq-section,.dodont,.mission,.story,.faq-cta,.what,.free-resource,.closer,.pillars-section,.booking,.next,.legal-body)
+    .btn:not(.btn-gold){color:#181410 !important;border:1px solid #7D6224 !important;background:transparent}
+  html.lightmode .pillars-section > .wrap > :is(h2,h3,p){color:#181410}
+  html.lightmode .pillars-section .pillar :is(li,p,h3,h4){color:#F2EDE2 !important}
+  html.lightmode .editions-section .ed{background:#171310 !important}
+  html.lightmode .editions-section .ed :is(li,p,h3,h4,.desc){color:inherit}
+  html.lightmode :is(.booking,.next) :is(h3,h4){color:#181410 !important}
+  html.lightmode :is(.booking,.next) p{color:#3A3529 !important}
+  html.lightmode :is(.what,.free-resource) p{color:#3A3529 !important}
+  html.lightmode :is(.what,.free-resource) :is(h2,h3,h4){color:#181410 !important}
+  
+  /* ---- light mode: card surfaces lighten with their sections ---- */
+  html.lightmode :is(.what,.free-resource) .card{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
+  html.lightmode :is(.next,.booking) .step{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
+  html.lightmode .closer .readiness{color:#7D6224 !important;border-color:#7D6224 !important;background:transparent}
+    #samples,#editions{scroll-margin-top:90px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p style="color:#a49c8b; letter-spacing:.1em; text-transform:uppercase; font-size:12px;">Legacy Architect RVA</p>
-  <h1>See the work before you commit to it</h1>
-  <p>Two ways to build your Life Manual. Pay in full, or start with a 50% deposit. Military / first responders: use code <strong>50LARVA</strong> at Stripe checkout for 50% off.</p>
-
-  <div class="editions">
-    <div class="card">
-      <h2>Personal</h2>
-      <p>Your life, in one place</p>
-      <div class="price">$1,500</div>
-      <p>Covers 7 of 8 chapters. Built over structured working sessions with live draft review in the portal.</p>
-      <a class="btn" href="https://buy.stripe.com/eVqdR9eMfdGM5AUfYp6Zy08">Pay in full</a>
-      <a class="btn secondary" href="https://buy.stripe.com/14A7sLcE77io2oI4fH6Zy09">50% deposit</a>
+<div class="atmos" aria-hidden="true"><div class="atmos-grid"></div><div class="atmos-glow"></div></div>
+<nav>
+  <div class="inner">
+    <a class="brand" href="/"><picture><source srcset="/assets/logo-lockup.webp" type="image/webp"><img src="/assets/logo-lockup.png" alt="Legacy Architect RVA"></picture></a>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      
+      <a href="/pillars">7 Pillars</a>
+      <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
+      <a href="/resources">Resources</a>
+      <a class="nav-cta" href="/readiness">Readiness Check</a>
     </div>
-    <div class="card business">
-      <h2>Business</h2>
-      <p>Everything, plus what keeps it running</p>
-      <div class="price">$2,500</div>
-      <p>Everything Personal covers, plus Business Continuity. Covers all 8 chapters.</p>
-      <a class="btn" href="https://buy.stripe.com/8x2cN5avZdGM9Ra8vX6Zy0a">Pay in full</a>
-      <a class="btn secondary" href="https://buy.stripe.com/aFa4gz7jNdGM5AUh2t6Zy0b">50% deposit</a>
-    </div>
+    <button class="mode-btn" type="button" aria-label="Switch light or dark reading mode" title="Reading mode">
+      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 14.2A8.8 8.8 0 0 1 9.8 3.4a8.8 8.8 0 1 0 10.8 10.8z"/></svg>
+    </button>
+    <button class="burger" id="mBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mMenu"><span></span><span></span><span></span></button>
   </div>
+</nav>
+    <div class="m-menu" id="mMenu" role="dialog" aria-modal="true" aria-label="Site menu">
+      <a class="m-link" href="/">Home</a>
+      <a class="m-link" href="/services">Services</a>
+      <a class="m-link" href="/pillars">7 Pillars</a>
+      <a class="m-link" href="/about">About</a>
+      <a class="m-link" href="/faq">FAQ</a>
+      <a class="m-link" href="/resources">Resources</a>
+      <a class="m-cta" href="/readiness">Readiness Check</a>
+      <div class="m-soc">
+        <a href="https://www.linkedin.com/company/legacy-architect-rva/" aria-label="LinkedIn" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12H3v-12zM9 8.98h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76v6.55h-4v-5.8c0-1.39-.03-3.17-2-3.17-2 0-2.3 1.51-2.3 3.07v5.9H9v-12z"/></svg></a>
+        <a href="https://www.facebook.com/LegacyArchitectRVA" aria-label="Facebook" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+        <a href="https://www.instagram.com/legacyarchitectrva" aria-label="Instagram" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 01-1.38-.9 3.8 3.8 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.29a6.55 6.55 0 100 13.1 6.55 6.55 0 000-13.1zm0 10.8a4.25 4.25 0 110-8.5 4.25 4.25 0 010 8.5zm8.34-11.06a1.53 1.53 0 11-3.06 0 1.53 1.53 0 013.06 0z"/></svg></a>
+        <a href="https://www.threads.com/@legacyarchitectrva" aria-label="Threads" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.1 11.4c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.18-5-5.2h-.04c-1.8 0-3.3.77-4.22 2.17l1.66 1.14c.69-1.04 1.77-1.26 2.56-1.26h.03c.98 0 1.72.29 2.2.85.35.4.58.97.7 1.68a12.6 12.6 0 00-2.83-.14c-2.85.17-4.68 1.83-4.56 4.14.06 1.17.65 2.18 1.65 2.84.85.56 1.94.83 3.08.77 1.5-.08 2.68-.65 3.5-1.7.62-.79 1.02-1.81 1.19-3.1.72.43 1.25 1 1.54 1.68.5 1.16.53 3.07-1.02 4.62-1.36 1.36-3 1.95-5.48 1.97-2.75-.02-4.83-.9-6.19-2.62C3.29 17.5 2.63 15.28 2.6 12c.03-3.28.69-5.5 1.97-7.1C5.93 3.18 8.01 2.3 10.76 2.28c2.77.02 4.89.9 6.29 2.63.69.85 1.21 1.92 1.55 3.16l1.95-.52c-.42-1.53-1.07-2.85-1.96-3.94C16.79 1.38 14.15.26 10.77.24h-.01C7.39.26 4.78 1.38 3.03 3.6 1.47 5.58.67 8.33.64 11.99v.02c.03 3.66.83 6.41 2.39 8.39 1.75 2.22 4.36 3.34 7.74 3.36h.01c3-.02 5.11-.8 6.85-2.55 2.28-2.27 2.21-5.12 1.46-6.87-.54-1.25-1.57-2.27-2.99-2.94zm-5.07 4.92c-1.26.07-2.57-.5-2.63-1.65-.05-.86.61-1.81 2.71-1.93.24-.02.48-.02.71-.02.76 0 1.48.08 2.13.22-.24 3.03-1.66 3.32-2.92 3.38z"/></svg></a>
+        <a href="https://share.google/jEQ6ChqWOLD3LyPJb" aria-label="Google Business Profile" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></a>
+      </div>
+    </div>
 
-  <p class="note">Promo code 50LARVA works on the Stripe checkout page. Questions: Craig@LegacyArchitectRVA.com or (804) 866-1320.</p>
-  <p class="note"><a href="/" style="color:#c9a227;">← Back to home</a> · <a href="/readiness" style="color:#c9a227;">Free Readiness Check</a></p>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Legacy Architect RVA</div>
+    <h1>See the work before<br>you commit to it</h1>
+    <p>Real sample pages from each offering. Look through them, then choose your edition below.</p>
+  </div>
+</header>
+
+<main class="wrap" id="samples"></main>
+
+<section class="editions-section" id="editions">
+  <div class="wrap">
+    <div class="ed-intro">
+      <div class="eyebrow">Choose your edition</div>
+      <h2>Two ways to build your Life Manual</h2>
+      <p>Personal covers your life. Business adds what keeps things running without you. Pay in full, or start with a 50% deposit.</p>
+    </div>
+    <div class="editions" id="editionsGrid"></div>
+    <noscript>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+        <div style="background:#18130c;border:1px solid rgba(200,204,208,.35);border-radius:5px;padding:28px 24px">
+          <h3 style="font-family:'Crimson Pro',serif;font-size:26px;font-weight:400;color:#c3cad1;margin:0">Personal</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">Your life, in one place</p>
+          <p style="font-family:'Crimson Pro',serif;font-size:31px;color:#c3cad1;margin:0 0 16px">$1,500</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers 7 of 8 chapters: Introduction, Digital Life, Emergency &amp; Successor Access, Financial &amp; Assets, Household Operations, Vital Records, Legacy &amp; Wishes. Built over structured working sessions, with live draft review in the portal.</p>
+        </div>
+        <div style="background:#18130c;border:1px solid rgba(212,182,97,.5);border-radius:5px;padding:28px 24px">
+          <h3 style="font-family:'Crimson Pro',serif;font-size:26px;font-weight:400;color:#e8c869;margin:0">Business</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">Everything, plus what keeps it running</p>
+          <p style="font-family:'Crimson Pro',serif;font-size:31px;color:#e8c869;margin:0 0 16px">$2,500</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Everything Personal covers, plus Business Continuity. Covers all 8 chapters. Built over structured working sessions, with live draft review in the portal.</p>
+        </div>
+      </div>
+      <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;margin-top:20px">Pay in full or start with a 50% deposit. Contact Craig@LegacyArchitectRVA.com or (804) 866-1320 to begin.</p>
+    </noscript>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap center" style="max-width:640px;padding-top:12px;padding-bottom:12px">
+    <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.5;color:#3A3529;margin:0 0 16px">"Working together helped create a peace of mind knowing that my family has a blueprint to operate from if I was gone tomorrow. I will definitely be recommending to loved ones."</p>
+    <div style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)">Josie B. &middot; Virginia</div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <div class="tagline">Order in Your Absence.</div>
+    <p>Not sure which fits? The free Readiness Check shows you where your gaps are, so you know what you actually need.</p>
+    <a class="readiness" href="https://legacyarchitectrva.com/readiness">Check Your Readiness</a>
+    <div style="margin-top:16px"><a href="https://cal.com/legacyarchitectrva/discovery-call" target="_blank" rel="noopener" style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.06em;color:var(--mut);text-decoration:underline">Rather talk it through first? Schedule a free call with Craig.</a></div>
+    <div class="micro">Deposits are 50% of the edition price. The balance is due on delivery. Every document stays yours.</div>
+  </div>
+</section>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
 </div>
+
+<script data-cfasync="false">
+const SAMPLES = {"jic": {"title": "The Just-In-Case Plan", "price": "$29", "tag": "Self-guided starter", "desc": "A 26-page workbook covering all seven pillars. Each one gets six questions, a checklist, and a table to document what's actually in place, so you see what's covered and what's still living only in your head. Twenty minutes with it and you know where you stand.", "link": "https://buy.stripe.com/9B6fZjeyGgWO3zj0ct5Rm0o", "cta": "Get the Plan", "pages": [["/assets/samples/jic-cover.jpg", "Cover"], ["/assets/samples/jic-contents.jpg", "Contents"], ["/assets/samples/jic-how-to-use-it.jpg", "How to use it"], ["/assets/samples/jic-readiness-snapshot.jpg", "Readiness snapshot"], ["/assets/samples/jic-digital-life.jpg", "Digital Life"], ["/assets/samples/jic-financial-assets.jpg", "Financial & Assets"], ["/assets/samples/jic-health-medical.jpg", "Health & Medical"], ["/assets/samples/jic-next-step.jpg", "Your next step"]]}, "bp": {"title": "The Blueprint Session", "price": "$249", "tag": "Guided, delivered same day", "desc": "A live working session with Craig, not a form you fill out alone. You go through all seven pillars together, and he builds your Gap Map with you: a pillar-by-pillar breakdown of what's covered, what's partial, and where a real gap sits, plus what that gap would actually mean for whoever had to step in. You leave with a 72-hour action plan, a short, doable list of what to close first, sized so you can finish it before the week's out. The full $249 credits toward any Life Manual edition, so it's a deposit on the real thing, not money spent twice.", "link": "https://buy.stripe.com/bJe28t3U221Uc5Pe3j5Rm0h", "cta": "Book the Session", "pages": [["/assets/samples/bp-the-gap-map.jpg", "The Gap Map"], ["/assets/samples/bp-exposure-by-area.jpg", "Exposure by area"], ["/assets/samples/bp-what-this-means.jpg", "What this means"], ["/assets/samples/bp-72-hour-action-plan.jpg", "72-hour action plan"]]}, "lm": {"title": "The Life Manual", "price": "From $1,500", "tag": "The complete system", "desc": "The full document, built with Craig chapter by chapter over structured sessions, not filled out alone. When it's finished, one person can open it and know exactly what to do, without hunting through your accounts, your head, or a drawer full of paper. This preview shows real pages from a completed edition.", "link": "#editions", "cta": "Explore Editions", "pages": [["/assets/samples/lm-cover.jpg", "Cover"], ["/assets/samples/lm-quick-reference.jpg", "Quick Reference"], ["/assets/samples/lm-table-of-contents.jpg", "Table of contents"], ["/assets/samples/lm-successor-roadmap.jpg", "Successor Roadmap"], ["/assets/samples/lm-inside-a-chapter.jpg", "Inside a chapter"], ["/assets/samples/lm-business-continuity.jpg", "Business Continuity"], ["/assets/samples/lm-order-in-your-absence.jpg", "Order in your absence"]]}};
+const LINKS = {"personal": {"full": "https://buy.stripe.com/14AaEX9rV5ag4wQcMd6Zy02", "deposit": "https://buy.stripe.com/3cI8wP5bF0U04wQdQh6Zy03"}, "business": {"full": "https://buy.stripe.com/28EbJ1fQjcCIgfy9A16Zy04", "deposit": "https://buy.stripe.com/7sY00jdIbeKQd3mh2t6Zy05"}};
+
+/* ---------- SAMPLES ---------- */
+const sampleOrder = ['jic','bp','lm'];
+const samplesEl = document.getElementById('samples');
+let flat=[], cur=0;
+
+sampleOrder.forEach(key=>{
+  const d = SAMPLES[key];
+  const sec=document.createElement('section');
+  sec.className='product';
+  const startIdx=flat.length;
+  d.pages.forEach(pg=>flat.push({src:pg[0],cap:d.title+' | '+pg[1]}));
+  let thumbs='';
+  d.pages.forEach((pg,i)=>{const webp=pg[0].replace(/\.jpg$/,'.webp');thumbs+=`<figure class="thumb" tabindex="0" data-idx="${startIdx+i}"><picture><source srcset="${webp}" type="image/webp"><img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async"></picture><span>${pg[1]}</span></figure>`;});
+
+  // For the Life Manual, the CTA scrolls to editions. Others go to their Stripe link.
+  const isLM = key==='lm';
+  const ctaHtml = isLM
+    ? `<button class="btn btn-gold" data-scroll-editions>Compare Editions</button>`
+    : `<a class="btn btn-gold" href="${d.link}">${d.cta}</a>`;
+
+  sec.innerHTML = `
+    <div class="p-head"><h2>${d.title}</h2><span class="p-price">${d.price}</span><span class="p-tag">${d.tag}</span></div>
+    <p class="p-desc">${d.desc}</p>
+    <div class="strip">${thumbs}</div>
+    <div class="p-foot">${ctaHtml}<span class="hint">Tap any page to view it full size</span></div>`;
+  samplesEl.appendChild(sec);
+});
+
+// scroll-to-editions
+document.querySelectorAll('[data-scroll-editions]').forEach(b=>{
+  b.addEventListener('click',()=>document.getElementById('editions').scrollIntoView({behavior:'smooth'}));
+});
+
+/* ---------- LIGHTBOX ---------- */
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+function show(i){cur=(i+flat.length)%flat.length;lbImg.src=flat[cur].src;lbImg.alt=flat[cur].cap;lbCap.textContent=flat[cur].cap;}
+function openLb(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('click',e=>{const t=e.target.closest('.thumb');if(t)openLb(+t.dataset.idx);});
+document.addEventListener('keydown',e=>{
+  const t=e.target.closest('.thumb');
+  if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openLb(+t.dataset.idx);}
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowRight')show(cur+1);
+  if(e.key==='ArrowLeft')show(cur-1);
+});
+document.getElementById('lbClose').onclick=closeLb;
+document.getElementById('lbNext').onclick=()=>show(cur+1);
+document.getElementById('lbPrev').onclick=()=>show(cur-1);
+lb.onclick=e=>{if(e.target===lb)closeLb();};
+
+/* ---------- EDITIONS ---------- */
+// Full Life Manual chapter list, locked System A order.
+// Each edition names the chapters it includes explicitly. Editions are not
+// sequential truncations, so do not replace this with a "first N" count.
+const CHAPTERS = [
+  'Introduction',
+  'Digital Life',
+  'Emergency & Successor Access',
+  'Financial & Assets',
+  'Household Operations',
+  'Vital Records',
+  'Legacy & Wishes',
+  'Business Continuity'
+];
+const EDITIONS=[
+  {key:'personal',name:'Personal',sub:'Your life, in one place',benefit:'Enough for someone to find what they need without guessing.',full:1500,feature:false,
+   chapters:['Introduction','Digital Life','Emergency & Successor Access','Financial & Assets','Household Operations','Vital Records','Legacy & Wishes']},
+  {key:'business',name:'Business',sub:'Everything, plus what keeps it running',benefit:'Everything Personal covers, plus what keeps the business running without you.',full:2500,feature:true,
+   chapters:CHAPTERS.slice()}
+];
+const money=n=>'$'+n.toLocaleString('en-US');
+const grid=document.getElementById('editionsGrid');
+
+
+const MARKS={personal:'',business:''};
+const METAL={personal:'silver',business:'gold'};
+const BUILD_COMMON=['60 to 90 minute sessions','2 to 3 sessions per week','Review your live draft in the portal'];
+const BUILD={personal:'6 to 8 working sessions',business:'8 to 10 working sessions'};
+const AFTER=['Book your discovery call','Discuss your situation and plan sessions','Set a timeframe to completion','Portal access','Download the handoff and start organizing'];
+
+EDITIONS.forEach(ed=>{
+  const price=ed.full;
+  const deposit=Math.round(price/2);
+  const el=document.createElement('div');
+  el.className='ed'+(ed.feature?' feature':'');
+  let coversHtml='<ul class="incl">';
+  CHAPTERS.forEach(ch=>{
+    const on = ed.chapters.indexOf(ch) !== -1;
+    coversHtml+=`<li class="${on?'on':'off'}">${ch}</li>`;
+  });
+  coversHtml+='</ul>';
+  const badge=ed.feature?'<div class="ed-badge"><span>Most chosen</span></div>':'';
+  const m='metal-'+METAL[ed.key];
+  el.className='ed '+METAL[ed.key]+(ed.feature?' feature':'');
+  el.innerHTML=`
+    <div class="edge ${m}"></div>
+    <div class="rail ${m}"></div>
+    ${badge}
+    <div class="mark ${m}"></div>
+    <div class="ed-inner">
+      <div class="ed-name ${m}">${ed.name}</div>
+      <div class="ed-sub">${ed.sub}</div>
+      <div class="ed-benefit">${ed.benefit}</div>
+      <div class="price-block"><div><span class="price-now ${m}">${money(price)}</span></div></div>
+      <div class="grp open"><button class="grp-h" aria-expanded="true">What is covered<span class="cnt">${ed.chapters.length} of 8 <span class="chev">&#9662;</span></span></button>
+        <div class="grp-body">${coversHtml}</div></div>
+      <div class="grp"><button class="grp-h" aria-expanded="false">How it gets built<span class="cnt"><span class="chev">&#9662;</span></span></button>
+        <div class="grp-body"><ul>${[BUILD[ed.key]].concat(BUILD_COMMON).map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+      <div class="grp"><button class="grp-h" aria-expanded="false">What happens next<span class="cnt"><span class="chev">&#9662;</span></span></button>
+        <div class="grp-body"><ul>${AFTER.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+      <div class="ed-foot">
+        <div class="toggle"><button class="on" data-mode="full">Pay in full</button><button data-mode="deposit">50% deposit</button></div>
+        <div class="pay-amt" data-amt>Pay ${money(price)} today</div>
+        <a class="ed-cta" data-btn href="${LINKS[ed.key].full}">Choose ${ed.name}</a>
+      </div>
+    </div>`;
+  grid.appendChild(el);
+  el.querySelectorAll('.grp-h').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const g=h.parentElement, open=g.classList.toggle('open');
+      h.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+  const btns=el.querySelectorAll('.toggle button');
+  const amtEl=el.querySelector('[data-amt]');
+  const linkEl=el.querySelector('[data-btn]');
+  btns.forEach(bt=>{
+    bt.addEventListener('click',()=>{
+      btns.forEach(x=>x.classList.remove('on'));bt.classList.add('on');
+      if(bt.dataset.mode==='full'){
+        amtEl.textContent=`Pay ${money(price)} today`;
+        linkEl.href=LINKS[ed.key].full;linkEl.textContent=`Choose ${ed.name}`;
+      }else{
+        amtEl.textContent=`Pay ${money(deposit)} now, ${money(price-deposit)} on delivery`;
+        linkEl.href=LINKS[ed.key].deposit;linkEl.textContent=`Reserve ${ed.name}`;
+      }
+    });
+  });
+});
+</script>
+<footer style="border-top:1px solid var(--line);padding:42px 0;text-align:center">
+  <div class="wrap">
+    <div style="display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/services">Services</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="https://cal.com/legacyarchitectrva/discovery-call" target="_blank" rel="noopener">Schedule a Call</a>
+      
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/about">About</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/readiness">Readiness Check</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/resources">Resources</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="#handoff" onclick="openHandoffGate(event)">The Handoff (free)</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/privacy">Privacy</a>
+      <a style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);text-decoration:none" href="/terms">Terms</a>
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.08em;color:var(--mut)">Legacy Architect RVA &nbsp;&middot;&nbsp; Richmond, Virginia &nbsp;&middot;&nbsp; Order in Your Absence</div>
+  </div>
+</footer>
+<script data-cfasync="false">
+  // reading progress + back to top
+  (function(){
+    const bar=document.createElement('div'); bar.className='read-progress'; document.body.appendChild(bar);
+    const top=document.createElement('button'); top.className='to-top';
+    top.innerHTML='<svg viewBox="0 0 40 40" class="compass-needle" aria-hidden="true">'+
+      '<circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>'+
+      '<path d="M20 6 L24 20 L20 34 L16 20 Z" fill="currentColor"/>'+
+      '<circle cx="20" cy="20" r="2.2" fill="currentColor"/>'+
+      '</svg>';
+    top.setAttribute('aria-label','Back to top'); document.body.appendChild(top);
+    top.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:'smooth'});
+      top.classList.add('pulse');
+      setTimeout(()=>top.classList.remove('pulse'), 500);
+    });
+    const needle=top.querySelector('.compass-needle');
+    function onScroll(){
+      const h=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=h>0?(window.scrollY/h)*100:0;
+      bar.style.width=pct+'%';
+      top.classList.toggle('show', window.scrollY>600);
+      if(needle) needle.style.transform='rotate('+(pct*3.6)+'deg)';
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  })();
+
+/* ---------- MOBILE MENU ---------- */
+(function(){
+  var burger=document.getElementById('mBurger'), menu=document.getElementById('mMenu');
+  if(!burger||!menu) return;
+  var lastFocus=null;
+  function setOpen(open){
+    menu.classList.toggle('on',open);
+    burger.classList.toggle('on',open);
+    document.body.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    if(open){ lastFocus=document.activeElement; var f=menu.querySelector('a'); if(f) f.focus(); }
+    else if(lastFocus){ lastFocus.focus(); }
+  }
+  burger.addEventListener('click',function(){ setOpen(!menu.classList.contains('on')); });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){ setOpen(false); });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && menu.classList.contains('on')) setOpen(false);
+  });
+  // keep focus inside the menu while it is open
+  menu.addEventListener('keydown',function(e){
+    if(e.key!=='Tab') return;
+    var items=[burger].concat([].slice.call(menu.querySelectorAll('a')));
+    var i=items.indexOf(document.activeElement);
+    if(e.shiftKey && i<=0){ e.preventDefault(); items[items.length-1].focus(); }
+    else if(!e.shiftKey && i===items.length-1){ e.preventDefault(); items[0].focus(); }
+  });
+  // if the viewport grows past the breakpoint, close and reset
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>720 && menu.classList.contains('on')) setOpen(false);
+  });
+})();
+
+
+
+/* ---------- ELARA ---------- */
+function initElara(){
+
+var FAQ = [{"q": "What is the Zero-Knowledge Standard?", "a": "It means we don't see, store, or hold your private information. Your documents live in your own Secure Drive. We help build the structure. You decide what goes in it, where it sits, and who gets access.", "k": "zero knowledge privacy private see store hold data secure"}, {"q": "Do you store my personal information?", "a": "No. Everything lives in a Secure Drive you control. We don't keep it, look at it, or hold onto it. Within 72 hours of delivery, anything you sent us is deleted on our end.", "k": "store personal information data retain privacy safe security"}, {"q": "Does the Life Manual contain passwords or private credentials?", "a": "No, and that's deliberate. The manual points to where your credentials live, like your password manager, and who has the authority to get in. It tells somebody how to find access. It never spells out the access itself. A document with every password in it would be the most dangerous thing in your house.", "k": "password credentials login secure manager 2fa access"}, {"q": "What is a Life Manual?", "a": "It's one document holding everything somebody would need if you weren't reachable. Accounts, contacts, records, instructions, all in one place instead of scattered across your head and a drawer. Whoever steps in can act instead of guess.", "k": "what life manual is definition explain overview"}, {"q": "How is this different from estate planning?", "a": "Estate documents settle who gets what. A Life Manual explains how things actually run, so somebody can step in and keep them going. Your will covers the legal side. This covers the practical side, and it matters any time you're unreachable, not only after you're gone.", "k": "estate planning difference attorney lawyer trust"}, {"q": "Is this a will?", "a": "No. A will determines who receives assets after death. A Life Manual explains how things actually work, the digital systems, daily operations, household management, so someone else can step in and keep things running. You may need both. A will is legal. A Life Manual is practical.", "k": "will testament legal document inherit assets"}, {"q": "Do I need a lawyer?", "a": "Not for this. A Life Manual isn't legal advice and it isn't a legal document. You should still see an attorney about your will or power of attorney, and we'd tell you to. This sits alongside that work, it doesn't stand in for it.", "k": "lawyer attorney legal advice counsel need"}, {"q": "Who is this service designed for?", "a": "People whose absence would leave everybody else scrambling. The one in the family who handles the accounts and the renewals. Parents who'd rather their kids grieve than fight paperwork. Business owners who know the place doesn't run without them.", "k": "who for suited right fit designed audience"}, {"q": "Is this only for business owners?", "a": "No. The Personal edition is built for individuals and families. Business Continuity is included only in the Business edition, designed for owners whose operations require an explicit succession plan.", "k": "business owner company llc self employed"}, {"q": "What happens during the engagement?", "a": "It begins with a private conversation to understand your situation and priorities. From there, the Life Manual is built chapter by chapter through structured sessions. Your Secure Drive stays under your control throughout, and you can view progress through the Client Portal. Most engagements are complete within 2 to 4 weeks.", "k": "process engagement work sessions how begin start"}, {"q": "What is the Client Portal and how does it work?", "a": "The Client Portal is your private, encrypted workspace where your Life Manual is assembled and delivered. Once your engagement begins, you receive secure access to view information by chapter, track progress, and communicate directly. Your completed manual is delivered there. A 72-hour purge occurs after a signed acknowledgment, to stay compliant with the Zero-Knowledge Protocol.", "k": "portal access login workspace delivered secure drive"}, {"q": "What kinds of information go into a Life Manual?", "a": "Your digital life, financial and asset information, household systems and operations, health and medical, legal and estate documents, your legacy and final wishes, and business operations for the Business edition. That's the 7 Pillars of Continuity, and it includes anything a trusted person would need to manage your responsibilities.", "k": "information contents included chapters sections cover"}, {"q": "How long does the process usually take?", "a": "It adjusts to your schedule and complexity, and moves at your pace through structured sessions rather than a rushed intake form. Many people start with the Just-In-Case Plan, a do-it-yourself version completed at will. The Blueprint Session is typically completed live and delivered the same day. A Life Manual usually takes 2 to 4 weeks. A typical session runs 1 to 2 hours. Personal runs 6 to 8 sessions, Business runs 8 to 10.", "k": "how long time takes duration timeline weeks days"}, {"q": "Can the Life Manual be updated later?", "a": "Yes. Annual review sessions are available for all editions. Once you own the manual, we'd suggest reviewing it at every major life event, and at minimum once every six months. Life changes, accounts move, relationships shift, family size adjusts. The review keeps it accurate.", "k": "update updated review annual change revise later"}];
+var ADVISORY = /\b(should i|do i need to|is it legal|legally|sue|lawsuit|tax|taxes|deduct|write off|irs|invest|investment|investing|portfolio|stock|annuity|inherit|inheritance|probate|contest|beneficiar\w*|trust|attorney|lawyer|counsel|advice|advise|recommend|medicaid|medicare|power of attorney|guardianship)\b/i;
+var BOOKING = /\b(book|booking|schedule|appointment|meet|meeting|consult|available|calendar)\b/i;
+var PRICE   = /\b(price|pricing|cost|how much|fee|payment|deposit|afford|expensive|\$)\b/i;
+var CONTACT = /\b(message|contact|email|reach|get in touch|phone)\b/i;
+
+var orb=document.getElementById('orb'), panel=document.getElementById('panel'),
+    body=document.getElementById('body'), chips=document.getElementById('chips');
+
+/* Scroll so the TOP of a new answer sits just below the question,
+   rather than slamming to the bottom of the thread. Long answers then
+   start where the eye already is instead of at their last line. */
+function scrollToTopOf(el){
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      var pad = 14;
+      /* give the list enough trailing space that this element CAN reach
+         the top of the view, then scroll to it */
+      var room = body.clientHeight - el.offsetHeight - pad;
+      var tail = document.getElementById('tail');
+      if(tail) tail.style.height = (room > 0 ? room : 0) + 'px';
+      requestAnimationFrame(function(){
+        /* measure against the live rects rather than offsetTop, which is
+           relative to the offsetParent and was landing us ~25px high */
+        var br = body.getBoundingClientRect();
+        var lr = el.getBoundingClientRect();
+        var delta = (lr.top - br.top) - pad;
+        var target = body.scrollTop + delta;
+        var max = body.scrollHeight - body.clientHeight;
+        if(target > max) target = max;
+        if(target < 0) target = 0;
+        try { body.scrollTo({top:target, behavior:'smooth'}); }
+        catch(e){ body.scrollTop = target; }
+      });
+    });
+  });
+}
+function say(t,who,cls){
+  var d=document.createElement('div');
+  d.className='msg '+(who||'bot')+(cls?' '+cls:'');
+  d.textContent=t; body.insertBefore(d, document.getElementById('tail'));
+  if(who!=='you' && typeof speak==='function'){ speak(t); }
+  if(who==='you'){
+    /* the person's own message can sit at the bottom, it is short and already read */
+    body.scrollTop=body.scrollHeight;
+  } else {
+    scrollToTopOf(d);
+  }
+  return d;
+}
+function think(cb){
+  orb.classList.add('think');
+  var t=document.createElement('div');
+  t.className='typing'; t.innerHTML='<i></i><i></i><i></i>';
+  body.insertBefore(t, document.getElementById('tail')); scrollToTopOf(t);
+  setTimeout(function(){
+    t.remove(); orb.classList.remove('think'); cb();
+  }, 620);
+}
+function setChips(l){
+  chips.innerHTML='';
+  l.forEach(function(c){
+    var b=document.createElement('button');
+    b.className='chip'; b.type='button'; b.textContent=c.label;
+    b.addEventListener('click',c.go); chips.appendChild(b);
+  });
+}
+
+var HOME=[
+ {label:'What is a Life Manual?',go:function(){ask('What is a Life Manual?');}},
+ {label:'What does it cost?',go:function(){say('What does it cost?','you');think(pricing);}},
+ {label:'Book a call',go:function(){say('Book a call','you');think(booking);}},
+ {label:'Leave a message',go:messageForm},
+ {label:'Browse questions',go:browse}];
+function home(){setChips(HOME);}
+
+function booking(){
+  say('It\'s a thirty minute phone call. No pitch, no pressure, and you\'re not signing anything.');
+  setChips([
+    {label:'Open the calendar',go:function(){
+      window.open('https://cal.com/legacyarchitectrva/discovery-call','_blank','noopener');
+      say('Opened the calendar in a new tab. Pick any slot that suits you.');
+      home();
+    }},
+    {label:'Email Craig instead',go:messageForm},
+    {label:'Back',go:home}
+  ]);
+}
+function pricing(){
+  say('Just-In-Case Plan, $29. The bare essentials, one short document.\n\nBlueprint Session, $249. One sitting, we map where you actually stand, you walk out with a 72 hour plan. Every dollar credits toward a full edition if you go that way.\n\nThen the Life Manual: Personal edition at $1,500, Business edition at $2,500 with Business Continuity built in.\n\nPay it all up front or put half down. Your call.');
+  setChips([{label:'Book a call',go:function(){say('Book a call','you');think(booking);}},{label:'Back',go:home}]);
+}
+function browse(){
+  setChips(FAQ.slice(0,6).map(function(f){
+    return {label:f.q,go:function(){say(f.q,'you');think(function(){say(f.a);home();});}};
+  }).concat([{label:'More questions',go:function(){
+    setChips(FAQ.slice(6).map(function(f){
+      return {label:f.q,go:function(){say(f.q,'you');think(function(){say(f.a);home();});}};
+    }).concat([{label:'Back',go:home}]));
+  }},{label:'Back',go:home}]));
+}
+function messageForm(){
+  msgStep='message'; msgData={};
+  say("Type your message to Craig right here in the chat. I'll grab your name and email after.");
+  setChips([{label:'Cancel',go:cancelMsg}]);
+  focusAsk();
+}
+var msgStep=null, msgData={};
+function cancelMsg(){
+  msgStep=null; msgData={};
+  say('No problem, message scrapped.');
+  home();
+}
+function focusAsk(){
+  var a=document.getElementById('ask');
+  if(a){ a.focus(); a.scrollIntoView({block:'nearest'}); }
+}
+function msgFlow(q){
+  if(msgStep==='message'){
+    msgData.m=q; msgStep='name';
+    say('Got it. What name should Craig see?');
+    setChips([{label:'Cancel',go:cancelMsg}]);
+    focusAsk(); return;
+  }
+  if(msgStep==='name'){
+    msgData.n=q; msgStep='email';
+    say('And an email he can answer to?');
+    setChips([{label:'Cancel',go:cancelMsg}]);
+    focusAsk(); return;
+  }
+  if(msgStep==='email'){
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(q)){
+      say("That email doesn't look right. Mind typing it again?");
+      focusAsk(); return;
+    }
+    msgData.e=q; msgStep=null;
+    think(function(){
+      var subject=encodeURIComponent('Website message from '+msgData.n);
+      var body=encodeURIComponent(msgData.m+'\n\n---\nFrom: '+msgData.n+'\nEmail: '+msgData.e);
+      window.location.href='mailto:info@legacyarchitectrva.com?subject='+subject+'&body='+body;
+      say('Opening your email app with the whole thing filled in. Hit send and Craig picks it up.\n\nIf nothing opened, write directly to info@legacyarchitectrva.com or call (804) 866-1320.');
+      msgData={};
+      home();
+    });
+  }
+}
+function score(q,f){
+  var w=q.toLowerCase().split(/[^a-z0-9]+/).filter(function(x){return x.length>2;});
+  var h=((f.k||'')+' '+f.q).toLowerCase(); var n=0;
+  w.forEach(function(x){if(h.indexOf(x)!==-1)n++;});
+  return n;
+}
+
+var WORKER = 'https://elara-ai.craig-a51.workers.dev';
+var convo = [];
+
+function askAI(q){
+  think(function(){});           /* show the thinking state immediately */
+  orb.classList.add('think');
+  var t=document.createElement('div');
+  t.className='typing'; t.innerHTML='<i></i><i></i><i></i>';
+  body.insertBefore(t, document.getElementById('tail'));
+  scrollToTopOf(t);
+
+  fetch(WORKER, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({question:q, history:convo.slice(-6)})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    t.remove(); orb.classList.remove('think');
+    var a = (d && d.answer) ? d.answer : null;
+    if(!a){ throw new Error('empty'); }
+    say(a, 'bot', d.blocked ? 'warn' : null);
+    convo.push({role:'user',content:q});
+    convo.push({role:'assistant',content:a});
+    if(convo.length>12) convo = convo.slice(-12);
+    home();
+  })
+  .catch(function(){
+    t.remove(); orb.classList.remove('think');
+    /* fall back to the local answers rather than leaving them stuck */
+    var best=null,bs=0;
+    FAQ.forEach(function(f){var s=score(q,f);if(s>bs){bs=s;best=f;}});
+    if(best&&bs>=2){ say(best.a); home(); return; }
+    say('I can\'t reach my brain at the moment. Craig can help directly, he\'s at info@legacyarchitectrva.com or (804) 866-1320.');
+    setChips([{label:'Leave a message',go:messageForm},{label:'Back',go:home}]);
+  });
+}
+
+function ask(q){
+  say(q,'you');
+  if(msgStep){ msgFlow(q); return; }
+  if(ADVISORY.test(q)){
+    think(function(){
+      say('That\'s a legal and money question, and I\'m not the one to answer it. Craig organizes what you already have. He doesn\'t advise, and he\'s not licensed to.\n\nYou want an attorney or an accountant for that one. What Craig can walk you through is how the process itself works.','bot','warn');
+      setChips([{label:'Book a call',go:function(){say('Book a call','you');think(booking);}},
+                {label:'Leave a message',go:messageForm},{label:'Back',go:home}]);
+    });
+    return;
+  }
+  if(BOOKING.test(q)){think(booking);return;}
+  if(PRICE.test(q)){think(pricing);return;}
+  if(CONTACT.test(q)){messageForm();return;}
+  askAI(q);
+}
+
+var greeted=false;
+function open_(){
+  panel.classList.add('on'); orb.classList.add('open');
+  orb.setAttribute('aria-expanded','true'); orb.setAttribute('aria-label','Close Elara');
+  if(!greeted){
+    greeted=true;
+    think(function(){
+      say('I\'m Elara. I can tell you what a Life Manual actually is, what it runs, get you on Craig\'s calendar, or pass a message along.\n\nWhere do you want to start?');
+      home();
+    });
+  }
+}
+function close_(){
+  panel.classList.remove('on'); orb.classList.remove('open');
+  orb.setAttribute('aria-expanded','false'); orb.setAttribute('aria-label','Open Elara');
+  userActed = true;
+  try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
+}
+var asstX=document.getElementById('asstX');
+if(asstX){asstX.addEventListener('click',function(e){e.stopPropagation();close_();});}
+orb.addEventListener('click',function(){
+  userActed = true;
+  try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
+  panel.classList.contains('on')?close_():open_();
+});
+
+/* Auto-open removed per Craig: click-to-open only now, no timer-driven
+   popup covering the page. userActed/la_asst_seen are kept in case
+   something downstream still reads them, but nothing sets a timeout
+   anymore. */
+var userActed = false;
+try{ if(localStorage.getItem('la_asst_seen')==='1') userActed = true; }catch(e){}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('on'))close_();});
+document.getElementById('send').addEventListener('click',function(){
+  var i=document.getElementById('ask'); var v=i.value.trim(); if(!v)return; i.value=''; ask(v);});
+document.getElementById('ask').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){e.preventDefault();document.getElementById('send').click();}});
+
+/* ---------- VOICE ----------
+   Both use what the browser already provides, so there is no cost and
+   no third party. Speech out works everywhere. Speech in works in
+   Chrome, Edge and Safari, so the mic button hides itself elsewhere. */
+var speakOn = false;
+var synth = window.speechSynthesis || null;
+var vSpeak = document.getElementById('vSpeak');
+var vMic   = document.getElementById('vMic');
+
+if(!synth){ if(vSpeak) vSpeak.hidden = true; }
+
+function pickVoice(){
+  if(!synth) return null;
+  var vs = synth.getVoices() || [];
+  if(!vs.length) return null;
+  var pref = ['Samantha','Karen','Serena','Google UK English Female',
+              'Microsoft Aria Online','Microsoft Sonia Online','Google US English'];
+  for(var i=0;i<pref.length;i++){
+    for(var j=0;j<vs.length;j++){ if(vs[j].name.indexOf(pref[i])!==-1) return vs[j]; }
+  }
+  for(var k=0;k<vs.length;k++){ if(/^en[-_]/i.test(vs[k].lang)) return vs[k]; }
+  return vs[0];
+}
+
+function speak(text){
+  if(!speakOn || !synth || !text) return;
+  try{
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text.replace(/\s+/g,' ').trim());
+    var v = pickVoice(); if(v) u.voice = v;
+    u.rate = 0.98; u.pitch = 1.0; u.volume = 1.0;
+    synth.speak(u);
+  }catch(e){}
+}
+
+if(vSpeak){
+  vSpeak.addEventListener('click', function(){
+    speakOn = !speakOn;
+    vSpeak.classList.toggle('on', speakOn);
+    vSpeak.setAttribute('aria-pressed', speakOn ? 'true' : 'false');
+    document.getElementById('vSpeakLabel').textContent = speakOn ? 'Reading' : 'Read aloud';
+    if(!speakOn && synth){ try{ synth.cancel(); }catch(e){} }
+    else {
+      var last = [].slice.call(document.querySelectorAll('.msg.bot')).pop();
+      if(last) speak(last.textContent);
+    }
+  });
+}
+
+var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+var rec = null, listening = false;
+if(!SR){ if(vMic) vMic.hidden = true; }
+else if(vMic){
+  vMic.addEventListener('click', function(){
+    if(listening && rec){ try{ rec.stop(); }catch(e){} return; }
+    try{
+      rec = new SR();
+      rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 1;
+      rec.onstart = function(){
+        listening = true;
+        vMic.classList.add('listening','on');
+        document.getElementById('vMicLabel').textContent = 'Listening';
+      };
+      rec.onresult = function(ev){
+        var said = ev.results[0][0].transcript;
+        if(said && said.trim()){
+          document.getElementById('ask').value = '';
+          ask(said.trim());
+        }
+      };
+      rec.onerror = function(ev){
+        var code = ev && ev.error ? ev.error : '';
+        if(code==='not-allowed'){
+          say('Your browser blocked the microphone. Allow mic access for this site and try again, or type your question.');
+        } else if(code==='service-not-allowed' || code==='network' || code==='language-not-supported'){
+          say('Your browser doesn\'t support voice input. Brave and Firefox block it by design. Typing works fine.');
+          vMic.hidden = true;
+        } else if(code==='no-speech'){
+          say('Didn\'t hear anything. Tap Speak and talk within a few seconds, or type it.');
+        } else if(code==='audio-capture'){
+          say('No microphone found on this device. Typing works fine.');
+          vMic.hidden = true;
+        } else {
+          say('Voice input didn\'t work that time. Try once more, or type it.');
+        }
+      };
+      rec.onend = function(){
+        listening = false;
+        vMic.classList.remove('listening','on');
+        document.getElementById('vMicLabel').textContent = 'Speak';
+      };
+      rec.start();
+    }catch(e){
+      vMic.hidden = true;
+    }
+  });
+}
+
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initElara);}else{initElara();}
+
+/* ---------- LIGHT MODE TOGGLE (dark canonical) ---------- */
+(function(){
+  var KEY='la_theme';
+  try{
+    var stored=localStorage.getItem(KEY);
+    if(stored==='light'){ document.documentElement.classList.add('lightmode'); }
+    else if(stored!=='dark' && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches){
+      document.documentElement.classList.add('lightmode');
+    }
+  }catch(e){}
+  function place(btn){
+    btn.addEventListener('click',function(){
+      var on=document.documentElement.classList.toggle('lightmode');
+      try{ localStorage.setItem(KEY,on?'light':'dark'); }catch(e){}
+    });
+  }
+  document.querySelectorAll('.mode-btn').forEach(place);
+})();
+</script>
+
+</div>
+
+<button class="orb-wrap" id="orb" aria-label="Open Elara" aria-expanded="false">
+  <span class="orb"></span>
+  <span class="orb-scan"></span>
+  <span class="orb-sheen"></span>
+  <span class="orb-ring r1"></span>
+  <span class="orb-ring r2"></span>
+  <span class="orb-mark">
+    <svg class="m-chat" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M26.5 15.2c0 5.1-4.7 9.2-10.5 9.2-1.2 0-2.4-.2-3.5-.5l-5.4 2.3 1.5-4.6c-1.9-1.7-3.1-4-3.1-6.4 0-5.1 4.7-9.2 10.5-9.2s10.5 4.1 10.5 9.2z"/>
+      <path d="M12.9 13.3c.2-1.5 1.5-2.6 3.1-2.6 1.7 0 3.1 1.2 3.1 2.7 0 1.4-1 2-1.9 2.6-.7.5-1.2.9-1.2 1.7"/>
+      <circle class="dot" cx="16" cy="20" r="1.05"/>
+    </svg>
+    <svg class="m-close" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M10 10l12 12M22 10L10 22"/>
+    </svg>
+  </span>
+</button>
+
+<div class="asst" id="panel" role="dialog" aria-label="Elara, the Legacy Architect assistant">
+  <div class="asst-top">
+    <button class="asst-x" id="asstX" type="button" aria-label="Close Elara">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3>Elara</h3>
+    <p>What this is, what it runs, or getting hold of Craig.</p>
+  </div>
+  <div class="asst-body" id="body"><div id="tail"></div></div>
+  <div class="chips" id="chips"></div>
+  <div class="voice-row">
+    <button class="vbtn" id="vSpeak" type="button" aria-pressed="false" title="Read answers aloud">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8.5a5 5 0 010 7"/></svg>
+      <span id="vSpeakLabel">Read aloud</span>
+    </button>
+    <button class="vbtn" id="vMic" type="button" title="Ask by voice">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+      <span id="vMicLabel">Speak</span>
+    </button>
+  </div>
+  <div class="askrow">
+    <input id="ask" type="text" placeholder="Type a question" aria-label="Type a question">
+    <button class="asksend" id="send">Send</button>
+  </div>
+  <div class="asst-note">
+    <span class="note-line">General info only. Not legal, financial, or tax advice.</span>
+    <a class="note-mail" href="mailto:craig@legacyarchitectrva.com">Email Craig directly</a>
+  </div>
+</div>
+
+<script data-cfasync="false">
+  // conversion event tracking - catches every instance of these links, including JS-rendered ones
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a || !window.gtag) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0,60);
+    if(href.indexOf('buy.stripe.com') > -1){
+      gtag('event', 'begin_checkout', {link_url: href, link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('/readiness') > -1){
+      gtag('event', 'readiness_check_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('The-Handoff.pdf') > -1){
+      gtag('event', 'handoff_download', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('mailto:') === 0){
+      gtag('event', 'email_click', {link_text: label, page_path: location.pathname});
+    } else if(href.indexOf('tel:') === 0){
+      gtag('event', 'phone_click', {link_text: label, page_path: location.pathname});
+    }
+  }, true);
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2fff6948fd86a00',t:'MTc4NzU0OTQwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script src="/assets/handoff-gate.js?v=6" defer></script>
 </body>
 </html>
