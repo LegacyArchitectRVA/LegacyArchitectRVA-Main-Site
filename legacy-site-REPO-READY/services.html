@@ -809,6 +809,33 @@
   html.lightmode :is(.next,.booking) .step{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
   html.lightmode .closer .readiness{color:#7D6224 !important;border-color:#7D6224 !important;background:transparent}
     #samples,#editions{scroll-margin-top:90px}
+/* --- New: "What happens after you sign" process section --- */
+.process-section{padding:76px 0 80px;background:var(--bg);border-bottom:1px solid var(--line)}
+.pr-intro{text-align:center;max-width:640px;margin:0 auto 54px}
+.pr-intro h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2.1rem,5vw,3rem);margin:16px 0 14px}
+.pr-intro p{color:var(--mut);font-size:1.18rem}
+.pr-list{max-width:760px;margin:0 auto;position:relative}
+.pr-list:before{content:'';position:absolute;left:27px;top:14px;bottom:14px;width:1px;
+  background:linear-gradient(180deg,var(--line),var(--gold) 8%,var(--gold) 92%,var(--line));
+  opacity:.55}
+.pr-step{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:0 0 40px;position:relative}
+.pr-step:last-child{padding-bottom:0}
+.pr-num{width:56px;height:56px;border-radius:50%;border:1px solid var(--gold);
+  background:linear-gradient(180deg,#221a0e,#17110a);display:flex;align-items:center;justify-content:center;
+  font-family:'Bodoni Moda',serif;font-size:1.3rem;color:var(--gold-b);z-index:2;
+  box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.pr-body{padding-top:8px}
+.pr-body h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.32rem;margin-bottom:8px;color:var(--ink)}
+.pr-body p{color:var(--mut);font-size:1.08rem;line-height:1.6;max-width:56ch}
+.pr-foot{max-width:760px;margin:52px auto 0;padding-top:34px;border-top:1px solid var(--line);text-align:center}
+.pr-foot p{color:var(--mut);font-size:1.08rem;max-width:52ch;margin:0 auto}
+.pr-foot p strong{color:var(--ink);font-weight:500}
+@media(max-width:600px){
+  .pr-step{grid-template-columns:44px 1fr;gap:14px}
+  .pr-num{width:44px;height:44px;font-size:1.05rem}
+  .pr-list:before{left:21px}
+}
+
 </style>
 </head>
 <body>
@@ -885,6 +912,70 @@
       </div>
       <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a49c8b;margin-top:20px">Pay in full or start with a 50% deposit. Contact Craig@LegacyArchitectRVA.com or (804) 866-1320 to begin.</p>
     </noscript>
+  </div>
+</section>
+
+<section class="process-section" id="process">
+  <div class="wrap">
+    <div class="pr-intro">
+      <div class="eyebrow">How it actually happens</div>
+      <h2>What happens after you sign</h2>
+      <p>This isn't a form you fill out once. It's real sessions, one after another, until the whole thing actually holds together. Here's exactly how it goes, no skipped steps.</p>
+    </div>
+
+    <div class="pr-list">
+      <div class="pr-step">
+        <div class="pr-num">1</div>
+        <div class="pr-body">
+          <h3>You sign, and it's real</h3>
+          <p>Not someday, not once you get around to it. Your name goes on the page and the actual work starts before the ink's dry.</p>
+        </div>
+      </div>
+
+      <div class="pr-step">
+        <div class="pr-num">2</div>
+        <div class="pr-body">
+          <h3>Your Secure Drive goes up before you ever sit down</h3>
+          <p>It's built first, checklist and successor roadmap already loaded in, so you walk into session one with something to work from instead of an empty screen.</p>
+        </div>
+      </div>
+
+      <div class="pr-step">
+        <div class="pr-num">3</div>
+        <div class="pr-body">
+          <h3>Session one, and the vault becomes yours</h3>
+          <p>You learn where everything lives, your portal turns on, and you start Digital Life together. From there you watch your own progress fill in.</p>
+        </div>
+      </div>
+
+      <div class="pr-step">
+        <div class="pr-num">4</div>
+        <div class="pr-body">
+          <h3>Every session after that builds a chapter</h3>
+          <p>One chapter at a time, no skipping ahead. Whether you're really using the password manager and the Drive gets checked, not assumed because you said so once and then forgot by Tuesday.</p>
+        </div>
+      </div>
+
+      <div class="pr-step">
+        <div class="pr-num">5</div>
+        <div class="pr-body">
+          <h3>The last session brings your successor into the room</h3>
+          <p>Not a phone call after the fact. Not a folder they find later and have to decode alone. You walk it together, once, while you're both still here to ask the questions that matter.</p>
+        </div>
+      </div>
+
+      <div class="pr-step">
+        <div class="pr-num">6</div>
+        <div class="pr-body">
+          <h3>72 hours, then it's locked</h3>
+          <p>You get three days after the walkthrough to fix anything that still bugs you. After that, everything comes off the portal for good under the Zero-Knowledge Protocol. It was always yours. Nobody keeps a copy behind you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-foot">
+      <p>Life doesn't hold still, so the plan shouldn't either. When something changes enough to matter, <strong>you bring the file back in for the Annual Review</strong> and get everything current again.</p>
+    </div>
   </div>
 </section>
 
@@ -1582,5 +1673,5 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   }, true);
 </script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2fff6948fd86a00',t:'MTc4NzU0OTQwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script src="/assets/handoff-gate.js?v=6" defer></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a330c7c44f93add8',t:'MTc4ODA2MTI5Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
