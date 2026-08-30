@@ -835,6 +835,24 @@
   .pr-num{width:44px;height:44px;font-size:1.05rem}
   .pr-list:before{left:21px}
 }
+html.lightmode .process-section{background:#F2EDE2;border-color:rgba(125,98,36,.22)}
+html.lightmode .process-section .pr-intro h2,
+html.lightmode .process-section .pr-body h3{color:#181410}
+html.lightmode .process-section .pr-intro p,
+html.lightmode .process-section .pr-body p,
+html.lightmode .process-section .pr-foot p{color:#3A3529}
+html.lightmode .process-section .eyebrow{color:#7D6224}
+html.lightmode .process-section .pr-foot p strong{color:#181410}
+html.lightmode .process-section .pr-num{background:linear-gradient(180deg,#f2ecda,#e8dfc4);border-color:#7D6224;color:#7D6224}
+html.lightmode .process-section .pr-list:before{background:linear-gradient(180deg,rgba(125,98,36,.18),#7D6224 8%,#7D6224 92%,rgba(125,98,36,.18))}
+
+/* --- Fix: Josie's testimonial (.sec-light) had no CSS at all in either mode --- */
+.sec-light{padding:56px 0;background:var(--card2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-light .sl-quote{color:var(--ink)}
+.sec-light .sl-who{color:var(--mut)}
+html.lightmode .sec-light{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
+html.lightmode .sec-light .sl-quote{color:#2C2820}
+html.lightmode .sec-light .sl-who{color:#5C5648}
 
 </style>
 </head>
@@ -981,8 +999,8 @@
 
 <section class="sec-light">
   <div class="wrap center" style="max-width:640px;padding-top:12px;padding-bottom:12px">
-    <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.5;color:#3A3529;margin:0 0 16px">"Working together helped create a peace of mind knowing that my family has a blueprint to operate from if I was gone tomorrow. I will definitely be recommending to loved ones."</p>
-    <div style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)">Josie B. &middot; Virginia</div>
+    <p class="sl-quote" style="font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.5;margin:0 0 16px">"Working together helped create a peace of mind knowing that my family has a blueprint to operate from if I was gone tomorrow. I will definitely be recommending to loved ones."</p>
+    <div class="sl-who" style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase">Josie B. &middot; Virginia</div>
   </div>
 </section>
 
