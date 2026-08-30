@@ -702,7 +702,12 @@
   html.lightmode :is(.what,.free-resource) .card{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
   html.lightmode :is(.next,.booking) .step{background:#FAF6EC;border-color:rgba(125,98,36,.22)}
   html.lightmode .closer .readiness{color:#7D6224 !important;border-color:#7D6224 !important;background:transparent}
-  </style>
+  
+/* --- Fix: .cta-band missing from light-mode allowlist --- */
+html.lightmode .cta-band{background:#F2EDE2}
+html.lightmode .cta-band h2{color:#181410}
+html.lightmode .cta-band .tagline{color:#7D6224}
+</style>
 </head>
 <body>
 <div class="atmos" aria-hidden="true"><div class="atmos-grid"></div><div class="atmos-glow"></div></div>
@@ -1351,5 +1356,5 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   }, true);
 </script>
 <script src="/assets/handoff-gate.js?v=6" defer></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a335bbf6fb34f490',t:'MTc4ODExMzIzNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
