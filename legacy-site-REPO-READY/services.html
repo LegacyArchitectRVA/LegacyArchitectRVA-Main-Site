@@ -136,11 +136,11 @@
   .micro{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--mut);margin-top:44px;text-transform:uppercase} html.lightmode .micro{color:#5a5448}
 
   /* LIGHTBOX */
-  .lb{position:fixed;inset:0;background:rgba(6,4,2,.94);display:none;z-index:100;align-items:center;justify-content:center;padding:30px;backdrop-filter:blur(3px)}
+  .lb{position:fixed;inset:0;background:rgba(6,4,2,.94);display:none;z-index:140;align-items:center;justify-content:center;padding:30px;backdrop-filter:blur(3px)}
   .lb.open{display:flex}
   .lb img{max-width:100%;max-height:88vh;border:1px solid var(--line);border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .lb-close{position:absolute;top:20px;right:26px;color:var(--ink);font-size:34px;cursor:pointer;font-family:'Inter',sans-serif;line-height:1;background:none;border:none;opacity:.8}
-  .lb-close:hover{opacity:1}
+  .lb-close{position:absolute;top:16px;right:16px;width:44px;height:44px;min-width:44px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(212,182,97,.4);color:var(--gold);font-size:26px;line-height:1;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;opacity:1;z-index:2}
+  .lb-close:hover{background:rgba(0,0,0,.7)}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(212,182,97,.1);border:1px solid var(--line);color:var(--gold);width:52px;height:52px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
   .lb-nav:hover{background:rgba(212,182,97,.2)}
   .lb-prev{left:24px}.lb-next{right:24px}
@@ -1085,6 +1085,20 @@ document.getElementById('lbClose').onclick=closeLb;
 document.getElementById('lbNext').onclick=()=>show(cur+1);
 document.getElementById('lbPrev').onclick=()=>show(cur-1);
 lb.onclick=e=>{if(e.target===lb)closeLb();};
+
+// touch swipe: left = next, right = previous. Ignores mostly-vertical
+// gestures so scroll attempts on the caption/backdrop don't get eaten.
+let touchStartX=0,touchStartY=0;
+lb.addEventListener('touchstart',e=>{
+  touchStartX=e.changedTouches[0].clientX;
+  touchStartY=e.changedTouches[0].clientY;
+},{passive:true});
+lb.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  const dy=e.changedTouches[0].clientY-touchStartY;
+  if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy))return;
+  if(dx<0)show(cur+1);else show(cur-1);
+},{passive:true});
 
 /* ---------- EDITIONS ---------- */
 // Full Life Manual chapter list, locked System A order.
