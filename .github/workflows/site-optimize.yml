@@ -93,7 +93,11 @@ jobs:
                   p.unlink()
           PY
 
-      - name: Validate site structure and client hardening
+      - name: Regenerate CSP from current HTML
+        working-directory: legacy-site-REPO-READY
+        run: python3 gen_csp.py
+
+      - name: Validate site structure, CSP, and client hardening
         shell: bash
         run: |
           set -euo pipefail
@@ -101,12 +105,13 @@ jobs:
           from pathlib import Path
           import re
           root=Path('legacy-site-REPO-READY'); errors=[]
+          headers=(root/'_headers').read_text(encoding='utf-8')
+          if "script-src 'self' 'unsafe-inline'" in headers: errors.append('_headers: script-src still permits unsafe-inline')
+          if 'script-src-attr' not in headers: errors.append('_headers: missing script-src-attr policy')
           for page in sorted(root.glob('*.html')):
-              text=page.read_text(encoding='utf-8')
-              low=text.lower()
+              text=page.read_text(encoding='utf-8'); low=text.lower()
               if low.count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
-              empty_inline=re.search(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', text, re.I|re.S)
-              if empty_inline: errors.append(f'{page}: empty inline script block')
+              if re.search(r'<script(?:\s[^>]*)?>\s*</script>', text, re.I|re.S): errors.append(f'{page}: empty script block')
               ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I); seen=set()
               for x in ids:
                   if x in seen: errors.append(f'{page}: duplicate id {x}')
@@ -137,5 +142,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet; then echo 'No optimization changes to commit.'; exit 0; fi
           git add legacy-site-REPO-READY
-          git commit -m 'security: harden client-side scripts and markup'
+          git commit -m 'security: regenerate CSP and harden main site'
           git push
