@@ -33,7 +33,7 @@ jobs:
         run: |
           set -euo pipefail
           for f in legacy-site-REPO-READY/*.html; do
-            ./node_modules/.bin/html-minifier-terser "$f" -o "$f.tmp" --minify-css --remove-comments=false --collapse-whitespace=false
+            ./node_modules/.bin/html-minifier-terser "$f" -o "$f.tmp" --minify-css
             mv "$f.tmp" "$f"
           done
 
