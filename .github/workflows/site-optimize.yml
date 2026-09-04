@@ -43,9 +43,7 @@ jobs:
           set -euo pipefail
           python3 <<'PY'
           from pathlib import Path
-          root=Path('legacy-site-REPO-READY')
-          pages=sorted(root.glob('*.html'))
-
+          root=Path('legacy-site-REPO-READY'); pages=sorted(root.glob('*.html'))
           def add_decoding(text):
               out=[]; pos=0
               while True:
@@ -53,22 +51,18 @@ jobs:
                   if start<0: out.append(text[pos:]); break
                   end=text.find('>',start)
                   if end<0: out.append(text[pos:]); break
-                  tag=text[start:end+1]; out.append(text[pos:start])
-                  low=tag.lower()
+                  tag=text[start:end+1]; out.append(text[pos:start]); low=tag.lower()
                   if 'decoding=' not in low and 'fetchpriority="high"' not in low and "fetchpriority='high'" not in low:
                       tag=tag[:-1]+' decoding="async">'
                   out.append(tag); pos=end+1
               return ''.join(out)
-
           for page in pages:
               page.write_text(add_decoding(page.read_text(encoding='utf-8')),encoding='utf-8',newline='')
-
           sources=[]
           for p in root.rglob('*'):
               if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'}:
                   sources.append(p.read_text(encoding='utf-8',errors='ignore'))
-          corpus='\n'.join(sources)
-          assets=root/'assets'; candidates=[]
+          corpus='\n'.join(sources); assets=root/'assets'; candidates=[]
           if assets.exists():
               for p in assets.iterdir():
                   if p.is_file() and p.name not in corpus: candidates.append((p.name,p.stat().st_size))
@@ -107,9 +101,10 @@ jobs:
                       q=marker[-1]; j=text.find(q,i+len(marker))
                       if j<0: break
                       ref=text[i+len(marker):j]
-                      if not ref.startswith(('#','/','http:','https:','mailto:','tel:','data:','javascript:','+')) and '${' not in ref and '{{' not in ref:
-                          target=(page.parent/ref.split('?',1)[0].split('#',1)[0]).resolve()
-                          if not target.exists(): errors.append(f'{page}: missing local reference {ref}')
+                      if any(ch in ref for ch in '+$[]{}') or ref.startswith(('#','/','http:','https:','mailto:','tel:','data:','javascript:')):
+                          pos=j+1; continue
+                      target=(page.parent/ref.split('?',1)[0].split('#',1)[0]).resolve()
+                      if not target.exists(): errors.append(f'{page}: missing local reference {ref}')
                       pos=j+1
           if errors:
               print('\n'.join(errors)); raise SystemExit(1)
