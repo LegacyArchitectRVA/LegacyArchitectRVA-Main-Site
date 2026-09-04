@@ -2,8 +2,9 @@
 """Generate the Cloudflare Pages security headers for the main site.
 
 The generator deliberately locks inline JavaScript with SHA-256 hashes while
-allowing only audited external script/connect/frame/font origins. Run it from
-legacy-site-REPO-READY after changing inline scripts.
+allowing only audited external script/connect/frame/font origins. Inline event
+handlers are also hash-locked instead of enabling script-src-attr unsafe-inline.
+Run it from legacy-site-REPO-READY after changing inline scripts or handlers.
 """
 from __future__ import annotations
 
@@ -63,22 +64,35 @@ FRAME_SRC = [
 FORM_ACTION = ["'self'", "https://buy.stripe.com"]
 
 
-def page_csp(page: Path) -> str:
+def page_csp(page: Path) -> tuple[str, int, int]:
     source = page.read_text(encoding="utf-8")
     script_hashes: list[str] = []
+    event_hashes: list[str] = []
 
-    # Hash every inline classic/module script, regardless of attributes.
+    # Hash every inline classic/module script, regardless of other attributes.
     for match in re.finditer(r"<script\b([^>]*)>(.*?)</script\s*>", source, re.I | re.S):
         tag_attrs, body = match.groups()
         src = attr("<script " + tag_attrs + ">", "src")
         if src is None and body.strip():
             script_hashes.append(csp_hash(body))
 
+    # Hash inline event-handler attributes so script-src-attr does not need
+    # the much broader unsafe-inline permission.
+    for match in re.finditer(r"<[^>]+>", source, re.I | re.S):
+        tag = match.group(0)
+        for event in re.finditer(r"\bon[a-z]+\s*=\s*([\"'])(.*?)\1", tag, re.I | re.S):
+            event_hashes.append(csp_hash(html.unescape(event.group(2))))
+
     script_src = SCRIPT_SRC + script_hashes
-    return (
+    if event_hashes:
+        script_attr = "'unsafe-hashes' " + " ".join(dict.fromkeys(event_hashes))
+    else:
+        script_attr = "'none'"
+
+    csp = (
         "default-src 'self'; "
         f"script-src {' '.join(script_src)}; "
-        "script-src-attr 'unsafe-inline'; "
+        f"script-src-attr {script_attr}; "
         f"style-src {' '.join(STYLE_SRC)}; "
         f"img-src {' '.join(IMG_SRC)}; "
         f"font-src {' '.join(FONT_SRC)}; "
@@ -88,12 +102,13 @@ def page_csp(page: Path) -> str:
         f"form-action {' '.join(FORM_ACTION)}; "
         "object-src 'none'; upgrade-insecure-requests"
     )
+    return csp, len(script_hashes), len(set(event_hashes))
 
 
 lines = [
     "# Security headers for Legacy Architect RVA main site (Cloudflare Pages).",
-    "# CSP locks inline JavaScript with SHA-256 hashes and permits only audited origins.",
-    "# Regenerate after changing inline JavaScript: python3 gen_csp.py",
+    "# CSP locks inline JavaScript and event handlers with SHA-256 hashes and permits only audited origins.",
+    "# Regenerate after changing inline JavaScript/handlers: python3 gen_csp.py",
     "",
     "/*",
     "  X-Content-Type-Options: nosniff",
@@ -107,7 +122,7 @@ lines = [
 ]
 
 for page in PAGES:
-    csp = page_csp(page)
+    csp, _, _ = page_csp(page)
     lines.extend([
         f"/{page.name}",
         f"  Content-Security-Policy: {csp}",
@@ -131,9 +146,5 @@ lines.extend([
 
 print(f"_headers generated for {len(PAGES)} HTML pages")
 for page in PAGES:
-    source = page.read_text(encoding="utf-8")
-    inline_scripts = sum(
-        1 for m in re.finditer(r"<script\b([^>]*)>(.*?)</script\s*>", source, re.I | re.S)
-        if attr("<script " + m.group(1) + ">", "src") is None and m.group(2).strip()
-    )
-    print(f"  {page.name}: {inline_scripts} inline script hashes")
+    _, inline_scripts, event_handlers = page_csp(page)
+    print(f"  {page.name}: {inline_scripts} inline script hashes, {event_handlers} event-handler hashes")
