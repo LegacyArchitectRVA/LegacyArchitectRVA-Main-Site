@@ -63,14 +63,12 @@ jobs:
           for page in pages:
               text = page.read_text(encoding='utf-8')
 
-              # Keep the first theme-color declaration only.
               theme_count=[0]
               def theme_repl(m):
                   theme_count[0]+=1
                   return m.group(0) if theme_count[0]==1 else ''
               text=re.sub(r"<meta\\s+name=[\"']theme-color[\"'][^>]*>\\s*", theme_repl, text, flags=re.I)
 
-              # Minify inline CSS without touching JavaScript.
               def style_repl(m):
                   css=minify_css(m.group(1))
                   if len(css)>=5000:
@@ -78,10 +76,10 @@ jobs:
                   return '<style>'+css+'</style>'
               text=re.sub(r'<style(?:\\s[^>]*)?>([\\s\\S]*?)</style>', style_repl, text, flags=re.I)
 
-              # Add async image decoding to image assets that do not already declare it.
               def img_repl(m):
                   tag=m.group(0)
-                  if 'decoding=' in tag.lower() or 'fetchpriority="high"' in tag.lower() or "fetchpriority='high'" in tag.lower():
+                  low=tag.lower()
+                  if 'decoding=' in low or 'fetchpriority="high"' in low or "fetchpriority='high'" in low:
                       return tag
                   if re.search(r"src=[\"'][^\"']+\\.(?:webp|png|jpe?g|gif|svg)", tag, flags=re.I):
                       return tag[:-1]+' decoding="async">'
@@ -89,7 +87,6 @@ jobs:
               text=re.sub(r'<img[^>]*>', img_repl, text, flags=re.I)
               page.write_text(text,encoding='utf-8',newline='')
 
-          # Extract only identical substantial CSS blocks shared by at least two pages.
           for css,owners in styles_by_content.items():
               if len(owners)<2:
                   continue
@@ -103,7 +100,6 @@ jobs:
                   text=text.replace('<style>'+css+'</style>',f'<link rel="stylesheet" href="/assets/site-shared-{digest}.css">',1)
                   page.write_text(text,encoding='utf-8',newline='')
 
-          # Conservative asset audit. Do not auto-delete ordinary assets.
           all_text='\\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in root.rglob('*') if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'})
           referenced=set(re.findall(r'(?:/assets/|assets/)([A-Za-z0-9._-]+)',all_text))
           assets=[p for p in (root/'assets').iterdir() if p.is_file()]
@@ -113,7 +109,6 @@ jobs:
           lines += [f'- `{name}` ({size:,} bytes)' for name,size in sorted(candidates)] or ['- None detected by the conservative reference scan.']
           report.write_text('\\n'.join(lines)+'\\n',encoding='utf-8')
 
-          # Hard validation gate. Ignore templated JavaScript references.
           errors=[]
           for page in pages:
               text=page.read_text(encoding='utf-8')
@@ -160,3 +155,5 @@ jobs:
           git add legacy-site-REPO-READY
           git commit -m 'perf: optimize main site assets and markup'
           git push
+
+# Triggered validation pass after optimizer regex hardening.
