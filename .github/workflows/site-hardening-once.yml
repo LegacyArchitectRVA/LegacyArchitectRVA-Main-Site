@@ -1,0 +1,136 @@
+name: Site Hardening Once
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Harden and audit site
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+          import hashlib
+          import html as htmlmod
+
+          root = Path('legacy-site-REPO-READY')
+          html_files = sorted(root.rglob('*.html'))
+          changed = []
+          shared_dir = root / 'assets'
+          shared_dir.mkdir(parents=True, exist_ok=True)
+
+          # Safe metadata dedupe: keep the first theme-color declaration only.
+          theme_re = re.compile(r'<meta\s+name=["\']theme-color["\'][^>]*>\s*', re.I)
+          for p in html_files:
+              text = p.read_text(encoding='utf-8')
+              matches = list(theme_re.finditer(text))
+              if len(matches) > 1:
+                  keep = True
+                  out = []
+                  last = 0
+                  for m in matches:
+                      out.append(text[last:m.start()])
+                      if keep:
+                          out.append(m.group(0))
+                          keep = False
+                      last = m.end()
+                  out.append(text[last:])
+                  new = ''.join(out)
+                  if new != text:
+                      p.write_text(new, encoding='utf-8')
+                      changed.append(str(p))
+
+          # Extract only byte-for-byte identical, substantial inline style blocks
+          # shared by multiple pages. This is intentionally conservative.
+          blocks = {}
+          style_re = re.compile(r'<style(?:\s[^>]*)?>(.*?)</style>', re.I | re.S)
+          for p in html_files:
+              text = p.read_text(encoding='utf-8')
+              for m in style_re.finditer(text):
+                  body = m.group(1)
+                  if len(body.strip()) >= 2000:
+                      key = hashlib.sha256(body.encode('utf-8')).hexdigest()
+                      blocks.setdefault(key, []).append((p, m.group(0), body))
+
+          for key, entries in blocks.items():
+              pages = {p for p, _, _ in entries}
+              if len(pages) < 2:
+                  continue
+              css_name = f'site-shared-{key[:12]}.css'
+              css_path = shared_dir / css_name
+              body = entries[0][2].strip() + '\n'
+              if not css_path.exists() or css_path.read_text(encoding='utf-8') != body:
+                  css_path.write_text(body, encoding='utf-8')
+              for p, tag, _ in entries:
+                  text = p.read_text(encoding='utf-8')
+                  replacement = f'<link rel="stylesheet" href="/assets/{css_name}">'
+                  new = text.replace(tag, replacement, 1)
+                  if new != text:
+                      p.write_text(new, encoding='utf-8')
+                      if str(p) not in changed:
+                          changed.append(str(p))
+
+          # Verification: exactly one H1 per page and no broken local asset/link refs.
+          errors = []
+          for p in html_files:
+              text = p.read_text(encoding='utf-8')
+              h1_count = len(re.findall(r'<h1\b', text, re.I))
+              if h1_count != 1:
+                  errors.append(f'{p}: expected 1 H1, found {h1_count}')
+              ids = re.findall(r'\bid=["\']([^"\']+)["\']', text, re.I)
+              seen = set()
+              for ident in ids:
+                  if ident in seen:
+                      errors.append(f'{p}: duplicate id="{ident}"')
+                  seen.add(ident)
+              for ref in re.findall(r'(?:href|src|poster)=["\']([^"\']+)["\']', text, re.I):
+                  if ref.startswith(('#','http:','https:','mailto:','tel:','data:','javascript:')):
+                      continue
+                  target = htmlmod.unescape(ref.split('?',1)[0].split('#',1)[0])
+                  if target.startswith('/'):
+                      target = target[1:]
+                      candidate = root / target
+                  else:
+                      candidate = (p.parent / target).resolve()
+                  try:
+                      candidate.relative_to(root.resolve())
+                  except ValueError:
+                      errors.append(f'{p}: unsafe relative reference {ref}')
+                      continue
+                  if not candidate.exists():
+                      errors.append(f'{p}: missing local reference {ref}')
+
+          print(f'HTML pages audited: {len(html_files)}')
+          print(f'Files changed: {len(changed)}')
+          for f in changed:
+              print(f'  changed: {f}')
+          print(f'Hardening errors: {len(errors)}')
+          for e in errors:
+              print(f'  ERROR: {e}')
+          if errors:
+              raise SystemExit(1)
+          PY
+
+      - name: Commit hardening changes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add legacy-site-REPO-READY .github/workflows/site-hardening-once.yml
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'perf(security): harden and deduplicate main site assets'
+          git push
