@@ -111,7 +111,7 @@ jobs:
           for page in sorted(root.glob('*.html')):
               text=page.read_text(encoding='utf-8'); low=text.lower()
               if low.count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
-              if re.search(r'<script(?:\s[^>]*)?>\s*</script>', text, re.I|re.S): errors.append(f'{page}: empty script block')
+              if re.search(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', text, re.I|re.S): errors.append(f'{page}: empty inline script block')
               ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I); seen=set()
               for x in ids:
                   if x in seen: errors.append(f'{page}: duplicate id {x}')
