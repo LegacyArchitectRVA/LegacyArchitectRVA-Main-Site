@@ -37,13 +37,14 @@ jobs:
             mv "$f.tmp" "$f"
           done
 
-      - name: Add async image decoding and audit assets
+      - name: Harden client-side scripts and audit assets
         shell: bash
         run: |
           set -euo pipefail
           python3 <<'PY'
           from pathlib import Path
           root=Path('legacy-site-REPO-READY'); pages=sorted(root.glob('*.html'))
+
           def add_decoding(text):
               out=[]; pos=0
               while True:
@@ -56,11 +57,24 @@ jobs:
                       tag=tag[:-1]+' decoding="async">'
                   out.append(tag); pos=end+1
               return ''.join(out)
+
           for page in pages:
-              page.write_text(add_decoding(page.read_text(encoding='utf-8')),encoding='utf-8',newline='')
+              text=page.read_text(encoding='utf-8')
+              text=add_decoding(text)
+              # Empty script blocks add bytes and, more importantly, make CSP auditing ambiguous.
+              text=text.replace('<script data-cfasync="false">\n</script>\n','')
+              text=text.replace('<script data-cfasync="false"></script>','')
+              # Remove a duplicate thinking indicator in Elara's remote-AI path.
+              text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
+              # Fail closed on non-2xx worker responses instead of trying to parse an error page as JSON.
+              text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
+              page.write_text(text,encoding='utf-8',newline='')
+
           sources=[]
           for p in root.rglob('*'):
               if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'}:
+                  if p.name == 'SITE_ASSET_AUDIT.md':
+                      continue
                   sources.append(p.read_text(encoding='utf-8',errors='ignore'))
           corpus='\n'.join(sources); assets=root/'assets'; candidates=[]
           if assets.exists():
@@ -83,7 +97,7 @@ jobs:
                   p.unlink()
           PY
 
-      - name: Validate site structure
+      - name: Validate site structure and client hardening
         shell: bash
         run: |
           set -euo pipefail
@@ -93,7 +107,9 @@ jobs:
           root=Path('legacy-site-REPO-READY'); errors=[]
           for page in sorted(root.glob('*.html')):
               text=page.read_text(encoding='utf-8')
-              if text.lower().count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
+              low=text.lower()
+              if low.count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
+              if re.search(r'<script(?:\s[^>]*)?>\s*</script>', text, re.I|re.S): errors.append(f'{page}: empty script block')
               ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I); seen=set()
               for x in ids:
                   if x in seen: errors.append(f'{page}: duplicate id {x}')
@@ -124,5 +140,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet; then echo 'No optimization changes to commit.'; exit 0; fi
           git add legacy-site-REPO-READY
-          git commit -m 'perf: optimize main site markup and assets'
+          git commit -m 'security: harden client-side scripts and markup'
           git push
