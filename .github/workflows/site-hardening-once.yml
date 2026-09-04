@@ -29,18 +29,16 @@ jobs:
           shared_dir = root / 'assets'
           shared_dir.mkdir(parents=True, exist_ok=True)
 
-          # Safe metadata dedupe: keep the first theme-color declaration only.
           theme_re = re.compile(r'<meta\s+name=["\']theme-color["\'][^>]*>\s*', re.I)
           for p in html_files:
               text = p.read_text(encoding='utf-8')
               matches = list(theme_re.finditer(text))
               if len(matches) > 1:
-                  out, last, keep = [], 0, True
-                  for m in matches:
+                  out, last = [], 0
+                  for i, m in enumerate(matches):
                       out.append(text[last:m.start()])
-                      if keep:
+                      if i == 0:
                           out.append(m.group(0))
-                          keep = False
                       last = m.end()
                   out.append(text[last:])
                   new = ''.join(out)
@@ -48,17 +46,15 @@ jobs:
                       p.write_text(new, encoding='utf-8')
                       changed.append(str(p))
 
-          # Correct pages with accidental multiple H1s by preserving the first
-          # document heading and demoting subsequent headings to H2.
+          # Preserve the first document H1 and demote subsequent accidental H1s.
           h1_re = re.compile(r'<h1\b', re.I)
           for p in html_files:
               text = p.read_text(encoding='utf-8')
               if len(h1_re.findall(text)) > 1:
-                  seen = 0
+                  counter = [0]
                   def demote(m):
-                      nonlocal seen
-                      seen += 1
-                      return m.group(0) if seen == 1 else re.sub(r'<h1\b', '<h2', m.group(0), flags=re.I)
+                      counter[0] += 1
+                      return m.group(0) if counter[0] == 1 else re.sub(r'<h1\b', '<h2', m.group(0), flags=re.I)
                   new = h1_re.sub(demote, text)
                   if new != text:
                       p.write_text(new, encoding='utf-8')
@@ -95,13 +91,11 @@ jobs:
                       if str(p) not in changed:
                           changed.append(str(p))
 
-          # Verification: exactly one H1 per page and no missing local file assets.
-          # Root-relative URLs are valid deployment URLs and are intentionally not
-          # resolved against the repository directory.
+          # Verification: one H1 per page and valid relative local references.
           errors = []
           for p in html_files:
               text = p.read_text(encoding='utf-8')
-              h1_count = len(re.findall(r'<h1\b', text, re.I))
+              h1_count = len(h1_re.findall(text))
               if h1_count != 1:
                   errors.append(f'{p}: expected 1 H1, found {h1_count}')
               ids = re.findall(r'\bid=["\']([^"\']+)["\']', text, re.I)
@@ -110,11 +104,8 @@ jobs:
                   if ident in seen:
                       errors.append(f'{p}: duplicate id="{ident}"')
                   seen.add(ident)
-              # Only validate relative filesystem references. Root-relative paths
-              # are handled by the deployment root and dynamic JS templates are
-              # not filesystem references.
               for ref in re.findall(r'(?:href|src|poster)=["\']([^"\']+)["\']', text, re.I):
-                  if ref.startswith(('/', '#','http:','https:','mailto:','tel:','data:','javascript:','${')):
+                  if ref.startswith(('/', '#', 'http:', 'https:', 'mailto:', 'tel:', 'data:', 'javascript:', '${')):
                       continue
                   if any(x in ref for x in ('${', '{{', '<%')):
                       continue
