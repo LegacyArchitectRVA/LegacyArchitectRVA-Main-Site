@@ -67,6 +67,8 @@ jobs:
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
               if page.name == 'readiness.html' and '/assets/readiness-telemetry.js' not in text:
                   text=text.replace('</head>', '<script src="/assets/readiness-telemetry.js" defer></script>\n</head>', 1)
+              if '/assets/elara-telemetry.js' not in text:
+                  text=text.replace('</head>', '<script src="/assets/elara-telemetry.js" defer></script>\n</head>', 1)
               page.write_text(text,encoding='utf-8',newline='')
 
           sources=[]
