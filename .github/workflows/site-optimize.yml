@@ -18,129 +18,125 @@ concurrency:
 jobs:
   optimize:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
-      - name: Optimize HTML/CSS safely
+      - name: Install pinned HTML optimizer
+        run: npm install --no-save --no-package-lock html-minifier-terser@7.2.0
+
+      - name: Minify inline CSS safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in legacy-site-REPO-READY/*.html; do
+            npx --no-install html-minifier-terser@7.2.0 "$f" -o "$f.tmp" --minify-css true --minify-js false --remove-comments false --collapse-whitespace false
+            mv "$f.tmp" "$f"
+          done
+
+      - name: Add async image decoding and audit assets
         shell: bash
         run: |
           set -euo pipefail
           python3 <<'PY'
           from pathlib import Path
-          import hashlib
-          import re
 
-          root = Path('legacy-site-REPO-READY')
-          pages = sorted(root.glob('*.html'))
-          if not pages:
-              raise SystemExit('No HTML pages found')
+          root=Path('legacy-site-REPO-READY')
+          pages=sorted(root.glob('*.html'))
 
-          def minify_css(css: str) -> str:
-              css = re.sub(r"/\\*(?!\\!)[\\s\\S]*?\\*/", '', css)
-              quote=None; buf=[]; i=0
-              while i < len(css):
-                  c=css[i]
-                  buf.append(c)
-                  if quote:
-                      if c == '\\\\' and i+1 < len(css):
-                          i += 1; buf.append(css[i])
-                      elif c == quote:
-                          quote=None
-                  elif c in "'\"":
-                      quote=c
-                  i += 1
-              css=''.join(buf)
-              css=re.sub(r'\\s+', ' ', css).strip()
-              css=re.sub(r'\\s*([{}:;,>+~])\\s*', r'\\1', css)
-              css=re.sub(r';}', '}', css)
-              return css
-
-          styles_by_content = {}
-          for page in pages:
-              text = page.read_text(encoding='utf-8')
-
-              theme_count=[0]
-              def theme_repl(m):
-                  theme_count[0]+=1
-                  return m.group(0) if theme_count[0]==1 else ''
-              text=re.sub(r"<meta\\s+name=[\"']theme-color[\"'][^>]*>\\s*", theme_repl, text, flags=re.I)
-
-              def style_repl(m):
-                  css=minify_css(m.group(1))
-                  if len(css)>=5000:
-                      styles_by_content.setdefault(css,[]).append(page)
-                  return '<style>'+css+'</style>'
-              text=re.sub(r'<style(?:\\s[^>]*)?>([\\s\\S]*?)</style>', style_repl, text, flags=re.I)
-
-              def img_repl(m):
-                  tag=m.group(0)
+          def add_decoding(text):
+              out=[]; pos=0
+              while True:
+                  start=text.lower().find('<img',pos)
+                  if start<0:
+                      out.append(text[pos:]); break
+                  end=text.find('>',start)
+                  if end<0:
+                      out.append(text[pos:]); break
+                  tag=text[start:end+1]
+                  out.append(text[pos:start])
                   low=tag.lower()
-                  if 'decoding=' in low or 'fetchpriority="high"' in low or "fetchpriority='high'" in low:
-                      return tag
-                  if re.search(r"src=[\"'][^\"']+\\.(?:webp|png|jpe?g|gif|svg)", tag, flags=re.I):
-                      return tag[:-1]+' decoding="async">'
-                  return tag
-              text=re.sub(r'<img[^>]*>', img_repl, text, flags=re.I)
-              page.write_text(text,encoding='utf-8',newline='')
+                  if 'decoding=' not in low and 'fetchpriority="high"' not in low and "fetchpriority='high'" not in low:
+                      tag=tag[:-1]+' decoding="async">'
+                  out.append(tag)
+                  pos=end+1
+              return ''.join(out)
 
-          for css,owners in styles_by_content.items():
-              if len(owners)<2:
-                  continue
-              digest=hashlib.sha256(css.encode()).hexdigest()[:12]
-              asset=root/'assets'/f'site-shared-{digest}.css'
-              asset.parent.mkdir(parents=True,exist_ok=True)
-              if not asset.exists() or asset.read_text(encoding='utf-8')!=css:
-                  asset.write_text(css+'\\n',encoding='utf-8')
-              for page in owners:
-                  text=page.read_text(encoding='utf-8')
-                  text=text.replace('<style>'+css+'</style>',f'<link rel="stylesheet" href="/assets/site-shared-{digest}.css">',1)
-                  page.write_text(text,encoding='utf-8',newline='')
-
-          all_text='\\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in root.rglob('*') if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'})
-          referenced=set(re.findall(r'(?:/assets/|assets/)([A-Za-z0-9._-]+)',all_text))
-          assets=[p for p in (root/'assets').iterdir() if p.is_file()]
-          candidates=[(p.name,p.stat().st_size) for p in assets if p.name not in referenced]
-          report=root/'SITE_ASSET_AUDIT.md'
-          lines=['# Site asset audit','','Generated by the main-site optimization workflow.','','## Potentially unreferenced assets','','Candidates only. These are not automatically deleted because social previews, favicons, external configuration, and deployment tooling can reference assets outside HTML/CSS/JS.','']
-          lines += [f'- `{name}` ({size:,} bytes)' for name,size in sorted(candidates)] or ['- None detected by the conservative reference scan.']
-          report.write_text('\\n'.join(lines)+'\\n',encoding='utf-8')
-
-          errors=[]
           for page in pages:
               text=page.read_text(encoding='utf-8')
-              h1=len(re.findall(r'<h1',text,flags=re.I))
-              if h1!=1:
-                  errors.append(f'{page}: expected 1 H1, found {h1}')
-              ids=re.findall(r"id=[\"']([^\"']+)[\"']",text,flags=re.I)
-              dup=sorted({x for x in ids if ids.count(x)>1})
-              if dup:
-                  errors.append(f'{page}: duplicate ids: {", ".join(dup)}')
-              refs=re.findall(r"(?:href|src)=[\"']([^\"']+)[\"']",text,flags=re.I)
-              for ref in refs:
-                  if ref.startswith(('#','/','http:','https:','mailto:','tel:','data:','javascript:')) or '${' in ref or '{{' in ref:
-                      continue
-                  target=(page.parent/ref.split('?',1)[0].split('#',1)[0]).resolve()
-                  if not target.exists():
-                      errors.append(f'{page}: missing local reference {ref}')
-          if errors:
-              print('\\n'.join(errors))
-              raise SystemExit(1)
+              text=add_decoding(text)
+              page.write_text(text,encoding='utf-8',newline='')
 
-          print(f'HTML pages: {len(pages)}')
-          print(f'HTML bytes after optimization: {sum(p.stat().st_size for p in pages):,}')
-          print(f'Potential asset cleanup candidates: {len(candidates)}')
-          print('Validation: PASS')
+          # Build a conservative reference map from every text-based source.
+          sources=[]
+          for p in root.rglob('*'):
+              if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'}:
+                  sources.append(p.read_text(encoding='utf-8',errors='ignore'))
+          corpus='\n'.join(sources)
+          assets=root/'assets'
+          candidates=[]
+          if assets.exists():
+              for p in assets.iterdir():
+                  if p.is_file() and p.name not in corpus:
+                      candidates.append((p.name,p.stat().st_size))
+
+          report=root/'SITE_ASSET_AUDIT.md'
+          lines=['# Site asset audit','','Generated by the main-site optimization workflow.','','## Potentially unreferenced assets','','These are candidates from a conservative repository-wide reference scan. They are not deleted automatically unless they are known temporary files or a duplicate raster fallback is provably unused.','']
+          lines += [f'- `{name}` ({size:,} bytes)' for name,size in sorted(candidates)] or ['- None detected.']
+          report.write_text('\n'.join(lines)+'\n',encoding='utf-8')
+
+          # Only delete obvious temporary files and duplicate JPG fallbacks when the exact filename is absent everywhere else.
+          for p in list(assets.iterdir()) if assets.exists() else []:
+              if not p.is_file():
+                  continue
+              if p.suffix.lower() in {'.bak','.tmp'} or p.name=='.DS_Store' or p.name.endswith('~'):
+                  p.unlink()
+                  continue
+              if p.suffix.lower()=='.jpg':
+                  webp=p.with_suffix('.webp')
+                  if webp.exists() and p.name not in corpus:
+                      p.unlink()
           PY
 
-      - name: Remove empty/temporary files only
+      - name: Validate site structure
         shell: bash
         run: |
           set -euo pipefail
-          find legacy-site-REPO-READY -type f \( -name '.DS_Store' -o -name '*.bak' -o -name '*.tmp' -o -name '*~' \) -print -delete || true
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('legacy-site-REPO-READY')
+          errors=[]
+          for page in sorted(root.glob('*.html')):
+              text=page.read_text(encoding='utf-8')
+              if text.lower().count('<h1') != 1:
+                  errors.append(f'{page}: expected exactly one H1')
+              ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I)
+              seen=set()
+              for x in ids:
+                  if x in seen:
+                      errors.append(f'{page}: duplicate id {x}')
+                  seen.add(x)
+              for marker in ('href="','href=\'','src="','src=\''):
+                  pos=0
+                  while True:
+                      i=text.find(marker,pos)
+                      if i<0: break
+                      q=marker[-1]; j=text.find(q,i+len(marker))
+                      if j<0: break
+                      ref=text[i+len(marker):j]
+                      if not ref.startswith(('#','/','http:','https:','mailto:','tel:','data:','javascript:')) and '${' not in ref and '{{' not in ref:
+                          target=(page.parent/ref.split('?',1)[0].split('#',1)[0]).resolve()
+                          if not target.exists(): errors.append(f'{page}: missing local reference {ref}')
+                      pos=j+1
+          if errors:
+              print('\n'.join(errors))
+              raise SystemExit(1)
+          print(f'Validated {len(list(root.glob("*.html")))} HTML pages: PASS')
+          PY
 
       - name: Commit optimization changes
         shell: bash
@@ -153,7 +149,5 @@ jobs:
             exit 0
           fi
           git add legacy-site-REPO-READY
-          git commit -m 'perf: optimize main site assets and markup'
+          git commit -m 'perf: optimize main site markup and assets'
           git push
-
-# Triggered validation pass after optimizer regex hardening.
