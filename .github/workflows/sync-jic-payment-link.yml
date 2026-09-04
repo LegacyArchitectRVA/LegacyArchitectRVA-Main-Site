@@ -20,43 +20,42 @@ jobs:
           JIC_CHECKOUT_URL: https://buy.stripe.com/aFafZhavZcCIe7qbI96Zy01
         run: |
           python - <<'PY'
-          import os, re
+          import os
+          import re
           from pathlib import Path
 
-          url = os.environ['JIC_CHECKOUT_URL']
-          root = Path('legacy-site-REPO-READY')
+          url = os.environ["JIC_CHECKOUT_URL"]
+          root = Path("legacy-site-REPO-READY")
           changed = []
+          pattern = re.compile(r"https://buy\\.stripe\\.com/[^\"'<>\\s]+")
 
-          # Replace an existing JIC Stripe checkout link wherever the surrounding copy identifies it as JIC.
-          pattern = re.compile(r'https://buy\\.stripe\\.com/[^"\\'<>\\s]+')
-          for path in root.rglob('*.html'):
-              text = path.read_text(encoding='utf-8')
+          for path in root.rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
               original = text
 
-              def repl(m):
-                  start = max(0, m.start() - 1500)
-                  end = min(len(text), m.end() + 1500)
+              def repl(match):
+                  start = max(0, match.start() - 1500)
+                  end = min(len(text), match.end() + 1500)
                   context = text[start:end].lower()
-                  if any(term in context for term in ('just-in-case', 'just in case', 'jic plan', 'jicplan', '$29')):
+                  if any(term in context for term in ("just-in-case", "just in case", "jic plan", "jicplan", "$29")):
                       return url
-                  return m.group(0)
+                  return match.group(0)
 
               text = pattern.sub(repl, text)
 
-              # Ensure the two highest-value entry points expose the current JIC checkout directly.
-              if path.name in {'index.html', 'services.html'} and url not in text:
-                  marker = '</main>'
+              if path.name in {"index.html", "services.html"} and url not in text:
+                  marker = "</main>"
                   block = f'''\n<section aria-label="Purchase the Just-In-Case Plan" style="padding:56px 0;text-align:center;border-top:1px solid rgba(212,182,97,.16);">\n  <div class="wrap">\n    <p style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#d4b661;margin-bottom:14px;">Just-In-Case Plan</p>\n    <h2 style="margin-bottom:12px;">Make sure someone can step in.</h2>\n    <p style="max-width:560px;margin:0 auto 24px;">The 26-page fillable workbook covering the seven pillars of continuity. Delivered digitally after purchase.</p>\n    <a class="btn btn-gold" href="{url}" rel="noopener">Get the Plan for $29</a>\n  </div>\n</section>\n'''
                   if marker in text:
                       text = text.replace(marker, block + marker, 1)
                   else:
-                      text = text.replace('</body>', block + '</body>', 1)
+                      text = text.replace("</body>", block + "</body>", 1)
 
               if text != original:
-                  path.write_text(text, encoding='utf-8')
+                  path.write_text(text, encoding="utf-8")
                   changed.append(str(path))
 
-          print('Changed:', changed)
+          print("Changed:", changed)
           PY
 
       - name: Commit changes
