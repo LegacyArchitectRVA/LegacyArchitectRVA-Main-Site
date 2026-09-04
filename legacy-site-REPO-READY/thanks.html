@@ -465,7 +465,6 @@ var WORKER = 'https://elara-ai.craig-a51.workers.dev';
 var convo = [];
 
 function askAI(q){
-  think(function(){});           /* show the thinking state immediately */
   orb.classList.add('think');
   var t=document.createElement('div');
   t.className='typing'; t.innerHTML='<i></i><i></i><i></i>';
@@ -477,7 +476,10 @@ function askAI(q){
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({question:q, history:convo.slice(-6)})
   })
-  .then(function(r){ return r.json(); })
+  .then(function(r){
+    if(!r.ok) throw new Error('worker-http-'+r.status);
+    return r.json();
+  })
   .then(function(d){
     t.remove(); orb.classList.remove('think');
     var a = (d && d.answer) ? d.answer : null;
