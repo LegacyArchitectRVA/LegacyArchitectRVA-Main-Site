@@ -36,3 +36,5 @@ Optional stricter CSP:
 python3 gen_csp.py
 ```
 Only if you will run it after every future inline edit.
+
+<!-- CI hardening audit trigger -->
