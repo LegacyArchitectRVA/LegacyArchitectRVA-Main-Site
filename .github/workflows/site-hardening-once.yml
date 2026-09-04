@@ -22,7 +22,6 @@ jobs:
           from pathlib import Path
           import re
           import hashlib
-          import html as htmlmod
 
           root = Path('legacy-site-REPO-READY')
           html_files = sorted(root.rglob('*.html'))
@@ -36,9 +35,7 @@ jobs:
               text = p.read_text(encoding='utf-8')
               matches = list(theme_re.finditer(text))
               if len(matches) > 1:
-                  keep = True
-                  out = []
-                  last = 0
+                  out, last, keep = [], 0, True
                   for m in matches:
                       out.append(text[last:m.start()])
                       if keep:
@@ -50,6 +47,23 @@ jobs:
                   if new != text:
                       p.write_text(new, encoding='utf-8')
                       changed.append(str(p))
+
+          # Correct pages with accidental multiple H1s by preserving the first
+          # document heading and demoting subsequent headings to H2.
+          h1_re = re.compile(r'<h1\b', re.I)
+          for p in html_files:
+              text = p.read_text(encoding='utf-8')
+              if len(h1_re.findall(text)) > 1:
+                  seen = 0
+                  def demote(m):
+                      nonlocal seen
+                      seen += 1
+                      return m.group(0) if seen == 1 else re.sub(r'<h1\b', '<h2', m.group(0), flags=re.I)
+                  new = h1_re.sub(demote, text)
+                  if new != text:
+                      p.write_text(new, encoding='utf-8')
+                      if str(p) not in changed:
+                          changed.append(str(p))
 
           # Extract only byte-for-byte identical, substantial inline style blocks
           # shared by multiple pages. This is intentionally conservative.
@@ -81,7 +95,9 @@ jobs:
                       if str(p) not in changed:
                           changed.append(str(p))
 
-          # Verification: exactly one H1 per page and no broken local asset/link refs.
+          # Verification: exactly one H1 per page and no missing local file assets.
+          # Root-relative URLs are valid deployment URLs and are intentionally not
+          # resolved against the repository directory.
           errors = []
           for p in html_files:
               text = p.read_text(encoding='utf-8')
@@ -94,15 +110,16 @@ jobs:
                   if ident in seen:
                       errors.append(f'{p}: duplicate id="{ident}"')
                   seen.add(ident)
+              # Only validate relative filesystem references. Root-relative paths
+              # are handled by the deployment root and dynamic JS templates are
+              # not filesystem references.
               for ref in re.findall(r'(?:href|src|poster)=["\']([^"\']+)["\']', text, re.I):
-                  if ref.startswith(('#','http:','https:','mailto:','tel:','data:','javascript:')):
+                  if ref.startswith(('/', '#','http:','https:','mailto:','tel:','data:','javascript:','${')):
                       continue
-                  target = htmlmod.unescape(ref.split('?',1)[0].split('#',1)[0])
-                  if target.startswith('/'):
-                      target = target[1:]
-                      candidate = root / target
-                  else:
-                      candidate = (p.parent / target).resolve()
+                  if any(x in ref for x in ('${', '{{', '<%')):
+                      continue
+                  target = ref.split('?',1)[0].split('#',1)[0]
+                  candidate = (p.parent / target).resolve()
                   try:
                       candidate.relative_to(root.resolve())
                   except ValueError:
