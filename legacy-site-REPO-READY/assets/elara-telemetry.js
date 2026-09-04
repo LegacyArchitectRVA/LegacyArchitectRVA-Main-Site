@@ -44,16 +44,18 @@
   }
 
   let conversationReady = false;
+  let conversationPromise = null;
   async function ensureConversation() {
     if (conversationReady) return true;
-    const ok = await post('elara_conversations', {
-      id: conversationId,
-      visitor_id: visitorId,
-      page_path: location.pathname,
-      metadata: { title: clean(document.title).slice(0, 200) }
-    });
-    conversationReady = ok;
-    return ok;
+    if (!conversationPromise) {
+      conversationPromise = post('elara_conversations', {
+        id: conversationId,
+        visitor_id: visitorId,
+        page_path: location.pathname,
+        metadata: { title: clean(document.title).slice(0, 200) }
+      }).then(ok => { conversationReady = ok; return ok; });
+    }
+    return conversationPromise;
   }
 
   async function logMessage(role, content, metadata = {}) {
@@ -114,20 +116,16 @@
     const started = performance.now();
     const response = await originalFetch(input, init);
 
-    if (userMessage) {
-      logMessage('user', userMessage, { path: location.pathname }).catch(() => {});
-    }
+    if (userMessage) logMessage('user', userMessage, { path: location.pathname }).catch(() => {});
 
     try {
       const clone = response.clone();
       const data = await clone.json();
       const assistantMessage = extractAssistant(data);
-      if (assistantMessage) {
-        logMessage('assistant', assistantMessage, {
-          http_status: response.status,
-          latency_ms: Math.round(performance.now() - started)
-        }).catch(() => {});
-      }
+      if (assistantMessage) logMessage('assistant', assistantMessage, {
+        http_status: response.status,
+        latency_ms: Math.round(performance.now() - started)
+      }).catch(() => {});
     } catch (_) {
       if (!response.ok) logMessage('assistant', `Elara request failed (${response.status})`, { error: true }).catch(() => {});
     }
