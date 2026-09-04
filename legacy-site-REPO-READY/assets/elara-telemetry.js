@@ -10,6 +10,7 @@
   const API = `${SUPABASE_URL}/rest/v1`;
   const VISITOR_KEY = 'la_readiness_visitor_v1';
   const CONVERSATION_KEY = 'la_elara_conversation_v1';
+  const SEQUENCE_KEY = 'la_elara_sequence_v1';
   const MAX_CONTENT = 12000;
 
   const uuid = () => {
@@ -27,7 +28,6 @@
   set(localStorage, VISITOR_KEY, visitorId);
   let conversationId = get(sessionStorage, CONVERSATION_KEY);
   if (!conversationId) { conversationId = uuid(); set(sessionStorage, CONVERSATION_KEY, conversationId); }
-  let sequence = 0;
 
   const headers = () => ({ apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' });
   const clean = value => String(value ?? '').trim().slice(0, MAX_CONTENT);
@@ -58,17 +58,23 @@
     return conversationPromise;
   }
 
+  function nextSequence() {
+    const next = Math.max(0, Number(get(sessionStorage, SEQUENCE_KEY) || '0')) + 1;
+    set(sessionStorage, SEQUENCE_KEY, String(next));
+    return next;
+  }
+
   async function logMessage(role, content, metadata = {}) {
     content = clean(content);
     if (!content) return;
+    const sequenceNo = nextSequence();
     if (!(await ensureConversation())) return;
-    sequence += 1;
     await post('elara_messages', {
       conversation_id: conversationId,
       visitor_id: visitorId,
       role,
       content,
-      sequence_no: sequence,
+      sequence_no: sequenceNo,
       metadata
     });
   }
