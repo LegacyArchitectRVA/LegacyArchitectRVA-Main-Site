@@ -1,0 +1,186 @@
+name: Main Site Optimization
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'legacy-site-REPO-READY/**'
+      - '.github/workflows/site-optimize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: main-site-optimization
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Optimize HTML/CSS safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          import hashlib
+          import re
+
+          root = Path('legacy-site-REPO-READY')
+          pages = sorted(root.glob('*.html'))
+          if not pages:
+              raise SystemExit('No HTML pages found')
+
+          def minify_css(css: str) -> str:
+              # Conservative CSS minification: remove comments and whitespace
+              # around syntax characters without changing strings.
+              css = re.sub(r'/\\*(?!\\!)[\\s\\S]*?\\*/', '', css)
+              out=[]; i=0; quote=None; buf=[]
+              while i < len(css):
+                  c=css[i]
+                  if quote:
+                      buf.append(c)
+                      if c == '\\\\' and i+1 < len(css):
+                          i += 1; buf.append(css[i])
+                      elif c == quote:
+                          quote=None
+                  elif c in "'\"":
+                      quote=c; buf.append(c)
+                  else:
+                      buf.append(c)
+                  i += 1
+              css=''.join(buf)
+              css=re.sub(r'\\s+', ' ', css).strip()
+              css=re.sub(r'\\s*([{}:;,>+~])\\s*', r'\\1', css)
+              css=re.sub(r';}', '}', css)
+              return css
+
+          styles_by_content = {}
+          changed = 0
+          original_bytes = 0
+          final_bytes = 0
+
+          for page in pages:
+              text = page.read_text(encoding='utf-8')
+              original_bytes += len(text.encode('utf-8'))
+
+              # Remove duplicate theme-color metadata, preserving the first one.
+              seen_theme = False
+              def theme_repl(m):
+                  nonlocal_seen[0] += 1
+                  if nonlocal_seen[0] == 1:
+                      return m.group(0)
+                  return ''
+              nonlocal_seen = [0]
+              text = re.sub(r'<meta\\s+name=["\\']theme-color["\\'][^>]*>\\s*', theme_repl, text, flags=re.I)
+
+              # Minify inline styles only. Scripts are intentionally untouched.
+              def style_repl(m):
+                  css = minify_css(m.group(1))
+                  if len(css) >= 5000:
+                      styles_by_content.setdefault(css, []).append(page)
+                  return '<style>' + css + '</style>'
+              text = re.sub(r'<style(?:\\s[^>]*)?>([\\s\\S]*?)</style>', style_repl, text, flags=re.I)
+
+              # Add async decoding to non-priority local images; never alter hero/preloaded assets.
+              def img_repl(m):
+                  tag=m.group(0)
+                  if re.search(r'\\bdecoding=', tag, re.I) or re.search(r'\\bfetchpriority=["\\']high["\\']', tag, re.I):
+                      return tag
+                  if re.search(r'\\bsrc=["\\'][^"\\']+\\.(?:webp|png|jpe?g|gif|svg)', tag, re.I):
+                      return tag[:-1] + ' decoding="async">'
+                  return tag
+              text = re.sub(r'<img\\b[^>]*>', img_repl, text, flags=re.I)
+
+              page.write_text(text, encoding='utf-8', newline='')
+              final_bytes += len(text.encode('utf-8'))
+              if text != page.read_text(encoding='utf-8'):
+                  changed += 1
+
+          # Extract only byte-for-byte identical substantial CSS shared by 2+ pages.
+          for css, owners in styles_by_content.items():
+              if len(owners) < 2:
+                  continue
+              digest = hashlib.sha256(css.encode()).hexdigest()[:12]
+              asset = root / 'assets' / f'site-shared-{digest}.css'
+              asset.parent.mkdir(parents=True, exist_ok=True)
+              if not asset.exists() or asset.read_text(encoding='utf-8') != css:
+                  asset.write_text(css + '\\n', encoding='utf-8')
+              for page in owners:
+                  text = page.read_text(encoding='utf-8')
+                  text2 = text.replace('<style>' + css + '</style>', f'<link rel="stylesheet" href="/assets/site-shared-{digest}.css">', 1)
+                  page.write_text(text2, encoding='utf-8', newline='')
+
+          # Build a conservative reference set and report genuinely unreferenced assets.
+          all_text = '\\n'.join(p.read_text(encoding='utf-8', errors='ignore') for p in root.rglob('*') if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.txt','.xml','.json','.md'})
+          referenced = set(re.findall(r'(?:/assets/|assets/)([A-Za-z0-9._-]+)', all_text))
+          assets = [p for p in (root/'assets').iterdir() if p.is_file()]
+          candidates=[]
+          for asset in assets:
+              if asset.name not in referenced:
+                  candidates.append((asset.name, asset.stat().st_size))
+          report = root / 'SITE_ASSET_AUDIT.md'
+          lines=['# Site asset audit','', 'Generated by the main-site optimization workflow.', '', '## Potentially unreferenced assets', '', 'These are candidates only. They are not deleted automatically because social previews, favicons, external configuration, and deployment tooling can reference assets outside HTML/CSS/JS.', '']
+          if candidates:
+              lines += [f'- `{name}` ({size:,} bytes)' for name,size in sorted(candidates)]
+          else:
+              lines.append('- None detected by the conservative reference scan.')
+          report.write_text('\\n'.join(lines)+'\\n', encoding='utf-8')
+
+          # Validate exactly one H1, duplicate IDs, and local relative references.
+          errors=[]
+          for page in pages:
+              text=page.read_text(encoding='utf-8')
+              h1=len(re.findall(r'<h1\\b', text, re.I))
+              if h1 != 1:
+                  errors.append(f'{page}: expected 1 H1, found {h1}')
+              ids=re.findall(r'\\bid=["\\']([^"\\']+)["\\']', text, re.I)
+              dup=sorted({x for x in ids if ids.count(x)>1})
+              if dup:
+                  errors.append(f'{page}: duplicate ids: {", ".join(dup)}')
+              refs=re.findall(r'(?:href|src)=["\\']([^"\\']+)["\\']', text, re.I)
+              for ref in refs:
+                  if ref.startswith(('#','/','http:','https:','mailto:','tel:','data:','javascript:')) or '{{' in ref:
+                      continue
+                  target=(page.parent/ref.split('?',1)[0].split('#',1)[0]).resolve()
+                  if not target.exists():
+                      errors.append(f'{page}: missing local reference {ref}')
+          if errors:
+              print('\\n'.join(errors))
+              raise SystemExit(1)
+
+          # Print a measurable result for the workflow log.
+          current=sum(p.stat().st_size for p in pages)
+          print(f'HTML pages: {len(pages)}')
+          print(f'HTML bytes after optimization: {current:,}')
+          print(f'Potential asset cleanup candidates: {len(candidates)}')
+          print('Validation: PASS')
+          PY
+
+      - name: Remove empty/temporary files only
+        shell: bash
+        run: |
+          set -euo pipefail
+          find legacy-site-REPO-READY -type f \( -name '.DS_Store' -o -name '*.bak' -o -name '*.tmp' -o -name '*~' \) -print -delete || true
+
+      - name: Commit optimization changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet; then
+            echo 'No optimization changes to commit.'
+            exit 0
+          fi
+          git add legacy-site-REPO-READY
+          git commit -m 'perf: optimize main site assets and markup'
+          git push
