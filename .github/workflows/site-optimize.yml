@@ -97,6 +97,14 @@ jobs:
                   p.unlink()
           PY
 
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in legacy-site-REPO-READY/assets/*.js; do
+            node --check "$f"
+          done
+
       - name: Regenerate CSP from current HTML
         working-directory: legacy-site-REPO-READY
         run: python3 gen_csp.py
