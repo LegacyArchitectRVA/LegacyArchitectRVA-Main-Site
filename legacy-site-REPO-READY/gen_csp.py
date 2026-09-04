@@ -44,6 +44,7 @@ IMG_SRC = [
 ]
 CONNECT_SRC = [
     "'self'",
+    "https://xeqmivqvtumsifwkxpcm.supabase.co",
     "https://elara-ai.craig-a51.workers.dev",
     "https://usable-hornet-255.convex.cloud",
     "wss://usable-hornet-255.convex.cloud",
