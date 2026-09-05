@@ -43,6 +43,7 @@ jobs:
           set -euo pipefail
           python3 <<'PY'
           from pathlib import Path
+          import hashlib
           import re
           root=Path('legacy-site-REPO-READY'); pages=sorted(root.glob('*.html'))
 
@@ -66,17 +67,26 @@ jobs:
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
               # Cloudflare Rocket Loader requires data-cfasync to appear BEFORE src.
-              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)"\s+data-cfasync="false"\s+defer>', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
-              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)"\s+data-cfasync="false"\s+defer="defer">', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
+              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)(?:\?[^\"]*)?"\s+data-cfasync="false"\s+defer(?:="defer")?>', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
               text=text.replace('<script src="/assets/readiness-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer>')
               text=text.replace('<script src="/assets/elara-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer>')
-              text=text.replace('<script src="/assets/readiness-telemetry.js" defer="defer">', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer>')
-              text=text.replace('<script src="/assets/elara-telemetry.js" defer="defer">', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer>')
               if page.name == 'readiness.html' and '/assets/readiness-telemetry.js' not in text:
                   text=text.replace('</head>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer></script>\n</head>', 1)
               if '/assets/elara-telemetry.js' not in text:
                   text=text.replace('</head>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer></script>\n</head>', 1)
               page.write_text(text,encoding='utf-8',newline='')
+
+          # Telemetry JS is intentionally versioned in its URL. The site serves /assets/*
+          # as immutable for performance, so an unversioned telemetry URL could leave
+          # visitors executing an older cached collector after a deployment.
+          for asset_name in ('readiness-telemetry.js','elara-telemetry.js'):
+              asset=root/'assets'/asset_name
+              digest=hashlib.sha256(asset.read_bytes()).hexdigest()[:12]
+              pattern=re.compile(r'(/assets/'+re.escape(asset_name)+r')(?:\?[^\"\']*)?')
+              for page in pages:
+                  text=page.read_text(encoding='utf-8')
+                  text=pattern.sub(r'\1?v='+digest, text)
+                  page.write_text(text,encoding='utf-8',newline='')
 
           sources=[]
           for p in root.rglob('*'):
@@ -126,14 +136,19 @@ jobs:
           root=Path('legacy-site-REPO-READY'); errors=[]
           headers=(root/'_headers').read_text(encoding='utf-8')
           inline_empty_script=re.compile(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', re.I|re.S)
+          telemetry_tags={
+              'readiness.html': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/readiness-telemetry\.js\?v=[0-9a-f]{12}"\s+defer>', re.I),
+              'elara': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/elara-telemetry\.js\?v=[0-9a-f]{12}"\s+defer>', re.I),
+          }
           if "script-src 'self' 'unsafe-inline'" in headers: errors.append('_headers: script-src still permits unsafe-inline')
           if "script-src-attr 'unsafe-inline'" in headers: errors.append('_headers: script-src-attr still permits unsafe-inline')
           if 'script-src-attr' not in headers: errors.append('_headers: missing script-src-attr policy')
           readiness=root/'readiness.html'
-          if readiness.exists() and '/assets/readiness-telemetry.js' not in readiness.read_text(encoding='utf-8'):
-              errors.append('readiness.html: telemetry script is not installed')
+          if readiness.exists() and not telemetry_tags['readiness.html'].search(readiness.read_text(encoding='utf-8')):
+              errors.append('readiness.html: readiness telemetry tag missing, unversioned, or Rocket Loader attribute order is wrong')
           for page in sorted(root.glob('*.html')):
               text=page.read_text(encoding='utf-8'); low=text.lower()
+              if not telemetry_tags['elara'].search(text): errors.append(f'{page}: Elara telemetry tag missing, unversioned, or Rocket Loader attribute order is wrong')
               if low.count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
               if inline_empty_script.search(text): errors.append(f'{page}: empty inline script block')
               ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I); seen=set()
@@ -166,7 +181,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet; then echo 'No optimization changes to commit.'; exit 0; fi
           git add legacy-site-REPO-READY
-          git commit -m 'security: fix Rocket Loader telemetry ordering'
+          git commit -m 'security: version telemetry assets to defeat stale CDN cache'
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
