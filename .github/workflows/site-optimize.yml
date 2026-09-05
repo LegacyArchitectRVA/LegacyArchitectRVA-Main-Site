@@ -71,19 +71,18 @@ jobs:
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
 
-              # Normalize any existing telemetry script tag regardless of attribute order,
-              # extra attributes, or an existing cache-busting query string. Rocket Loader
-              # requires data-cfasync="false" to precede src.
+              # Canonicalize telemetry tags regardless of attribute order or extra attributes.
+              # data-cfasync must precede src for Cloudflare Rocket Loader.
               for asset_name, canonical in telemetry_canonical.items():
                   tag_pattern = re.compile(
-                      r'<script\\b[^>]*\\bsrc=["\\\']/assets/' + re.escape(asset_name) +
-                      r'(?:\\?[^"\\\']*)?["\\\'][^>]*>\\s*</script>', re.I|re.S
+                      r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) +
+                      r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S
                   )
                   text, replaced = tag_pattern.subn(canonical, text)
                   if replaced == 0 and page.name == 'readiness.html' and asset_name == 'readiness-telemetry.js':
-                      text=text.replace('</head>', canonical+'\\n</head>', 1)
+                      text=text.replace('</head>', canonical+'\n</head>', 1)
                   if replaced == 0 and asset_name == 'elara-telemetry.js' and '/assets/elara-telemetry.js' not in text:
-                      text=text.replace('</head>', canonical+'\\n</head>', 1)
+                      text=text.replace('</head>', canonical+'\n</head>', 1)
 
               page.write_text(text,encoding='utf-8',newline='')
 
@@ -93,7 +92,7 @@ jobs:
           for asset_name in ('readiness-telemetry.js','elara-telemetry.js'):
               asset=root/'assets'/asset_name
               digest=hashlib.sha256(asset.read_bytes()).hexdigest()[:12]
-              pattern=re.compile(r'(/assets/'+re.escape(asset_name)+r')(?:\?[^\"\']*)?')
+              pattern=re.compile(r'(/assets/'+re.escape(asset_name)+r')(?:\?[^"\']*)?')
               for page in pages:
                   text=page.read_text(encoding='utf-8')
                   text=pattern.sub(r'\1?v='+digest, text)
