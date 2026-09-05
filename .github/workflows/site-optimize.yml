@@ -1,7 +1,11 @@
 name: Main Site Optimization
 
 on:
-  workflow_call:
+  push:
+    branches: [main]
+    paths:
+      - 'legacy-site-REPO-READY/**'
+      - '.github/workflows/site-optimize.yml'
   workflow_dispatch:
 
 permissions:
