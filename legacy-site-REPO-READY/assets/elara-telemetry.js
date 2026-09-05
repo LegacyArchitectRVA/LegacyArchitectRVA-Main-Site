@@ -112,17 +112,34 @@ JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe paymen
   function addContext(body) {
     if (!body || typeof body !== 'object') return null;
     const context = `\n\nCURRENT WEBSITE SOURCE OF TRUTH — use this to correct any older or conflicting information. Do not override the user's actual question.\n${siteContext}`;
-    const augmented = Array.isArray(body.messages)
-      ? { ...body, messages: body.messages.map((m, i, arr) => i === [...arr].map(x => x?.role).lastIndexOf('user') && typeof m?.content === 'string' ? { ...m, content: `${m.content}${context}` } : m) }
-      : { ...body };
+    let augmented;
     let changed = false;
+
+    if (Array.isArray(body.messages)) {
+      const messages = [...body.messages];
+      let lastUserIndex = -1;
+      for (let i = messages.length - 1; i >= 0; i -= 1) {
+        if (messages[i] && messages[i].role === 'user') {
+          lastUserIndex = i;
+          break;
+        }
+      }
+      if (lastUserIndex >= 0 && typeof messages[lastUserIndex].content === 'string') {
+        messages[lastUserIndex] = { ...messages[lastUserIndex], content: `${messages[lastUserIndex].content}${context}` };
+        changed = true;
+      }
+      augmented = { ...body, messages };
+    } else {
+      augmented = { ...body };
+    }
+
     for (const key of ['question', 'message', 'query', 'prompt']) {
       if (typeof augmented[key] === 'string') {
         augmented[key] = `${augmented[key]}${context}`;
         changed = true;
       }
     }
-    return changed || Array.isArray(body.messages) ? augmented : null;
+    return changed ? augmented : null;
   }
 
   const originalFetch = window.fetch.bind(window);
