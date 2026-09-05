@@ -1,6 +1,7 @@
 /* Legacy Architect RVA Readiness Check telemetry.
- * Anonymous by design: no IPs, no raw email, no free-text answers.
- * Public clients have INSERT-only access through Supabase RLS.
+ * Captures anonymous readiness behavior only: no IPs, raw email, or free-text answers.
+ * Public clients use the Supabase publishable key with INSERT-only RLS policies.
+ * Keep this file compatible with Cloudflare Rocket Loader and conservative browser fetch behavior.
  */
 (() => {
   'use strict';
@@ -56,11 +57,23 @@
   const headers = () => ({ apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' });
 
   async function post(path, body, keepalive = false) {
+    const payload = JSON.stringify(body);
     try {
-      const response = await fetch(`${API}/${path}`, { method: 'POST', headers: headers(), body: JSON.stringify(body), keepalive });
+      const response = await fetch(`${API}/${path}`, { method: 'POST', headers: headers(), body: payload, keepalive });
       if (!response.ok) throw new Error(`telemetry-http-${response.status}`);
       return true;
     } catch (error) {
+      // Retry once without keepalive. Some browser/network combinations reject keepalive
+      // even when the same ordinary fetch is permitted.
+      if (keepalive) {
+        try {
+          const retry = await fetch(`${API}/${path}`, { method: 'POST', headers: headers(), body: payload });
+          if (retry.ok) return true;
+          throw new Error(`telemetry-http-${retry.status}`);
+        } catch (retryError) {
+          error = retryError;
+        }
+      }
       if (path === 'readiness_events') console.warn('[readiness telemetry]', error.message);
       return false;
     }
@@ -108,7 +121,8 @@
 
   async function start() {
     if (createdSession) {
-      await post('readiness_sessions', sessionPayload());
+      const created = await post('readiness_sessions', sessionPayload());
+      if (!created) console.warn('[readiness telemetry] session creation failed');
       event('session_start', { metadata: { new_session: true } });
     } else {
       event('return_visit', { metadata: { session_reused: true } });
@@ -207,5 +221,6 @@
   window.addEventListener('error', e => event('error', { metadata: { message: normalize(e.message || 'client-error'), source: normalize(e.filename || '') } }));
   window.addEventListener('unhandledrejection', () => event('error', { metadata: { message: 'unhandled-promise-rejection' } }));
 
+  window.__LA_READINESS_TELEMETRY__ = { loaded: true, sessionId, visitorId };
   start();
 })();
