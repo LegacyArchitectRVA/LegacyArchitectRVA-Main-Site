@@ -60,20 +60,31 @@ jobs:
                   out.append(tag); pos=end+1
               return ''.join(out)
 
+          telemetry_canonical = {
+              'readiness-telemetry.js': '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer></script>',
+              'elara-telemetry.js': '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer></script>',
+          }
           for page in pages:
               text=page.read_text(encoding='utf-8')
               text=add_decoding(text)
               text=re.sub(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', '', text, flags=re.I|re.S)
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
-              # Cloudflare Rocket Loader requires data-cfasync to appear BEFORE src.
-              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)(?:\?[^\"]*)?"\s+data-cfasync="false"\s+defer(?:="defer")?>', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
-              text=text.replace('<script src="/assets/readiness-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer>')
-              text=text.replace('<script src="/assets/elara-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer>')
-              if page.name == 'readiness.html' and '/assets/readiness-telemetry.js' not in text:
-                  text=text.replace('</head>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer></script>\n</head>', 1)
-              if '/assets/elara-telemetry.js' not in text:
-                  text=text.replace('</head>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer></script>\n</head>', 1)
+
+              # Normalize any existing telemetry script tag regardless of attribute order,
+              # extra attributes, or an existing cache-busting query string. Rocket Loader
+              # requires data-cfasync="false" to precede src.
+              for asset_name, canonical in telemetry_canonical.items():
+                  tag_pattern = re.compile(
+                      r'<script\\b[^>]*\\bsrc=["\\\']/assets/' + re.escape(asset_name) +
+                      r'(?:\\?[^"\\\']*)?["\\\'][^>]*>\\s*</script>', re.I|re.S
+                  )
+                  text, replaced = tag_pattern.subn(canonical, text)
+                  if replaced == 0 and page.name == 'readiness.html' and asset_name == 'readiness-telemetry.js':
+                      text=text.replace('</head>', canonical+'\\n</head>', 1)
+                  if replaced == 0 and asset_name == 'elara-telemetry.js' and '/assets/elara-telemetry.js' not in text:
+                      text=text.replace('</head>', canonical+'\\n</head>', 1)
+
               page.write_text(text,encoding='utf-8',newline='')
 
           # Telemetry JS is intentionally versioned in its URL. The site serves /assets/*
@@ -137,8 +148,8 @@ jobs:
           headers=(root/'_headers').read_text(encoding='utf-8')
           inline_empty_script=re.compile(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', re.I|re.S)
           telemetry_tags={
-              'readiness.html': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/readiness-telemetry\.js\?v=[0-9a-f]{12}"\s+defer>', re.I),
-              'elara': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/elara-telemetry\.js\?v=[0-9a-f]{12}"\s+defer>', re.I),
+              'readiness.html': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/readiness-telemetry\.js\?v=[0-9a-f]{12}"\s+defer(?:="defer")?>', re.I),
+              'elara': re.compile(r'<script\s+data-cfasync="false"\s+src="/assets/elara-telemetry\.js\?v=[0-9a-f]{12}"\s+defer(?:="defer")?>', re.I),
           }
           if "script-src 'self' 'unsafe-inline'" in headers: errors.append('_headers: script-src still permits unsafe-inline')
           if "script-src-attr 'unsafe-inline'" in headers: errors.append('_headers: script-src-attr still permits unsafe-inline')
