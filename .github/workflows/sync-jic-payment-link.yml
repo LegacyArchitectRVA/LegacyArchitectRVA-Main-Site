@@ -69,9 +69,3 @@ jobs:
             git commit -m "fix: wire JIC Plan checkout to active Stripe link"
             git push
           fi
-
-  optimize:
-    needs: sync
-    permissions:
-      contents: write
-    uses: $/.github/workflows/site-optimize.yml
