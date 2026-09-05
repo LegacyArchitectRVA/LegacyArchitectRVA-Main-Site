@@ -1,8 +1,10 @@
 name: Main Site Optimization
 
 on:
-  repository_dispatch:
-    types: [site-optimize]
+  workflow_run:
+    workflows: ["Sync JIC Plan payment link"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +16,7 @@ concurrency:
 
 jobs:
   optimize:
-    if: ${{ github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -87,10 +89,7 @@ Elara is the website assistant. Answer from these current facts and the public w
               text=context_pattern.sub('', text)
               if 'var WORKER =' in text:
                   text=text.replace('var WORKER =', context_block+'\nvar ELARA_SITE_CONTEXT = window.__LA_ELARA_SITE_CONTEXT__ || "";\nvar WORKER =', 1)
-              text=text.replace(
-                  'body:JSON.stringify({question:q, history:convo.slice(-6)})',
-                  'body:JSON.stringify({question:q+"\\n\\nCURRENT WEBSITE FACTS (authoritative):\\n"+ELARA_SITE_CONTEXT, history:convo.slice(-6)})'
-              )
+              text=text.replace('body:JSON.stringify({question:q, history:convo.slice(-6)})','body:JSON.stringify({question:q+"\\n\\nCURRENT WEBSITE FACTS (authoritative):\\n"+ELARA_SITE_CONTEXT, history:convo.slice(-6)})')
               for asset_name, canonical in telemetry_canonical.items():
                   tag_pattern = re.compile(r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) + r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S)
                   text, replaced = tag_pattern.subn(canonical, text)
@@ -209,4 +208,4 @@ Elara is the website assistant. Answer from these current facts and the public w
           git rebase origin/main
           git push origin HEAD:main
 
-# Deterministic CI orchestration: JIC sync dispatches this workflow via repository_dispatch.
+# Deterministic CI orchestration: JIC sync completion gates site optimization.
