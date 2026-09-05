@@ -208,3 +208,5 @@ Elara is the website assistant. Answer from these current facts and the public w
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
+
+# Deterministic CI orchestration: JIC sync dispatches this workflow via repository_dispatch.
