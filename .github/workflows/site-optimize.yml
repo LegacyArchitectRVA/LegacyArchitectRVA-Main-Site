@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 1
 
@@ -71,10 +71,7 @@ jobs:
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
               for asset_name, canonical in telemetry_canonical.items():
-                  tag_pattern = re.compile(
-                      r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) +
-                      r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S
-                  )
+                  tag_pattern = re.compile(r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) + r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S)
                   text, replaced = tag_pattern.subn(canonical, text)
                   if replaced == 0 and page.name == 'readiness.html' and asset_name == 'readiness-telemetry.js':
                       text=text.replace('</head>', canonical+'\n</head>', 1)
