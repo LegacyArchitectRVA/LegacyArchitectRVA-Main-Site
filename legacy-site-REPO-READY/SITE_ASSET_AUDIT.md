@@ -8,4 +8,4 @@ Candidates from a conservative repository-wide reference scan.
 
 - None detected.
 
-<!-- optimizer-trigger: current Elara knowledge sync -->
+<!-- optimizer-trigger: current Elara knowledge sync; workflow-chain verification -->
