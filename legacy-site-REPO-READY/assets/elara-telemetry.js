@@ -1,6 +1,8 @@
-/* Legacy Architect RVA Elara conversation telemetry.
+/* Legacy Architect RVA Elara conversation telemetry and live site context.
  * Captures only Elara user/assistant text and anonymous session metadata.
  * No IPs, email addresses, credentials, or browser fingerprints are stored.
+ * The Elara request is augmented with the site's current llms.txt source of truth
+ * so the assistant is not dependent on an old hard-coded business prompt.
  */
 (() => {
   'use strict';
@@ -12,6 +14,22 @@
   const CONVERSATION_KEY = 'la_elara_conversation_v1';
   const SEQUENCE_KEY = 'la_elara_sequence_v1';
   const MAX_CONTENT = 12000;
+  const MAX_SITE_CONTEXT = 14000;
+  const FALLBACK_SITE_CONTEXT = `CURRENT LEGACY ARCHITECT RVA WEBSITE FACTS — AUTHORITATIVE
+Brand: Legacy Architect RVA. Founder: Craig Rothchild. Richmond, Virginia. Phone: (804) 866-1320. Email: info@legacyarchitectrva.com. Tagline: Order in Your Absence.
+Core service: Life Manual. It is the practical operational layer alongside legal estate documents. A will or trust addresses legal ownership/distribution; the Life Manual explains how life actually operates so a successor can step in and run it. This is facilitation and continuity planning, not legal, financial, tax, investment, or medical advice.
+Current offerings: Just-In-Case Plan $29, a 26-page fillable PDF workbook delivered automatically by email after checkout; it is DIY, not a finished Life Manual, and answers stay on the customer's device. Blueprint Session $249, one live working session that maps where the client stands and produces a practical 72-hour plan; the $249 credits toward a full Life Manual if the client proceeds; it is NOT a Life Manual. Personal Life Manual $1,500, covering 7 of 8 chapters: Introduction, Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes. Business Life Manual $2,500, everything in Personal plus Business Continuity, covering all 8 chapters.
+The 7 Pillars of Continuity, current website order: Digital Life; Emergency & Successor Access; Financial & Assets; Household Operations; Vital Records; Legacy & Wishes; Business Continuity. Do NOT substitute the older pillar list.
+Privacy: clients control their information; Legacy Architect RVA does not retain passwords, credentials, or private client files after the applicable delivery/purge process. Never ask users for passwords, authentication codes, or other secrets.
+Free resources: Readiness Check is free, approximately two minutes, no email required. The Handoff is a free one-page tool covering who to call first, what keeps running, and where the keys live.
+Scheduling: https://cal.com/legacyarchitectrva/discovery-call. Do not use the obsolete private-conversation calendar URL.
+JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe payment link: https://buy.stripe.com/aFafZhavZcCIe7qbI96Zy01.`;
+
+  let siteContext = FALLBACK_SITE_CONTEXT;
+  fetch('/llms.txt', { cache: 'no-store', credentials: 'same-origin' })
+    .then(response => response.ok ? response.text() : '')
+    .then(text => { if (text && text.trim()) siteContext = text.trim().slice(0, MAX_SITE_CONTEXT); })
+    .catch(() => {});
 
   const uuid = () => {
     try { return crypto.randomUUID(); } catch (_) {
@@ -118,9 +136,27 @@
       const raw = init?.body ?? (input instanceof Request ? await input.clone().text() : null);
       if (typeof raw === 'string') requestBody = JSON.parse(raw);
     } catch (_) {}
+
     const userMessage = extractUser(requestBody);
     const started = performance.now();
-    const response = await originalFetch(input, init);
+
+    let forwardInput = input;
+    let forwardInit = init;
+    if (requestBody && typeof requestBody === 'object' && typeof requestBody.question === 'string') {
+      const augmented = {
+        ...requestBody,
+        question: `${requestBody.question}\n\nCURRENT WEBSITE SOURCE OF TRUTH — use this to correct any older or conflicting information:\n${siteContext}`
+      };
+      const body = JSON.stringify(augmented);
+      if (typeof input === 'string' || input instanceof URL) {
+        forwardInit = { ...(init || {}), body };
+      } else if (input instanceof Request) {
+        forwardInput = new Request(input, { body });
+        forwardInit = undefined;
+      }
+    }
+
+    const response = await originalFetch(forwardInput, forwardInit);
 
     if (userMessage) logMessage('user', userMessage, { path: location.pathname }).catch(() => {});
 
