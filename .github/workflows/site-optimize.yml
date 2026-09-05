@@ -44,22 +44,8 @@ jobs:
           python3 <<'PY'
           from pathlib import Path
           import hashlib
-          import json
           import re
           root=Path('legacy-site-REPO-READY'); pages=sorted(root.glob('*.html'))
-
-          ELARA_SITE_CONTEXT = """CURRENT LEGACY ARCHITECT RVA WEBSITE FACTS — AUTHORITATIVE
-Brand: Legacy Architect RVA. Founder: Craig Rothchild. Richmond, Virginia. Phone: (804) 866-1320. Email: info@legacyarchitectrva.com. Tagline: Order in Your Absence.
-Core service: Life Manual. It is the practical operational layer alongside legal estate documents. A will or trust addresses legal ownership/distribution; the Life Manual explains how life actually operates so a successor can step in and run it. This is facilitation and continuity planning, not legal, financial, tax, investment, or medical advice.
-Current offerings: Just-In-Case Plan $29, a 26-page fillable PDF workbook delivered automatically by email after checkout; it is DIY, not a finished Life Manual, and answers stay on the customer's device. Blueprint Session $249, one live working session that maps where the client stands and produces a practical 72-hour plan; the $249 credits toward a full Life Manual if the client proceeds; it is NOT a Life Manual. Personal Life Manual $1,500, covering 7 of 8 chapters: Introduction, Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes. Business Life Manual $2,500, everything in Personal plus Business Continuity, covering all 8 chapters. Full Life Manual editions are built over structured working sessions with live draft review in the Client Portal. Pay in full or start with a 50% deposit; balance due on delivery.
-The 7 Pillars of Continuity, in current website order: 1) Digital Life, 2) Emergency & Successor Access, 3) Financial & Assets, 4) Household Operations, 5) Vital Records, 6) Legacy & Wishes, 7) Business Continuity. Do NOT substitute the older pillar list.
-Process: sign; Secure Drive established before session one; session one begins Digital Life; subsequent sessions build chapters and verify systems; final session includes successor walkthrough; 72 hours for corrections; material is then removed from the portal under the Zero-Knowledge Protocol; Annual Review keeps the manual current.
-Privacy: clients control their information; Legacy Architect RVA does not retain passwords, credentials, or private client files after the applicable delivery/purge process. Never ask users for passwords, authentication codes, or other secrets.
-Free resources: Readiness Check is free, approximately two minutes, no email required, and identifies gaps across the seven pillars. The Handoff is a free one-page tool covering who to call first, what keeps running, and where the keys live, and it does not ask for passwords.
-Scheduling: use https://cal.com/legacyarchitectrva/discovery-call. The obsolete private-conversation calendar URL must never be used.
-JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe payment link: https://buy.stripe.com/aFafZhavZcCIe7qbI96Zy01.
-Elara is the website assistant. Answer from these current facts and the public website, not historical prompts or cached information. Do not invent services, prices, editions, claims, credentials, storage practices, or features. If asked for legal, financial, tax, investment, or medical advice, provide only general information and recommend a qualified professional."""
-          context_json=json.dumps(ELARA_SITE_CONTEXT, ensure_ascii=False)
 
           def add_decoding(text):
               out=[]; pos=0
@@ -84,14 +70,11 @@ Elara is the website assistant. Answer from these current facts and the public w
               text=re.sub(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', '', text, flags=re.I|re.S)
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
-              context_block='<script data-cfasync="false">window.__LA_ELARA_SITE_CONTEXT__='+context_json+';</script>'
-              context_pattern=re.compile(r'<script data-cfasync="false">window\.__LA_ELARA_SITE_CONTEXT__=.*?</script>', re.I|re.S)
-              text=context_pattern.sub('', text)
-              if 'var WORKER =' in text:
-                  text=text.replace('var WORKER =', context_block+'\nvar ELARA_SITE_CONTEXT = window.__LA_ELARA_SITE_CONTEXT__ || "";\nvar WORKER =', 1)
-              text=text.replace('body:JSON.stringify({question:q, history:convo.slice(-6)})','body:JSON.stringify({question:q+"\\n\\nCURRENT WEBSITE FACTS (authoritative):\\n"+ELARA_SITE_CONTEXT, history:convo.slice(-6)})')
               for asset_name, canonical in telemetry_canonical.items():
-                  tag_pattern = re.compile(r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) + r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S)
+                  tag_pattern = re.compile(
+                      r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) +
+                      r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S
+                  )
                   text, replaced = tag_pattern.subn(canonical, text)
                   if replaced == 0 and page.name == 'readiness.html' and asset_name == 'readiness-telemetry.js':
                       text=text.replace('</head>', canonical+'\n</head>', 1)
@@ -169,8 +152,6 @@ Elara is the website assistant. Answer from these current facts and the public w
           for page in sorted(root.glob('*.html')):
               text=page.read_text(encoding='utf-8'); low=text.lower()
               if not telemetry_tags['elara'].search(text): errors.append(f'{page}: Elara telemetry tag missing, unversioned, or Rocket Loader attribute order is wrong')
-              if 'var ELARA_SITE_CONTEXT' not in text: errors.append(f'{page}: missing current Elara website context')
-              if 'CURRENT WEBSITE FACTS (authoritative)' not in text: errors.append(f'{page}: missing authoritative Elara context payload')
               if low.count('<h1') != 1: errors.append(f'{page}: expected exactly one H1')
               if inline_empty_script.search(text): errors.append(f'{page}: empty inline script block')
               ids=re.findall(r'id=[\"\']([^\"\']+)[\"\']',text,re.I); seen=set()
