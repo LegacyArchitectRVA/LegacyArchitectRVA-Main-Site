@@ -1,11 +1,10 @@
 name: Main Site Optimization
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Sync JIC Plan payment link"]
+    types: [completed]
     branches: [main]
-    paths:
-      - 'legacy-site-REPO-READY/**'
-      - '.github/workflows/site-optimize.yml'
   workflow_dispatch:
 
 permissions:
@@ -17,6 +16,7 @@ concurrency:
 
 jobs:
   optimize:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
