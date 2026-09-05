@@ -70,9 +70,6 @@ jobs:
               text=re.sub(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', '', text, flags=re.I|re.S)
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
-
-              # Canonicalize telemetry tags regardless of attribute order or extra attributes.
-              # data-cfasync must precede src for Cloudflare Rocket Loader.
               for asset_name, canonical in telemetry_canonical.items():
                   tag_pattern = re.compile(
                       r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) +
@@ -83,12 +80,8 @@ jobs:
                       text=text.replace('</head>', canonical+'\n</head>', 1)
                   if replaced == 0 and asset_name == 'elara-telemetry.js' and '/assets/elara-telemetry.js' not in text:
                       text=text.replace('</head>', canonical+'\n</head>', 1)
-
               page.write_text(text,encoding='utf-8',newline='')
 
-          # Telemetry JS is intentionally versioned in its URL. The site serves /assets/*
-          # as immutable for performance, so an unversioned telemetry URL could leave
-          # visitors executing an older cached collector after a deployment.
           for asset_name in ('readiness-telemetry.js','elara-telemetry.js'):
               asset=root/'assets'/asset_name
               digest=hashlib.sha256(asset.read_bytes()).hexdigest()[:12]
