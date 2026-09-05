@@ -65,14 +65,17 @@ jobs:
               text=re.sub(r'<script\b(?![^>]*\bsrc\s*=)[^>]*>\s*</script>', '', text, flags=re.I|re.S)
               text=text.replace("function askAI(q){\n  think(function(){});           /* show the thinking state immediately */\n  orb.classList.add('think');", "function askAI(q){\n  orb.classList.add('think');")
               text=text.replace(".then(function(r){ return r.json(); })", ".then(function(r){\n    if(!r.ok) throw new Error('worker-http-'+r.status);\n    return r.json();\n  })")
-              text=text.replace('<script src="/assets/readiness-telemetry.js" defer="defer">', '<script src="/assets/readiness-telemetry.js" data-cfasync="false" defer="defer">')
-              text=text.replace('<script src="/assets/elara-telemetry.js" defer="defer">', '<script src="/assets/elara-telemetry.js" data-cfasync="false" defer="defer">')
-              text=text.replace('<script src="/assets/readiness-telemetry.js" defer>', '<script src="/assets/readiness-telemetry.js" data-cfasync="false" defer>')
-              text=text.replace('<script src="/assets/elara-telemetry.js" defer>', '<script src="/assets/elara-telemetry.js" data-cfasync="false" defer>')
+              # Cloudflare Rocket Loader requires data-cfasync to appear BEFORE src.
+              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)"\s+data-cfasync="false"\s+defer>', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
+              text=re.sub(r'<script\s+src="(/assets/(?:readiness|elara)-telemetry\.js)"\s+data-cfasync="false"\s+defer="defer">', r'<script data-cfasync="false" src="\1" defer>', text, flags=re.I)
+              text=text.replace('<script src="/assets/readiness-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer>')
+              text=text.replace('<script src="/assets/elara-telemetry.js" defer>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer>')
+              text=text.replace('<script src="/assets/readiness-telemetry.js" defer="defer">', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer>')
+              text=text.replace('<script src="/assets/elara-telemetry.js" defer="defer">', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer>')
               if page.name == 'readiness.html' and '/assets/readiness-telemetry.js' not in text:
-                  text=text.replace('</head>', '<script src="/assets/readiness-telemetry.js" data-cfasync="false" defer></script>\n</head>', 1)
+                  text=text.replace('</head>', '<script data-cfasync="false" src="/assets/readiness-telemetry.js" defer></script>\n</head>', 1)
               if '/assets/elara-telemetry.js' not in text:
-                  text=text.replace('</head>', '<script src="/assets/elara-telemetry.js" data-cfasync="false" defer></script>\n</head>', 1)
+                  text=text.replace('</head>', '<script data-cfasync="false" src="/assets/elara-telemetry.js" defer></script>\n</head>', 1)
               page.write_text(text,encoding='utf-8',newline='')
 
           sources=[]
@@ -163,7 +166,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet; then echo 'No optimization changes to commit.'; exit 0; fi
           git add legacy-site-REPO-READY
-          git commit -m 'security: regenerate CSP and harden main site'
+          git commit -m 'security: fix Rocket Loader telemetry ordering'
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
