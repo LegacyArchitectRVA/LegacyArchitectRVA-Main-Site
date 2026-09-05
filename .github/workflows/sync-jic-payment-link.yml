@@ -70,12 +70,8 @@ jobs:
             git push
           fi
 
-      - name: Dispatch main site optimization
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "/repos/${{ github.repository }}/dispatches" \
-            -f event_type='site-optimize'
+  optimize:
+    needs: sync
+    permissions:
+      contents: write
+    uses: ./.github/workflows/site-optimize.yml
