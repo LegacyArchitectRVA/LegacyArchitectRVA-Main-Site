@@ -1,10 +1,8 @@
 name: Main Site Optimization
 
 on:
-  workflow_run:
-    workflows: ["Sync JIC Plan payment link"]
-    types: [completed]
-    branches: [main]
+  repository_dispatch:
+    types: [site-optimize]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +14,7 @@ concurrency:
 
 jobs:
   optimize:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -94,10 +92,7 @@ Elara is the website assistant. Answer from these current facts and the public w
                   'body:JSON.stringify({question:q+"\\n\\nCURRENT WEBSITE FACTS (authoritative):\\n"+ELARA_SITE_CONTEXT, history:convo.slice(-6)})'
               )
               for asset_name, canonical in telemetry_canonical.items():
-                  tag_pattern = re.compile(
-                      r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) +
-                      r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S
-                  )
+                  tag_pattern = re.compile(r'<script\b[^>]*\bsrc=["\']/assets/' + re.escape(asset_name) + r'(?:\?[^"\']*)?["\'][^>]*>\s*</script>', re.I|re.S)
                   text, replaced = tag_pattern.subn(canonical, text)
                   if replaced == 0 and page.name == 'readiness.html' and asset_name == 'readiness-telemetry.js':
                       text=text.replace('</head>', canonical+'\n</head>', 1)
