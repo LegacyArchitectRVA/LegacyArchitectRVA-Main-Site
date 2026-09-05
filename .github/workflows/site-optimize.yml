@@ -1,10 +1,7 @@
 name: Main Site Optimization
 
 on:
-  workflow_run:
-    workflows: ["Sync JIC Plan payment link"]
-    types: [completed]
-    branches: [main]
+  workflow_call:
   workflow_dispatch:
 
 permissions:
@@ -16,7 +13,6 @@ concurrency:
 
 jobs:
   optimize:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -207,5 +203,3 @@ Elara is the website assistant. Answer from these current facts and the public w
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
-
-# Deterministic CI orchestration: JIC sync completion gates site optimization.
