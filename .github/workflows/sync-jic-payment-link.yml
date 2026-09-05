@@ -74,4 +74,4 @@ jobs:
     needs: sync
     permissions:
       contents: write
-    uses: ./.github/workflows/site-optimize.yml
+    uses: $/.github/workflows/site-optimize.yml
