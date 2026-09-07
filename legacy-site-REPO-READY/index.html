@@ -299,6 +299,8 @@
   (function(){
     const grid = document.querySelector('.pillars-grid');
     if(!grid) return;
+    /* Replace the static fallback with the interactive version when JS is available. */
+    grid.innerHTML = '';
     PILLARS.forEach((p,i)=>{
       const el = document.createElement('div');
       el.className='pillar';
