@@ -183,5 +183,13 @@ jobs:
           git add legacy-site-REPO-READY
           git commit -m 'security: version telemetry assets to defeat stale CDN cache'
           git fetch origin main
-          git rebase origin/main
+          # The optimizer generates _headers and SITE_ASSET_AUDIT.md on every run.
+          # Those generated files can legitimately conflict when another optimization
+          # run has already advanced main. Keep the newer main version for conflicts.
+          if ! git rebase -X theirs origin/main; then
+            git rebase --abort
+            git reset --hard origin/main
+            echo 'Optimization commit superseded by a newer main commit; leaving newer main intact.'
+            exit 0
+          fi
           git push origin HEAD:main
