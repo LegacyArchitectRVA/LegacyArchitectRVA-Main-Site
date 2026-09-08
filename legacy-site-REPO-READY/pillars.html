@@ -142,6 +142,8 @@
   (function(){
     const grid = document.querySelector('.pillars-grid');
     if(!grid) return;
+    // Static cards guarantee image markup; replace them with the interactive cards once JS is ready.
+    grid.innerHTML = '';
     PILLARS.forEach((p,i)=>{
       const el = document.createElement('div');
       el.className='pillar';
