@@ -43,14 +43,6 @@ jobs:
 
               text = pattern.sub(repl, text)
 
-              if path.name in {"index.html", "services.html"} and url not in text:
-                  marker = "</main>"
-                  block = f'''\n<section aria-label="Purchase the Just-In-Case Plan" style="padding:56px 0;text-align:center;border-top:1px solid rgba(212,182,97,.16);">\n  <div class="wrap">\n    <p style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#d4b661;margin-bottom:14px;">Just-In-Case Plan</p>\n    <h2 style="margin-bottom:12px;">Make sure someone can step in.</h2>\n    <p style="max-width:560px;margin:0 auto 24px;">The 26-page fillable workbook covering the seven pillars of continuity. Delivered digitally after purchase.</p>\n    <a class="btn btn-gold" href="{url}" rel="noopener">Get the Plan for $29</a>\n  </div>\n</section>\n'''
-                  if marker in text:
-                      text = text.replace(marker, block + marker, 1)
-                  else:
-                      text = text.replace("</body>", block + "</body>", 1)
-
               if text != original:
                   path.write_text(text, encoding="utf-8")
                   changed.append(str(path))
@@ -67,5 +59,12 @@ jobs:
             echo "No JIC checkout changes needed."
           else
             git commit -m "fix: wire JIC Plan checkout to active Stripe link"
-            git push
+            git fetch origin main
+            if ! git rebase -X theirs origin/main; then
+              git rebase --abort
+              git reset --hard origin/main
+              echo "A newer main commit already contains the current site changes; skipping this sync commit."
+              exit 0
+            fi
+            git push origin HEAD:main
           fi
