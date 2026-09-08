@@ -142,6 +142,8 @@
   (function(){
     const grid = document.querySelector('.pillars-grid');
     if(!grid) return;
+    // Static cards are authoritative. Do not duplicate them with the legacy JS renderer.
+    if(grid.querySelector('.static-pillar')) return;
     PILLARS.forEach((p,i)=>{
       const el = document.createElement('div');
       el.className='pillar';
