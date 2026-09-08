@@ -232,7 +232,7 @@ sampleOrder.forEach(key=>{
   const startIdx=flat.length;
   d.pages.forEach(pg=>flat.push({src:pg[0],cap:d.title+' | '+pg[1],mobileSrc:pg[2]||null}));
   let thumbs='';
-  d.pages.forEach((pg,i)=>{const webp=pg[0].replace(/\.jpg$/,'.webp');thumbs+=`<figure class="thumb" tabindex="0" data-idx="${startIdx+i}"><picture><source srcset="${webp}" type="image/webp"><img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async"></picture><span>${pg[1]}</span></figure>`;});
+  d.pages.forEach((pg,i)=>{const isSvg=/\.svg$/i.test(pg[0]); const webp=isSvg?pg[0]:pg[0].replace(/\.jpg$/,'.webp'); thumbs+=`<figure class="thumb" tabindex="0" data-idx="${startIdx+i}">${isSvg?`<img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async">`:`<picture><source srcset="${webp}" type="image/webp"><img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async"></picture>`}<span>${pg[1]}</span></figure>`;});
 
   // For the Life Manual, the CTA scrolls to editions. Others go to their Stripe link.
   const isLM = key==='lm';
