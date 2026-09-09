@@ -230,22 +230,11 @@ sampleOrder.forEach(key=>{
   const sec=document.createElement('section');
   sec.className='product';
   const startIdx=flat.length;
-  d.pages.forEach(pg=>flat.push({src:pg[0],cap:d.title+' | '+pg[1],mobileSrc:pg[2]||null,gapmap:pg[0]==='gapmap'}));
+  d.pages.forEach(pg=>flat.push({src:pg[0],cap:d.title+' | '+pg[1],mobileSrc:pg[2]||null}));
   let thumbs='';
   d.pages.forEach((pg,i)=>{
-    const isGap=pg[0]==='gapmap';
-    if(isGap){
-      const pillars=[
-        ['digital','Digital Life',75],['emergency','Emergency & Successor Orientation',62],
-        ['financial','Financial & Assets',70],['household','Household Operations',0],
-        ['vital','Vital Records',37],['legacy','Legacy & Wishes',50],['business','Business Continuity',25]
-      ];
-      const items=pillars.map(([n,name,p])=>`<div class="gapmap-item"><div class="gapmap-bar"><div class="gapmap-fill" style="height:${p}%"></div></div><div class="gapmap-circle"><img src="/assets/pillar-${n}-v2.webp" alt="" decoding="async"></div><div class="gapmap-pct">${p?p+'%':'—'}</div><div class="gapmap-title">${name}</div></div>`).join('');
-      thumbs+=`<figure class="thumb gapmap-thumb" tabindex="0" data-idx="${startIdx+i}"><div class="gapmap-card"><div class="gapmap-card-inner">${items}</div></div><span>${pg[1]}</span></figure>`;
-    }else{
-      const isSvg=/\.svg$/i.test(pg[0]); const webp=isSvg?pg[0]:pg[0].replace(/\.jpg$/,'.webp');
-      thumbs+=`<figure class="thumb" tabindex="0" data-idx="${startIdx+i}">${isSvg?`<img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async">`:`<picture><source srcset="${webp}" type="image/webp"><img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async"></picture>`}<span>${pg[1]}</span></figure>`;
-    }
+    const isSvg=/\.svg$/i.test(pg[0]); const webp=isSvg?pg[0]:pg[0].replace(/\.jpg$/,'.webp');
+    thumbs+=`<figure class="thumb${isSvg?' gapmap-thumb':''}" tabindex="0" data-idx="${startIdx+i}">${isSvg?`<img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async">`:`<picture><source srcset="${webp}" type="image/webp"><img src="${pg[0]}" alt="${d.title} | ${pg[1]}" decoding="async"></picture>`}<span>${pg[1]}</span></figure>`;
   });
   const isLM = key==='lm';
   const ctaHtml = isLM ? `<button class="btn btn-gold" data-scroll-editions>Compare Editions</button>` : `<a class="btn btn-gold" href="${d.link}">${d.cta}</a>`;
@@ -896,5 +885,5 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   }, true);
 </script>
 <script src="/assets/handoff-gate.js?v=6" defer="defer"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3835ec71a46138c',t:'MTc4ODkyNzMwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
