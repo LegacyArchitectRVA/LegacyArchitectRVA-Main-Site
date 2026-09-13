@@ -115,13 +115,13 @@
           <h3 style="font-family:'Crimson Pro',serif;font-size:26px;font-weight:400;color:#c3cad1;margin:0">Personal</h3>
           <p style="font-family:Inter,sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">Your life, in one place</p>
           <p style="font-family:'Crimson Pro',serif;font-size:31px;color:#c3cad1;margin:0 0 16px">$1,500</p>
-          <p style="font-family:Inter,sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers 7 of 8 chapters: Introduction, Digital Life, Emergency &amp; Successor Orientation, Financial &amp; Assets, Household Operations, Vital Records, Legacy &amp; Wishes. Built over structured working sessions, with live draft review in the portal.</p>
+          <p style="font-family:Inter,sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Covers 6 of 7 chapters: Digital Life, Emergency &amp; Successor Orientation, Financial &amp; Assets, Household Operations, Vital Records, Legacy &amp; Wishes. Built over structured working sessions, with live draft review in the portal.</p>
         </div>
         <div style="background:#18130c;border:1px solid rgba(212,182,97,.5);border-radius:5px;padding:28px 24px">
           <h3 style="font-family:'Crimson Pro',serif;font-size:26px;font-weight:400;color:#e8c869;margin:0">Business</h3>
           <p style="font-family:Inter,sans-serif;font-size:11px;color:#a49c8b;margin:4px 0 14px">Everything, plus what keeps it running</p>
           <p style="font-family:'Crimson Pro',serif;font-size:31px;color:#e8c869;margin:0 0 16px">$2,500</p>
-          <p style="font-family:Inter,sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Everything Personal covers, plus Business Continuity. Covers all 8 chapters. Built over structured working sessions, with live draft review in the portal.</p>
+          <p style="font-family:Inter,sans-serif;font-size:12px;color:#f2ede2;line-height:1.7;margin:0">Everything Personal covers, plus Business Continuity. Covers all 7 chapters. Built over structured working sessions, with live draft review in the portal.</p>
         </div>
       </div>
       <p style="font-family:Inter,sans-serif;font-size:12px;color:#a49c8b;margin-top:20px">Pay in full or start with a 50% deposit. Contact Craig@LegacyArchitectRVA.com or (804) 866-1320 to begin.</p>
@@ -300,7 +300,6 @@ lb.addEventListener('touchend',e=>{
 // Each edition names the chapters it includes explicitly. Editions are not
 // sequential truncations, so do not replace this with a "first N" count.
 const CHAPTERS = [
-  'Introduction',
   'Digital Life',
   'Emergency & Successor Orientation',
   'Financial & Assets',
@@ -311,7 +310,7 @@ const CHAPTERS = [
 ];
 const EDITIONS=[
   {key:'personal',name:'Personal',sub:'Your life, in one place',benefit:'Enough for someone to find what they need without guessing.',full:1500,feature:false,
-   chapters:['Introduction','Digital Life','Emergency & Successor Orientation','Financial & Assets','Household Operations','Vital Records','Legacy & Wishes']},
+   chapters:['Digital Life','Emergency & Successor Orientation','Financial & Assets','Household Operations','Vital Records','Legacy & Wishes']},
   {key:'business',name:'Business',sub:'Everything, plus what keeps it running',benefit:'Everything Personal covers, plus what keeps the business running without you.',full:2500,feature:true,
    chapters:CHAPTERS.slice()}
 ];
@@ -349,7 +348,7 @@ EDITIONS.forEach(ed=>{
       <div class="ed-sub">${ed.sub}</div>
       <div class="ed-benefit">${ed.benefit}</div>
       <div class="price-block"><div><span class="price-now ${m}">${money(price)}</span></div></div>
-      <div class="grp open"><button class="grp-h" aria-expanded="true">What is covered<span class="cnt">${ed.chapters.length} of 8 <span class="chev">&#9662;</span></span></button>
+      <div class="grp open"><button class="grp-h" aria-expanded="true">What is covered<span class="cnt">${ed.chapters.length} of ${CHAPTERS.length} <span class="chev">&#9662;</span></span></button>
         <div class="grp-body">${coversHtml}</div></div>
       <div class="grp"><button class="grp-h" aria-expanded="false">How it gets built<span class="cnt"><span class="chev">&#9662;</span></span></button>
         <div class="grp-body"><ul>${[BUILD[ed.key]].concat(BUILD_COMMON).map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
