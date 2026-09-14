@@ -824,7 +824,7 @@ const EXPL={
   "Pet & Dependent Care Instructions":"Without documented instructions, dependents who can't speak for themselves are left in limbo at exactly the wrong moment.",
   "Personal Wishes & Instructions":"Instructions for sentimental matters that no legal document addresses."
 };
-let step=0,biz=false,isBack=false;
+let step=0,biz=false,isBack=false,pendingResultView=null;
 const ANS={};
 function aP(){return PILLARS;}
 function calc(){
@@ -923,6 +923,8 @@ function pick(key,val){
     previousValue: previousValue || 'none'
   });
 }
+function goToSummary(){pendingResultView='summary';goN();}
+function goToDetailed(){pendingResultView='detailed';goN();}
 function goN(){
   const currentStep = step;
   // Check if all questions in current pillar are answered
@@ -1763,11 +1765,22 @@ function renderQ(app,ps){
     </div>`;
   });
 
-  html+=`<button onclick="goN();" style="margin-top:6px;">Continue</button>
+  if(isBusinessPillar){
+    html+=`<div class="rq-navrow" style="margin-top:6px;">
+    <button onclick="goToSummary();" style="margin-top:0;">Summary Results</button>
+    <button onclick="goToDetailed();" style="margin-top:0;">Detailed Results</button>
+  </div>
   <div class="rq-navrow">
     <button class="rq-ghost" onclick="goB()">Back</button>
     <button class="rq-ghost" onclick="reset()">Reset</button>
   </div></div>`;
+  } else {
+    html+=`<button onclick="goN();" style="margin-top:6px;">Continue</button>
+  <div class="rq-navrow">
+    <button class="rq-ghost" onclick="goB()">Back</button>
+    <button class="rq-ghost" onclick="reset()">Reset</button>
+  </div></div>`;
+  }
   app.innerHTML=html;
 }
 
@@ -1826,9 +1839,18 @@ function renderResults(app,ps){
       ${gaps.length?`You have <b style="color:var(--missing);">${getGaps().length} gap${getGaps().length===1?'':'s'}</b> across your seven pillars.`:`Remarkable. You're more prepared than almost anyone.`}
     </div>
 
-    <div id="s7gate">
+    <div id="s7summary" style="display:none;">
+      <div class="rq-bkwrap"><div class="rq-bktitle">Pillar Breakdown</div>${barsH}</div>
+      <div class="rq-navrow" style="margin-top:22px;">
+        <button class="rq-ghost" onclick="reset();scrollToTop();">Retake the Check</button>
+        <button class="rq-ghost" onclick="window.shareScore()">Share My Results</button>
+      </div>
+      <p class="rq-gatesub" style="margin-top:22px;">Change your mind? <a href="#" onclick="showDetailedGate();return false;" style="color:var(--gold-b);text-decoration:underline;">Get the details here.</a></p>
+    </div>
+
+    <div id="s7gate" style="display:none;">
       <div class="rq-gatehead">See Exactly Where Your Gaps Are</div>
-      <p class="rq-gatesub">Your pillar-by-pillar breakdown, the specific gaps, and your next steps are one click away.</p>
+      <p class="rq-gatesub">Your pillar-by-pillar breakdown, the specific gaps, and your next steps, sent straight to your inbox.</p>
       <div class="rq-inputrow">
         <div class="rq-field"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
         <div class="rq-field"><label>Email Address</label><input id="s7em" type="email" placeholder="To unlock your full results"></div>
@@ -1836,25 +1858,31 @@ function renderResults(app,ps){
       <div id="s7al" class="rq-alert"></div>
       <button id="s7btn" onclick="submit()">Unlock My Full Results</button>
       <div class="rq-navrow">
-        <button class="rq-ghost" onclick="goB()">Back</button>
-        <button class="rq-ghost" onclick="reset()">Reset</button>
-      </div>
-    </div>
-
-    <div id="s7full" style="display:none;">
-      <div class="rq-bkwrap"><div class="rq-bktitle">Pillar Breakdown</div>${barsH}</div>
-      ${gaps.length?`<div class="rq-gapwrap"><div class="rq-gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
-      <div class="rq-legend">
-        <div class="rq-legrow"><div class="rq-legname" style="color:#d4b661;">Continuity Legend</div><div class="rq-legrange">86-100%</div><div class="rq-legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-        <div class="rq-legrow"><div class="rq-legname" style="color:#c9a94f;">Continuity Steward</div><div class="rq-legrange">71-85%</div><div class="rq-legtext">Essentials are largely in place. Focused effort closes the remaining gaps.</div></div>
-        <div class="rq-legrow"><div class="rq-legname" style="color:#d4923a;">Continuity Builder</div><div class="rq-legrange">61-70%</div><div class="rq-legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-        <div class="rq-legrow"><div class="rq-legname" style="color:#c0524a;">Continuity Sentinel</div><div class="rq-legrange">0-60%</div><div class="rq-legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+        <button class="rq-ghost" onclick="showSummaryResults()">Back to Summary</button>
       </div>
     </div>
     <div class="rq-footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check&trade; &middot; Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);
+  const which=pendingResultView||'summary';
+  pendingResultView=null;
+  if(which==='detailed'){showDetailedGate();}else{showSummaryResults();}
 }
+
+function showSummaryResults(){
+  const su=document.getElementById("s7summary");const ga=document.getElementById("s7gate");
+  if(ga)ga.style.display="none";if(su)su.style.display="block";
+  trackEvent('view_summary_results',{});
+}
+function showDetailedGate(){
+  const su=document.getElementById("s7summary");const ga=document.getElementById("s7gate");
+  if(su)su.style.display="none";if(ga)ga.style.display="block";
+  trackEvent('view_detailed_gate',{});
+}
+window.showSummaryResults=showSummaryResults;
+window.showDetailedGate=showDetailedGate;
+window.goToSummary=goToSummary;
+window.goToDetailed=goToDetailed;
 
 function renderSuccess(){
   const d=calc();
