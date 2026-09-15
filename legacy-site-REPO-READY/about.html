@@ -136,7 +136,7 @@
       </ul>
     </div>
     <div class="col no reveal">
-      <h2>What we don't</h2>
+      <h2>What we don't do</h2>
       <ul>
         <li>Store your passwords</li>
         <li>Keep copies of your data</li>
@@ -329,7 +329,7 @@ function booking(){
   ]);
 }
 function pricing(){
-  say('Just-In-Case Plan, $29. The bare essentials, one short document.\n\nBlueprint Session, $249. One sitting, we map where you actually stand, you walk out with a 72 hour plan. Every dollar credits toward a full edition if you go that way.\n\nThen the Life Manual: Personal edition at $1,500, Business edition at $2,500 with Business Continuity built in.\n\nPay it all up front or put half down. Your call.');
+  say('Just-In-Case Plan, $29. The bare essentials, one short DIY document.\n\nBlueprint Session, $249. One sitting, we map where you actually stand; you walk out with a GapMap & a 72-hour action plan. Every dollar credits toward a full edition when you go that way.\n\nThe Life Manual: Personal edition at $1,500, Business edition at $2,500 with Business Continuity built in.\n\nPay it all up front or put half down. Your call.');
   setChips([{label:'Book a call',go:function(){say('Book a call','you');think(booking);}},{label:'Back',go:home}]);
 }
 function browse(){
@@ -438,7 +438,7 @@ function ask(q){
   if(msgStep){ msgFlow(q); return; }
   if(ADVISORY.test(q)){
     think(function(){
-      say('That\'s a legal and money question, and I\'m not the one to answer it. Craig organizes what you already have. He doesn\'t advise, and he\'s not licensed to.\n\nYou want an attorney or an accountant for that one. What Craig can walk you through is how the process itself works.','bot','warn');
+      say('That\'s a legal and/or financial question, and I\'m not the one to answer it. Craig organizes what you already have. He doesn\'t advise, and he\'s not licensed to.\n\nYou want an attorney or an accountant for that one. What Craig can walk you through is how the process itself works.','bot','warn');
       setChips([{label:'Book a call',go:function(){say('Book a call','you');think(booking);}},
                 {label:'Leave a message',go:messageForm},{label:'Back',go:home}]);
     });
@@ -457,7 +457,7 @@ function open_(){
   if(!greeted){
     greeted=true;
     think(function(){
-      say('I\'m Elara. I can tell you what a Life Manual actually is, what it runs, get you on Craig\'s calendar, or pass a message along.\n\nWhere do you want to start?');
+      say('I\'m Elara, your continuity concierge. I can tell you about the Life Manual, guide your journey, get you on Craig\'s calendar, or pass a message along.\n\nWhere do you want to start?');
       home();
     });
   }
