@@ -1,0 +1,19 @@
+/* Desktop full-width correction for the homepage audience section. */
+@media (min-width: 901px){
+  #founder{
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+  }
+  #founder > .wrap{
+    width:100%;
+    max-width:none;
+    padding-left:clamp(40px,6vw,110px);
+    padding-right:clamp(40px,6vw,110px);
+  }
+  #founder .founder{
+    width:100%;
+    max-width:none;
+    margin-left:0;
+    margin-right:0;
+  }
+}
