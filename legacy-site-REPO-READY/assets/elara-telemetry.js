@@ -186,10 +186,7 @@ JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe paymen
   };
 })();
 
-/* Desktop page-width correction.
-   Sections remain full-bleed, while their inner layout now uses the full
-   available desktop viewport instead of stopping at 1,360/1,600px. Mobile
-   sizing is left unchanged. Text blocks keep their readable line lengths. */
+/* Desktop page-width correction. */
 (function(){
   if(window.innerWidth < 901) return;
   const style = document.createElement('style');
@@ -221,6 +218,37 @@ JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe paymen
       .pillars-grid,
       .path-steps {
         width: 100% !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+/* Explicit full-bleed correction for the homepage audience section. */
+(function(){
+  if(window.innerWidth < 901) return;
+  const style = document.createElement('style');
+  style.id = 'la-founder-full-bleed-fix';
+  style.textContent = `
+    @media (min-width: 901px) {
+      #founder {
+        width: 100vw !important;
+        max-width: none !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: 0 !important;
+      }
+      #founder > .wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding-left: clamp(40px, 5vw, 96px) !important;
+        padding-right: clamp(40px, 5vw, 96px) !important;
+      }
+      #founder .founder {
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
       }
     }
   `;
