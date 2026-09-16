@@ -185,3 +185,44 @@ JIC landing page: https://jicplan.legacyarchitectrva.com/. Current Stripe paymen
     return response;
   };
 })();
+
+/* Desktop page-width correction.
+   Sections remain full-bleed, while their inner layout now uses the full
+   available desktop viewport instead of stopping at 1,360/1,600px. Mobile
+   sizing is left unchanged. Text blocks keep their readable line lengths. */
+(function(){
+  if(window.innerWidth < 901) return;
+  const style = document.createElement('style');
+  style.id = 'la-desktop-width-fix';
+  style.textContent = `
+    @media (min-width: 901px) {
+      .wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: clamp(40px, 5vw, 96px) !important;
+        padding-right: clamp(40px, 5vw, 96px) !important;
+      }
+      nav .inner {
+        width: 100% !important;
+        max-width: none !important;
+        padding-left: clamp(28px, 3.5vw, 64px) !important;
+        padding-right: clamp(28px, 3.5vw, 64px) !important;
+      }
+      .founder,
+      .thread-wrap,
+      .faq-list {
+        max-width: none !important;
+        width: 100% !important;
+      }
+      .steps,
+      .quotes,
+      .pillars-grid,
+      .path-steps {
+        width: 100% !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+})();
