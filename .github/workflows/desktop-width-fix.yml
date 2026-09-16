@@ -1,0 +1,42 @@
+name: Apply desktop width fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Patch homepage desktop layout and cache-bust telemetry
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('legacy-site-REPO-READY/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          marker = '/* Desktop full-width section correction */'
+          css = '''\n/* Desktop full-width section correction */\n@media (min-width: 901px){\n  .wrap{\n    width:100% !important;\n    max-width:none !important;\n    margin-left:0 !important;\n    margin-right:0 !important;\n    padding-left:clamp(40px,5vw,96px) !important;\n    padding-right:clamp(40px,5vw,96px) !important;\n  }\n  #founder{\n    width:100vw !important;\n    max-width:none !important;\n    margin-left:calc(50% - 50vw) !important;\n    margin-right:0 !important;\n  }\n  #founder > .wrap{\n    width:100% !important;\n    max-width:none !important;\n    margin:0 !important;\n    padding-left:clamp(40px,5vw,96px) !important;\n    padding-right:clamp(40px,5vw,96px) !important;\n  }\n  #founder .founder{\n    display:block !important;\n    width:100% !important;\n    max-width:none !important;\n    margin-left:0 !important;\n    margin-right:0 !important;\n  }\n  #founder .founder p{\n    max-width:70ch;\n  }\n}\n'''
+          if marker not in s:
+              s = s.replace('</style>', css + '</style>', 1)
+
+          old = '/assets/elara-telemetry.js?v=d1fa2c268396'
+          new = '/assets/elara-telemetry.js?v=desktopfix-20260916'
+          s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add legacy-site-REPO-READY/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Fix desktop full-width homepage sections"
+          git push
