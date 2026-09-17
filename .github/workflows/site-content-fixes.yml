@@ -1,0 +1,104 @@
+name: Site content fixes
+
+on:
+  push:
+    paths:
+      - '.site-content-trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply production content corrections
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('legacy-site-REPO-READY')
+
+          # 1. Move the "This is who it's all for" image/section directly above reviews.
+          index = root / 'index.html'
+          s = index.read_text(encoding='utf-8')
+          marker = re.search(r"this\s+is\s+who\s+it['’]?s\s+all\s+for", s, re.I)
+          if not marker:
+              marker = re.search(r"this\s+is\s+who\s+it['’]?s\s+for", s, re.I)
+          if marker:
+              start = s.rfind('<section', 0, marker.start())
+              end_tag = s.find('</section>', marker.end())
+              if start >= 0 and end_tag >= 0:
+                  end = end_tag + len('</section>')
+                  block = s[start:end]
+                  without = s[:start] + s[end:]
+                  review = re.search(r"<section[^>]*>.*?(?:Let your Legacy echo|reviews|testimonials|what people say).*?</section>", without, re.I | re.S)
+                  if review:
+                      without = without[:review.start()] + block + '\n' + without[review.start():]
+                      s = without
+          index.write_text(s, encoding='utf-8')
+
+          # 2. Correct the seven pillars wherever the old seven-pillar wording appears.
+          replacements = {
+              'Digital Life, Financial & Assets, Household & Property, Health & Medical, Legal & Estate, Business Continuity, and Legacy & Wishes':
+              'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
+              'Digital, financial, household, medical, legal, business, and legacy':
+              'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
+              'digital, financial, household, medical, legal, business, and legacy':
+              'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
+          }
+          for page in root.glob('*.html'):
+              text = page.read_text(encoding='utf-8')
+              original = text
+              for old, new in replacements.items():
+                  text = text.replace(old, new)
+              if text != original:
+                  page.write_text(text, encoding='utf-8')
+
+          # 3. Add internal links to the new search-intent guides in page footers where a
+          # matching footer link group exists, without duplicating links.
+          for page in root.glob('*.html'):
+              text = page.read_text(encoding='utf-8')
+              if page.name in {'what-happens-when-you-die.html','digital-life-after-death.html'}:
+                  continue
+              additions = ''
+              if 'href="/what-happens-when-you-die"' not in text:
+                  additions += '<a href="/what-happens-when-you-die">What Happens After Death</a>'
+              if 'href="/digital-life-after-death"' not in text:
+                  additions += '<a href="/digital-life-after-death">Digital Life After Death</a>'
+              if additions:
+                  # Put links into the first footer link container when possible.
+                  m = re.search(r'(<footer[^>]*>.*?<div[^>]*class=["\'][^"\']*(?:f-links|links)[^"\']*["\'][^>]*>)(.*?)(</div>)', text, re.I | re.S)
+                  if m:
+                      text = text[:m.start(2)] + m.group(2) + additions + text[m.start(3):]
+                      page.write_text(text, encoding='utf-8')
+
+          # 4. Keep sitemap authoritative for the two new guides.
+          sitemap = root / 'sitemap.xml'
+          if sitemap.exists():
+              text = sitemap.read_text(encoding='utf-8')
+              entries = [
+                  ('https://legacyarchitectrva.com/what-happens-when-you-die','0.85'),
+                  ('https://legacyarchitectrva.com/digital-life-after-death','0.85'),
+              ]
+              for url, priority in entries:
+                  if url not in text:
+                      text = text.replace('</urlset>', f'  <url><loc>{url}</loc><priority>{priority}</priority></url>\n</urlset>')
+              sitemap.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit fixes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add legacy-site-REPO-READY
+          if git diff --cached --quiet; then
+            echo 'No content changes needed.'
+          else
+            git commit -m 'fix: align site content, section order, and search links'
+            git push
+          fi
