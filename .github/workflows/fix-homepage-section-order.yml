@@ -1,9 +1,10 @@
-name: Fix homepage section order
+name: Fix homepage and content order
 
 on:
   push:
     paths:
       - '.homepage-order-trigger'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,37 +14,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Move who-its-for section above reviews
+      - name: Apply homepage and content fixes
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
-          p = Path('legacy-site-REPO-READY/index.html')
-          s = p.read_text(encoding='utf-8')
-          marker = re.search(r"this\s+is\s+who\s+it['’]?s\s+for", s, re.I)
-          if not marker:
-              raise SystemExit("Could not find the 'This is who it's for' marker")
-          start = s.rfind('<section', 0, marker.start())
-          end_tag = s.find('</section>', marker.end())
-          if start < 0 or end_tag < 0:
-              raise SystemExit('Could not determine the section boundaries')
-          end = end_tag + len('</section>')
-          block = s[start:end]
-          without = s[:start] + s[end:]
-          review = re.search(r"<section[^>]*>.*?(?:reviews|testimonials|what people say).*?</section>", without, re.I | re.S)
-          if not review:
-              raise SystemExit('Could not find the reviews/testimonials section')
-          without = without[:review.start()] + block + '\n' + without[review.start():]
-          p.write_text(without, encoding='utf-8')
+          root=Path('legacy-site-REPO-READY')
+          index=root/'index.html'
+          s=index.read_text(encoding='utf-8')
+          marker=re.search(r"this\s+is\s+who\s+it['’]?s\s+all\s+for",s,re.I) or re.search(r"this\s+is\s+who\s+it['’]?s\s+for",s,re.I)
+          if marker:
+              start=s.rfind('<section',0,marker.start())
+              endtag=s.find('</section>',marker.end())
+              if start>=0 and endtag>=0:
+                  block=s[start:endtag+10]
+                  without=s[:start]+s[endtag+10:]
+                  review=re.search(r"<section[^>]*>.*?(?:Let your Legacy echo|reviews|testimonials|what people say).*?</section>",without,re.I|re.S)
+                  if review:
+                      s=without[:review.start()]+block+'\n'+without[review.start():]
+          index.write_text(s,encoding='utf-8')
+          replacements={
+            'Digital Life, Financial & Assets, Household & Property, Health & Medical, Legal & Estate, Business Continuity, and Legacy & Wishes':'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
+            'Digital, financial, household, medical, legal, business, and legacy':'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
+            'digital, financial, household, medical, legal, business, and legacy':'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity'
+          }
+          for page in root.glob('*.html'):
+              text=page.read_text(encoding='utf-8'); original=text
+              for old,new in replacements.items(): text=text.replace(old,new)
+              if page.name not in {'what-happens-when-you-die.html','digital-life-after-death.html'}:
+                  if 'href="/what-happens-when-you-die"' not in text:
+                      text=text.replace('</footer>','<a href="/what-happens-when-you-die">What Happens After Death</a></footer>',1)
+                  if 'href="/digital-life-after-death"' not in text:
+                      text=text.replace('</footer>','<a href="/digital-life-after-death">Digital Life After Death</a></footer>',1)
+              if text!=original: page.write_text(text,encoding='utf-8')
+          sitemap=root/'sitemap.xml'
+          if sitemap.exists():
+              text=sitemap.read_text(encoding='utf-8')
+              for url in ('https://legacyarchitectrva.com/what-happens-when-you-die','https://legacyarchitectrva.com/digital-life-after-death'):
+                  if url not in text: text=text.replace('</urlset>',f'  <url><loc>{url}</loc><priority>0.85</priority></url>\n</urlset>')
+              sitemap.write_text(text,encoding='utf-8')
           PY
-      - name: Commit change
+      - name: Commit changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add legacy-site-REPO-READY/index.html
-          if git diff --cached --quiet; then
-            echo 'No change needed.'
-          else
-            git commit -m 'Move who its for section above reviews'
-            git push
-          fi
+          git add legacy-site-REPO-READY
+          if git diff --cached --quiet; then echo 'No changes needed.'; else git commit -m 'fix: homepage order, pillars, and internal SEO links'; git push; fi
