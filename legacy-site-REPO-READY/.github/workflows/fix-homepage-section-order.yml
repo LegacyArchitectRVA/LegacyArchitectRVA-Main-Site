@@ -1,0 +1,42 @@
+name: Fix homepage section order
+
+on:
+  push:
+    paths:
+      - 'legacy-site-REPO-READY/.homepage-order-trigger'
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move who-its-for section above reviews
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('legacy-site-REPO-READY/index.html')
+          s = p.read_text()
+          marker = re.search(r"this\s+is\s+who\s+it['’]?s\s+for", s, re.I)
+          if not marker:
+              raise SystemExit("Could not find the 'This is who it's for' marker")
+          start = s.rfind('<section', 0, marker.start())
+          end_tag = s.find('</section>', marker.end())
+          if start < 0 or end_tag < 0:
+              raise SystemExit('Could not determine the section boundaries')
+          end = end_tag + len('</section>')
+          block = s[start:end]
+          without = s[:start] + s[end:]
+          review = re.search(r"<section[^>]*>.*?(?:reviews|testimonials|what people say).*?</section>", without, re.I | re.S)
+          if not review:
+              raise SystemExit('Could not find the reviews/testimonials section')
+          without = without[:review.start()] + block + '\n' + without[review.start():]
+          p.write_text(without)
+          PY
+      - name: Commit change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add legacy-site-REPO-READY/index.html
+          git diff --cached --quiet || git commit -m 'Move who its for section above reviews'
+          git push
