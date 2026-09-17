@@ -3,7 +3,7 @@ name: Fix homepage and content order
 on:
   push:
     paths:
-      - '.homepage-order-trigger'
+      - '.homepage-order-trigger-v2'
   workflow_dispatch:
 
 permissions:
@@ -24,14 +24,11 @@ jobs:
           s=index.read_text(encoding='utf-8')
           marker=re.search(r"this\s+is\s+who\s+it['’]?s\s+all\s+for",s,re.I) or re.search(r"this\s+is\s+who\s+it['’]?s\s+for",s,re.I)
           if marker:
-              start=s.rfind('<section',0,marker.start())
-              endtag=s.find('</section>',marker.end())
+              start=s.rfind('<section',0,marker.start()); endtag=s.find('</section>',marker.end())
               if start>=0 and endtag>=0:
-                  block=s[start:endtag+10]
-                  without=s[:start]+s[endtag+10:]
+                  block=s[start:endtag+10]; without=s[:start]+s[endtag+10:]
                   review=re.search(r"<section[^>]*>.*?(?:Let your Legacy echo|reviews|testimonials|what people say).*?</section>",without,re.I|re.S)
-                  if review:
-                      s=without[:review.start()]+block+'\n'+without[review.start():]
+                  if review: s=without[:review.start()]+block+'\n'+without[review.start():]
           index.write_text(s,encoding='utf-8')
           replacements={
             'Digital Life, Financial & Assets, Household & Property, Health & Medical, Legal & Estate, Business Continuity, and Legacy & Wishes':'Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity',
@@ -42,10 +39,8 @@ jobs:
               text=page.read_text(encoding='utf-8'); original=text
               for old,new in replacements.items(): text=text.replace(old,new)
               if page.name not in {'what-happens-when-you-die.html','digital-life-after-death.html'}:
-                  if 'href="/what-happens-when-you-die"' not in text:
-                      text=text.replace('</footer>','<a href="/what-happens-when-you-die">What Happens After Death</a></footer>',1)
-                  if 'href="/digital-life-after-death"' not in text:
-                      text=text.replace('</footer>','<a href="/digital-life-after-death">Digital Life After Death</a></footer>',1)
+                  if 'href="/what-happens-when-you-die"' not in text: text=text.replace('</footer>','<a href="/what-happens-when-you-die">What Happens After Death</a></footer>',1)
+                  if 'href="/digital-life-after-death"' not in text: text=text.replace('</footer>','<a href="/digital-life-after-death">Digital Life After Death</a></footer>',1)
               if text!=original: page.write_text(text,encoding='utf-8')
           sitemap=root/'sitemap.xml'
           if sitemap.exists():
