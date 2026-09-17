@@ -1,0 +1,56 @@
+name: Move who its for image above reviews
+
+on:
+  push:
+    paths:
+      - 'legacy-site-REPO-READY/index.html'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('legacy-site-REPO-READY/index.html')
+          s=p.read_text()
+          marker='This is who it\'s for'
+          i=s.find(marker)
+          if i < 0:
+              print('marker not found; no change')
+              raise SystemExit(0)
+          start=s.rfind('<section',0,i)
+          end=s.find('</section>',i)
+          if start < 0 or end < 0:
+              print('section boundaries not found; no change')
+              raise SystemExit(0)
+          end += len('</section>')
+          block=s[start:end]
+          # Find reviews/testimonials section after the current block.
+          review_markers=['Reviews','What people say','Testimonials','reviews','testimonials']
+          positions=[s.find(m,end) for m in review_markers if s.find(m,end)>=0]
+          if not positions:
+              print('reviews marker not found; no change')
+              raise SystemExit(0)
+          ri=min(positions)
+          rstart=s.rfind('<section',0,ri)
+          if rstart < 0:
+              print('review section boundary not found; no change')
+              raise SystemExit(0)
+          s2=s[:start]+s[end:]
+          # Recompute review section location after removal.
+          adj=ri-(end-start) if ri>end else ri
+          rstart=s2.rfind('<section',0,adj)
+          insert_at=rstart
+          s2=s2[:insert_at]+block+'\n'+s2[insert_at:]
+          p.write_text(s2)
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add legacy-site-REPO-READY/index.html
+          git diff --cached --quiet || git commit -m 'Move who its for image above reviews'
+          git push
