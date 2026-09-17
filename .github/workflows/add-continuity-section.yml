@@ -1,6 +1,11 @@
 name: Add continuity section
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-continuity-section.yml'
+      - 'legacy-site-REPO-READY/index.html'
   workflow_dispatch:
 
 permissions:
