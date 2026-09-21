@@ -181,7 +181,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet; then echo 'No optimization changes to commit.'; exit 0; fi
           git add legacy-site-REPO-READY
-          git commit -m 'security: version telemetry assets to defeat stale CDN cache'
+          git commit -m 'security: version telemetry assets to defeat stale CDN cache [skip ci]'
           git fetch origin main
           # The optimizer generates _headers and SITE_ASSET_AUDIT.md on every run.
           # Those generated files can legitimately conflict when another optimization
@@ -193,7 +193,7 @@ jobs:
             exit 0
           fi
           for attempt in 1 2 3; do
-            git push origin HEAD:main && exit 0
+            git push --force-with-lease=refs/heads/main:$((git rev-parse origin/main)) origin HEAD:main && exit 0
             echo "Push raced with another main update; refreshing and rebasing (attempt $attempt/3)."
             git fetch origin main
             if ! git rebase -X theirs origin/main; then
