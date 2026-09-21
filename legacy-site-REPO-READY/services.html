@@ -343,7 +343,7 @@ sampleOrder.forEach(key=>{
     <div class="p-head"><h2>${d.title}</h2><span class="p-price">${d.price}</span><span class="p-tag">${d.tag}</span></div>
     <p class="p-desc">${d.desc}</p>
     <div class="strip">${thumbs}</div>
-    <div class="p-foot">${ctaHtml}${key==='bp'?'<span class="cta-note">Walk out with your gaps mapped and a clear order of attack. The full fee credits toward your Life Manual.</span>':''}<span class="hint">Tap any page to view it full size</span></div>`;
+    <div class="p-foot">${ctaHtml}${key==='bp'?'<span class="cta-note">Walk out with your gaps mapped and a clear order of attack. The full fee credits toward your Life Manual.</span>':key==='lm'?'<a class="life-manual-link" href="/life-manual">See the full Life Manual walkthrough.</a>':''}<span class="hint">Tap any page to view it full size</span></div>`;
   samplesEl.appendChild(sec);
 });
 
