@@ -2,6 +2,41 @@
 (() => {
   'use strict';
 
+  function improveElaraMobileAccess() {
+    if (document.getElementById('elara-mobile-accessibility')) return;
+    const style = document.createElement('style');
+    style.id = 'elara-mobile-accessibility';
+    style.textContent = `
+      @media (max-width:560px) {
+        .asst {
+          top:12px;
+          bottom:82px;
+          max-height:calc(100dvh - 94px);
+          height:auto;
+        }
+        .asst-body {
+          min-height:0;
+          overflow-y:auto;
+          -webkit-overflow-scrolling:touch;
+          overscroll-behavior:contain;
+        }
+      }
+      @media (max-width:560px) and (max-height:700px) {
+        .asst {
+          top:8px;
+          bottom:76px;
+          max-height:calc(100dvh - 84px);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', improveElaraMobileAccess, {once:true});
+  } else {
+    improveElaraMobileAccess();
+  }
+
   const SUPABASE_URL = 'https://xeqmivqvtumsifwkxpcm.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_p5bAJcHiUDOGMRdTMY_9pA_WbwZJhXf';
   const API = `${SUPABASE_URL}/rest/v1`;
