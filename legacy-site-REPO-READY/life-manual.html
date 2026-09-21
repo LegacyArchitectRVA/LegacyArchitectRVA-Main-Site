@@ -642,10 +642,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       toggle();
     });
     card.addEventListener('keydown',function(e){
-      if(e.key==='Enter'||e.key===' '){
-        e.preventDefault();
-        toggle();
-      }
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
     });
   });
 })();
