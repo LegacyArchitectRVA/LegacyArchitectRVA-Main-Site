@@ -1,9 +1,8 @@
 # Legacy Architect RVA
 
-> Legacy Architect RVA facilitates Life Manuals for individuals, families, and business owners. The service is built around one practical question: if the person who normally runs things is unavailable, can a trusted successor find what they need and act without guessing? Founder Craig Rothchild works directly with each client, session by session. This is facilitation and continuity planning, not legal, financial, tax, investment, or medical advice. Client credentials are never retained.
+> Legacy Architect RVA facilitates Life Manuals for individuals, families, and business owners. The practical question is simple: if the person who normally runs things is unavailable, can a trusted successor find what they need and act without guessing? Craig Rothchild works directly with each client, session by session. This is facilitation and continuity planning, not legal, financial, tax, investment, or medical advice. Client credentials are never retained.
 
 ## Canonical business facts
-
 - Brand: Legacy Architect RVA
 - Founder: Craig Rothchild
 - Location: Richmond, Virginia
@@ -12,94 +11,95 @@
 - Website: https://legacyarchitectrva.com/
 - Tagline: Order in Your Absence.
 - Core service: Life Manual
-- Positioning: The Life Manual is the practical operational layer that sits alongside legal estate documents. A will or trust addresses legal ownership and distribution; the Life Manual explains how life actually operates so a successor can step in and run it.
-- Privacy position: Zero-Knowledge Protocol. Clients keep control of their information. Legacy Architect RVA does not retain passwords, credentials, or private client files after the applicable delivery/purge process.
+- Positioning: The Life Manual is the practical operational layer alongside legal estate documents. A will or trust addresses legal ownership and distribution; the Life Manual explains how life actually operates so a successor can step in and run it.
+- Privacy position: Zero-Knowledge Protocol. Clients keep control of their information. Legacy Architect RVA does not retain passwords, credentials, or private client files after the applicable delivery and purge process.
 - General limitation: Legacy Architect RVA does not provide legal, financial, tax, investment, or medical advice.
 
 ## Current offerings
 
 ### Just-In-Case Plan
-
 - Price: $29
 - Format: 26-page fillable PDF workbook
-- Delivery: automatically by email after checkout
-- Purpose: do-it-yourself starting point covering the same seven continuity areas; it is not a finished Life Manual and is not reviewed by Craig.
-- Privacy: nothing entered into the workbook is uploaded or submitted; it stays on the customer's device.
-- Payment link: https://buy.stripe.com/aFafZhavZcCIe7qbI96Zy01
+- Purpose: do-it-yourself starting point covering the seven continuity areas. It is not a finished Life Manual and is not reviewed by Craig.
+- Delivery: automatically by email after checkout.
+- Privacy: information entered into the workbook stays on the customer's device.
 - Landing page: https://jicplan.legacyarchitectrva.com/
 
 ### Blueprint Session
-
 - Price: $249
-- Format: one live working session
-- Purpose: map where the client actually stands and produce a practical 72-hour plan.
-- The $249 fee credits toward a full Life Manual edition if the client proceeds.
+- Format: one live guided working session, delivered the same day.
+- Purpose: go through all seven pillars together, map what is covered, what is partial, and where real gaps exist, then produce a practical 72-hour action plan.
+- The $249 fee credits toward a full Life Manual if the client proceeds.
 - This is not a Life Manual.
 
 ### Personal Life Manual
-
 - Price: $1,500
-- Covers 7 of the 8 Life Manual chapters.
-- Chapters: Introduction, Digital Life, Emergency & Successor Access, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes.
-- Built over structured working sessions with live draft review in the Client Portal.
-- Payment: pay in full or start with a 50% deposit; balance is due on delivery.
+- Covers the six non-business continuity areas.
+- Built through structured working sessions with live draft review in the Client Portal.
+- The process normally takes about 2 to 4 weeks, depending on schedule and complexity.
 
 ### Business Life Manual
-
 - Price: $2,500
-- Includes everything in Personal plus Business Continuity.
-- Covers all 8 Life Manual chapters.
-- Built over structured working sessions with live draft review in the Client Portal.
-- Payment: pay in full or start with a 50% deposit; balance is due on delivery.
+- Includes the Personal work plus Business Continuity.
+- Covers all seven continuity areas.
+- Built through structured working sessions with live draft review in the Client Portal.
 
 ## The 7 Pillars of Continuity
-
-The current website uses these seven names and order. Do not substitute the older pillar list.
-
 1. Digital Life — cloud storage, communications, devices, digital financial accounts, password-manager location, 2FA recovery, subscriptions, and online presence.
-2. Emergency & Successor Access — who steps in, the first 48-hour plan, emergency contacts, dependent arrangements, and where to find things quickly.
+2. Emergency & Successor Orientation — who steps in, the first 48-hour plan, emergency contacts, dependent arrangements, and where to find things quickly.
 3. Financial & Assets — ownership, accounts and institutions, beneficiaries, insurance, bills, obligations, and due dates.
 4. Household Operations — home systems, shut-offs, security, access codes, spare keys, maintenance, vendors, vehicles, pets, and daily routines.
 5. Vital Records — identification and legal documents, documents in force, medical directives and health information, deeds, titles, certificates, and where originals are kept.
 6. Legacy & Wishes — final wishes, memorial preferences, personal letters, values, traditions, digital memories, and what the client wants expressed in their own words.
 7. Business Continuity — authority, stabilization protocol, vendors, clients, payroll, business accounts, credit, and whether the business continues or winds down. This is included in the Business edition.
 
-## Service process
-
+## Life Manual process
 1. Client signs and the work begins.
-2. A Secure Drive is established before session one, with the checklist and successor roadmap loaded.
-3. Session one establishes the portal and begins Digital Life.
-4. Each following session builds another chapter and verifies that the systems described actually exist and can be used.
-5. The final session brings the successor into the walkthrough while the client is still available to answer questions.
-6. The client has 72 hours after the walkthrough to make corrections. After that, material is removed from the portal under the Zero-Knowledge Protocol.
-7. Annual Review is available when life changes and the manual needs to be brought current.
+2. A Secure Drive is established before the first working session, with the Client Guidebook, Successor Roadmap, Preparation Checklist, and folder structure.
+3. The Client Portal is activated. The client controls the secure environment and can review progress while the Manual is being built.
+4. Sessions build the Manual chapter by chapter using the Who / What / When / Where / Why / How framework.
+5. The final session includes a successor walkthrough: Successor Roadmap, Introduction, Emergency & Successor Orientation, an overview of the Manual, questions, and correction of misunderstandings.
+6. The client has 72 hours after the final walkthrough to make corrections. The final PDF and HTML are delivered during that period.
+7. At the end of the 72 hours, the Client Portal and client-specific working material are purged. Internal CRM contact information and internal notes may remain, but the CRM is not a backup of the Life Manual.
+8. A six-month review is offered to make sure the Manual remains current. If declined, the follow-up moves to one year, with annual outreach afterward.
 
-## Readiness and free resources
+## New public pages and guides
 
+### The Life Manual
+- Page: https://legacyarchitectrva.com/life-manual
+- Explains what a Life Manual is, how the secure working system is established, how the chapters are built, what a successor receives, and what happens during the final 72-hour review and purge.
+- Includes examples of the Life Manual cover, quick reference, table of contents, Successor Roadmap, chapter pages, and Business Continuity.
+
+### When You Die, Who Knows Where Everything Is?
+- Page: https://legacyarchitectrva.com/what-happens-when-you-die
+- Practical guide about the first questions a successor faces: finding important information, locating what needs attention, identifying who to contact, and making the first 72 hours easier to navigate.
+
+### What Happens to Your Digital Life When You Die?
+- Page: https://legacyarchitectrva.com/digital-life-after-death
+- Practical guide about email, cloud storage, passwords, subscriptions, two-factor authentication, photos, online accounts, and other parts of digital life that do not come with one universal handoff.
+- The guide emphasizes creating a clear place for a successor to start rather than putting every credential into one document.
+
+### Resources
+- Page: https://legacyarchitectrva.com/resources
+- Contains the free Readiness Check, The Handoff, research and LinkedIn material, and the two new continuity guides above.
+
+## Free resources
 - Readiness Check: free, approximately two minutes, no email required. It identifies gaps across the seven pillars.
 - Readiness page: https://legacyarchitectrva.com/readiness
 - The Handoff: free one-page tool covering who to call first, what keeps running, and where the keys live. It does not ask for passwords.
 - Resources: https://legacyarchitectrva.com/resources
 
-## About Craig
-
-Craig Rothchild is the founder and the person clients work with directly. His background includes insurance, hospice coordination, hospital operations, records management, and administrative work. The business was created after repeatedly seeing situations where one person knew how everything worked but nobody else had the map.
-
 ## What Elara should say
+Elara is the website assistant for Legacy Architect RVA. Explain the Life Manual plainly: it is the practical map for the person who would have to step in if the client were unavailable. It brings together information, instructions, contacts, records, household details, digital life, and decisions so a successor can act instead of guess.
 
-Elara is the website assistant for Legacy Architect RVA. She should answer questions using the current facts in this file and the current public website, not historical Legacy Architect RVA copy. She should describe herself as the website assistant, explain the Life Manual plainly, direct users to the Readiness Check or appropriate offering, and help people get in touch with Craig. She must not invent services, prices, editions, legal claims, credentials, storage practices, or features that are not in the current website or this file.
+Elara should use the current public website and this file, not historical copy. When useful, direct people to the Life Manual page, Resources page, Readiness Check, Blueprint Session, Just-In-Case Plan, or the two new guides. Do not invent services, prices, editions, legal claims, credentials, storage practices, or features.
 
-If a user asks a legal, financial, tax, investment, or medical question, Elara should provide only general information and direct the user to a qualified professional. Elara should never request passwords, account credentials, authentication codes, or other secrets.
+If a user asks a legal, financial, tax, investment, or medical question, provide only general information and direct the user to a qualified professional. Never request passwords, account credentials, authentication codes, recovery codes, or other secrets.
 
 ## Contact and scheduling
-
-- Conversations are scheduled through the current site calendar: https://cal.com/legacyarchitectrva/discovery-call
-- Do not use the obsolete private-conversation calendar URL.
+- Current calendar: https://cal.com/legacyarchitectrva/discovery-call
 - Direct email: info@legacyarchitectrva.com
 - Phone: (804) 866-1320
 
 ## Source-of-truth rule
-
-This file is intended as the machine-readable business summary for AI assistants. When it conflicts with older copy, old prompts, cached information, or previous versions of the website, prefer the current public website and this file. Current service details and pricing should be treated as authoritative as of September 2026.
-
-- Last synchronized for Elara: September 2026
+This file is the machine-readable business summary for Elara. When it conflicts with older copy, cached information, or previous versions of the website, prefer the current public website and this file. Current service details and pricing are authoritative as of September 2026.
