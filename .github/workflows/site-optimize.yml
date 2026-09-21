@@ -193,7 +193,7 @@ jobs:
             exit 0
           fi
           for attempt in 1 2 3; do
-            git push --force-with-lease=refs/heads/main:$((git rev-parse origin/main)) origin HEAD:main && exit 0
+            git push --force-with-lease=refs/heads/main:$(git rev-parse origin/main) origin HEAD:main && exit 0
             echo "Push raced with another main update; refreshing and rebasing (attempt $attempt/3)."
             git fetch origin main
             if ! git rebase -X theirs origin/main; then
