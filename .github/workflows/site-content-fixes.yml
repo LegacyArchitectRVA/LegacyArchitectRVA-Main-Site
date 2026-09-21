@@ -40,7 +40,6 @@ jobs:
                   if review:
                       without = without[:review.start()] + block + '\n' + without[review.start():]
                       s = without
-          index.write_text(s, encoding='utf-8')
 
           # 2. Correct the seven pillars wherever the old seven-pillar wording appears.
           replacements = {
@@ -71,7 +70,6 @@ jobs:
               if 'href="/digital-life-after-death"' not in text:
                   additions += '<a href="/digital-life-after-death">Digital Life After Death</a>'
               if additions:
-                  # Put links into the first footer link container when possible.
                   m = re.search(r'(<footer[^>]*>.*?<div[^>]*class=["\'][^"\']*(?:f-links|links)[^"\']*["\'][^>]*>)(.*?)(</div>)', text, re.I | re.S)
                   if m:
                       text = text[:m.start(2)] + m.group(2) + additions + text[m.start(3):]
@@ -89,6 +87,33 @@ jobs:
                   if url not in text:
                       text = text.replace('</urlset>', f'  <url><loc>{url}</loc><priority>{priority}</priority></url>\n</urlset>')
               sitemap.write_text(text, encoding='utf-8')
+
+          # 5. Give the mobile navigation an explicit Exit Menu button.
+          #    Keep this idempotent so rerunning the workflow never duplicates it.
+          index = root / 'index.html'
+          text = index.read_text(encoding='utf-8')
+
+          exit_markup = '''      <button class="m-exit" id="mExit" type="button" aria-label="Exit menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <span>Exit Menu</span>
+      </button>
+'''
+          if 'id="mExit"' not in text:
+              anchor = '      <a class="m-cta" href="/readiness">Readiness Check</a>\n'
+              if anchor in text:
+                  text = text.replace(anchor, anchor + exit_markup, 1)
+
+          exit_css = ''' .m-exit{display:flex;align-items:center;justify-content:center;gap:9px;margin:18px auto 0;min-height:48px;padding:12px 24px;border:1px solid rgba(212,182,97,.42);border-radius:3px;background:rgba(212,182,97,.06);color:var(--gold);font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .4s .34s,transform .4s .34s,background .2s,border-color .2s}.m-menu.on .m-exit{opacity:1;transform:none}.m-exit:hover{background:rgba(212,182,97,.14);border-color:rgba(212,182,97,.7)}.m-exit:focus-visible{outline:2px solid var(--gold-b);outline-offset:3px}.m-exit svg{width:15px;height:15px;stroke:currentColor;stroke-width:2;stroke-linecap:round;fill:none}@media(max-width:560px){.m-exit{min-height:48px;margin-top:16px}}'''
+          if '.m-exit{' not in text:
+              style_end = '</style>'
+              text = text.replace(style_end, exit_css + style_end, 1)
+
+          js_anchor = "  burger.addEventListener('click',function(){ setOpen(!menu.classList.contains('on')); });\n"
+          js_add = "  var exit=document.getElementById('mExit');\n  if(exit) exit.addEventListener('click',function(){ setOpen(false); });\n"
+          if 'getElementById(\'mExit\')' not in text:
+              text = text.replace(js_anchor, js_anchor + js_add, 1)
+
+          index.write_text(text, encoding='utf-8')
           PY
 
       - name: Commit fixes
@@ -99,6 +124,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No content changes needed.'
           else
-            git commit -m 'fix: align site content, section order, and search links'
+            git commit -m 'fix: add explicit exit control to mobile navigation'
             git push
           fi
