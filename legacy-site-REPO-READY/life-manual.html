@@ -628,5 +628,18 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   document.querySelectorAll('.mode-btn').forEach(place);
 })();
 </script>
-</body>
+<script data-cfasync="false">
+(function(){
+  document.querySelectorAll('.pillar').forEach(function(card){
+    var btn=card.querySelector('.pillar-plus');
+    function toggle(){
+      var open=card.classList.toggle('open');
+      card.setAttribute('aria-expanded',open?'true':'false');
+      if(btn) btn.setAttribute('aria-label',(open?'Hide':'Show')+' details for '+(card.querySelector('.pillar-name')?.textContent||'pillar'));
+    }
+    if(btn) btn.addEventListener('click',function(e){e.stopPropagation();toggle();});
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  });
+})();
+</script></body>
 </html>
