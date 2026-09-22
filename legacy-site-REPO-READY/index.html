@@ -927,13 +927,14 @@ function pickVoice(){
   if(!synth) return null;
   var vs = synth.getVoices() || [];
   if(!vs.length) return null;
-  var pref = ['Moira','Microsoft Orla Online','Orla',
-              'Samantha','Karen','Google US English'];
-  for(var i=0;i<pref.length;i++){
-    for(var j=0;j<vs.length;j++){ if(vs[j].name.indexOf(pref[i])!==-1) return vs[j]; }
+  /* Prefer a native Irish-English voice when the device provides one. */
+  for(var i=0;i<vs.length;i++){ if(/^en[-_]IE$/i.test(vs[i].lang)) return vs[i]; }
+  var pref = ['Moira','Orla','Microsoft Orla Online'];
+  for(var p=0;p<pref.length;p++){
+    for(var j=0;j<vs.length;j++){ if(vs[j].name.indexOf(pref[p])!==-1) return vs[j]; }
   }
-  for(var k=0;k<vs.length;k++){ if(/^en-ie/i.test(vs[k].lang)) return vs[k]; }
-  for(var k=0;k<vs.length;k++){ if(/^en[-_]/i.test(vs[k].lang)) return vs[k]; }
+  for(var k=0;k<vs.length;k++){ if(/^en[-_]GB/i.test(vs[k].lang)) return vs[k]; }
+  for(var m=0;m<vs.length;m++){ if(/^en[-_]/i.test(vs[m].lang)) return vs[m]; }
   return vs[0];
 }
 
@@ -942,8 +943,10 @@ function speak(text){
   try{
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text.replace(/\s+/g,' ').trim());
-    var v = pickVoice(); if(v) u.voice = v;
-    u.rate = 0.98; u.pitch = 1.0; u.volume = 1.0;
+    var v = pickVoice(); if(v) { u.voice = v; u.lang = v.lang || 'en-IE'; }
+    else { u.lang = 'en-IE'; }
+    /* Keep the delivery natural. The accent comes from the installed voice, not exaggerated text. */
+    u.rate = 0.97; u.pitch = 1.0; u.volume = 1.0;
     synth.speak(u);
   }catch(e){}
 }
