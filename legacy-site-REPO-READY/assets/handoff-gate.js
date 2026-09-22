@@ -2,7 +2,7 @@
   var HS_PORTAL_ID = "244990054";
   var HS_FORM_ID = "ddf7849b-620d-4e85-ab3d-9c82512c6302";
   var SUBMIT_URL = "https://api.hsforms.com/submissions/v3/integration/submit/" + HS_PORTAL_ID + "/" + HS_FORM_ID;
-  var FALLBACK_PDF_URL = "https://downloads.legacyarchitectrva.com/The-Handoff-2.pdf";
+  var FALLBACK_PDF_URL = "/assets/The-Handoff.pdf";
 
   var style = document.createElement('style');
   style.textContent = ""
@@ -83,7 +83,7 @@
     +   '<div class="hg-field"><label for="handoff-lastname">Last name</label>'
     +   '<input type="text" id="handoff-lastname" name="lastname" placeholder="Last name"></div>'
     +   '<div id="handoff-consent"><input type="checkbox" id="handoff-consent-check" required>'
-    +   '<label for="handoff-consent-check">It\'s okay to email me this and store my info so Legacy Architect RVA can follow up.</label></div>'
+    +   '<label for="handoff-consent-check">It\'s okay to email me this and store my info so Legacy Architect RVA can follow up. <a href="/privacy" target="_blank" rel="noopener" style="color:#d4b661;text-decoration:underline">Privacy Policy</a></label></div>'
     +   '<div id="handoff-error"></div>'
     +   '<button type="submit" id="handoff-submit-btn">Send It Over</button>'
     + '</form>'
