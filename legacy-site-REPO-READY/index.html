@@ -796,6 +796,27 @@ function score(q,f){
 var WORKER = 'https://elara-ai.craig-a51.workers.dev';
 var convo = [];
 
+function localElaraAnswer(q){
+  var best=null,bs=0;
+  FAQ.forEach(function(f){var n=score(q,f);if(n>bs){bs=n;best=f;}});
+  if(best && bs>=2) return best.a;
+
+  var x=q.toLowerCase();
+  if(/start|begin|where do i|what do i do|don't know|not sure/.test(x)){
+    return 'Sure. Start with the free Readiness Check. It takes about two minutes, needs no email, and shows you where the gaps are across the seven continuity areas. From there, you can decide whether you want to do the work yourself, book a Blueprint Session, or build the full Life Manual.';
+  }
+  if(/pillar|chapter|cover|include|what.*manual/.test(x)){
+    return 'The Life Manual covers seven continuity areas: Digital Life, Emergency & Successor Orientation, Financial & Assets, Household Operations, Vital Records, Legacy & Wishes, and Business Continuity. Business Continuity is included in the Business edition.';
+  }
+  if(/privacy|store|data|password|credential|secure/.test(x)){
+    return 'The Life Manual is not a password dump. Credentials and secrets stay under your control. The process records where access lives and what a successor needs to know, while client-specific working material is purged after the applicable final review period.';
+  }
+  if(/guide|resource/.test(x)){
+    return 'There are two practical guides in Resources: “When You Die, Who Knows Where Everything Is?” and “What Happens to Your Digital Life When You Die?” Both are designed to help you think through continuity before deciding what you need.';
+  }
+  return 'I can explain the Life Manual, the seven pillars, pricing, privacy, the two new guides, or where to start. If you’re not sure yet, the free Readiness Check is the simplest place to begin.';
+}
+
 function askAI(q){
   orb.classList.add('think');
   var t=document.createElement('div');
@@ -803,19 +824,25 @@ function askAI(q){
   body.insertBefore(t, document.getElementById('tail'));
   scrollToTopOf(t);
 
-  fetch(WORKER, {
+  var controller = window.AbortController ? new AbortController() : null;
+  var timer = controller ? setTimeout(function(){ controller.abort(); }, 7000) : null;
+  var options = {
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({question:q, history:convo.slice(-6)})
-  })
+  };
+  if(controller) options.signal=controller.signal;
+
+  fetch(WORKER, options)
   .then(function(r){
     if(!r.ok) throw new Error('worker-http-'+r.status);
     return r.json();
   })
   .then(function(d){
+    if(timer) clearTimeout(timer);
     t.remove(); orb.classList.remove('think');
     var a = (d && d.answer) ? d.answer : null;
-    if(!a){ throw new Error('empty'); }
+    if(!a) throw new Error('empty');
     say(a, 'bot', d.blocked ? 'warn' : null);
     convo.push({role:'user',content:q});
     convo.push({role:'assistant',content:a});
@@ -823,13 +850,10 @@ function askAI(q){
     home();
   })
   .catch(function(){
+    if(timer) clearTimeout(timer);
     t.remove(); orb.classList.remove('think');
-    /* fall back to the local answers rather than leaving them stuck */
-    var best=null,bs=0;
-    FAQ.forEach(function(f){var s=score(q,f);if(s>bs){bs=s;best=f;}});
-    if(best&&bs>=2){ say(best.a); home(); return; }
-    say('I can\'t reach my brain at the moment. Craig can help directly, he\'s at info@legacyarchitectrva.com or (804) 866-1320.');
-    setChips([{label:'Leave a message',go:messageForm},{label:'Back',go:home}]);
+    say(localElaraAnswer(q));
+    home();
   });
 }
 
