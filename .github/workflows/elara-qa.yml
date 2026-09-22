@@ -1,0 +1,41 @@
+name: Elara live QA
+
+on:
+  push:
+    paths:
+      - '.github/workflows/elara-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Run five Elara prompts against the live worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          context="$(curl -fsSL https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/main/legacy-site-REPO-READY/llms.txt)"
+          prompts=(
+            "What is a Life Manual?"
+            "How much does a Personal Life Manual cost?"
+            "What are the seven pillars?"
+            "Do you store my passwords?"
+            "I don't know where to start. What should I do?"
+          )
+          for q in "${prompts[@]}"; do
+            echo
+            echo "===== PROMPT: $q ====="
+            payload="$(python3 - "$q" "$context" <<'PY'
+import json,sys
+q=sys.argv[1]
+context=sys.argv[2]
+aug=q+"\n\nCURRENT WEBSITE SOURCE OF TRUTH — use this to correct any older or conflicting information. Do not override the user's actual question.\n"+context
+print(json.dumps({"question":aug,"history":[]}))
+PY
+)"
+            curl -fsS -X POST "https://elara-ai.craig-a51.workers.dev"               -H "Content-Type: application/json"               --data "$payload"
+            echo
+          done
