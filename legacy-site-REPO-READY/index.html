@@ -1067,7 +1067,7 @@ else if(vMic){
 }
 
 }
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initElara);}else{initElara();}
+if(document.readyState==='loading' || !document.getElementById('orb') || !document.getElementById('panel')){document.addEventListener('DOMContentLoaded',initElara,{once:true});}else{initElara();}
 
 /* ---------- LIGHT MODE TOGGLE (dark canonical) ---------- */
 (function(){
