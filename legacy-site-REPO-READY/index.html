@@ -498,6 +498,7 @@
 (function(){
   var burger=document.getElementById('mBurger'), menu=document.getElementById('mMenu');
   if(!burger||!menu) return;
+  burger.dataset.laMenuBound='1';
   var lastFocus=null;
   function setOpen(open){
     menu.classList.toggle('on',open);
@@ -1167,6 +1168,62 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   }, true);
 </script>
 <script src="/assets/handoff-gate.js?v=6" defer="defer"></script>
+<script data-cfasync="false">
+/* Final UI boot guard: Elara and the mobile menu must remain usable even if
+   another inline feature throws before its normal event bindings run. */
+(function(){
+  function boot(){
+    var burger=document.getElementById('mBurger');
+    var menu=document.getElementById('mMenu');
+    if(burger && menu && burger.dataset.laMenuBound!=='1' && burger.dataset.laEmergencyBound!=='1'){
+      burger.dataset.laEmergencyBound='1';
+      var setMenu=function(open){
+        menu.classList.toggle('on',open);
+        burger.classList.toggle('on',open);
+        document.body.classList.toggle('menu-open',open);
+        burger.setAttribute('aria-expanded',open?'true':'false');
+        burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+      };
+      burger.addEventListener('click',function(){setMenu(!menu.classList.contains('on'));});
+      var exit=document.getElementById('mExit');
+      if(exit) exit.addEventListener('click',function(){setMenu(false);});
+      menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape') setMenu(false);});
+    }
+
+    var orb=document.getElementById('orb');
+    var panel=document.getElementById('panel');
+    if(orb && panel && orb.dataset.laBound!=='1' && orb.dataset.laEmergencyBound!=='1'){
+      orb.dataset.laEmergencyBound='1';
+      orb.addEventListener('click',function(){
+        var open=panel.classList.contains('on');
+        panel.classList.toggle('on',!open);
+        orb.classList.toggle('open',!open);
+        orb.setAttribute('aria-expanded',!open?'true':'false');
+        orb.setAttribute('aria-label',!open?'Close Elara':'Open Elara');
+        if(!open && !document.getElementById('elara-emergency-greeting')){
+          var d=document.createElement('div');
+          d.id='elara-emergency-greeting';
+          d.className='msg bot';
+          d.textContent="I'm Elara. I can explain the Life Manual, the seven pillars, pricing, privacy, or help you figure out where to start.";
+          var body=document.getElementById('body');
+          if(body) body.appendChild(d);
+        }
+      });
+      var close=document.getElementById('asstX');
+      if(close) close.addEventListener('click',function(){
+        panel.classList.remove('on');
+        orb.classList.remove('open');
+        orb.setAttribute('aria-expanded','false');
+        orb.setAttribute('aria-label','Open Elara');
+      });
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
+  else boot();
+})();
+</script>
+
 
 
 
