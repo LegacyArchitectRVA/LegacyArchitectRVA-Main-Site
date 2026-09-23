@@ -622,6 +622,30 @@ var CONTACT = /\b(message|contact|email|reach|get in touch|phone)\b/i;
 var orb=document.getElementById('orb'), panel=document.getElementById('panel'),
     body=document.getElementById('body'), chips=document.getElementById('chips');
 
+/* Keep the launcher usable even if a later script or telemetry layer fails. */
+function bindElaraLauncher(){
+  var launcher=document.getElementById('orb');
+  var box=document.getElementById('panel');
+  if(!launcher||!box||launcher.dataset.laFallbackBound==='1') return;
+  launcher.dataset.laFallbackBound='1';
+  launcher.addEventListener('click',function(){
+    if(typeof window.__laElaraOpen==='function' && typeof window.__laElaraClose==='function') return;
+    var open=box.classList.contains('on');
+    box.classList.toggle('on',!open);
+    launcher.classList.toggle('open',!open);
+    launcher.setAttribute('aria-expanded',!open?'true':'false');
+    launcher.setAttribute('aria-label',!open?'Close Elara':'Open Elara');
+    if(!open && !document.getElementById('elara-fallback-message')){
+      var d=document.createElement('div');
+      d.id='elara-fallback-message'; d.className='msg bot';
+      d.textContent='I\'m Elara. I can explain the Life Manual, the seven pillars, pricing, privacy, or help you figure out where to start.';
+      var b=document.getElementById('body'); if(b) b.appendChild(d);
+    }
+  },true);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bindElaraLauncher,{once:true}); else bindElaraLauncher();
+    body=document.getElementById('body'), chips=document.getElementById('chips');
+
 /* Scroll so the TOP of a new answer sits just below the question,
    rather than slamming to the bottom of the thread. Long answers then
    start where the eye already is instead of at their last line. */
@@ -898,6 +922,9 @@ function close_(){
   userActed = true;
   try{ localStorage.setItem('la_asst_seen','1'); }catch(e){}
 }
+/* Expose the controls so the fixed orb can still open Elara if another script loads late. */
+window.__laElaraOpen = open_;
+window.__laElaraClose = close_;
 var asstX=document.getElementById('asstX');
 if(asstX && !asstX.dataset.laBound){
   asstX.dataset.laBound='1';
