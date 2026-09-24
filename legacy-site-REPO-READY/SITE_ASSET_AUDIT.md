@@ -8,3 +8,4 @@ Candidates from a conservative repository-wide reference scan.
 
 - `craig-headshot.webp` (19,050 bytes)
 - `desktop-section-fix.css` (408 bytes)
+- `voyage-virginia-logo.png` (9,721 bytes)
