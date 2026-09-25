@@ -984,14 +984,21 @@ var speakOn = false;
 var synth = window.speechSynthesis || null;
 var vSpeak = document.getElementById('vSpeak');
 var vMic   = document.getElementById('vMic');
+var ttsAudio = null;
+var ttsCache = Object.create(null);
+var ttsSeq = 0;
 
-if(!synth){ if(vSpeak) vSpeak.hidden = true; }
+function stopServerAudio(){
+  if(ttsAudio){
+    try{ ttsAudio.pause(); ttsAudio.currentTime = 0; }catch(e){}
+    ttsAudio = null;
+  }
+}
 
 function pickVoice(){
   if(!synth) return null;
   var vs = synth.getVoices() || [];
   if(!vs.length) return null;
-  /* Prefer a native Irish-English voice when the device provides one. */
   for(var i=0;i<vs.length;i++){ if(/^en[-_]IE$/i.test(vs[i].lang)) return vs[i]; }
   var pref = ['Moira','Orla','Microsoft Orla Online'];
   for(var p=0;p<pref.length;p++){
@@ -1002,17 +1009,63 @@ function pickVoice(){
   return vs[0];
 }
 
-function speak(text){
-  if(!speakOn || !synth || !text) return;
+function browserSpeak(text){
+  if(!synth || !text) return;
   try{
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text.replace(/\s+/g,' ').trim());
-    var v = pickVoice(); if(v) { u.voice = v; u.lang = v.lang || 'en-IE'; }
+    var v = pickVoice();
+    if(v){ u.voice = v; u.lang = v.lang || 'en-IE'; }
     else { u.lang = 'en-IE'; }
-    /* Keep the delivery natural. The accent comes from the installed voice, not exaggerated text. */
     u.rate = 0.97; u.pitch = 1.0; u.volume = 1.0;
     synth.speak(u);
   }catch(e){}
+}
+
+function speak(text){
+  if(!speakOn || !text) return;
+  var clean = text.replace(/\s+/g,' ').trim();
+  if(!clean) return;
+
+  var seq = ++ttsSeq;
+  stopServerAudio();
+  if(synth){ try{ synth.cancel(); }catch(e){} }
+
+  if(ttsCache[clean]){
+    ttsAudio = new Audio(ttsCache[clean]);
+    ttsAudio.preload = 'auto';
+    var cachedPlay = ttsAudio.play();
+    if(cachedPlay && cachedPlay.catch){
+      cachedPlay.catch(function(){ if(seq===ttsSeq && speakOn) browserSpeak(clean); });
+    }
+    return;
+  }
+
+  fetch(WORKER + '/tts', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({text:clean})
+  })
+  .then(function(r){
+    if(!r.ok) throw new Error('tts-http-'+r.status);
+    return r.blob();
+  })
+  .then(function(blob){
+    if(seq!==ttsSeq || !speakOn) return;
+    var url = URL.createObjectURL(blob);
+    ttsCache[clean] = url;
+    ttsAudio = new Audio(url);
+    ttsAudio.preload = 'auto';
+    var playPromise = ttsAudio.play();
+    if(playPromise && playPromise.catch){
+      playPromise.catch(function(){
+        if(seq===ttsSeq && speakOn) browserSpeak(clean);
+      });
+    }
+  })
+  .catch(function(){
+    if(seq===ttsSeq && speakOn) browserSpeak(clean);
+  });
 }
 
 if(vSpeak){
@@ -1021,8 +1074,11 @@ if(vSpeak){
     vSpeak.classList.toggle('on', speakOn);
     vSpeak.setAttribute('aria-pressed', speakOn ? 'true' : 'false');
     document.getElementById('vSpeakLabel').textContent = speakOn ? 'Reading' : 'Read aloud';
-    if(!speakOn && synth){ try{ synth.cancel(); }catch(e){} }
-    else {
+    if(!speakOn){
+      ttsSeq++;
+      stopServerAudio();
+      if(synth){ try{ synth.cancel(); }catch(e){} }
+    } else {
       var last = [].slice.call(document.querySelectorAll('.msg.bot')).pop();
       if(last) speak(last.textContent);
     }
