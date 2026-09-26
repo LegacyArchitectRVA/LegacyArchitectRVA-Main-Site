@@ -107,9 +107,13 @@
 - Page: https://legacyarchitectrva.com/estate-planning-vs-continuity
 - Practical guide explaining that estate planning divides assets while continuity keeps life running day to day, and why both matter.
 
+### Your Family's Guide to End-of-Life Planning
+- Page: https://legacyarchitectrva.com/end-of-life-planning-guide
+- Practical guide covering the legal basics, the Life Manual, hard family conversations, digital accounts, and common end-of-life planning mistakes.
+
 ### Guides
 - Page: https://legacyarchitectrva.com/guides
-- Index page listing all nine native continuity guides above in one place. Linked from the main site navigation on every page.
+- Index page listing all ten native continuity guides above in one place. Linked from the main site navigation on every page.
 
 ### Resources
 - Page: https://legacyarchitectrva.com/resources
