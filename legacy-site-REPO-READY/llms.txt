@@ -79,9 +79,37 @@
 - Practical guide about email, cloud storage, passwords, subscriptions, two-factor authentication, photos, online accounts, and other parts of digital life that do not come with one universal handoff.
 - The guide emphasizes creating a clear place for a successor to start rather than putting every credential into one document.
 
+### The Morning After Someone Doesn't Come Home
+- Page: https://legacyarchitectrva.com/the-morning-after
+- Practical guide about what the first 24 hours after a death or emergency actually require, and the small practical questions successors face immediately.
+
+### The Gap Nobody Talks About: Who Handles Your Life When You Can't?
+- Page: https://legacyarchitectrva.com/who-handles-your-life
+- Practical guide about incapacity planning. Being unavailable isn't the same as being gone.
+
+### Five Things Families Are Actually Worried About Right Now
+- Page: https://legacyarchitectrva.com/five-things-families-worry-about
+- Practical guide about the real fears families have around continuity, and why passwords alone don't solve them.
+
+### The Risk Most Responsible People Never Plan For
+- Page: https://legacyarchitectrva.com/risk-responsible-people-never-plan-for
+- Practical guide explaining that even organized, insured, well-prepared people usually have no plan for who can access and run their life day to day.
+
+### The 2026 Blind Spot in Estate Planning: Digital Continuity
+- Page: https://legacyarchitectrva.com/digital-continuity-blind-spot
+- Practical guide about why traditional estate documents don't cover digital account access and continuity.
+
+### 10 Critical Questions People Search For, and How a Life Manual Solves Them
+- Page: https://legacyarchitectrva.com/10-critical-questions-life-manual
+- Practical guide that answers the top questions people search when trying to organize their affairs.
+
+### The Gap Between Estate Planning and Continuity Services
+- Page: https://legacyarchitectrva.com/estate-planning-vs-continuity
+- Practical guide explaining that estate planning divides assets while continuity keeps life running day to day, and why both matter.
+
 ### Resources
 - Page: https://legacyarchitectrva.com/resources
-- Contains the free Readiness Check, The Handoff, research and LinkedIn material, and the two new continuity guides above.
+- Contains the free Readiness Check, The Handoff, research material, and all nine native continuity guides above.
 
 ## Free resources
 - Readiness Check: free, approximately two minutes, no email required. It identifies gaps across the seven pillars.
